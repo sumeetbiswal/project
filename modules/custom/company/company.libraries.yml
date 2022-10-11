@@ -1,0 +1,3 @@
+workorder-lib:
+  js: 
+    js/workorder.js: {}

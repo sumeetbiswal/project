@@ -1,0 +1,6 @@
+name: company
+description: This modules includes company configuration
+core: 8.x
+package: Custom
+type: module
+core_version_requirement: ^8 || ^9

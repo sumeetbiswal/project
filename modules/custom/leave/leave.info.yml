@@ -1,0 +1,5 @@
+name: Leave
+description: This Modules is for Managing Leaves
+core: 8.x
+package: Custom
+type: module

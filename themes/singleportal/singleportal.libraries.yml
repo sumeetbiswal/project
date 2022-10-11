@@ -1,0 +1,80 @@
+global-styling:
+  header: true
+  css:
+    theme:
+      assets/bootstrap/dist/css/bootstrap.min.css: {}
+      assets/css/animate.css: {}
+      assets/css/style.css: {}
+      assets/css/colors/megna-dark.css: {}
+      assets/css/singleportal.css: {}
+      assets/plugins/bower_components/sweetalert/sweetalert.css: {}
+js-header:
+  header: true
+  js:
+    assets/plugins/bower_components/jquery/dist/jquery.min.js: {}
+    https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js: {browsers: { IE: 'IE 9', '!IE': false } }
+    https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js: {browsers: { IE: 'IE 10', '!IE': false } }
+
+js-footer:
+  js:
+    assets/js/print/printThis.js: {}
+    assets/js/wordexport/FileSaver.js: {}
+    assets/js/wordexport/jquery.wordexport.js: {}
+    assets/js/singleportal.js: {}
+    assets/bootstrap/dist/js/bootstrap.min.js: {}
+    assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js: {}
+    assets/js/custom.min.js: {}
+    assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js: {}
+
+login-styling:
+  header: true
+  css:
+    theme:
+      assets/css/login/bootstrap.min599c.css: {}
+      assets/css/login/bootstrap-extend.min599c.css: {}
+      assets/css/login/site.min599c.css: {}
+      assets/css/login/login-v2.min599c.css: {}
+
+multistep-style:
+  header: true
+  css:
+    theme:
+      assets/plugins/bower_components/register-steps/steps.css: {}
+
+datetimepicker:
+  css:
+    theme:
+      assets/css/datetimepicker.css: {}
+  js:
+    assets/js/datetimepicker.js: { weight: -90 }
+
+master-validation:
+  css:
+    theme:
+      assets/css/JqueryValidation/validationEngine.jquery.css: {}
+  js:
+    assets/js/JqueryValidation/jquery-1.8.2.min.js: { weight: -100 }
+    assets/js/JqueryValidation/languages/jquery.validationEngine-en.js: { weight: -99 }
+    assets/js/JqueryValidation/jquery.validationEngine.js: { weight: -98 }
+    assets/js/JqueryValidation/validation-form-list.js: { weight: -97 }
+
+bootstrap-toggle:
+  css:
+    theme:
+      assets/css/bootstrap-toggle/bootstrap-toggle.min.css: {}
+  js:
+    assets/js/bootstrap-toggle/bootstrap-toggle.min.js: {}
+
+time-picker:
+  css:
+    theme:
+      assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.css: {}
+  js:
+    assets/plugins/bower_components/timepicker/bootstrap-timepicker.min.js: { weight: -96 }
+    assets/js/timepicker.js: { weight: -95 }
+
+dashboard:
+  js:
+    assets/plugins/bower_components/waypoints/lib/jquery.waypoints.js: {}
+    assets/plugins/bower_components/counterup/jquery.counterup.min.js: {}
+    assets/js/dashboard3.js: {}

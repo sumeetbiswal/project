@@ -1,0 +1,129 @@
+<?php
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+
+
+function singleportal_preprocess_page(&$variables) {
+	
+	if($variables['is_front'])
+	{
+		$variables['#attached']['library'][] = 'singleportal/login-styling';
+	}
+	else if(\Drupal::service('path.current')->getPath() == '/batch')
+	{
+		//no library
+	}
+	else
+	{
+		$variables['#attached']['library'][] = 'singleportal/global-styling';
+		$variables['#attached']['library'][] = 'singleportal/js-header';
+		$variables['#attached']['library'][] = 'singleportal/js-footer';
+	}
+	
+	if(\Drupal::service('path.current')->getPath() == '/home')
+	{
+		$variables['#attached']['library'][] = 'singleportal/dashboard';
+	}
+	
+	$variables['site_name'] = \Drupal::config('system.site')->get('name');
+	
+	$variables['site_logo'] = file_create_url("public://logo-title.png");
+	$variables['year'] = date('Y');
+	$variables['base_path'] = base_path();
+	
+	$variables['white_box_exclud'] = FALSE;
+	$white_box_exception = ['/profile'];
+	if(in_array(\Drupal::service('path.current')->getPath(), $white_box_exception))
+	{
+		$variables['white_box_exclud'] = TRUE;;
+	}
+    
+}
+
+function singleportal_preprocess_menu(&$variables) {
+  $user = \Drupal::currentUser();
+  $roles = $user->getRoles();
+     if(in_array("administrator", $roles)) {
+      $variables['loggedin_user_role'] = "admin";
+  }else if(in_array("human_resources", $roles)) {
+      $variables['loggedin_user_role'] = "hr";
+  }
+  else {
+      $variables['loggedin_user_role'] = "employee";
+  }
+	
+}
+function singleportal_preprocess_menu__account(&$variables) {
+  $user = \Drupal::currentUser();
+  $libobj = new \Drupal\employee\Model\EmployeeModel;
+  $variables['#cache']['max-age'] = 0;
+  if($user)
+  {
+    $username = \Drupal\user\Entity\User::load($user->id());  
+    $personal_details = $libobj->getPersonalDetailsById($username->id());
+	
+    $gender = $personal_details->gender;
+    $firstname = $personal_details->firstname;
+    
+    $variables['username'] = (@$firstname == NULL) ? $username->getUsername() : $firstname;
+   
+    $variables['emailid'] = $username->getEmail();
+    
+	$user_pic = \Drupal::service('entity.manager')->getStorage('user')->load($user->id());
+    if($user_pic->user_picture->entity != NULL)
+    {
+      $variables['propic'] = $user_pic->user_picture->entity->getFileName();     
+    }
+    else
+    {
+      if(@$gender == NULL)
+        $variables['propic'] = 'male.jpg';
+      else if($gender == 'F')
+        $variables['propic'] = 'female.jpg';
+      else
+        $variables['propic'] = 'male.jpg';
+  
+    }
+  }
+
+}
+function singleportal_preprocess_html(&$variables) {
+  
+    $variables['attributes']['class'][] = 'fix-header';
+  
+}
+
+function singleportal_preprocess_block(&$variables) {
+  if ($variables['plugin_id'] === 'system_powered_by_block') {
+    $variables['year'] = date('Y');
+  }
+}
+
+function singleportal_preprocess_breadcrumb(&$variables) {
+  $request = \Drupal::request();
+  $route_match = \Drupal::routeMatch();
+  $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+  
+  $variables['headtitle'] = $page_title;  
+  $variables['breadcrumb'][] = array(
+    'text' => $page_title
+  );
+
+  $variables['#cache']['contexts'][] = 'url';
+}
+
+function singleportal_preprocess_block__system_branding_block(&$variables) {
+      $variables['organisation_logo'] = file_create_url("public://logo.png");
+ }
+
+function singleportal_admin_theme_info() {
+	echo "hiiiiiiiii";die;
+}

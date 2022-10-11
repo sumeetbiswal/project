@@ -1,0 +1,23 @@
+practise.multistep_one:
+ path: '/practise/stepone'
+ defaults:
+   _title: 'Step-1'
+   _form: '\Drupal\practise\Form\Multistep\MultistepOneForm'
+ requirements:
+   _permission: 'access content'
+
+practise.multistep_two:
+ path: '/practise/steptwo'
+ defaults:
+   _title: 'Step-2'
+   _form: '\Drupal\practise\Form\Multistep\MultistepTwoForm'
+ requirements:
+   _permission: 'access content'
+
+practise.addmore:
+ path: '/practise/addmore'
+ defaults:
+   _title: 'Add more'
+   _form: '\Drupal\practise\Form\AddMore'
+ requirements:
+   _permission: 'access content'

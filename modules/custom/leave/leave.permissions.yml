@@ -1,0 +1,4 @@
+leave list:
+    title: 'Leave List'
+    description: 'list of Leave applied by the employee'
+    restrict access: false

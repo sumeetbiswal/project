@@ -1,0 +1,68 @@
+employee.emplist:
+ path: '/employee'
+ defaults:
+   _title: 'Employees List'
+   _controller: '\Drupal\employee\Controller\Employee::emplist'
+ requirements:
+   _permission: 'access content'
+ options:
+    no_cache: 'TRUE'
+    
+employee.empaddprsnl:
+ path: '/employee/add/personal'
+ defaults:
+   _title: 'Employee Create'
+   _form: '\Drupal\employee\Form\Multistep\EmployeePersonalForm'
+ requirements:
+   _permission: 'access content'
+
+employee.empaddcontct:
+ path: '/employee/add/contact'
+ defaults:
+   _title: 'Employee Create'
+   _form: '\Drupal\employee\Form\Multistep\EmployeeContactForm'
+ requirements:
+   _permission: 'access content'
+
+employee.empaddacademic:
+ path: '/employee/add/academics'
+ defaults:
+   _title: 'Employee Create'
+   _form: '\Drupal\employee\Form\Multistep\EmployeeAcademicworkForm'
+ requirements:
+   _permission: 'access content'
+   
+employee.empaddoffcl:
+ path: '/employee/add/official'
+ defaults:
+   _title: 'Employee Create'
+   _form: '\Drupal\employee\Form\Multistep\EmployeeOfficialForm'
+ requirements:
+   _permission: 'access content' 
+   
+employee.preview:
+ path: '/employee/preview'
+ defaults:
+   _title: 'Preview details'
+   _form: '\Drupal\employee\Form\Multistep\EmployeePreview'
+ requirements:
+   _permission: 'access content'
+   
+employee.profile:
+ path: '/profile'
+ defaults:
+   _title: 'Digital Profile'
+   _controller: '\Drupal\employee\Controller\Employee::profile'
+ requirements:
+   _permission: 'access content'
+ options:
+    no_cache: 'TRUE'
+
+employee.employeeexcel:
+ path: '/employee/export/excel'
+ defaults:
+  _title: 'Employee Export'
+  _controller: '\Drupal\employee\Controller\Employee::exportToExcel'
+ requirements:
+   _permission: 'access content'
+    

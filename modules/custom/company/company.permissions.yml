@@ -1,0 +1,56 @@
+company add:
+    title: 'Organisation View'
+    description: 'Provide access for adding new organisation details'
+    restrict access: false
+company view:
+    title: 'Organisation View'
+    description: 'Provide access for viewing organisation details'
+    restrict access: false
+company edit:
+    title: 'Organisation Edit'
+    description: 'Provide access for editing organisation details'
+    restrict access: false
+company branchedit:
+    title: 'Branch Edit'
+    description: 'Provide access for editing Branch details'
+    restrict access: false
+company branchview:
+    title: 'Branch View'
+    description: 'Provide access for viewing Branch details'
+    restrict access: false
+company branchadd:
+    title: 'Branch Add'
+    description: 'Provide access for Adding Branch details'
+    restrict access: false
+company deptedit:
+    title: 'Department Edit'
+    description: 'Provide access for editing Department details'
+    restrict access: false
+company deptview:
+    title: 'Department View'
+    description: 'Provide access for viewing Department details'
+    restrict access: false
+company deptadd:
+    title: 'Department Add'
+    description: 'Provide access for Adding Department details'
+    restrict access: false
+company desigedit:
+    title: 'Designation Edit'
+    description: 'Provide access for editing Designation details'
+    restrict access: false
+company desigview:
+    title: 'Designation View'
+    description: 'Provide access for viewing Designation details'
+    restrict access: false
+company desigadd:
+    title: 'Designation Add'
+    description: 'Provide access for Adding Designation details'
+    restrict access: false
+company configview:
+    title: 'Configuration View'
+    description: 'Provide access for viewing Configuration details'
+    restrict access: false
+company workorder:
+    title: 'Work Order View'
+    description: 'Provide access for viewing Configuration details'
+    restrict access: false

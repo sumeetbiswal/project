@@ -1,0 +1,7 @@
+login.pwd:
+ path: '/settings/password'
+ defaults:
+   _title: 'Change Password'
+   _form: '\Drupal\login\Form\ChangePassword'
+ requirements:
+   _permission: 'access content'

@@ -1,0 +1,4 @@
+admin configuration:
+    title: 'Admin Access'
+    description: Provide access for administrative configuration'
+    restrict access: false

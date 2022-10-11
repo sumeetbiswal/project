@@ -1,0 +1,47 @@
+global-styling:
+  header: true
+  css:
+    theme:
+      assets/bootstrap/dist/css/bootstrap.min.css: {}
+      assets/css/animate.css: {}
+      assets/css/style.css: {}
+      assets/css/colors/megna-dark.css: {}
+js-header:
+  header: true
+  js: 
+    assets/plugins/bower_components/jquery/dist/jquery.min.js: {}
+    https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js: {browsers: { IE: 'IE 9', '!IE': false } }
+    https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js: {browsers: { IE: 'IE 10', '!IE': false } }
+
+js-footer:
+  header: false
+  js: 
+    assets/bootstrap/dist/js/bootstrap.min.js: {}
+    assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js: {}
+    assets/js/custom.min.js: {}
+    assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js: {}
+    assets/js/singleportal.js: {}
+
+login-styling:
+  header: true
+  css:
+    theme:
+      assets/css/login/bootstrap.min599c.css: {}
+      assets/css/login/bootstrap-extend.min599c.css: {}
+      assets/css/login/site.min599c.css: {}
+      assets/css/login/login-v2.min599c.css: {}
+      
+multistep-style:
+  header: true
+  css:
+    theme:
+      assets/plugins/bower_components/register-steps/steps.css: {}
+
+datepicker:  
+  css:
+    theme:
+      assets/css/jquery.datepicker2.css: {}
+  js:
+    assets/js/jquery.datepicker2.js: {}
+    assets/js/address.js: {}
+    assets/js/validator.js: {}

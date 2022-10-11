@@ -1,0 +1,4 @@
+name: xsmind
+recipe: drupal9
+config:
+  webroot: .

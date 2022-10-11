@@ -1,0 +1,12 @@
+employee empledit:
+    title: 'Employee Edit'
+    description: 'Provide access for editing Employee details'
+    restrict access: false
+employee emplview:
+    title: 'Employee View'
+    description: 'Provide access for viewing Employee details'
+    restrict access: false
+employee empladd:
+    title: 'Employee Add'
+    description: 'Provide access for adding Employee details'
+    restrict access: false

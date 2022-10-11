@@ -1,0 +1,503 @@
+<div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-wrapper collapse in" aria-expanded="true">
+                                <div class="panel-body">
+                                <form class="form-horizontal" role="form">
+                                        <div class="form-body">
+                                            <h3 class="box-title">Personal Info <div class="pull-right">
+				<a href="#"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a> 
+			</div> </h3>
+                                            <hr class="m-t-0 m-b-40">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">First Name:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static">'.$this->store->get('firstname').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div><div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Last Name:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('lastname').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Fathers Name:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static">'.$this->store->get('fname'). '</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Mothers Name:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('mname'). ' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Gender:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('gender'). ' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Date of birth:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('dob'). ' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Marital:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('marital'). ' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Blood group</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('blood'). ' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Religion:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('religion'). ' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Nationality</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('nationality'). ' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            </br>
+                                        </br>
+                                       <h3 class="box-title">Contact info<div class="pull-right">
+				<a href="#"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a> 
+			</div></h3>
+                                            <hr class="m-t-0 m-b-40">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Phone number:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('phoneno'). ' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Alt phone number:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('altphoneno'). '</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Emergency Contact:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static">'.$this->store->get('emergencyno'). ' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Relationship:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('relationship'). ' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Email:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('email').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Image: </label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('image').'</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                          </br>
+                                          </br>
+                                       <h3 class="box-title">Present address</h3>
+                                            <hr class="m-t-0 m-b-40">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Address Line 1:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static">'.$this->store->get('address1').'</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Address Line:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('address2').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">state:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('state').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">City:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('city').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Post Code:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('pincode').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Country:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('country').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         </br>
+                                        </br>
+                                       <h3 class="box-title">Premanent address</h3>
+                                            <hr class="m-t-0 m-b-40">    
+        
+        
+        <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Address Line 1:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static">'.$this->store->get('permanentaddress1').'</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Address Line 2:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('permanentaddress2').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">state:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('permanentstate').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">City:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('permanentcity').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            <!--/row-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Post Code:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('permanentpincode').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Country:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('permanentcountry').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+        
+        
+        
+                                  </br>
+                                   </br>
+                                  <h3 class="box-title">Accademic info<div class="pull-right">
+				<a href="#"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a></div></h3>
+                                            <hr class="m-t-0 m-b-40">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Stream:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('class').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">University</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('university').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Year of passing:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static">'.$this->store->get('yearofpassing').'</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">   Score:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('score').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                     </br>
+                                   </br>
+                                   <h3 class="box-title">Previous Employement info</h3>
+                                            <hr class="m-t-0 m-b-40">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Company:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('organisation').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Designation:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('designation').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">From Date:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('fromdate').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">To Date:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('todate').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                           </br>
+                                   </br>
+                                   <h3 class="box-title">Official info<div class="pull-right">
+				<a href="#"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a> 
+			</div></h3>
+                                            <hr class="m-t-0 m-b-40">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Employee ID:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('id').'</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Branch</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('branch').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Designation</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('designation').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Department</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('department').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                            <div class="row">
+                                             <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Role</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('role').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Email</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('email').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                               
+                                                <!--/span-->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Nature of job:</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('jobnature').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">Date of joining :</label>
+                                                        <div class="col-md-9">
+                                                            <p class="form-control-static"> '.$this->store->get('doj').' </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                            </div>
+                                      
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                    <div class="form-actions">
+                                            <div class="row">
+                                            <hr class="m-t-0 m-b-40">
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="col-md-offset-3 col-md-9">
+                                                            <button style="margin-left: 35%;" type="submit" class="btn btn-success"> Submit</button>
+                                                            <button style="margin-left: 5%;" type="button" class="btn btn-default">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6"> </div>
+                                            </div>
+                                        </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            

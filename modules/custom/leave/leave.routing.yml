@@ -1,0 +1,9 @@
+leave.list:
+ path: '/leave'
+ defaults:
+   _title: 'My Leave'
+   _controller: '\Drupal\leave\Controller\Leave::leavelist'
+ requirements:
+   _permission: 'access content'
+ options:
+    no_cache: 'TRUE'

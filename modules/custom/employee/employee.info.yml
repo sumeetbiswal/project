@@ -1,0 +1,5 @@
+name: Employee
+description: This Modules is for Managing Employee
+core: 8.x
+package: Custom
+type: module
