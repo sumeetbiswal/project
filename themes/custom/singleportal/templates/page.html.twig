@@ -1,0 +1,82 @@
+  <div id="wrapper">
+      <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                
+                    {{ page.header }}
+				
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- End Top Navigation -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+       
+	   {{ page.mainmenu }}
+        
+	  
+        <div id="page-wrapper">
+            <div class="container-fluid">
+	{{ page.breadcrumb }}
+			<main>
+				<!-- .row -->
+                <div class="row">
+                    <div class="col-md-12">
+                      {% set url = url('<current>') %}
+                      {% if 'home' in url|render|render %}
+						<div class="col-lg-6">
+                        {{ page.dashleft }}
+						</div>
+						<div class="col-lg-6">
+						{{ page.dashright }}
+						<div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div class="news-slide m-b-30 dashboard-slide">
+                            <div class="vcarousel slide">
+                                <!-- Carousel items -->
+                                <div class="carousel-inner">
+                                    <div class="active item">
+                                        <div class="overlaybg"><img src="../plugins/images/heading-bg/slide6.jpg"></div>
+                                        <div class="news-content"><span class="label label-danger label-rounded">Primary</span>
+                                            <h2>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</h2> <a href="javascript:void(0)">Read More</a></div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="overlaybg"><img src="../plugins/images/heading-bg/slide4.jpg"></div>
+                                        <div class="news-content"><span class="label label-primary label-rounded">Primary</span>
+                                            <h2>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</h2> <a href="javascript:void(0)">Read More</a></div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="overlaybg"><img src="../plugins/images/heading-bg/slide6.jpg"></div>
+                                        <div class="news-content"><span class="label label-success label-rounded">Primary</span>
+                                            <h2>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</h2> <a href="javascript:void(0)">Read More</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+						</div>
+                      {% elseif  white_box_exclud %}
+						  {{ page.message }}
+						  {{ page.content }}
+					  {% else %}
+                        <div class="white-box">                      
+						  {{ page.message }}
+						  {{ page.content }}
+                        </div>
+					 {% endif %}
+                    </div>
+                </div>
+                <!-- .row -->
+			</main>	
+			
+			</div>
+			
+			{{ page.footer }}
+            
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+  
