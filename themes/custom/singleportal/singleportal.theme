@@ -12,7 +12,7 @@ use Drupal\file\Entity\File;
 
 
 function singleportal_preprocess_page(&$variables) {
-	
+
 	if($variables['is_front'])
 	{
 		$variables['#attached']['library'][] = 'singleportal/login-styling';
@@ -27,25 +27,25 @@ function singleportal_preprocess_page(&$variables) {
 		$variables['#attached']['library'][] = 'singleportal/js-header';
 		$variables['#attached']['library'][] = 'singleportal/js-footer';
 	}
-	
+
 	if(\Drupal::service('path.current')->getPath() == '/home')
 	{
 		$variables['#attached']['library'][] = 'singleportal/dashboard';
 	}
-	
+
 	$variables['site_name'] = \Drupal::config('system.site')->get('name');
-	
+
 	$variables['site_logo'] = file_create_url("public://logo-title.png");
 	$variables['year'] = date('Y');
 	$variables['base_path'] = base_path();
-	
+
 	$variables['white_box_exclud'] = FALSE;
 	$white_box_exception = ['/profile'];
 	if(in_array(\Drupal::service('path.current')->getPath(), $white_box_exception))
 	{
 		$variables['white_box_exclud'] = TRUE;;
 	}
-    
+
 }
 
 function singleportal_preprocess_menu(&$variables) {
@@ -59,28 +59,29 @@ function singleportal_preprocess_menu(&$variables) {
   else {
       $variables['loggedin_user_role'] = "employee";
   }
-	
+
 }
 function singleportal_preprocess_menu__account(&$variables) {
   $user = \Drupal::currentUser();
-  $libobj = new \Drupal\employee\Model\EmployeeModel;
+  //$libobj = new \Drupal\employee\Model\EmployeeModel;
+  $libobj = \Drupal::service('employee.service');;
   $variables['#cache']['max-age'] = 0;
   if($user)
   {
-    $username = \Drupal\user\Entity\User::load($user->id());  
+    $username = \Drupal\user\Entity\User::load($user->id());
     $personal_details = $libobj->getPersonalDetailsById($username->id());
-	
+
     $gender = $personal_details->gender;
     $firstname = $personal_details->firstname;
-    
+
     $variables['username'] = (@$firstname == NULL) ? $username->getUsername() : $firstname;
-   
+
     $variables['emailid'] = $username->getEmail();
-    
+
 	$user_pic = \Drupal::service('entity.manager')->getStorage('user')->load($user->id());
     if($user_pic->user_picture->entity != NULL)
     {
-      $variables['propic'] = $user_pic->user_picture->entity->getFileName();     
+      $variables['propic'] = $user_pic->user_picture->entity->getFileName();
     }
     else
     {
@@ -90,15 +91,15 @@ function singleportal_preprocess_menu__account(&$variables) {
         $variables['propic'] = 'female.jpg';
       else
         $variables['propic'] = 'male.jpg';
-  
+
     }
   }
 
 }
 function singleportal_preprocess_html(&$variables) {
-  
+
     $variables['attributes']['class'][] = 'fix-header';
-  
+
 }
 
 function singleportal_preprocess_block(&$variables) {
@@ -111,8 +112,8 @@ function singleportal_preprocess_breadcrumb(&$variables) {
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
   $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
-  
-  $variables['headtitle'] = $page_title;  
+
+  $variables['headtitle'] = $page_title;
   $variables['breadcrumb'][] = array(
     'text' => $page_title
   );
