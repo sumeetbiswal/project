@@ -74,7 +74,7 @@ function singleportal_preprocess_menu__account(&$variables) {
     $gender = $personal_details->gender;
     $firstname = $personal_details->firstname;
 
-    $variables['username'] = (@$firstname == NULL) ? $username->getUsername() : $firstname;
+    $variables['username'] = (@$firstname == NULL) ? $username->getDisplayName() : $firstname;
 
     $variables['emailid'] = $username->getEmail();
 
