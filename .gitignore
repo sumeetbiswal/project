@@ -1,0 +1,11 @@
+php
+js
+css
+/sites/default/services.yml
+/sites/default/settings.php
+/sites/default/files/avatar
+/sites/default/files/styles
+.DS_Store
+.idea/vcs.xml
+/sites/.DS_Store
+.DS_Store
