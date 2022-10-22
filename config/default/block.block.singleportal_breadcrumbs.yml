@@ -1,0 +1,22 @@
+uuid: 5dfc0a23-4d42-4003-93b5-a82cf928e15c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - singleportal
+_core:
+  default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
+id: singleportal_breadcrumbs
+theme: singleportal
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

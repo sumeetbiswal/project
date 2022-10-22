@@ -1,0 +1,22 @@
+uuid: 44c7f4ec-8f40-407d-aa9e-63c9cddbcf83
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - singleportal
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: singleportal_content
+theme: singleportal
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

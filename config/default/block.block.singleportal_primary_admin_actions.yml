@@ -1,0 +1,20 @@
+uuid: ab33a9bb-e52c-4509-b8dd-2cd0f9728287
+langcode: en
+status: true
+dependencies:
+  theme:
+    - singleportal
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: singleportal_primary_admin_actions
+theme: singleportal
+region: header
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

@@ -5,7 +5,10 @@ css
 /sites/default/settings.php
 /sites/default/files/avatar
 /sites/default/files/styles
+/sites/default/files/php
+/sites/*/files
 .DS_Store
 .idea/vcs.xml
+/.idea/*
 /sites/.DS_Store
 .DS_Store

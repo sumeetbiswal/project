@@ -1,7 +1,7 @@
 <?php
 
 function company_theme($existing, $type, $theme, $path) {
-  
+
   return array(
     'companyview' => array(
       'variables' => array('data' => NULL),
@@ -64,9 +64,9 @@ function company_preprocess_image_widget(&$variables) {
     }
 }
 
-
+/*
 function company_preprocess_form_element(&$variables, $hook, &$info) {
 	if (\Drupal::service('path.current')->getPath() == '/wordorder/add') {
   $info['template'] = 'form-element--multistep-form-three';
 	}
-}
+}*/

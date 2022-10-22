@@ -1,0 +1,4 @@
+services:
+  employee.service:
+    class: Drupal\employee\Model\EmployeeModel
+    arguments: ['@database']

@@ -64,7 +64,7 @@ function singleportal_preprocess_menu(&$variables) {
 function singleportal_preprocess_menu__account(&$variables) {
   $user = \Drupal::currentUser();
   //$libobj = new \Drupal\employee\Model\EmployeeModel;
-  $libobj = \Drupal::service('employee.service');;
+  $libobj = \Drupal::service('employee.service');
   $variables['#cache']['max-age'] = 0;
   if($user)
   {
