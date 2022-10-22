@@ -4,3 +4,10 @@ config:
   webroot: .
   drush: ^11
 
+tooling:
+  build-site:
+    service:
+      appserver:
+    description: "Rebuild Xsmind App"
+    cmd:
+      - appserver: ./scripts/site-build.sh
