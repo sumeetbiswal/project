@@ -1,4 +1,4 @@
-uuid: f661b81e-5f31-491d-929c-426f480db540
+uuid: e0a89edf-bddb-47ed-a41a-2ce77b92575f
 langcode: en
 status: true
 dependencies:
@@ -6,11 +6,9 @@ dependencies:
     - system
   theme:
     - singleportal
-_core:
-  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
-id: singleportal_powered
+id: poweredbydrupal
 theme: singleportal
-region: header
+region: footer
 weight: 0
 provider: null
 plugin: system_powered_by_block

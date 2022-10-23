@@ -1,4 +1,4 @@
-uuid: 89fae989-5e5c-42e9-b84a-98cd663e07d6
+uuid: 2e71c3d0-6dae-4aa2-b150-98ba9bb58a16
 langcode: en
 status: true
 dependencies:
@@ -8,11 +8,9 @@ dependencies:
     - system
   theme:
     - singleportal
-_core:
-  default_config_hash: KWAiziL39uEzmOJEql_wbUP2RtqGceL3WM2CfxhMelE
-id: singleportal_main_menu
+id: mainnavigation
 theme: singleportal
-region: header
+region: mainmenu
 weight: 0
 provider: null
 plugin: 'system_menu_block:main'
@@ -22,6 +20,6 @@ settings:
   label_display: '0'
   provider: system
   level: 1
-  depth: 2
-  expand_all_items: true
+  depth: 1
+  expand_all_items: false
 visibility: {  }

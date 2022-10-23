@@ -1,0 +1,25 @@
+uuid: 53e1dea2-4c3b-4d5b-9f8c-20f642420666
+langcode: en
+status: true
+dependencies:
+  module:
+    - dashboard
+    - system
+  theme:
+    - singleportal
+id: employeelistcountblock
+theme: singleportal
+region: dashleft
+weight: 0
+provider: null
+plugin: employeelist_count_block
+settings:
+  id: employeelist_count_block
+  label: 'Employee List Count block'
+  label_display: '0'
+  provider: dashboard
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /home
