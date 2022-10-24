@@ -71,9 +71,10 @@ function singleportal_preprocess_menu__account(&$variables) {
     $username = \Drupal\user\Entity\User::load($user->id());
     $personal_details = $libobj->getPersonalDetailsById($username->id());
 
-    $gender = $personal_details->gender;
-    $firstname = $personal_details->firstname;
-
+    if(!empty($personal_details)) {
+      $gender = $personal_details->gender;
+      $firstname = $personal_details->firstname;
+    }
     $variables['username'] = (@$firstname == NULL) ? $username->getDisplayName() : $firstname;
 
     $variables['emailid'] = $username->getEmail();

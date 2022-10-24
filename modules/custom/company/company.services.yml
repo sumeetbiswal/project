@@ -1,0 +1,4 @@
+services:
+  company.service:
+    class: Drupal\company\Model\CompanyModel
+    arguments: ['@database']
