@@ -25,8 +25,6 @@ class CompanyModel extends ControllerBase {
     $this->connection = $connection;
   }
 
-
-
 	public function getCompanyDetailsById($id = 1)
 	{
 		$query = $this->connection->select('srch_companyinfo', 'n');
@@ -43,9 +41,7 @@ class CompanyModel extends ControllerBase {
 				$query->condition('n.status', 1, "=");
 				$result = $query->execute()->fetch();
 
-		$res = @$result;
-
-		return $res;
+		return $result;
 	}
 
 	public function setCompany($field)
@@ -67,7 +63,7 @@ class CompanyModel extends ControllerBase {
 
 	public function getCompanyTypeList()
 	{
-		$query = db_select('srch_codevalues', 'n');
+		$query = $this->connection->select('srch_codevalues', 'n');
 				$query->fields('n');
 				$query->condition('status', 1, "=");
 				$query->condition('codetype', 'organisation', "=");

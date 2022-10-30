@@ -1,0 +1,4 @@
+services:
+  library.service:
+    class: Drupal\library\Lib\LibController
+    arguments: ['@database']

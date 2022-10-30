@@ -17,13 +17,13 @@ class CompanyForm extends FormBase {
 	return 'company_form';
 
   }
-  
+
 public function buildForm(array $form, FormStateInterface $form_state) {
-	
-	$libobj = new \Drupal\library\Lib\LibController;
-	$compobj = new \Drupal\company\Model\CompanyModel;
+
+  $libobj = \Drupal::service('library.service');
+	$compobj = \Drupal::service('company.service');
 	$encrypt = new \Drupal\library\Controller\Encrypt;
-	
+
 	$mode = $libobj->getActionMode();
 	$title = 'Add Company Details';
    if($mode == 'edit'){
@@ -39,7 +39,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 
 	$form['company']['#prefix'] = '<div class="row"> <div class="panel panel-inverse">
                             <div class="panel-heading"> '.$title.'</div><div class="panel-body">';
-	
+
 	$form['company']['cname'] = array(
       '#type' => 'textfield',
       '#title' => t('Organisation Name:'),
@@ -50,14 +50,14 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	 '#default_value' => isset($data)? $data->companyname : '',
 
     );
-	
+
 	$complist = $compobj->getCompanyTypeList();
 	$comp_option[''] = 'Select Type of Organisation';
 	foreach($complist AS $item)
 	{
 		$comp_option[$item->codename]  = $item->codevalues;
 	}
-	
+
 	$form['company']['ctype'] = array(
       '#type' => 'select',
       '#title' => t('Organisation Type:'),
@@ -100,7 +100,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	 '#default_value' => isset($data)? $data->address1 : '',
 
     );
-	
+
 	$form['company']['caddress2'] = array(
       '#type' => 'textfield',
       '#title' => t('Address Line-2:'),
@@ -111,9 +111,9 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	 '#default_value' => isset($data)? $data->address2 : '',
 
     );
-	
+
 	$statelist = $libobj->getStateList();
-	
+
 	$form['company']['state'] = array(
 		'#type'    => 'select',
 		'#title'   => t('State:'),
@@ -132,17 +132,17 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 					],
 				  ],
     );
-    
+
 	if (!empty($form_state->getValue('state'))) {
 		$statePk = $form_state->getValue('state');
     }
 	else{
 		$statePk = isset($data)? $data->state : '';
 	}
-	
+
 	$cityLst = [];
 	$cityLst = $libobj->getCityListByState($statePk);
-	
+
 	$form['company']['city'] = array(
       '#type'          => 'select',
       '#title'         => t('City:'),
@@ -153,7 +153,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
       '#suffix'        => '</div></div>',
       '#default_value' => isset($data)? $data->city : $form_state->getValue('city'),
     );
-	
+
 	$form['company']['country'] = array(
 			'#type'          => 'select',
 			'#title'         => t('Country:'),
@@ -164,7 +164,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 		'#default_value' => isset($data)? $data->country : '',
 		'#prefix' => '<div class="row">',
 		);
-			
+
 	  $form['company']['pincode'] = array(
 		'#type'          => 'textfield',
 		'#title'         => t('Pincode'),
@@ -172,8 +172,8 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 		'#default_value' => isset($data)? $data->pincode : '',
 		'#suffix'        => '</div>',
 
-	  ); 
-	
+	  );
+
 	$form['company']['clogo'] = array(
      '#type' => 'managed_file',
      '#title' => t('Organisation logo:'),
@@ -188,8 +188,8 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	 '#prefix' => '<div class="row">',
     );
 	// $form['#suffix'] =  '</div>';
-	
-	
+
+
     $form['company']['#type'] = 'actions';
     $form['company']['submit'] = array(
       '#type' => 'submit',
@@ -199,7 +199,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	  '#prefix' => '<div class="row"></div><div class="row"><div class="col-md-5"></div><div class="col-md-4">',
 	  '#suffix' => '',
 		  );
-		  
+
 	/*$form['company']['cancel'] = array(
       '#type' => 'submit',
       '#value' => t('Cancel'),
@@ -208,7 +208,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	  '#prefix' => '',
 	  '#suffix' => '</div></div>',
 		  );*/
-		  
+
 	$form['company']['cancel'] = [
 		  '#title' => $this->t('Cancel'),
 		  '#type' => 'link',
@@ -218,56 +218,56 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 		  '#suffix' => '</div></div>',
 		];
 	$form['company']['cancel']['#submit'][] = '::ActionCancel';
-	
+
 	$form['company']['#suffix'] = '</div></div></div></div>';
-	
+
     return $form;
 
-	  
+
   }
-  
+
   public function ActionCancel(array &$form, FormStateInterface $form_state)
   {
-	  
+
 	$form_state->setRedirect('company.compview');
   }
-  
-  
+
+
   public function validateForm(array &$form, FormStateInterface $form_state) {
-	  
+
 	  if (trim($form_state->getValue('cname')) == '' ) {
         $form_state->setErrorByName('cname', $this->t('Enter your Organisation Name'));
       }
     else if(!preg_match("/^[A-Za-z]+((\s)?([A-Za-z])+)*$/", $form_state->getValue('cname'))) {
-        $form_state->setErrorByName('cname', $this->t('Enter a valid Organisation Name')); 
+        $form_state->setErrorByName('cname', $this->t('Enter a valid Organisation Name'));
     }
-	
+
 	 if (trim($form_state->getValue('ctype')) == '' ) {
         $form_state->setErrorByName('ctype', $this->t('Enter your Organisation Type'));
       }
-	
+
 	if (trim($form_state->getValue('cemail')) == '' ) {
         $form_state->setErrorByName('cemail', $this->t('Enter Organisation Email Id'));
     }
     else if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $form_state->getValue('cemail'))) {
-        $form_state->setErrorByName('cemail', $this->t('Enter a valid Email Id')); 
-    } 
-	
+        $form_state->setErrorByName('cemail', $this->t('Enter a valid Email Id'));
+    }
+
 	if (trim($form_state->getValue('cphone')) == '' ) {
         $form_state->setErrorByName('cphone', $this->t('Enter Organisation phone number'));
     }
     else if(!preg_match("/^[6-9][0-9]{9}$/", $form_state->getValue('cphone'))) {
-        $form_state->setErrorByName('cphone', $this->t('Enter a valid phone number')); 
+        $form_state->setErrorByName('cphone', $this->t('Enter a valid phone number'));
     }
 	  if (strlen($form_state->getValue('cphone')) < 10) {
         $form_state->setErrorByName('cphone', $this->t('Mobile number is too short.'));
 		echo "<div>errorrrr</div>";
       }
-	  
+
 	 if (trim($form_state->getValue('caddress1')) == '' ) {
         $form_state->setErrorByName('caddress1', $this->t('Enter your Address '));
     }
-	
+
 	if (trim($form_state->getValue('pincode')) == '' ) {
         $form_state->setErrorByName('pincode', $this->t('Enter your pincode '));
     }
@@ -277,12 +277,12 @@ public function buildForm(array $form, FormStateInterface $form_state) {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $libobj = new \Drupal\library\Lib\LibController;
-	$compobj = new \Drupal\company\Model\CompanyModel;
-	$encrypt = new \Drupal\library\Controller\Encrypt;	
-	
+    $libobj = \Drupal::service('library.service');
+	  $compobj = \Drupal::service('company.service');
+	$encrypt = new \Drupal\library\Controller\Encrypt;
+
    $field = $form_state->getValues();
-    
+
 	 $data  = array(
               'companyname' =>  $field['cname'],
               'companycode' =>  $field['cname'],
@@ -296,20 +296,20 @@ public function buildForm(array $form, FormStateInterface $form_state) {
               'country' 	=>  $field['country'],
               'pincode' 	=>  $field['pincode'],
           );
-		 
+
 		$mode = $libobj->getActionMode();
-		  
+
 		if($mode == 'add' )
 		{
 			$compobj->setCompany($data);
-			drupal_set_message($data['companyname'] . " has succesfully created.");
+      \Drupal::messenger()->addMessage($data['companyname'] . " has succesfully created.");
 		}
 		if($mode == 'edit' )
 		{
 			$compobj->updateCompany($data);
-			drupal_set_message($data['companyname'] . "  has succesfully Updated.");
+      \Drupal::messenger()->addMessage($data['companyname'] . "  has succesfully Updated.");
 		}
-		
+
 		/*
 		* upload image int temp path 'temp-img' while choosing the image
 		* once you submit move the image from temp-img to logo.png
@@ -320,15 +320,15 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 			$logo_path = \Drupal::service('file_system')->realpath($logo_file->getFileUri());
 			$move_to_path = \Drupal::service('file_system')->realpath('public://logo.png');
 			rename($logo_path, $move_to_path);
-			
+
 			//clearing only render cache to reflect logo immiditaely
 			\Drupal::service('cache.render')->invalidateAll();
 		}
-		
-		
-		$form_state->setRedirect('company.compview');	
+
+
+		$form_state->setRedirect('company.compview');
   }
-  
+
   public function getCityList(array $form, FormStateInterface $form_state)
   {
 	return $form['company']['city'];
