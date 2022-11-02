@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '4d8943ca78c490edbdc7b6a55c6a9c4e49032e66',
+        'reference' => '1e989428e21c0b2a70fa68bd5148c65b73eb2f7a',
         'name' => 'drupal/legacy-project',
         'dev' => true,
     ),
@@ -373,16 +373,16 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '4d8943ca78c490edbdc7b6a55c6a9c4e49032e66',
+            'reference' => '1e989428e21c0b2a70fa68bd5148c65b73eb2f7a',
             'dev_requirement' => false,
         ),
         'drush/drush' => array(
-            'pretty_version' => '11.3.0',
-            'version' => '11.3.0.0',
+            'pretty_version' => '11.3.2',
+            'version' => '11.3.2.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../drush/drush',
             'aliases' => array(),
-            'reference' => 'b9c9c324e4db10ac223707b774ca3e491535aa56',
+            'reference' => '57cd12235f0a8b3aaabc841fd6c82b64f3dffc02',
             'dev_requirement' => false,
         ),
         'egulias/email-validator' => array(
@@ -565,8 +565,8 @@
         'psr/container-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0',
-                1 => '^1.0',
+                0 => '^1.0',
+                1 => '1.0',
             ),
         ),
         'psr/event-dispatcher-implementation' => array(
