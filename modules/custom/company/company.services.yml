@@ -2,3 +2,6 @@ services:
   company.service:
     class: Drupal\company\Model\CompanyModel
     arguments: ['@database']
+  department.service:
+      class: Drupal\company\Model\DepartmentModel
+      arguments: ['@database']
