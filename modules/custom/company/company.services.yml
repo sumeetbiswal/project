@@ -5,3 +5,6 @@ services:
   department.service:
       class: Drupal\company\Model\DepartmentModel
       arguments: ['@database']
+  configuration.service:
+        class: Drupal\company\Model\ConfigurationModel
+        arguments: ['@database']

@@ -15,19 +15,21 @@ class TimingConfigurationForm extends FormBase {
 	return 'tming_configuration_form';
 
   }
-  
+
 public function buildForm(array $form, FormStateInterface $form_state) {
 	global $base_url;
-	
-	$libobj = new \Drupal\library\Lib\LibController;
-	$configobj = new \Drupal\company\Model\ConfigurationModel;
-	
+
+	//$libobj = new \Drupal\library\Lib\LibController;
+  $libobj = \Drupal::service('library.service');
+	//$configobj = new \Drupal\company\Model\ConfigurationModel;
+  $configobj = \Drupal::service('configuration.service');
+
 	$result = $configobj->getShiftTimingList();
-	
+
 	$form['company']['#attributes']['enctype'] = "multipart/form-data";
 	$form['#attached']['library'][] = 'singleportal/time-picker';
 	$form['company']['#prefix'] = ' <div class="row">
-									
+
 				<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" >
 					<a href="'.$base_url.'/organisation/config" role="tab"  ><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> <b>General</b></span></a>
@@ -37,16 +39,16 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 				</li>
 				</ul><br/><br/>';
 	$form['company']['#suffix'] = '</div>';
-	
-	
+
+
    $mode = $libobj->getActionMode();
-	
+
    if($mode == 'edit'){
 		$pk = $libobj->getIdFromUrl();
 		$data = $configobj->getShiftDetailsById($pk);
    }
-   
-   
+
+
 	$form['company']['shiftname'] = array(
       '#type' => 'textfield',
       '#title' => t('Shift Name:'),
@@ -58,7 +60,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 
 
     );
-	
+
 	$form['company']['fromtime'] = array(
       '#type' => 'textfield',
       '#title' => t('Time From:'),
@@ -68,7 +70,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	  '#default_value' => isset($data)? $data->description : '',
     '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Shift Start Timing" data-toggle="tooltip"></i>',
     );
-	
+
 	$form['company']['totime'] = array(
     '#type' => 'textfield',
     '#title' => t('To Time:'),
@@ -78,8 +80,8 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	  '#default_value' => isset($data)? $data->email : '',
     '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Shift End Timing" data-toggle="tooltip"></i>',
     );
-	
-	
+
+
 	$form['company']['#type'] = 'actions';
     $form['company']['submit'] = array(
       '#type' => 'submit',
@@ -89,10 +91,10 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	  '#prefix' => '<br/><div class="row"><div class="col-md-2"></div><div class="col-md-4">',
 	  '#suffix' => '</div></div>',
 		  );
-	
+
 	if($mode == 'edit'){
 		 $form['company']['submit']['#suffix'] = '';
-			  
+
 		$form['company']['cancel'] = [
 		  '#title' => $this->t('Cancel'),
 		  '#type' => 'link',
@@ -102,20 +104,20 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 		  '#suffix' => '</div></div>',
 		];
 	}
-	
-	
-	
+
+
+
 		$rows = array();
 		$sl = 0;
-		foreach ($result as $item) { 
+		foreach ($result as $item) {
 		  $sl++;
-		  $html = ['#markup' => '<a href="'.$base_url.'/shift/edit/'.$item->codepk.'" style="text-align:center"> 
+		  $html = ['#markup' => '<a href="'.$base_url.'/shift/edit/'.$item->codepk.'" style="text-align:center">
 		  <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
 		  $rows[] =   array(
 						'data' =>  array( $sl, $item->codevalues, $item->description . ' - ' . $item->email, render($html))
 		  );
-		}	
-		  
+		}
+
 	$form['company']['shiftlist'] = array(
       '#type' 	    => 'table',
       '#header' 	  =>  array(t('SL'), t('Shift Name'),t('Timing'), t('Action')),
@@ -123,22 +125,22 @@ public function buildForm(array $form, FormStateInterface $form_state) {
       '#attributes' => ['class' => ['table text-center table-hover table-striped table-bordered dataTable']],
       '#prefix'     => '<br/><br/><br/>',
     );
-    
-		  
+
+
     return $form;
 
-	  
+
   }
- 
-  
-  
+
+
+
   public function validateForm(array &$form, FormStateInterface $form_state) {
-	 	  
+
 	if(trim($form_state->getValue('shiftname')) == ' ' ) {
         $form_state->setErrorByName('shiftname', $this->t('Enter your shift Name'));
     }
     else if(!preg_match("/^[a-zA-Z'-]+$/", $form_state->getValue('shiftname'))) {
-        $form_state->setErrorByName('shiftname', $this->t('Enter a valid Shift Name')); 
+        $form_state->setErrorByName('shiftname', $this->t('Enter a valid Shift Name'));
     }
   	if(empty($form_state->getValue('fromtime'))) {
         $form_state->setErrorByName('fromtime', $this->t('Enter your shift time'));
@@ -146,55 +148,57 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	if(empty($form_state->getValue('totime')) == ' ' ) {
         $form_state->setErrorByName('totime', $this->t('Enter your shift ending time'));
     }
-	
+
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-	  
+
 	  // $query = \Drupal::database();
 	  // $query->query('start transaction');
-	 
+
 		// for($i=1; $i<10; $i++)
 		// {
 			// $query->query('insert into srch_demo set userpk = :val, firstname = :val2', array(':val'=> $i, ':val2'=> 'hello'));
-			
+
 		// }
 
 
 
 	 // $query->query('commit');
-	  
-	  
-    $configobj = new \Drupal\company\Model\ConfigurationModel;	
-    $libobj = new \Drupal\library\Lib\LibController;
-	
+
+
+    //$configobj = new \Drupal\company\Model\ConfigurationModel;
+    $configobj = \Drupal::service('configuration.service');
+    //$libobj = new \Drupal\library\Lib\LibController;
+    $libobj = \Drupal::service('library.service');
+
     $fieldval = $form_state->getValues();
-	
+
     $codename = $libobj->generateCode('SHFT', $fieldval['shiftname']);
-	
+
 	 $field  = array(
 			  'codetype'	=>	'jobshift',
 			  'codename'	=>	$codename,
               'codevalues'  =>  $fieldval['shiftname'],
-              'description' =>  $fieldval['fromtime'], 
+              'description' =>  $fieldval['fromtime'],
 			  'email'		=>	$fieldval['totime'],
           );
-		 
+
 		$mode = $libobj->getActionMode();
-		  
+
 		if($mode == 'edit' )
 		{
 			$pk = $libobj->getIdFromUrl();
 			$configobj->updateShiftTiming($field, $pk);
-			drupal_set_message($field['codevalues'] . " has been updated.");
+      \Drupal::messenger()->addMessage($field['codevalues'] . " has been updated.");
 		}
 		else
 		{
 			$configobj->setShiftTiming($field);
-			drupal_set_message($field['codevalues'] . " has been created.");
+      \Drupal::messenger()->addMessage($field['codevalues'] . " has been created.");
 		}
-		
-        
+
+
 		$form_state->setRedirect('company.configuration_shift');
   }
 }
