@@ -7,17 +7,9 @@ use Drupal\Core\Database\Connection;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\library\Lib\DataModel;
 
 class ConfigurationModel extends ControllerBase {
-  /**
-   * The database connection.
-   *
-   * @var \Drupal\Core\Database\Connection
-   */
-  private $connection;
-
   /**
    * The database connection.
    *
