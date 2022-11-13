@@ -2,3 +2,6 @@ services:
   library.service:
     class: Drupal\library\Lib\LibController
     arguments: ['@database']
+  excel.service:
+        class: Drupal\library\Controller\Excel
+        arguments: ['@database']

@@ -14,7 +14,7 @@ class DepartmentForm extends FormBase {
   
     $libobj = \Drupal::service('library.service');
     $brnobj = \Drupal::service('department.service');
-	$conobj = \Drupal::service('configuration.service');
+	  $conobj = \Drupal::service('configuration.service');
     $mode = $libobj->getActionMode();
     
     if($mode == 'edit'){
@@ -88,7 +88,7 @@ class DepartmentForm extends FormBase {
     }
  
   public function validateForm(array &$form, FormStateInterface $form_state) { 
-    $brnobj = new \Drupal\company\Model\DepartmentModel;
+    $brnobj = \Drupal::service('department.service');
 	$deptname = trim($form_state->getValue('name'));
 	$dept_exist = $brnobj->deptIsExist($deptname);
 	
@@ -104,10 +104,10 @@ class DepartmentForm extends FormBase {
 	}
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $libobj = new \Drupal\library\Lib\LibController;
-    $brnobj = new \Drupal\company\Model\DepartmentModel;
-    $conobj = new \Drupal\company\Model\ConfigurationModel;
-	
+    $libobj = \Drupal::service('library.service');
+    $brnobj = \Drupal::service('department.service');
+    $conobj = \Drupal::service('configuration.service');
+
     $field = $form_state->getValues();
 	$code_config = $conobj->getDepartmentCodeConfig();
 	
@@ -126,13 +126,13 @@ class DepartmentForm extends FormBase {
     if($mode == 'add' )
     { 
       $brnobj->setDepartment($field);
-      drupal_set_message("succesfully saved.");
+      \Drupal::messenger()->addMessage("succesfully saved.");
     }
     if($mode == 'edit' )
     {
       $pk = $libobj->getIdFromUrl();
       $brnobj->updateDepartment($field,$pk);
-      drupal_set_message("succesfully Updated.");
+      \Drupal::messenger()->addMessage("succesfully Updated.");
     }
    
    $form_state->setRedirect('company.departmentview');

@@ -5,12 +5,28 @@ namespace Drupal\company\Model;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
+use Drupal\Core\Database\Connection;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class DesignationModel extends ControllerBase {
-	
+
+  /**
+   * The database connection.
+   *
+   * @var \Drupal\Core\Database\Connection
+   */
+  private $connection;
+
+  /**
+   * @param \Drupal\Core\Database\Connection $connection
+   *  The database connection.
+   */
+  public function __construct(Connection $connection) {
+    $this->connection = $connection;
+  }	
 	public function getDesignationDetailsById($id = 1)
 	{
-		$query = db_select('srch_codevalues', 'n');
+		$query = $this->connection->select('srch_codevalues', 'n');
 				$query->fields('n');	
 				$query->condition('codetype', 'designation', "=");
 				$query->condition('codepk', $id, "=");
@@ -39,7 +55,7 @@ class DesignationModel extends ControllerBase {
 	}
 
  	public function getAllDesignationDetails() {
-    $query = db_select('srch_codevalues', 'n');
+	$query = $this->connection->select('srch_codevalues', 'n');
     $query->fields('n');    
     $query->condition('status', 1, "=");
     $query->orderBy('createdon', 'DESC');
@@ -59,7 +75,7 @@ class DesignationModel extends ControllerBase {
 		}
 		
 		//get codepk from dept code
-		$query_dpt = db_select('srch_codevalues', 'n');
+		$query_dpt = $this->connection->select('srch_codevalues', 'n');
 		$query_dpt->fields('n');	
 		$query_dpt->condition('codetype', 'department', "=");
 		$query_dpt->condition('codename', $department, "=");
@@ -67,9 +83,8 @@ class DesignationModel extends ControllerBase {
 		
 		
 		//get designation list
-		$query = db_select('srch_codevalues', 'n');
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n');	
-
 		$query->condition('codetype', 'designation', "=");
 		$query->condition('parent', $dept_pk->codepk, "=");
 		$result1 = $query->execute()->fetchAll();
@@ -89,7 +104,7 @@ class DesignationModel extends ControllerBase {
 	*/
 	public function getDesignationNameFromCode($designationcode)
 	{
-		$query = db_select('srch_codevalues', 'n');
+		$query = $this->connection->select('srch_codevalues', 'n');
 				$query->fields('n');	
 				$query->condition('codetype', 'designation', "=");
 				$query->condition('codename', $designationcode, "=");

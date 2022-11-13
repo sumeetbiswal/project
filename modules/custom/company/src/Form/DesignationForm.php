@@ -13,10 +13,10 @@ class DesignationForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {  
   
      global $base_url;
-    $libobj = new \Drupal\library\Lib\LibController;
-    $desobj = new \Drupal\company\Model\DesignationModel;
-    $depobj = new \Drupal\company\Model\DepartmentModel;
-	$conobj = new \Drupal\company\Model\ConfigurationModel;
+    $desobj = \Drupal::service('designation.service');
+    $depobj = \Drupal::service('department.service');
+    $conobj = \Drupal::service('configuration.service');
+    $libobj = \Drupal::service('library.service');
 	
     $mode = $libobj->getActionMode();
     $form_title = 'Add Designation Details';
@@ -121,10 +121,10 @@ class DesignationForm extends FormBase {
 	}
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $libobj = new \Drupal\library\Lib\LibController;
-    $desobj = new \Drupal\company\Model\DesignationModel;
-    $depobj = new \Drupal\company\Model\DepartmentModel;
-	$conobj = new \Drupal\company\Model\ConfigurationModel;
+    $libobj = \Drupal::service('library.service');
+    $desobj = \Drupal::service('designation.service');
+    $depobj = \Drupal::service('department.service');
+	  $conobj = \Drupal::service('configuration.service');
 	
 	$code_config = $conobj->getDesignationCodeConfig();
 	$field = $form_state->getValues();
@@ -149,13 +149,13 @@ class DesignationForm extends FormBase {
     if($mode == 'add' )
     { 
       $desobj->setDesignation($field);
-      drupal_set_message($field['codevalues'] . " has been succesfully created.");
+      \Drupal::messenger()->addMessage($field['codevalues'] . " has been succesfully created.");
     }
     if($mode == 'edit' )
     {
       $pk = $libobj->getIdFromUrl();
       $desobj->updateDesignation($field,$pk);
-      drupal_set_message($field['codevalues'] . " has succesfully Updated.");
+      \Drupal::messenger()->addMessage($field['codevalues'] . " has succesfully Updated.");
     }
    
    $form_state->setRedirect('company.Designationview');

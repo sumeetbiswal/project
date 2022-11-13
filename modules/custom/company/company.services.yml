@@ -8,3 +8,6 @@ services:
   configuration.service:
         class: Drupal\company\Model\ConfigurationModel
         arguments: ['@database']
+  designation.service:
+        class: Drupal\company\Model\DesignationModel
+        arguments: ['@database']

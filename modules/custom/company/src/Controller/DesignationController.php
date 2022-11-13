@@ -21,8 +21,8 @@ use Drupal\company\Model\DepartmentModel;
 class DesignationController extends ControllerBase {
   public function Designationcontent() {
     
-   $dptobj = new \Drupal\company\Model\DesignationModel;
-   $depobj = new \Drupal\company\Model\DepartmentModel;
+   $dptobj = \Drupal::service('designation.service');
+   $depobj = \Drupal::service('department.service');
    $result = $dptobj->getAllDesignationDetails();
    $encrypt = new Encrypt;
    
@@ -66,10 +66,10 @@ class DesignationController extends ControllerBase {
   public function exportToExcel()
 	 {
 		
-		 $xcel = new \Drupal\library\Controller\Excel;
-		 $dptobj = new \Drupal\company\Model\DesignationModel;
-         $depobj = new \Drupal\company\Model\DepartmentModel;
-         $result = $dptobj->getAllDesignationDetails();
+		 $xcel =  \Drupal::service('excel.service');
+		 $dptobj = \Drupal::service('designation.service');
+     $depobj = \Drupal::service('department.service');
+      $result = $dptobj->getAllDesignationDetails();
    
 		 //$headings = "SLNO" . "\t" . "Department Name" . "\t" . "Department Code" . "\t"; 
 		 $headings = ['SLNO', 'Designation Name', 'Designation Code', 'Department'];
