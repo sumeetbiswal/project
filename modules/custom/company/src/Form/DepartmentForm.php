@@ -12,9 +12,9 @@ class DepartmentForm extends FormBase {
 
   public function buildForm(array $form, FormStateInterface $form_state) {  
   
-    $libobj = new \Drupal\library\Lib\LibController;
-    $brnobj = new \Drupal\company\Model\DepartmentModel;
-	$conobj = new \Drupal\company\Model\ConfigurationModel;
+    $libobj = \Drupal::service('library.service');
+    $brnobj = \Drupal::service('department.service');
+	$conobj = \Drupal::service('configuration.service');
     $mode = $libobj->getActionMode();
     
     if($mode == 'edit'){

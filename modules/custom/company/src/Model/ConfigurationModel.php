@@ -5,13 +5,27 @@ namespace Drupal\company\Model;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\library\Lib\DataModel;
 
 class ConfigurationModel extends ControllerBase {
+  /**
+   * The database connection.
+   *
+   * @var \Drupal\Core\Database\Connection
+   */
+  private $connection;
 
+  /**
+   * @param \Drupal\Core\Database\Connection $connection
+   *  The database connection.
+   */
+  public function __construct(Connection $connection) {
+    $this->connection = $connection;
+  }
 	public function getJobNature()
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n');		
 		$query->condition('status', 1, "=");
 		$query->condition('codetype', 'jobnature', "=");
@@ -29,7 +43,7 @@ class ConfigurationModel extends ControllerBase {
 
 	public function getJobType()
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n');		
 		$query->condition('status', 1, "=");
 		$query->condition('codetype', 'jobtype', "=");
@@ -45,7 +59,7 @@ class ConfigurationModel extends ControllerBase {
 	
 	public function getJobShift()
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n');		
 		$query->condition('status', 1, "=");
 		$query->condition('codetype', 'jobshift', "=");
@@ -79,7 +93,7 @@ class ConfigurationModel extends ControllerBase {
 		
 	public function getEmpIdType()
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n')		
 		->condition('codename', 'EMPID', "=")
         ->condition('codetype', 'employeeid', "=");
@@ -96,7 +110,7 @@ class ConfigurationModel extends ControllerBase {
 	*/
 	public function getEmployeeIdConfig()
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query =$this->connection->select('srch_codevalues', 'n');
 		$query->fields('n')		
 		->condition('codename', 'EMPID', "=")
         ->condition('codetype', 'employeeid', "=");
@@ -124,7 +138,7 @@ class ConfigurationModel extends ControllerBase {
 	*/
 	public function getBranchCodeConfig()
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n')		
 		->condition('codename', 'BRNCD', "=")
         ->condition('codetype', 'branchcode', "=");
@@ -138,7 +152,7 @@ class ConfigurationModel extends ControllerBase {
 	*/
 	public function getDepartmentCodeConfig()
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n')		
 		->condition('codename', 'DPTCD', "=")
         ->condition('codetype', 'departmentcode', "=");
@@ -152,7 +166,7 @@ class ConfigurationModel extends ControllerBase {
 	*/
 	public function getDesignationCodeConfig()
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n')		
 		->condition('codename', 'DSGCD', "=")
         ->condition('codetype', 'designationcode', "=");
@@ -166,7 +180,7 @@ class ConfigurationModel extends ControllerBase {
 	*/
 	public function getWorkorderCodeConfig()
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n')		
 		->condition('codename', 'WRKCD', "=")
         ->condition('codetype', 'workordercode', "=");
@@ -185,7 +199,7 @@ class ConfigurationModel extends ControllerBase {
 	
 	public function getShiftTimingList()
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n');		
 		$query->condition('status', 1, "=");
 		$query->condition('codetype', 'jobshift', "=");
@@ -197,7 +211,7 @@ class ConfigurationModel extends ControllerBase {
 	
 	public function getShiftDetailsById($pk)
 	{
-		$query = db_select(DataModel::CODEVAL, 'n'); 
+		$query = $this->connection->select('srch_codevalues', 'n');
 		$query->fields('n');		
 		$query->condition('codepk', $pk, "=");
 		$query->condition('codetype', 'jobshift', "=");
