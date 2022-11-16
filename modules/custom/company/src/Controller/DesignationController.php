@@ -27,7 +27,7 @@ class DesignationController extends ControllerBase {
    $encrypt = new Encrypt;
    
     global $base_url;
-	$asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
+	  $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
     $rows = array();
     $sl = 0;
     foreach ($result as $row => $content) { 

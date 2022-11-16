@@ -11,3 +11,6 @@ services:
   designation.service:
         class: Drupal\company\Model\DesignationModel
         arguments: ['@database']
+  branch.service:
+        class: Drupal\company\Model\BranchModel
+        arguments: ['@database']

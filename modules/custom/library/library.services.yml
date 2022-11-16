@@ -5,3 +5,6 @@ services:
   excel.service:
         class: Drupal\library\Controller\Excel
         arguments: ['@database']
+  encrypt.service:
+        class: Drupal\library\Controller\Encrypt
+        arguments: ['@database']

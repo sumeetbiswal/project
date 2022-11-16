@@ -14,12 +14,12 @@ use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Render\MainContent\AjaxRenderer;
 use Drupal\library\Controller\Encrypt;
-use Drupal\company\Model\BranchModel;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class BranchController extends ControllerBase {
   
  public function display() {
- 	$brnobj = new BranchModel;
+ 	$brnobj = \Drupal::service('branch.service');
 	$encrypt = new Encrypt;
     $result = $brnobj->getAllBranchDetails();
     global $base_url;
@@ -64,7 +64,7 @@ class BranchController extends ControllerBase {
     
 	 public function exportToExcel()
 	 {
-		 $xcel = new \Drupal\library\Controller\Excel;
+		 $xcel =  \Drupal::service('excel.service');
 		 $brnobj = new BranchModel;
 		 $result = $brnobj->getAllBranchDetails();
 		 //$headings = "SLNO" . "\t" . "Branch Name" . "\t" . "State" . "\t" . "City" . "\t" . "Location" . "\t" . "Pincode" . "\t"; 

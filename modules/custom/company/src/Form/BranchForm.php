@@ -28,11 +28,11 @@ class BranchForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
 	    
-	$libobj = new \Drupal\library\Lib\LibController;
-	$brnobj = new \Drupal\company\Model\BranchModel;
-	$encrypt = new \Drupal\library\Controller\Encrypt;
-	$conobj = new \Drupal\company\Model\ConfigurationModel;
-	
+	$libobj = \Drupal::service('library.service');
+	$brnobj = \Drupal::service('branch.service');
+	$encrypt = \Drupal::service('encrypt.service');
+	$conobj = \Drupal::service('configuration.service'); 
+
 	$mode = $libobj->getActionMode();
 	$form_state->setCached(FALSE);
   $form_title = 'Add Branch details';
@@ -182,12 +182,11 @@ $form['branch']['pincode'] = array(
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-	
-  
-    $libobj = new \Drupal\library\Lib\LibController;
-	$brnobj = new \Drupal\company\Model\BranchModel;
-	$encrypt = new \Drupal\library\Controller\Encrypt;
-	$conobj = new \Drupal\company\Model\ConfigurationModel;
+
+  $libobj = \Drupal::service('library.service');
+	$brnobj = \Drupal::service('branch.service');
+	$encrypt = \Drupal::service('encrypt.service');
+	$conobj = \Drupal::service('configuration.service'); 
 	
 	$field = $form_state->getValues();
 	$code_config = $conobj->getBranchCodeConfig();
@@ -217,14 +216,14 @@ $form['branch']['pincode'] = array(
 		if($mode == 'add')
 		{ 
 			$brnobj->setBranch($data);
-			drupal_set_message($data['codevalues'] . " has been created.");
+			\Drupal::messenger()->addMessage($data['codevalues'] . " has been created.");
 		}
 		if($mode == 'edit')
 		{
 			$pk = $libobj->getIdFromUrl();
 			$pk = $encrypt->decode($pk);
 			$brnobj->updateBranch($data, $pk);
-			drupal_set_message($data['codevalues'] . " has succesfully Updated.");
+			\Drupal::messenger()->addMessage($data['codevalues'] . " has succesfully Updated.");
 		}
   	$form_state->setRedirect('company.branchview');
 	
