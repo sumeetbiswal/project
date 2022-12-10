@@ -10,28 +10,29 @@ use Drupal\library\Controller\Encrypt;
 class WorkorderController extends ControllerBase {
 
   public function listing() {
-    
-   $wrkobj = new \Drupal\company\Model\WorkorderModel;
+
+   //$wrkobj = new \Drupal\company\Model\WorkorderModel;
+   $wrkobj = \Drupal::service('workorder.service');
    $result = $wrkobj->getWorkorderList();
    $encrypt = new Encrypt;
-   
+
     global $base_url;
 	$asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
     $rows = array();
     $sl = 0;
-	
-    foreach ($result as $content) { 
+
+    foreach ($result as $content) {
 	  $sl++;
-      $html = ['#markup' => '<a href="'.$base_url.'/workorder/edit/'.$content->codepk.'" style="text-align:center"> 
+      $html = ['#markup' => '<a href="'.$base_url.'/workorder/edit/'.$content->codepk.'" style="text-align:center">
       <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
       $rows[] =   array(
                     'data' =>  array( $sl, $content->codevalues, $content->codename, render($html))
       );
     }
-	
+
     $element['display']['Departmentlist'] = array(
       '#type'       => 'table',
-      '#header'     =>  array('No', 'Work Name', 'Work Order', 'Action'),      
+      '#header'     =>  array('No', 'Work Name', 'Work Order', 'Action'),
       '#rows'       =>  $rows,
       '#attributes' => ['class' => ['text-center table table-hover table-striped table-bordered dataTable'], 'border' => '1', 'rules' => 'all', 'style'=>['text-align-last: center;']],
       '#prefix'     => '<div class="panel panel-info">
@@ -40,7 +41,7 @@ class WorkorderController extends ControllerBase {
                         <a href="#" id="exportit" data-toggle="tooltip" data-original-title="Word Document"><img src="'.$asset_url.'/assets/images/icon/word.png" /></a> &nbsp;
 						<a href="'.$base_url.'/department/export/excel" data-toggle="tooltip" data-original-title="Excel"><img src="'.$asset_url.'/assets/images/icon/excel.png" /></a> &nbsp;
 						<a id="" data-toggle="tooltip" data-original-title="PDF"><img src="'.$asset_url.'/assets/images/icon/pdf.png" /></a> &nbsp;
-						<a id="printit" data-toggle="tooltip" data-original-title="Print"><img src="'.$asset_url.'/assets/images/icon/print.png" /></a> 
+						<a id="printit" data-toggle="tooltip" data-original-title="Print"><img src="'.$asset_url.'/assets/images/icon/print.png" /></a>
 						</div>
                         <div class="panel-wrapper collapse in" aria-expanded="true">
                         <div class="panel-body">
