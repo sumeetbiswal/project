@@ -12,7 +12,8 @@ class Employee extends ControllerBase {
 
  public function emplist() {
 
-  $empobj = new EmployeeModel;
+  //$empobj = new EmployeeModel;
+  $empobj = \Drupal::service('employee.service');
   $result = $empobj->getEmployeeList();
   $encrypt = new Encrypt;
 
