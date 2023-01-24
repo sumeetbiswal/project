@@ -451,7 +451,11 @@ class EmployeeAcademicworkForm extends EmployeeFormBase {
 
     $this->store->set('qualification', $form_state->getValues()['qualification']['academics']);
 
-    $this->store->set('experience', $form_state->getValues()['employee']['exp']);
+    $expr_data = $form_state->getValues()['employee']['exp'];
+    if(empty($form_state->getValues()['employee']['exp']['organisation'])){
+      $expr_data = array();
+    }
+    $this->store->set('experience', $expr_data);
 
 
     $this->store->set('academic_bypass', TRUE);

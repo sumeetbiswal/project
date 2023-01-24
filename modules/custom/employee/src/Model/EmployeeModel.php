@@ -64,6 +64,7 @@ class EmployeeModel extends ControllerBase  {
 
 	public static function setPersonalInfo($user, $data, $opt, &$context )
 	{
+	  //echo "<pre/>";print_r($data);die;
 		//$context['message'] = "Now processing word...";
 		$query = \Drupal::database();
 
@@ -87,13 +88,13 @@ class EmployeeModel extends ControllerBase  {
 		}
 
 		//employeement info
-		foreach($data['experience'] AS $qual)
-		{
-			$query->query('insert into '.DataModel::EMPEXPRNC.' set userpk = :userpk, organisation = :organisation, designation= :designation, fromdate= :fromdate, todate= :todate',
-			array(':userpk'=>$user->Id(),':organisation'=>$qual['organisation'], ':designation'=>$qual['designation'], ':fromdate'=>$qual['fromdate'], ':todate'=>$qual['todate']));
+    if(!empty($data['experience'])) {
+      foreach ($data['experience'] as $qual) {
+        $query->query('insert into ' . DataModel::EMPEXPRNC . ' set userpk = :userpk, organisation = :organisation, designation= :designation, fromdate= :fromdate, todate= :todate',
+          array(':userpk' => $user->Id(), ':organisation' => $qual['organisation'], ':designation' => $qual['designation'], ':fromdate' => $qual['fromdate'], ':todate' => $qual['todate']));
 
-		}
-
+      }
+    }
 		//official info
 		$query->query('insert into '.DataModel::EMPOFFICIAL.' set userpk = :userpk, empid = :empid, department= :department, branch= :branch, designation= :designation, jobnature = :jobnature, email= :email, doj= :doj, jobtype= :jobtype, shifttime= :shifttime',
 		array(':userpk'=>$user->Id(), ':empid'=>$data['official']['id'], ':department'=>$data['official']['department'], ':branch'=>$data['official']['branch'], ':designation'=>$data['official']['designation'], ':jobnature'=>$data['official']['jobnature'], ':email'=>$data['official']['officialemail'], ':doj'=>$data['official']['doj'], ':jobtype'=>$data['official']['jobtype'],':shifttime'=>$data['official']['shifttime']));
