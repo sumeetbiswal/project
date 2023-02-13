@@ -14,7 +14,6 @@ use Drupal\file\Entity\File;
 function singleportal_preprocess_page(&$variables) {
 
 
-
 	if($variables['is_front'])
 	{
 		$variables['#attached']['library'][] = 'singleportal/login-styling';
@@ -63,6 +62,19 @@ function singleportal_preprocess_page(&$variables) {
 
 }
 
+function singleportal_form_alter(&$form, $form_state, $form_id) {
+  if ( $form['#form_id'] == 'user_login_form' ) {
+    $form['actions']['submit']['#attributes']['class'][] = 'btn btn-primary btn-block';
+    $form['name']['#attributes']['class'][] = 'form-control';
+    $form['pass']['#attributes']['class'][] = 'form-control';
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+
+
 function singleportal_preprocess_menu(&$variables) {
   $user = \Drupal::currentUser();
   $roles = $user->getRoles();
@@ -76,6 +88,7 @@ function singleportal_preprocess_menu(&$variables) {
   }
 
 }
+
 function singleportal_preprocess_menu__account(&$variables) {
   $user = \Drupal::currentUser();
   //$libobj = new \Drupal\employee\Model\EmployeeModel;
@@ -112,6 +125,7 @@ function singleportal_preprocess_menu__account(&$variables) {
   }
 
 }
+
 function singleportal_preprocess_html(&$variables) {
 
     $variables['attributes']['class'][] = 'fix-header';

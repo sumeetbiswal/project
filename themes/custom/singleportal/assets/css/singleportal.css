@@ -12,7 +12,7 @@ div::before {
   font-size: medium;
   content: "Details";
 }
-}    
+}
 .ajax-progress {
     display: inline-block;
     padding: 1px 0px 2px 0px;
@@ -51,7 +51,7 @@ main, blockquote
 .fadehide:hover
 {
 	opacity: 1;
-	cursor: pointer; 
+	cursor: pointer;
 }
 .ui-dialog-titlebar-close
 {

@@ -1,5 +1,0 @@
-services:
-    login_event_subscriber:
-        class: Drupal\login\EventSubscriber\CheckUserAuthentication
-        tags:
-        - {name: event_subscriber}

@@ -18,9 +18,9 @@ class EmployeelistCount extends BlockBase {
    */
   public function build() {
 	global $base_url;
-	$emp_obj = new \Drupal\employee\Model\EmployeeModel();
+	$emp_obj = \Drupal::service('employee.service');;
 	$count = $emp_obj->getEmployeeCount();
-	
+
     return [
 	  '#theme' => 'employee_count_card',
 	  '#emp_count' =>	$count
