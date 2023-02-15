@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'da03b451fdb26daaf965c7be3bc64853ba9149f7',
+        'reference' => '3c7dacd70d3e8371fdf0c3b5d9fb9684c50fa8c2',
         'name' => 'drupal/legacy-project',
         'dev' => true,
     ),
@@ -391,7 +391,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'da03b451fdb26daaf965c7be3bc64853ba9149f7',
+            'reference' => '3c7dacd70d3e8371fdf0c3b5d9fb9684c50fa8c2',
             'dev_requirement' => false,
         ),
         'drupal/shield' => array(
@@ -401,6 +401,15 @@
             'install_path' => __DIR__ . '/../../modules/contrib/shield',
             'aliases' => array(),
             'reference' => '8.x-1.7',
+            'dev_requirement' => false,
+        ),
+        'drupal/themable_forms' => array(
+            'pretty_version' => '1.0.0-beta2',
+            'version' => '1.0.0.0-beta2',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../modules/contrib/themable_forms',
+            'aliases' => array(),
+            'reference' => '8.x-1.0-beta2',
             'dev_requirement' => false,
         ),
         'drush/drush' => array(

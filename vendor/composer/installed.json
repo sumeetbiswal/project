@@ -1944,6 +1944,61 @@
             "install-path": "../../modules/contrib/shield"
         },
         {
+            "name": "drupal/themable_forms",
+            "version": "1.0.0-beta2",
+            "version_normalized": "1.0.0.0-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/themable_forms.git",
+                "reference": "8.x-1.0-beta2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/themable_forms-8.x-1.0-beta2.zip",
+                "reference": "8.x-1.0-beta2",
+                "shasum": "5834a7615682f62a2bc9eb9c46dfbc55833aaac0"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+                "drupal/coder": "^8.3"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1612276954",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Ruuds",
+                    "homepage": "https://www.drupal.org/user/3074673"
+                },
+                {
+                    "name": "lauriii",
+                    "homepage": "https://www.drupal.org/user/1078742"
+                }
+            ],
+            "description": "This module adds some helpful theme suggestions for form elements.",
+            "homepage": "https://www.drupal.org/project/themable_forms",
+            "support": {
+                "source": "https://git.drupalcode.org/project/themable_forms"
+            },
+            "install-path": "../../modules/contrib/themable_forms"
+        },
+        {
             "name": "drush/drush",
             "version": "11.3.2",
             "version_normalized": "11.3.2.0",
