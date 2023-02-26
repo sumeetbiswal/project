@@ -1,0 +1,20 @@
+uuid: 8e42d253-4536-4656-bc13-279db67228a1
+langcode: en
+status: true
+dependencies:
+  theme:
+    - singleportal
+id: tabs
+theme: singleportal
+region: content
+weight: -5
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

@@ -1,17 +1,17 @@
-uuid: 44c7f4ec-8f40-407d-aa9e-63c9cddbcf83
+uuid: 12dcd097-fae3-49c9-906a-c49a3036d713
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - singleportal
+    - bartik
 _core:
-  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
-id: singleportal_content
-theme: singleportal
+  default_config_hash: kigu8pTxXt1qGR2NJ5HHdC4G2G1wsDrIjLPKBT5wUBc
+id: bartik_content
+theme: bartik
 region: content
-weight: -4
+weight: 0
 provider: null
 plugin: system_main_block
 settings:
