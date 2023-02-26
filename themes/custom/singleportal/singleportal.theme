@@ -110,7 +110,7 @@ function singleportal_preprocess_menu(&$variables) {
 
 function singleportal_preprocess_menu__account(&$variables) {
   $user = \Drupal::currentUser();
-  //$libobj = new \Drupal\employee\Model\EmployeeModel;
+
   $libobj = \Drupal::service('employee.service');
   $variables['#cache']['max-age'] = 0;
   if($user)
@@ -126,19 +126,24 @@ function singleportal_preprocess_menu__account(&$variables) {
 
     $variables['emailid'] = $username->getEmail();
 
-	$user_pic = \Drupal::service('entity_type.manager')->getStorage('user')->load($user->id());
+	  $user_pic = \Drupal::service('entity_type.manager')->getStorage('user')->load($user->id());
+
     if($user_pic->user_picture->entity != NULL)
     {
-      $variables['propic'] = $user_pic->user_picture->entity->getFileName();
+      $variables['propic'] = \Drupal::service('file_url_generator')->generateAbsoluteString($user_pic->user_picture->entity->getFileUri());
     }
     else
     {
+      global $base_url;
+      $default_theme_name = \Drupal::config('system.theme')->get('default');
+      $theme_path = \Drupal::service('extension.list.theme')->getPath($default_theme_name);
+
       if(@$gender == NULL)
-        $variables['propic'] = 'male.jpg';
+        $variables['propic'] = $base_url . '/' . $theme_path . '/assets/images/avatar/male.jpg';
       else if($gender == 'F')
-        $variables['propic'] = 'female.jpg';
+        $variables['propic'] = $base_url . '/' . $theme_path . '/assets/images/avatar/female.jpg';
       else
-        $variables['propic'] = 'male.jpg';
+        $variables['propic'] = $base_url . '/' . $theme_path . '/assets/images/avatar/male.jpg';
 
     }
   }
