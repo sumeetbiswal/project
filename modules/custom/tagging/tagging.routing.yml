@@ -1,0 +1,16 @@
+untag.list:
+ path: '/untaglist'
+ defaults:
+   _title: 'Un Allocated List'
+   _controller: '\Drupal\tagging\Controller\Tagging::getlist'
+ requirements:
+   _permission: 'access content'
+
+tagging.search:
+ path: '/taging/search'
+ defaults:
+   _title: 'Untagging List'
+   _controller: '\Drupal\tagging\Controller\Tagging::getlist'
+ requirements:
+   _permission: 'access content'
+

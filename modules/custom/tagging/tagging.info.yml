@@ -1,0 +1,6 @@
+name: Tagging
+description: This Modules is for Tagging / Untagging Users
+core: 8.x
+package: Custom
+type: module
+core_version_requirement: ^8 || ^9
