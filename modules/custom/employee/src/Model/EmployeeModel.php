@@ -306,7 +306,7 @@ class EmployeeModel extends ControllerBase  {
 		$user = \Drupal::currentUser();
 		$personal_details = $this->getPersonalDetailsById($user->id());
 
-		$userobj = \Drupal::service('entity.manager')->getStorage('user')->load($user->id());
+		$userobj = \Drupal::service('entity_type.manager')->getStorage('user')->load($user->id());
 		$avatar = 'male.jpg';
 		if($userobj->user_picture->entity != NULL)
 		{

@@ -122,7 +122,8 @@ class Employee extends ControllerBase {
 */
 
   public function profile() {
-	$empobj = new EmployeeModel;
+	$empobj = \Drupal::service('employee.service');
+
 	$avatar = $empobj->getUserPic();
 	$user = \Drupal::currentUser();
 	$prsnl_details = $empobj->getPersonalDetailsById($user->id());

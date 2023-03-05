@@ -1,5 +1,5 @@
 untag.list:
- path: '/untaglist'
+ path: '/tagging'
  defaults:
    _title: 'Un Allocated List'
    _controller: '\Drupal\tagging\Controller\Tagging::getlist'
