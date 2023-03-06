@@ -182,3 +182,10 @@ function singleportal_preprocess_block__system_branding_block(&$variables) {
 function singleportal_admin_theme_info() {
 	echo "hiiiiiiiii";die;
 }
+
+function singleportal_preprocess_table(&$variables) {
+  $variables['attributes']['class'][] = 'table text-center table-hover table-striped table-bordered dataTable';
+  $variables['attributes']['style'][] = 'text-align-last: center';
+  //kint($variables);
+
+}
