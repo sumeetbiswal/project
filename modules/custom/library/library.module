@@ -1,0 +1,13 @@
+<?php
+/**
+ * Implements hook_theme().
+ */
+function library_theme() {
+  return [
+    'document_export_block' => [
+      'variables' => [
+        'data' => [],
+      ],
+    ],
+  ];
+}
