@@ -13,26 +13,34 @@ class Tagging extends ControllerBase {
 
  public function getlist() {
 
+   $tagging = \Drupal::service('tagging.service');
+   $result = $tagging->getUnEmployeeList();
 
-   global $base_url;
-   $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
    $rows = [];
+
+   foreach($result AS $item){
+     $rows[] = array(
+       'data' =>	  array( '1364945', $item->firstname.' '.$item->lastname , $item->won, $item->supervisor, $item->hr, 'Edit')
+     );
+   }
+
    $headers = array(
-          t('Employee ID'),
-          t('Name'),
-          t('Date of joining'),
-          t('Designation'),
-          t('Department'),
-          t('Action')
-   );
+              t('Employee ID'),
+              t('Name'),
+              t('Project'),
+              t('SuperVisor'),
+              t('HR Manager'),
+              t('Action')
+          );
 
    $element['display']['employeelist'] = array(
      '#type' 	    => 'table',
      '#header' 	  =>  $headers,
-     '#rows'		    =>  $rows,
-     '#empty'		=>	'No Un Allocated Employee are there.',
-     '#caption' =>  'Un Allocated List'
+     '#rows'      =>  $rows,
+     '#empty'     =>  'No Un Allocated Employee are there.',
+     '#caption'   =>  'Un Allocated List'
    );
+
    return $element;
 
  }

@@ -99,9 +99,14 @@ class EmployeeModel extends ControllerBase  {
 		$query->query('insert into '.DataModel::EMPOFFICIAL.' set userpk = :userpk, empid = :empid, department= :department, branch= :branch, designation= :designation, jobnature = :jobnature, email= :email, doj= :doj, jobtype= :jobtype, shifttime= :shifttime',
 		array(':userpk'=>$user->Id(), ':empid'=>$data['official']['id'], ':department'=>$data['official']['department'], ':branch'=>$data['official']['branch'], ':designation'=>$data['official']['designation'], ':jobnature'=>$data['official']['jobnature'], ':email'=>$data['official']['officialemail'], ':doj'=>$data['official']['doj'], ':jobtype'=>$data['official']['jobtype'],':shifttime'=>$data['official']['shifttime']));
 
-		$query->query('commit');
 
-	}
+		//tagging info
+    $query->query('insert into '.DataModel::EMPTAGGING.' set userpk = :userpk',
+      array(':userpk'=>$user->Id()));
+
+    $query->query('commit');
+
+  }
 
 	public static function finishOperation()
   {

@@ -6,13 +6,13 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\library\Controller\Encrypt;
-          use Drupal\employee\Model\EmployeeModel;
+          use Drupal\employee\Model\TaggingModel;
 
 class Employee extends ControllerBase {
 
  public function emplist() {
 
-  //$empobj = new EmployeeModel;
+
   $empobj = \Drupal::service('employee.service');
   $result = $empobj->getEmployeeList();
   $encrypt = new Encrypt;
@@ -55,7 +55,7 @@ class Employee extends ControllerBase {
   public function exportToExcel()
 	 {
 		 $xcel = new \Drupal\library\Controller\Excel;
-		 $empobj = new EmployeeModel;
+		 $empobj = new TaggingModel;
 		 $result = $empobj->getEmployeeList();
 		 $user = \Drupal::currentUser();
 		 $emp_details = $empobj->getEmployeeDetails();
