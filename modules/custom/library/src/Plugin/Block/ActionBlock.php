@@ -5,26 +5,30 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Url;
 
 /**
- * Provides a 'DocumentExportBlock' Block.
+ * Provides a 'ActionBlock' Block.
  *
  * @Block(
- *   id = "document_generate_block",
- *   admin_label = @Translation("Document Export block")
+ *   id = "document_action_block",
+ *   admin_label = @Translation("Document Action block")
  * )
  */
-class DocumentExportBlock extends BlockBase {
+class ActionBlock extends BlockBase {
 
   /**
    * {@inheritdoc}
    */
   public function build() {
+    $lib = \Drupal::service('library.service');
 
     $current_path = \Drupal::service('path.current')->getPath();
     $current_path = ltrim($current_path, '/');
 
+
+    $btn_add = $lib->isPathEnable($current_path . '/add');
+
     return [
-      '#theme' => 'document_export_block',
-      '#data' => ['path' => $current_path],
+      '#theme' => 'document_action_block',
+      '#data' => ['path' => $current_path, 'add' => $btn_add],
     ];
   }
 

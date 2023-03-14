@@ -7,10 +7,11 @@ untag.list:
    _permission: 'access content'
 
 tagging.search:
- path: '/taging/search'
+ path: '/tagging/search'
  defaults:
    _title: 'Untagging List'
    _controller: '\Drupal\tagging\Controller\Tagging::getlist'
  requirements:
    _permission: 'access content'
+
 

@@ -4,7 +4,7 @@
  */
 function library_theme() {
   return [
-    'document_export_block' => [
+    'document_action_block' => [
       'variables' => [
         'data' => [],
       ],

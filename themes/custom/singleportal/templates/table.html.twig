@@ -45,17 +45,20 @@
   'visually-hidden',
 ]
 %}
-
+<div class="row"></div>
 <div class="panel panel-info">
   {% if caption %}
-    <h3 class="box-title col-md-10">{{ caption }}</h3>
+    <!--<h3 class="box-title col-md-10">{{ caption }}</h3>-->
   {% endif %}
   <div class="panel-wrapper collapse in" aria-expanded="true">
     <div class="panel-body">
-      <hr>
+      <!--<hr>-->
       <div id="editable-datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-        <div class="row"><div class="col-sm-6"><a href ="'.$base_url.'/employee/add/personal"><span  type="button" class="btn btn-info" style="background-color: #4c5667">
-                        <i class="mdi mdi-plus"></i> Add </span></a></div> <br><br><br></div></div><div class="row"><div class="col-sm-12" id="printable">
+
+        <!--<div class="row"><div class="col-sm-6"><a href ="'.$base_url.'/employee/add/personal"><span  type="button" class="btn btn-info" style="background-color: #4c5667">
+                        <i class="mdi mdi-plus"></i> Add </span></a></div> <br><br><br></div>-->
+
+      </div><div class="row"><div class="col-sm-12" id="printable">
           <table{{ attributes }} {{ attributes.addClass(classes) }}">
 
             {% for colgroup in colgroups %}
