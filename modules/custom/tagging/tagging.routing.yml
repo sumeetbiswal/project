@@ -5,12 +5,22 @@ untag.list:
    _controller: '\Drupal\tagging\Controller\Tagging::getlist'
  requirements:
    _permission: 'access content'
+ options:
+    no_cache: 'TRUE'
 
 tagging.search:
  path: '/tagging/search'
  defaults:
    _title: 'Untagging List'
    _controller: '\Drupal\tagging\Controller\Tagging::getlist'
+ requirements:
+   _permission: 'access content'
+
+tagging.tagedit:
+ path: '/tagging/edit/{arg}'
+ defaults:
+   _title: 'Edit Employee Tagging'
+   _form: '\Drupal\tagging\Form\TaggingForm'
  requirements:
    _permission: 'access content'
 

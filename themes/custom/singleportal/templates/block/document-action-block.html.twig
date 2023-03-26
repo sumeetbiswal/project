@@ -1,10 +1,9 @@
-
 <div class="panel panel-info srch-panel">
-  <div class="panel-body srch-panel-body">
+  <div class="panel-body">
 <div class="row">
   <div class="col-sm-6">
     {% if data.add %}
-      <a href ="'.$base_url.'/employee/add/personal"><span  type="button" class="btn btn-info"><i class="mdi mdi-plus"></i> Add </span></a>
+      <a href ="{{ url('<front>') }}{{ data.path }}/add"><span  type="button" class="btn btn-info"><i class="mdi mdi-plus"></i> Add </span></a>
     {% endif %}
   </div>
   <div class="col-md-2 text-right" style="float: right">

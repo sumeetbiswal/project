@@ -3,6 +3,7 @@ namespace Drupal\library\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Url;
+use \Symfony\Cmf\Component\Routing\RouteObjectInterface;
 
 /**
  * Provides a 'ActionBlock' Block.
@@ -20,10 +21,11 @@ class ActionBlock extends BlockBase {
   public function build() {
     $lib = \Drupal::service('library.service');
 
+    //Get the current page title
     $current_path = \Drupal::service('path.current')->getPath();
-    $current_path = ltrim($current_path, '/');
-
-
+    $current_path = explode( '/', $current_path)[1];
+    //echo $current_path . '/add';die;
+    //Check the ADD button is enable or not
     $btn_add = $lib->isPathEnable($current_path . '/add');
 
     return [

@@ -76,3 +76,6 @@ main, blockquote
 .srch-panel{
   margin-bottom: 0px !important;
 }
+i.icon-red {
+  color: red;
+}
