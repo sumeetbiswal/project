@@ -65,4 +65,34 @@ class WorkorderModel extends ControllerBase {
                ->execute();
 		}
 	}
+
+ /*
+  * Helper function to get Team list from Project won number
+  * @param $won project won number
+  * Static Query
+  * SELECT cd1.codepk, cd1.codetype, cd1.codename, cd1.codevalues, cd2.codevalues FROM `srch_codevalues` cd1
+	* LEFT JOIN `srch_codevalues` cd2 ON cd1.parent = cd2.codepk
+  * WHERE cd1.codetype='teamorder' AND cd2.codename=<codename>;
+ */
+	public function getTeamListByWorkOrder($won = ''){
+
+    $query = $this->connection->select(DataModel::CODEVAL, 'cd1');
+    $query->leftJoin(DataModel::CODEVAL, 'cd2','cd1.parent = cd2.codepk');
+    $query->fields('cd1', ['codepk']);
+    $query->fields('cd1', ['codetype']);
+    $query->fields('cd1', ['codename']);
+    $query->fields('cd1', ['codevalues']);
+    $query->fields('cd2', ['codevalues']);
+
+    $query->condition('cd1.codetype', 'teamorder', "=");
+    $query->condition('cd2.codename', $won, "=");
+
+    $result = $query->execute()->fetchAll();
+    $res = [];
+    foreach($result AS $val) {
+      $res[$val->codename] = $val->codevalues;
+    }
+
+    return $res;
+  }
 }

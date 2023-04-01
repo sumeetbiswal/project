@@ -79,3 +79,10 @@ main, blockquote
 i.icon-red {
   color: red;
 }
+
+.ui-autocomplete li:hover{
+  background-color: lightgrey;
+}
+.ui-autocomplete a:hover{
+  background-color: lightgrey;
+}

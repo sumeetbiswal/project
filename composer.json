@@ -99,5 +99,11 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "enable-patching": true,
+    "patches": {
+        "drupal/core": {
+            "Autocomplete appends value instead of label in element": "https://www.drupal.org/files/issues/2019-10-16/3088348.patch"
+        }
     }
 }

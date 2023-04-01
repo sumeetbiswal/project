@@ -60,6 +60,6 @@ class Tagging extends ControllerBase {
    );
 
    return $element;
-
  }
+
 }

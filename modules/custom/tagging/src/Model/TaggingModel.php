@@ -41,5 +41,18 @@ class TaggingModel extends ControllerBase  {
 
   }
 
+  public function getTaggingDetailsById($pk){
+
+    $query = $this->connection->select(DataModel::EMPTAGGING, 't');
+    $query->leftJoin(DataModel::EMPPERSONAL, 'p','t.userpk = p.userpk');
+    $query->leftJoin(DataModel::EMPOFFICIAL, 'o','t.userpk = o.userpk');
+    $query->fields('t');
+    $query->fields('p',['firstname']);
+    $query->fields('p',['lastname']);
+    $query->fields('o',['empid']);
+    $result = $query->execute()->fetch();
+
+    return $result;
+  }
 
 }

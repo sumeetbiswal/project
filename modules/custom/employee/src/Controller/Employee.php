@@ -6,7 +6,11 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\library\Controller\Encrypt;
-          use Drupal\employee\Model\TaggingModel;
+use Drupal\employee\Model\TaggingModel;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Component\Utility\Xss;
+use Drupal\Core\Entity\Element\EntityAutocomplete;
 
 class Employee extends ControllerBase {
 
@@ -195,4 +199,17 @@ class Employee extends ControllerBase {
 
   }
 
+  public function employeeAutocomplete(){
+    $empobj = \Drupal::service('employee.service');
+    $result = $empobj->getEmployeeList();
+  //echo "<pre/>";print_r($result);
+    foreach($result AS $key => $item){
+      $results[] = [
+        'value' => $item->userpk,
+        'label' => $item->firstname . ' ' . $item->lastname . ' (' . $item->empid. ')',
+      ];
+    }
+
+    return new JsonResponse($results);
+  }
 }
