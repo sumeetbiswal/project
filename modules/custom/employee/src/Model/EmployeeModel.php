@@ -147,7 +147,7 @@ class EmployeeModel extends ControllerBase  {
 		$result = $query->execute()->fetch();
 		return $result;
 	}
-	/*
+	/**
 	* @parameter user id
 	* get official details
 	*/
@@ -196,7 +196,7 @@ class EmployeeModel extends ControllerBase  {
 		return $result;
 	}
 
-	/*
+	/**
 	* @parameter user id
 	* get contact details
 	*/
@@ -292,6 +292,52 @@ class EmployeeModel extends ControllerBase  {
 		return $result;
 
 	}
+
+  /**
+   * Helper function to fetch employee based on
+   * key word search Autocomplete
+   * @param $input
+   */
+  public function getEmployeeListAutoComplete($input)
+  {
+    $query = $this->connection->select(DataModel::EMPPERSONAL, 'n');
+    $query -> innerJoin(DataModel::EMPOFFICIAL, 'nf','n.userpk = nf.userpk');
+    $query->orderBy('n.createdon', 'DESC');
+    $query->fields('n');
+    $query->fields('nf');
+
+    $orGroup = $query->orConditionGroup();
+    $orGroup
+      ->condition('n.firstname', "%" . $input . "%", 'LIKE')
+      ->condition('n.lastname', "%" . $input . "%", 'LIKE')
+      ->condition('nf.empid', "%" . $input . "%", 'LIKE');
+    $query->condition($orGroup);
+
+    $result = $query->execute()->fetchAll();
+    return $result;
+
+  }
+
+  /**
+   * Helper function to fetch employee based on
+   * key word search Autocomplete
+   * @param $input
+   */
+  public function getEmployeeAutoCompleteValueById($uid)
+  {
+    $query = $this->connection->select(DataModel::EMPPERSONAL, 'n');
+    $query -> innerJoin(DataModel::EMPOFFICIAL, 'nf','n.userpk = nf.userpk');
+    $query->orderBy('n.createdon', 'DESC');
+    $query->fields('n');
+    $query->fields('nf');
+
+    $data = $query->execute()->fetch();
+
+    $results = $data->firstname . ' ' . $data->lastname . ' (' . $data->empid. ')';
+
+    return $results;
+
+  }
 
 	public function getEmployeeCount()
 	{

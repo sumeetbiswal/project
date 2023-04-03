@@ -199,9 +199,23 @@ class Employee extends ControllerBase {
 
   }
 
-  public function employeeAutocomplete(){
+  /**
+   * Handler for autocomplete request.
+   */
+  public function employeeAutocomplete(Request $request){
+
+    $results = [];
+    $input = $request->query->get('q');
+
+    // Get the typed string from the URL, if it exists.
+    if (!$input) {
+      return new JsonResponse($results);
+    }
+
+    $input = Xss::filter($input);
+
     $empobj = \Drupal::service('employee.service');
-    $result = $empobj->getEmployeeList();
+    $result = $empobj->getEmployeeListAutoComplete($input);
   //echo "<pre/>";print_r($result);
     foreach($result AS $key => $item){
       $results[] = [

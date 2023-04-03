@@ -38,7 +38,7 @@ class Tagging extends ControllerBase {
        );
 
      $rows[] = array(
-       'data' =>	  array( '1364945', $name , $project, $supervisor, $hr, $edit)
+       'data' =>	  array( $item->empid, $name , $project, $supervisor, $hr, $edit)
      );
    }
 

@@ -30,18 +30,20 @@ class TaggingModel extends ControllerBase  {
   public function getUnEmployeeList()
   {
     $query = $this->connection->select(DataModel::EMPTAGGING, 't');
-    $query -> innerJoin(DataModel::EMPPERSONAL, 'p','t.userpk = p.userpk');
+    $query->leftJoin(DataModel::EMPPERSONAL, 'p','t.userpk = p.userpk');
+    $query->leftJoin(DataModel::EMPOFFICIAL, 'o','t.userpk = o.userpk');
     $query->isNull('t.won');
     $query->isNull('t.ton');
     $query->orderBy('t.createdon', 'DESC');
     $query->fields('t');
+    $query->fields('o');
     $query->fields('p');
     $result = $query->execute()->fetchAll();
     return $result;
 
   }
 
-  public function getTaggingDetailsById($pk){
+  public function getTaggingDetailsById($tagpk){
 
     $query = $this->connection->select(DataModel::EMPTAGGING, 't');
     $query->leftJoin(DataModel::EMPPERSONAL, 'p','t.userpk = p.userpk');
@@ -50,9 +52,19 @@ class TaggingModel extends ControllerBase  {
     $query->fields('p',['firstname']);
     $query->fields('p',['lastname']);
     $query->fields('o',['empid']);
+    $query->condition('t.tagpk', $tagpk);
     $result = $query->execute()->fetch();
 
     return $result;
+  }
+
+  public function updateTagging($data){
+
+    $this->connection->update(DataModel::EMPTAGGING)
+      ->fields($data)
+      ->condition('userpk', $data['userpk'])
+      ->execute();
+
   }
 
 }

@@ -30,6 +30,7 @@ class TaggingForm extends FormBase {
     $encrypt = \Drupal::service('encrypt.service');
     $tagging = \Drupal::service('tagging.service');
     $workorder = \Drupal::service('workorder.service');
+    $employee = \Drupal::service('employee.service');
 
     $mode = $libobj->getActionMode();
 
@@ -41,10 +42,11 @@ class TaggingForm extends FormBase {
       $form_title = 'Edit Tagging details';
       $data = $tagging->getTaggingDetailsById($pk);
 
-     // echo "<pre/>";print_r($data);die;
+      //echo "<pre/>";print_r($data);die;
     }
 
     $form['#attached']['library'][] = 'singleportal/master-validation';
+    $form['#attached']['library'][] = 'singleportal/autocomplete';
     $form['#attributes']['class'] = 'form-horizontal';
     $form['#attributes']['autocomplete'] = 'off';
 
@@ -56,6 +58,11 @@ class TaggingForm extends FormBase {
       '#disabled'      => 'disabled',
       '#prefix'        => '<div class="row">',
       '#default_value' => $data->empid,
+    );
+
+    $form['tagging']['userpk'] = array(
+      '#type'          => 'hidden',
+      '#value' => $data->userpk
     );
 
     $form['tagging']['empname'] = array(
@@ -109,27 +116,61 @@ class TaggingForm extends FormBase {
       '#attributes'    => ['class' => ['form-control', 'validate[required]']],
       '#prefix'        => '<div id="teamlist">',
       '#suffix'        => '</div></div>',
-      //'#default_value' => isset($data)? $data->won : '',
+      '#default_value' => isset($data)? $data->ton : '',
     );
 
+
+
+    $supervisor_default_value = '';
+    if (isset($data->supervisor)) {
+      $supervisor_default_value = $employee->getEmployeeAutoCompleteValueById($data->supervisor);
+    }
 
     $form['tagging']['supervisor'] = array(
       '#type'          => 'textfield',
       '#title'         => t('Supervisor :'),
       '#autocomplete_route_name' => 'employee.autocomplete',
       //'#autocomplete_route_parameters' => ['pwon' => 'hello'],
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
-      '#suffix'        => '</div>',
-      //'#default_value' => isset($data)? $data->won : '',
+      '#attributes'    => ['class' => ['form-control', 'validate[required]', 'MYCUSTOM-autocomplete']],
+      '#prefix'        => '<div class="row">',
+      '#default_value' => $supervisor_default_value,
+    );
+    $form['tagging']['supervisor_value'] = array(
+      '#type' => 'hidden',
+      '#default_value' => $data->supervisor,
     );
 
+    $hr_default_value = '';
+    if (isset($data->hr)) {
+      $hr_default_value = $employee->getEmployeeAutoCompleteValueById($data->hr);
+    }
+    $form['tagging']['hr'] = array(
+      '#type'          => 'textfield',
+      '#title'         => t('HR Manager :'),
+      '#autocomplete_route_name' => 'employee.autocomplete',
+      '#attributes'    => ['class' => ['form-control', 'validate[required]', 'MYCUSTOM-autocomplete']],
+      '#suffix'        => '</div>',
+      '#default_value' => $hr_default_value,
+    );
+    $form['tagging']['hr_value'] = array(
+      '#type' => 'hidden',
+      '#default_value' => $data->hr,
+    );
 
+    $form['tagging']['role'] = array(
+      '#type'          => 'textfield',
+      '#title'         => t('Role:'),
+      '#attributes'    => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+      '#prefix'        => '<div class="row">',
+      '#default_value' => $data->role,
+    );
 
-
-
-
-
-
+    //Blank field which is not required. in order to make proper align of previous field
+    // I have added one hidden field.
+    $form['tagging']['role_hidden'] = array(
+      '#type' => 'hidden',
+      '#suffix'        => '</div>',
+    );
 
 
 
@@ -139,8 +180,8 @@ class TaggingForm extends FormBase {
       '#default_value' => ($mode == 'add') ? $this->t('Submit') : $this->t('Update'),
       '#button_type'   => 'primary',
       '#attributes'    => ['class' => ['btn btn-info']],
-      '#prefix'        => '<br/><div class="row"><div class="col-md-2"></div><div class="col-md-6">',
-      '#suffix'        => '',
+      '#prefix'        => '<br/><div class="row"><div class="col-md-6"></div><div class="col-md-6">',
+      '#suffix'        => '&nbsp; &nbsp; &nbsp;',
     );
 
     $form['tagging']['cancel'] = array(
@@ -149,7 +190,7 @@ class TaggingForm extends FormBase {
       '#attributes' => ['class'   => ['btn btn-default']],
       '#prefix'    => '',
       '#suffix'    => '</div></div>',
-      '#url' => \Drupal\Core\Url::fromRoute('company.Designationview'),
+      '#url' => \Drupal\Core\Url::fromRoute('untag.list'),
     );
 
   	$form_state->setCached(FALSE);
@@ -165,7 +206,26 @@ class TaggingForm extends FormBase {
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
+    $tagging = \Drupal::service('tagging.service');
 
+    $field = $form_state->getValues();
+
+    $data  = array(
+      'userpk'    =>  $field['userpk'],
+      'won'       =>  $field['won'],
+      'ton'       =>  $field['ton'],
+      'role'      =>  $field['role'],
+      'supervisor'=>  $field['supervisor_value'],
+      'hr'        =>  $field['hr_value'],
+      'status'    =>  1
+    );
+    //echo "<pre/>";print_r($data);die;
+
+    $tagging->updateTagging($data);
+
+    \Drupal::messenger()->addMessage($field['empname'] . " is successfully Tagged.");
+
+    $form_state->setRedirect('untag.list');
   }
 
   public function getTeamList(array $form, FormStateInterface $form_state){
