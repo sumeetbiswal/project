@@ -216,7 +216,7 @@ class Employee extends ControllerBase {
 
     $empobj = \Drupal::service('employee.service');
     $result = $empobj->getEmployeeListAutoComplete($input);
-  //echo "<pre/>";print_r($result);
+  
     foreach($result AS $key => $item){
       $results[] = [
         'value' => $item->userpk,

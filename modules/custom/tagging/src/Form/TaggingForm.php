@@ -199,11 +199,6 @@ class TaggingForm extends FormBase {
 
     }
 
-  public function validateForm(array &$form, FormStateInterface $form_state) {
-
-  }
-
-
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
     $tagging = \Drupal::service('tagging.service');
@@ -230,6 +225,18 @@ class TaggingForm extends FormBase {
 
   public function getTeamList(array $form, FormStateInterface $form_state){
     return $form['tagging']['ton'];
+  }
+
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    $field = $form_state->getValues();
+
+    if (trim($field['userpk']) == $field['supervisor_value'] ) {
+      $form_state->setErrorByName('supervisor', $this->t('You can not tag same person as supervisor'));
+    }
+    if (trim($field['userpk']) == $field['hr_value'] ) {
+      $form_state->setErrorByName('hr', $this->t('You can not tag same person as HR'));
+    }
+
   }
 
 }
