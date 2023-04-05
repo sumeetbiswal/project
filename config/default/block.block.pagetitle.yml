@@ -1,24 +1,23 @@
-uuid: f10754f6-be6b-4353-b511-35e9f3f320d6
+uuid: 5980cac2-1426-4379-8b86-ce484c1b2510
 langcode: en
 status: true
 dependencies:
   module:
-    - library
     - system
     - user
   theme:
     - singleportal
-id: documentactionblock
+id: pagetitle
 theme: singleportal
 region: content
-weight: -4
+weight: -5
 provider: null
-plugin: document_action_block
+plugin: page_title_block
 settings:
-  id: document_action_block
-  label: 'Document Action block'
+  id: page_title_block
+  label: 'Page title'
   label_display: '0'
-  provider: library
+  provider: core
 visibility:
   user_role:
     id: user_role
@@ -30,4 +29,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: "/*/add\r\n/company/view\r\n/*/edit/*\r\n/organisation/*"
+    pages: "/tagging\r\n/organisation/config\r\n/organisation/config/*\r\n/company/view"
