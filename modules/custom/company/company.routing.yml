@@ -32,7 +32,7 @@ company.branchadd:
  requirements:
    _role: 'administrator'
    _permission: 'access content'
-  
+
 company.branchedit:
  path: '/branch/edit/{arg}'
  defaults:
@@ -44,13 +44,13 @@ company.branchedit:
 company.branchview:
  path: '/branch/list'
  defaults:
-   _title: 'Branch list'
+   _title: 'Branch List'
    _controller: '\Drupal\company\Controller\BranchController::display'
  requirements:
    _permission: 'access content'
  options:
     no_cache: 'TRUE'
-    
+
 company.branchexcel:
  path: '/branch/export/excel'
  defaults:
@@ -66,7 +66,7 @@ company.departmentexcel:
   _controller: '\Drupal\company\Controller\DepartmentController::exportToExcel'
  requirements:
    _permission: 'access content'
- 
+
 company.designationexcel:
  path: '/designation/export/excel'
  defaults:
@@ -100,7 +100,7 @@ company.departmentview:
    _permission: 'access content'
  options:
     no_cache: 'TRUE'
-    
+
 company.departmentmodal:
  path: '/department/modal'
  defaults:
@@ -108,7 +108,7 @@ company.departmentmodal:
    _controller: '\Drupal\company\Controller\DepartmentController::openDeptModal'
  requirements:
    _permission: 'access content'
-    
+
 company.designationadd:
  path: '/designation/add'
  defaults:
@@ -132,7 +132,7 @@ company.configuration:
    _form: '\Drupal\company\Form\ConfigurationForm'
  requirements:
    _permission: 'access content'
-   
+
 company.configuration_shift:
  path: '/organisation/config/shift'
  defaults:
@@ -140,7 +140,7 @@ company.configuration_shift:
    _form: '\Drupal\company\Form\TimingConfigurationForm'
  requirements:
    _permission: 'access content'
-   
+
 company.configuration_shiftedit:
  path: '/shift/edit/{arg}'
  defaults:
@@ -152,28 +152,12 @@ company.configuration_shiftedit:
 company.Designationview:
  path: '/designation/view'
  defaults:
-   _title: 'View Details'
+   _title: 'Designation List'
    _controller: '\Drupal\company\Controller\DesignationController::Designationcontent'
  requirements:
    _permission: 'access content'
  options:
     no_cache: 'TRUE'
-
-company.development:
- path: '/designation/add'
- defaults:
-   _title: 'Designation Details'
-   _form: '\Drupal\company\Form\DesignationForm'
- requirements:
-   _permission: 'access content'
-   
-company.sit:
- path: '/designation/add'
- defaults:
-   _title: 'Designation Details'
-   _form: '\Drupal\company\Form\DesignationForm'
- requirements:
-   _permission: 'access content'
 
 company.projectlist:
  path: '/wordorder/list'
@@ -200,3 +184,4 @@ company.projectedit:
    _form: '\Drupal\company\Form\WorkorderForm'
  requirements:
    _permission: 'access content'
+

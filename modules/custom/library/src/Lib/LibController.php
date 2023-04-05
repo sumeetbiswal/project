@@ -166,9 +166,9 @@ class LibController extends ControllerBase {
   }
 
    /*
-	* Generate default password
-	* Parameters required @string , @date of birth
-	* @return string@date_of_birth
+   * Generate default password
+   * Parameters required @string , @date of birth
+   * @return string@date_of_birth
    */
 
    public function generateDefaultPassword($str, $dob)
@@ -193,5 +193,31 @@ class LibController extends ControllerBase {
 	   $dbDate = $explode_dt[2].'-'.$explode_dt[1].'-'.$explode_dt[0];
 	   return $dbDate;
    }
+
+
+   /*
+    * This function helps to identify whether a path exist ?
+    * @param $path
+    * @return boolean
+   */
+   public function isPathEnable($path){
+     $route_provider = \Drupal::service('router.route_provider');
+     $exists = count($route_provider->getRoutesByPattern($path)) === 1;
+     return $exists;
+   }
+
+
+  /*
+   * This function helps to set the page title at run time
+   * This usually being called when need of dynamic page title
+   * such as Edit page
+   * @param $title
+  */
+  public function setPageTitle($newTitle){
+    $request = \Drupal::request();
+    if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
+      $route->setDefault('_title', $newTitle);
+    }
+  }
 
 }

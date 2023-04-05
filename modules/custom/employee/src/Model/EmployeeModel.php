@@ -99,9 +99,14 @@ class EmployeeModel extends ControllerBase  {
 		$query->query('insert into '.DataModel::EMPOFFICIAL.' set userpk = :userpk, empid = :empid, department= :department, branch= :branch, designation= :designation, jobnature = :jobnature, email= :email, doj= :doj, jobtype= :jobtype, shifttime= :shifttime',
 		array(':userpk'=>$user->Id(), ':empid'=>$data['official']['id'], ':department'=>$data['official']['department'], ':branch'=>$data['official']['branch'], ':designation'=>$data['official']['designation'], ':jobnature'=>$data['official']['jobnature'], ':email'=>$data['official']['officialemail'], ':doj'=>$data['official']['doj'], ':jobtype'=>$data['official']['jobtype'],':shifttime'=>$data['official']['shifttime']));
 
-		$query->query('commit');
 
-	}
+		//tagging info
+    $query->query('insert into '.DataModel::EMPTAGGING.' set userpk = :userpk',
+      array(':userpk'=>$user->Id()));
+
+    $query->query('commit');
+
+  }
 
 	public static function finishOperation()
   {
@@ -142,7 +147,7 @@ class EmployeeModel extends ControllerBase  {
 		$result = $query->execute()->fetch();
 		return $result;
 	}
-	/*
+	/**
 	* @parameter user id
 	* get official details
 	*/
@@ -191,7 +196,7 @@ class EmployeeModel extends ControllerBase  {
 		return $result;
 	}
 
-	/*
+	/**
 	* @parameter user id
 	* get contact details
 	*/
@@ -288,6 +293,52 @@ class EmployeeModel extends ControllerBase  {
 
 	}
 
+  /**
+   * Helper function to fetch employee based on
+   * key word search Autocomplete
+   * @param $input
+   */
+  public function getEmployeeListAutoComplete($input)
+  {
+    $query = $this->connection->select(DataModel::EMPPERSONAL, 'n');
+    $query -> innerJoin(DataModel::EMPOFFICIAL, 'nf','n.userpk = nf.userpk');
+    $query->orderBy('n.createdon', 'DESC');
+    $query->fields('n');
+    $query->fields('nf');
+
+    $orGroup = $query->orConditionGroup();
+    $orGroup
+      ->condition('n.firstname', "%" . $input . "%", 'LIKE')
+      ->condition('n.lastname', "%" . $input . "%", 'LIKE')
+      ->condition('nf.empid', "%" . $input . "%", 'LIKE');
+    $query->condition($orGroup);
+
+    $result = $query->execute()->fetchAll();
+    return $result;
+
+  }
+
+  /**
+   * Helper function to fetch employee based on
+   * key word search Autocomplete
+   * @param $input
+   */
+  public function getEmployeeAutoCompleteValueById($uid)
+  {
+    $query = $this->connection->select(DataModel::EMPPERSONAL, 'n');
+    $query -> innerJoin(DataModel::EMPOFFICIAL, 'nf','n.userpk = nf.userpk');
+    $query->orderBy('n.createdon', 'DESC');
+    $query->fields('n');
+    $query->fields('nf');
+
+    $data = $query->execute()->fetch();
+
+    $results = $data->firstname . ' ' . $data->lastname . ' (' . $data->empid. ')';
+
+    return $results;
+
+  }
+
 	public function getEmployeeCount()
 	{
 		$query = $this->connection->select(DataModel::EMPPERSONAL, 'n');
@@ -306,7 +357,7 @@ class EmployeeModel extends ControllerBase  {
 		$user = \Drupal::currentUser();
 		$personal_details = $this->getPersonalDetailsById($user->id());
 
-		$userobj = \Drupal::service('entity.manager')->getStorage('user')->load($user->id());
+		$userobj = \Drupal::service('entity_type.manager')->getStorage('user')->load($user->id());
 		$avatar = 'male.jpg';
 		if($userobj->user_picture->entity != NULL)
 		{

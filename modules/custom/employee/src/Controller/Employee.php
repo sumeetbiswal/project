@@ -6,13 +6,17 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\library\Controller\Encrypt;
-          use Drupal\employee\Model\EmployeeModel;
+use Drupal\employee\Model\TaggingModel;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Drupal\Component\Utility\Xss;
+use Drupal\Core\Entity\Element\EntityAutocomplete;
 
 class Employee extends ControllerBase {
 
  public function emplist() {
 
-  //$empobj = new EmployeeModel;
+
   $empobj = \Drupal::service('employee.service');
   $result = $empobj->getEmployeeList();
   $encrypt = new Encrypt;
@@ -32,30 +36,14 @@ class Employee extends ControllerBase {
       '#type' 	    => 'table',
       '#header' 	  =>  array(t('Employee ID.'), t('Name'),t('Date of joining'), t('Designation'),  t('Department'), t('Action')),
       '#rows'		    =>  $rows,
-      '#attributes' => ['class' => ['table text-center table-hover table-striped table-bordered dataTable'], 'style'=>['text-align-last: center;']],
-      '#prefix'     => '<div class="panel panel-info">
-                        <h3 class="box-title col-md-10">Employees List</h3>
-                        <div class=" col-md-2">
-                        <a href="#" id="exportit" data-toggle="tooltip" data-original-title="Word Document"><img src="'.$asset_url.'/assets/images/icon/word.png" /></a> &nbsp;
-						<a href="'.$base_url.'/employee/export/excel" data-toggle="tooltip" data-original-title="Excel"><img src="'.$asset_url.'/assets/images/icon/excel.png" /></a> &nbsp;
-						<a id="" data-toggle="tooltip" data-original-title="PDF"><img src="'.$asset_url.'/assets/images/icon/pdf.png" /></a> &nbsp;
-						<a id="printit" data-toggle="tooltip" data-original-title="Print"><img src="'.$asset_url.'/assets/images/icon/print.png" /></a>
-						</div>
-                        <div class="panel-wrapper collapse in" aria-expanded="true">
-                        <div class="panel-body">
-                        <hr>
-                        <div id="editable-datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                        <div class="row"><div class="col-sm-6"><a href ="'.$base_url.'/employee/add/personal"><span  type="button" class="btn btn-info" style="background-color: #4c5667">
-                        <i class="mdi mdi-plus"></i> Add </span></a></div> <br><br><br></div></div><div class="row"><div class="col-sm-12" id="printable">',
-      '#suffix'     => '</div></div></div></div></div></div>',
-	  '#empty'		=>	'No Employee has been added yet.'
+      '#empty'		=>	'No Employee has been added yet.'
     );
     return $element;
   }
   public function exportToExcel()
 	 {
 		 $xcel = new \Drupal\library\Controller\Excel;
-		 $empobj = new EmployeeModel;
+		 $empobj = new TaggingModel;
 		 $result = $empobj->getEmployeeList();
 		 $user = \Drupal::currentUser();
 		 $emp_details = $empobj->getEmployeeDetails();
@@ -122,7 +110,8 @@ class Employee extends ControllerBase {
 */
 
   public function profile() {
-	$empobj = new EmployeeModel;
+	$empobj = \Drupal::service('employee.service');
+
 	$avatar = $empobj->getUserPic();
 	$user = \Drupal::currentUser();
 	$prsnl_details = $empobj->getPersonalDetailsById($user->id());
@@ -210,4 +199,31 @@ class Employee extends ControllerBase {
 
   }
 
+  /**
+   * Handler for autocomplete request.
+   */
+  public function employeeAutocomplete(Request $request){
+
+    $results = [];
+    $input = $request->query->get('q');
+
+    // Get the typed string from the URL, if it exists.
+    if (!$input) {
+      return new JsonResponse($results);
+    }
+
+    $input = Xss::filter($input);
+
+    $empobj = \Drupal::service('employee.service');
+    $result = $empobj->getEmployeeListAutoComplete($input);
+  
+    foreach($result AS $key => $item){
+      $results[] = [
+        'value' => $item->userpk,
+        'label' => $item->firstname . ' ' . $item->lastname . ' (' . $item->empid. ')',
+      ];
+    }
+
+    return new JsonResponse($results);
+  }
 }

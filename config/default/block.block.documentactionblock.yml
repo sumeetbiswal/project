@@ -1,0 +1,28 @@
+uuid: f10754f6-be6b-4353-b511-35e9f3f320d6
+langcode: en
+status: true
+dependencies:
+  module:
+    - library
+    - user
+  theme:
+    - singleportal
+id: documentactionblock
+theme: singleportal
+region: content
+weight: -4
+provider: null
+plugin: document_action_block
+settings:
+  id: document_action_block
+  label: 'Document Action block'
+  label_display: '0'
+  provider: library
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated

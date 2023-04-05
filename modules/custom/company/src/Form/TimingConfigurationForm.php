@@ -28,16 +28,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 
 	$form['company']['#attributes']['enctype'] = "multipart/form-data";
 	$form['#attached']['library'][] = 'singleportal/time-picker';
-	$form['company']['#prefix'] = ' <div class="row">
 
-				<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" >
-					<a href="'.$base_url.'/organisation/config" role="tab"  ><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> <b>General</b></span></a>
-				</li>
-				<li role="presentation" class="active">
-					<a href="'.$base_url.'/organisation/config/timing"  role="tab"  ><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs"><b>Timing</b></span></a>
-				</li>
-				</ul><br/><br/>';
 	$form['company']['#suffix'] = '</div>';
 
 

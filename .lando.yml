@@ -11,3 +11,6 @@ tooling:
     description: "Rebuild Xsmind App"
     cmd:
       - appserver: ./scripts/site-build.sh
+services:
+  myservice:
+    type: phpmyadmin
