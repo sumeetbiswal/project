@@ -198,12 +198,16 @@ class LibController extends ControllerBase {
    /*
     * This function helps to identify whether a path exist ?
     * @param $path
-    * @return boolean
+    * @return Boolean
    */
    public function isPathEnable($path){
-     $route_provider = \Drupal::service('router.route_provider');
-     $exists = count($route_provider->getRoutesByPattern($path)) === 1;
-     return $exists;
+     $query = $this->connection->select('router', 'r');
+     $query->fields('r', ['path']);
+     $query->condition('path', '%' . $path . '%' ,'LIKE');
+     $results = $query->execute()->fetchAll();
+     $exist = (count($results) > 0) ? TRUE : FALSE;
+
+     return $exist;
    }
 
 
