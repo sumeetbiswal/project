@@ -35,6 +35,10 @@
 		  <li><a href="{{url('<front>')}}wordorder/list"><i class="mdi mdi-settings fa-fw"></i><span class="hide-menu">Work Order</span></a></li>
 		  {% endif %}
 
+      {% if user.hasPermission('company workorder') %}
+        <li><a href="{{url('<front>')}}wordorder/list"><i class="mdi mdi-settings fa-fw"></i><span class="hide-menu">Leave Management</span></a></li>
+      {% endif %}
+
         </ul>
       </li>
       {% endif %}
