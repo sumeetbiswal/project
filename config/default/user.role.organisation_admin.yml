@@ -1,0 +1,9 @@
+uuid: 91817ee7-8531-437a-9538-b91f274e4312
+langcode: en
+status: true
+dependencies: {  }
+id: organisation_admin
+label: 'Organisation Admin'
+weight: 4
+is_admin: null
+permissions: {  }
