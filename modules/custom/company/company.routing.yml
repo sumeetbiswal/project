@@ -4,7 +4,7 @@ company.add:
    _title: 'Company Details'
    _form: '\Drupal\company\Form\CompanyForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'organisation add'
 
 company.edit:
  path: '/company/edit/{arg}'
@@ -12,7 +12,7 @@ company.edit:
    _title: 'Update Details'
    _form: '\Drupal\company\Form\CompanyForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'organisation edit'
 
 company.compview:
  path: '/company/view'
@@ -20,7 +20,7 @@ company.compview:
    _title: 'Company Details'
    _controller: '\Drupal\company\Controller\CompanyController::display'
  requirements:
-   _permission: 'access content'
+   _permission: 'organisation view'
  options:
     no_cache: 'TRUE'
 
@@ -31,7 +31,7 @@ company.branchadd:
    _form: '\Drupal\company\Form\BranchForm'
  requirements:
    _role: 'administrator'
-   _permission: 'access content'
+   _permission: 'branch add'
 
 company.branchedit:
  path: '/branch/edit/{arg}'
@@ -39,7 +39,7 @@ company.branchedit:
    _title: 'Edit Branch'
    _form: '\Drupal\company\Form\BranchForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'branch edit'
 
 company.branchview:
  path: '/branch/list'
@@ -47,7 +47,7 @@ company.branchview:
    _title: 'Branch List'
    _controller: '\Drupal\company\Controller\BranchController::display'
  requirements:
-   _permission: 'access content'
+   _permission: 'branch view'
  options:
     no_cache: 'TRUE'
 
@@ -57,7 +57,7 @@ company.branchexcel:
   _title: 'Branch Export'
   _controller: '\Drupal\company\Controller\BranchController::exportToExcel'
  requirements:
-   _permission: 'access content'
+   _permission: 'branch export'
 
 company.departmentexcel:
  path: '/department/export/excel'

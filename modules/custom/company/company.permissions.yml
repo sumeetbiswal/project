@@ -1,27 +1,40 @@
-company add:
-    title: 'Organisation View'
+organisation add:
+    title: 'Organisation Add'
     description: 'Provide access for adding new organisation details'
     restrict access: false
-company view:
+organisation view:
     title: 'Organisation View'
     description: 'Provide access for viewing organisation details'
     restrict access: false
-company edit:
+organisation edit:
     title: 'Organisation Edit'
     description: 'Provide access for editing organisation details'
     restrict access: false
-company branchedit:
+organisation export:
+  title: 'Organisation Printing'
+  description: 'Provide access for printing organisation details'
+  restrict access: false
+
+
+branch edit:
     title: 'Branch Edit'
     description: 'Provide access for editing Branch details'
     restrict access: false
-company branchview:
+branch view:
     title: 'Branch View'
     description: 'Provide access for viewing Branch details'
     restrict access: false
-company branchadd:
+branch add:
     title: 'Branch Add'
     description: 'Provide access for Adding Branch details'
     restrict access: false
+branch export:
+  title: 'Branch Export'
+  description: 'Provide access for Export Branch details'
+  restrict access: false
+
+
+
 company deptedit:
     title: 'Department Edit'
     description: 'Provide access for editing Department details'

@@ -9,7 +9,7 @@ employee.emplist:
     no_cache: 'TRUE'
 
 employee.empaddprsnl:
- path: '/employee/add/personal'
+ path: '/employee/add'
  defaults:
    _title: 'Employee Create'
    _form: '\Drupal\employee\Form\Multistep\EmployeePersonalForm'

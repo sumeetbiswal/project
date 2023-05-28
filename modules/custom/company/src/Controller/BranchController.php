@@ -31,8 +31,13 @@ class BranchController extends ControllerBase {
       $sl++;
 	  $codepk_encoded = $encrypt->encode($content->codepk);
 
-      $html = ['#markup' => '<a href="'.$base_url.'/branch/edit/'.$codepk_encoded.'" style="text-align:center">
-      <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
+      $edit = '';
+      if (\Drupal::currentUser()->hasPermission('branch edit')) {
+        $edit = '<a href="'.$base_url.'/branch/edit/'.$codepk_encoded.'" style="text-align:center">
+      <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>';
+      }
+      
+      $html = ['#markup' => $edit];
 
 
       $rows[] =   array(
