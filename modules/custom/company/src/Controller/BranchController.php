@@ -13,7 +13,6 @@ use Drupal\Core\Ajax\AfterCommand;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Render\MainContent\AjaxRenderer;
-use Drupal\library\Controller\Encrypt;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Component\Render\FormattableMarkup;
 
@@ -22,7 +21,7 @@ class BranchController extends ControllerBase {
  public function display() {
 
  	$brnobj = \Drupal::service('branch.service');
-	$encrypt = new Encrypt;
+	$encrypt = \Drupal::service('encrypt.service');
     $result = $brnobj->getAllBranchDetails();
     global $base_url;
     $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();

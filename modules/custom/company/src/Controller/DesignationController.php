@@ -41,10 +41,10 @@ class DesignationController extends ControllerBase {
     foreach ($result as $row => $content) {
        $dept = $depobj->getDepartmentDetailsById($content->parent);
       $sl++;
-
+      $codepk_encoded = $encrypt->encode($content->codepk);
       $edit = '';
       if ($edit_access) {
-        $url = $base_url.'/designation/edit/'.$content->codepk;
+        $url = $base_url.'/designation/edit/'.$codepk_encoded;
         $name = new FormattableMarkup('<i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i>', []);
         $edit = new FormattableMarkup('<a href=":link" style="text-align:center" >@name</a>', [':link' => $url, '@name' => $name]);
       }

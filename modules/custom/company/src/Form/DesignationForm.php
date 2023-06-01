@@ -16,12 +16,14 @@ class DesignationForm extends FormBase {
     $desobj = \Drupal::service('designation.service');
     $depobj = \Drupal::service('department.service');
     $conobj = \Drupal::service('configuration.service');
+    $encrypt = \Drupal::service('encrypt.service');
     $libobj = \Drupal::service('library.service');
 
     $mode = $libobj->getActionMode();
     $form_title = 'Add Designation Details';
     if($mode == 'edit'){
       $pk = $libobj->getIdFromUrl();
+      $pk = $encrypt->decode($pk);
       $data = $desobj->getDesignationDetailsById($pk);
 
       $form_title = 'Edit Designation - ' . $data->codevalues;
@@ -128,6 +130,7 @@ class DesignationForm extends FormBase {
     $desobj = \Drupal::service('designation.service');
     $depobj = \Drupal::service('department.service');
 	  $conobj = \Drupal::service('configuration.service');
+    $encrypt = \Drupal::service('encrypt.service');
 
 	$code_config = $conobj->getDesignationCodeConfig();
 	$field = $form_state->getValues();
@@ -157,6 +160,7 @@ class DesignationForm extends FormBase {
     if($mode == 'edit' )
     {
       $pk = $libobj->getIdFromUrl();
+      $pk = $encrypt->decode($pk);
       $desobj->updateDesignation($field,$pk);
       \Drupal::messenger()->addMessage($field['codevalues'] . " has succesfully Updated.");
     }
