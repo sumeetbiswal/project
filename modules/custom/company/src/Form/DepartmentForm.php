@@ -15,10 +15,12 @@ class DepartmentForm extends FormBase {
     $libobj = \Drupal::service('library.service');
     $brnobj = \Drupal::service('department.service');
 	  $conobj = \Drupal::service('configuration.service');
+    $encrypt = \Drupal::service('encrypt.service');
     $mode = $libobj->getActionMode();
 
     if($mode == 'edit'){
       $pk = $libobj->getIdFromUrl();
+      $pk = $encrypt->decode($pk);
       $data = $brnobj->getDepartmentDetailsById($pk);
 
       $form_title = 'Edit Department - ' . $data->codevalues;
@@ -109,6 +111,7 @@ class DepartmentForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $libobj = \Drupal::service('library.service');
     $brnobj = \Drupal::service('department.service');
+    $encrypt = \Drupal::service('encrypt.service');
     $conobj = \Drupal::service('configuration.service');
 
     $field = $form_state->getValues();
@@ -134,6 +137,7 @@ class DepartmentForm extends FormBase {
     if($mode == 'edit' )
     {
       $pk = $libobj->getIdFromUrl();
+      $pk = $encrypt->decode($pk);
       $brnobj->updateDepartment($field,$pk);
       \Drupal::messenger()->addMessage("succesfully Updated.");
     }

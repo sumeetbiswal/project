@@ -8,6 +8,7 @@ namespace Drupal\company\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Component\Render\FormattableMarkup;
 
 class TimingConfigurationForm extends FormBase {
 
@@ -23,6 +24,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
   $libobj = \Drupal::service('library.service');
 	//$configobj = new \Drupal\company\Model\ConfigurationModel;
   $configobj = \Drupal::service('configuration.service');
+  $encrypt = \Drupal::service('encrypt.service');
 
 	$result = $configobj->getShiftTimingList();
 
@@ -36,6 +38,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 
    if($mode == 'edit'){
 		$pk = $libobj->getIdFromUrl();
+     $pk = $encrypt->decode($pk);
 		$data = $configobj->getShiftDetailsById($pk);
    }
 
@@ -102,10 +105,14 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 		$sl = 0;
 		foreach ($result as $item) {
 		  $sl++;
-		  $html = ['#markup' => '<a href="'.$base_url.'/shift/edit/'.$item->codepk.'" style="text-align:center">
-		  <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
+      $codepk_encoded = $encrypt->encode($item->codepk);
+		  
+      $url = $base_url.'/shift/edit/'.$codepk_encoded;
+      $name = new FormattableMarkup('<i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i>', []);
+      $edit = new FormattableMarkup('<a href=":link" style="text-align:center" >@name</a>', [':link' => $url, '@name' => $name]);
+
 		  $rows[] =   array(
-						'data' =>  array( $sl, $item->codevalues, $item->description . ' - ' . $item->email, render($html))
+						'data' =>  array( $sl, $item->codevalues, $item->description . ' - ' . $item->email, $edit)
 		  );
 		}
 
@@ -162,6 +169,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
     $configobj = \Drupal::service('configuration.service');
     //$libobj = new \Drupal\library\Lib\LibController;
     $libobj = \Drupal::service('library.service');
+    $encrypt = \Drupal::service('encrypt.service');
 
     $fieldval = $form_state->getValues();
 
@@ -180,6 +188,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 		if($mode == 'edit' )
 		{
 			$pk = $libobj->getIdFromUrl();
+      $pk = $encrypt->decode($pk);
 			$configobj->updateShiftTiming($field, $pk);
       \Drupal::messenger()->addMessage($field['codevalues'] . " has been updated.");
 		}

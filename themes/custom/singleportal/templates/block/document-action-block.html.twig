@@ -2,16 +2,20 @@
   <div class="panel-body">
 <div class="row">
   <div class="col-sm-6">
-    {% if data.add %}
+    {% if data.add.exist and data.add.permission %}
       <a href ="{{ url('<front>') }}{{ data.path }}/add"><span  type="button" class="btn btn-info"><i class="mdi mdi-plus"></i> Add </span></a>
     {% endif %}
   </div>
+
+
+  {% if data.export.exist and data.export.permission %}
   <div class="col-md-2 text-right" style="float: right">
     <a href="#" id="exportit" data-toggle="tooltip" data-original-title="Word Document"><img src="{{ url('<front>') }}{{ directory }}/assets/images/icon/word.png" /></a> &nbsp;
     <a href="{{ url('<front>') }}{{ data.path }}/export/excel" data-toggle="tooltip" data-original-title="Excel"><img src="{{ url('<front>') }}{{ directory }}/assets/images/icon/excel.png" /></a> &nbsp;
     <a id="" data-toggle="tooltip" data-original-title="PDF"><img src="{{ url('<front>') }}{{ directory }}/assets/images/icon/pdf.png" /></a> &nbsp;
     <a id="printit" data-toggle="tooltip" data-original-title="Print"><img src="{{ url('<front>') }}{{ directory }}/assets/images/icon/print.png" /></a>
   </div>
+  {% endif %}
 </div>
   </div>
 </div>

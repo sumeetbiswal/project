@@ -7,4 +7,3 @@ services:
         arguments: ['@database']
   encrypt.service:
         class: Drupal\library\Controller\Encrypt
-        arguments: ['@database']
