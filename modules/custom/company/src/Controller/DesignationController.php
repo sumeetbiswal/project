@@ -2,6 +2,7 @@
 
 namespace Drupal\company\Controller;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\ReplaceCommand;
@@ -30,14 +31,28 @@ class DesignationController extends ControllerBase {
 	  $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
     $rows = array();
     $sl = 0;
+
+    $edit_access = FALSE;
+    if (\Drupal::currentUser()->hasPermission('desg edit')) {
+      $edit_access = TRUE;
+    }
+
+
     foreach ($result as $row => $content) {
        $dept = $depobj->getDepartmentDetailsById($content->parent);
       $sl++;
-      $html = ['#markup' => '<a href="'.$base_url.'/designation/edit/'.$content->codepk.'" style="text-align:center">
-      <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
+      $codepk_encoded = $encrypt->encode($content->codepk);
+      $edit = '';
+      if ($edit_access) {
+        $url = $base_url.'/designation/edit/'.$codepk_encoded;
+        $name = new FormattableMarkup('<i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i>', []);
+        $edit = new FormattableMarkup('<a href=":link" style="text-align:center" >@name</a>', [':link' => $url, '@name' => $name]);
+      }
+
+
       $rows[] =   array(
-                    'data' =>  array( $sl, $content->codevalues, $content->codename, $dept->codevalues, render($html))
-      );
+                    'data' =>  array( $sl, $content->codevalues, $content->codename, $dept->codevalues, $edit)
+            );
     }
     $element['display']['Designationlist'] = array(
       '#type'       => 'table',

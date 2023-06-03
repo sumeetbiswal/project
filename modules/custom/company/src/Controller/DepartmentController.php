@@ -2,6 +2,7 @@
 
 namespace Drupal\company\Controller;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\ReplaceCommand;
@@ -23,19 +24,33 @@ class DepartmentController extends ControllerBase {
   public function display() {
 
    $dptobj = \Drupal::service('department.service');
+   $encrypt = \Drupal::service('encrypt.service');
+
    $result = $dptobj->getAllDepartmentDetails();
-   $encrypt = new Encrypt;
 
     global $base_url;
 	$asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
     $rows = array();
     $sl = 0;
+
+    $edit_access = FALSE;
+    if (\Drupal::currentUser()->hasPermission('dept edit')) {
+      $edit_access = TRUE;
+    }
+
     foreach ($result as $row => $content) {
       $sl++;
-      $html = ['#markup' => '<a href="'.$base_url.'/department/edit/'.$content->codepk.'" style="text-align:center">
-      <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
+      $codepk_encoded = $encrypt->encode($content->codepk);
+      $edit = '';
+      if ($edit_access) {
+        $url = $base_url.'/department/edit/'.$codepk_encoded;
+        $name = new FormattableMarkup('<i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i>', []);
+        $edit = new FormattableMarkup('<a href=":link" style="text-align:center" >@name</a>', [':link' => $url, '@name' => $name]);
+      }
+
+
       $rows[] =   array(
-                    'data' =>     array( $sl, $content->codevalues, $content->codename, render($html))
+                    'data' =>     array( $sl, $content->codevalues, $content->codename, $edit)
       );
     }
     $element['display']['Departmentlist'] = array(

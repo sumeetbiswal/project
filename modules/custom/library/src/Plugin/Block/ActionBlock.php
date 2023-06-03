@@ -24,13 +24,14 @@ class ActionBlock extends BlockBase {
     //Get the current page title
     $current_path = \Drupal::service('path.current')->getPath();
     $current_path = explode( '/', $current_path)[1];
-    //echo $current_path . '/add';die;
+
     //Check the ADD button is enable or not
-    $btn_add = $lib->isPathEnable($current_path . '/add');
+    $btn_add = $lib->isPathEnable($current_path, 'add');
+    $btn_exprt = $lib->isPathEnable($current_path, 'export');
 
     return [
       '#theme' => 'document_action_block',
-      '#data' => ['path' => $current_path, 'add' => $btn_add],
+      '#data' => ['path' => $current_path, 'add' => $btn_add, 'export' => $btn_exprt ],
     ];
   }
 

@@ -13,30 +13,38 @@ use Drupal\Core\Ajax\AfterCommand;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Render\MainContent\AjaxRenderer;
-use Drupal\library\Controller\Encrypt;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Render\FormattableMarkup;
 
 class BranchController extends ControllerBase {
 
  public function display() {
 
  	$brnobj = \Drupal::service('branch.service');
-	$encrypt = new Encrypt;
+	$encrypt = \Drupal::service('encrypt.service');
     $result = $brnobj->getAllBranchDetails();
     global $base_url;
     $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
     $sl = 0;
-	$rows = [];
+	  $rows = [];
+
+   $edit_access = FALSE;
+   if (\Drupal::currentUser()->hasPermission('branch edit')) {
+     $edit_access = TRUE;
+   }
     foreach ($result as $row => $content) {
       $sl++;
-	  $codepk_encoded = $encrypt->encode($content->codepk);
+	    $codepk_encoded = $encrypt->encode($content->codepk);
 
-      $html = ['#markup' => '<a href="'.$base_url.'/branch/edit/'.$codepk_encoded.'" style="text-align:center">
-      <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
-
+      $edit = '';
+      if ($edit_access) {
+        $url = $base_url.'/branch/edit/'.$codepk_encoded;
+        $name = new FormattableMarkup('<i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i>', []);
+        $edit = new FormattableMarkup('<a href=":link" style="text-align:center" >@name</a>', [':link' => $url, '@name' => $name]);
+      }
 
       $rows[] =   array(
-                'data' =>	  array( $sl, $content->codevalues, $content->location, $content->ct_name, $content->name, render($html))
+                'data' =>	  array( $sl, $content->codevalues, $content->location, $content->ct_name, $content->name, $edit)
             );
     }
 

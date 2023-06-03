@@ -200,14 +200,30 @@ class LibController extends ControllerBase {
     * @param $path
     * @return Boolean
    */
-   public function isPathEnable($path){
+   public function isPathEnable($path, $action){
+     $path = $path . '/' . $action;
      $query = $this->connection->select('router', 'r');
      $query->fields('r', ['path']);
      $query->condition('path', '%' . $path . '%' ,'LIKE');
      $results = $query->execute()->fetchAll();
-     $exist = (count($results) > 0) ? TRUE : FALSE;
 
-     return $exist;
+     //get current route name. from that fetch route module name which will use on permission on twig file
+     $current_route_permission = \Drupal::service('current_route_match')->getRouteObject()->getRequirements()['_permission'];
+     $route_permission_name = explode(' ', $current_route_permission)[0];
+
+     $result = [
+       'exist' => FALSE,
+       'permission' => FALSE,
+     ];
+     if(count($results) > 0){
+       $result['exist'] = TRUE;
+     }
+
+     if (\Drupal::currentUser()->hasPermission($route_permission_name . ' '. $action)) {
+       $result['permission'] = TRUE;
+     }
+
+     return $result;
    }
 
 

@@ -4,7 +4,7 @@
 	  <div class="row" id="printable">
 		<div class="col-lg-4">
 			<div class="white-box">
-				<div class="thumbnail fix-width"> 
+				<div class="thumbnail fix-width">
 				  <div class="white-box m-t-20">
 					<img width="100%" alt="user" src="{{ data.logo }}" class="img-responsive m-t-25">
 					</div>
@@ -13,15 +13,17 @@
 		</div>
 		<div class="col-lg-8">
 		   <div class="white-box">
-				 <h3 class="box-title"><strong>{{ data.name }}</strong> 
+				 <h3 class="box-title"><strong>{{ data.name }}</strong>
 				 <div class="pull-right">
-				{% if user.hasPermission('company add') %}
+				{% if user.hasPermission('organisation add') %}
 				<a href="{{url('<front>')}}company/add"><i class="mdi mdi-plus-circle fadehide fonticon" title="Add" data-toggle="tooltip"></i></a>
 				{% endif %}
 				{% if data.name is not empty %}
-				<a href="{{url('<front>')}}company/edit/{{ data.id }}"><i class="mdi mdi-pencil-circle fadehide fonticon" title="" data-toggle="tooltip" data-original-title="Edit"></i></a> 
+           {% if user.hasPermission('organisation edit') %}
+				<a href="{{url('<front>')}}company/edit/{{ data.id }}"><i class="mdi mdi-pencil-circle fadehide fonticon" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>
+           {% endif %}
 				{% endif %}
-				 </div> 
+				 </div>
 				 </h3>
 					<hr class="m-t-0 m-b-40">
 
@@ -67,7 +69,7 @@
 					</div>
 			</div>
 
-				
+
 		</div>
 		</div>
 	</div>
