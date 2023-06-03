@@ -8,7 +8,7 @@
         <a href="{{url('<front>')}}home" class="waves-effect"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="fa arrow"></span> <span class="label label-rouded label-inverse pull-right">4</span></span></a>
       </li>
 
-	{% if user.hasPermission('organisation view') or user.hasPermission('branch view') or  user.hasPermission('organisation deptview') or user.hasPermission('organisation desigview') or user.hasPermission('organisation configview') %}
+	{% if user.hasPermission('organisation view') or user.hasPermission('branch view') or  user.hasPermission('dept view') or user.hasPermission('desig view') or user.hasPermission('organisation configview') %}
       <li class=""><a href="javascript:void(0)" class="waves-effect"><i class="mdi mdi-settings fa-fw"></i> <span class="hide-menu">Administrative<span class="fa arrow"></span></span></a>
         <ul class="nav nav-second-level two-li">
 		 {% if user.hasPermission('organisation view') %}
@@ -19,11 +19,11 @@
 		  <li> <a href="{{url('<front>')}}branch/list" class="waves-effect"><i class="mdi mdi-source-branch fa-fw"></i><span class="hide-menu">Branch</span></a> </li>
 		  {% endif %}
 
-          {% if user.hasPermission('organisation deptview') %}
+          {% if user.hasPermission('dept view') %}
 		  <li><a href="{{url('<front>')}}department/view"><i class="mdi mdi-lan fa-fw"></i><span class="hide-menu">Department</span></a></li>
 		  {% endif %}
 
-          {% if user.hasPermission('organisation desigview') %}
+          {% if user.hasPermission('desig view') %}
 		  <li><a href="{{url('<front>')}}designation/view"><i class="mdi mdi-account-card-details fa-fw"></i><span class="hide-menu">Designation</span></a></li>
 		  {% endif %}
 
