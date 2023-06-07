@@ -40,7 +40,7 @@ class MenuItemEditFormHandler {
     $form['permissions'] = [
       '#type' => 'textfield',
       '#title' => t('Permissions '),
-      '#description' => t('Enter the permissions name for the menu item.'),
+      '#description' => t('Enter the permissions name for the menu item. If left blank then it will be display for all users by default'),
       '#default_value' => isset($menu_link_options['permissions']) ? $menu_link_options['permissions'] : '',
       '#weight' => 31,
     ];
