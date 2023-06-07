@@ -10,8 +10,8 @@ use Drupal\Core\Form\FormStateInterface;
 
 class Leave extends ControllerBase {
  public function leavelist() {
-  
-  global $base_url;
+
+   global $base_url;
   $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
 
   $element['display']['Leavelist'] = array(
@@ -26,10 +26,10 @@ class Leave extends ControllerBase {
 						<a href="'.$base_url.'/branch/export/excel" data-toggle="tooltip" data-original-title="Excel"><img src="'.$asset_url.'/assets/images/icon/excel.png" /></a> &nbsp;
 						<a id="" data-toggle="tooltip" data-original-title="PDF"><img src="'.$asset_url.'/assets/images/icon/pdf.png" /></a> &nbsp;
 						<a id="printit" data-toggle="tooltip" data-original-title="Print"><img src="'.$asset_url.'/assets/images/icon/print.png" /></a> &nbsp;
-						<a id="" data-toggle="tooltip" data-original-title="Download"><img src="'.$asset_url.'/assets/images/icon/download.png" /></a> 
+						<a id="" data-toggle="tooltip" data-original-title="Download"><img src="'.$asset_url.'/assets/images/icon/download.png" /></a>
 						</div>
                         <div class="panel-wrapper collapse in" aria-expanded="true">
-                        <div class="panel-body">	
+                        <div class="panel-body">
                         <hr>
                         <div id="editable-datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row"><div class="col-sm-6"><a href ="#"><span  type="button" class="btn btn-info" style="background-color: #4c5667">

@@ -1,7 +1,7 @@
 company.add:
  path: '/company/add'
  defaults:
-   _title: 'Company Details'
+   _title: 'Add Organisation'
    _form: '\Drupal\company\Form\CompanyForm'
  requirements:
    _permission: 'organisation add'
@@ -14,7 +14,7 @@ company.edit:
  requirements:
    _permission: 'organisation edit'
 
-company.compview:
+company.view:
  path: '/company/view'
  defaults:
    _title: 'Company Details'
@@ -24,16 +24,16 @@ company.compview:
  options:
     no_cache: 'TRUE'
 
-company.branchadd:
+branch.add:
  path: '/branch/add'
  defaults:
-   _title: 'Add New Branch'
+   _title: 'Add Branch'
    _form: '\Drupal\company\Form\BranchForm'
  requirements:
    _role: 'administrator'
    _permission: 'branch add'
 
-company.branchedit:
+branch.edit:
  path: '/branch/edit/{arg}'
  defaults:
    _title: 'Edit Branch'
@@ -41,7 +41,7 @@ company.branchedit:
  requirements:
    _permission: 'branch edit'
 
-company.branchview:
+branch.view:
  path: '/branch/list'
  defaults:
    _title: 'Branch List'
@@ -51,7 +51,7 @@ company.branchview:
  options:
     no_cache: 'TRUE'
 
-company.branchexcel:
+branch.excel:
  path: '/branch/export/excel'
  defaults:
   _title: 'Branch Export'
@@ -59,7 +59,7 @@ company.branchexcel:
  requirements:
    _permission: 'branch export'
 
-company.departmentexcel:
+department.excel:
  path: '/department/export/excel'
  defaults:
   _title: 'Department Export'
@@ -67,7 +67,7 @@ company.departmentexcel:
  requirements:
    _permission: 'access content'
 
-company.designationexcel:
+designation.excel:
  path: '/designation/export/excel'
  defaults:
   _title: 'Designation Export'
@@ -75,15 +75,15 @@ company.designationexcel:
  requirements:
    _permission: 'access content'
 
-company.departmentadd:
+department.add:
  path: '/department/add'
  defaults:
-   _title: 'Add Department Details'
+   _title: 'Add Department'
    _form: '\Drupal\company\Form\DepartmentForm'
  requirements:
    _permission: 'access content'
 
-company.departmentedit:
+department.edit:
  path: '/department/edit/{arg}'
  defaults:
    _title: 'Update Ddepartment Details'
@@ -91,7 +91,7 @@ company.departmentedit:
  requirements:
    _permission: 'access content'
 
-company.departmentview:
+department.view:
  path: '/department/view'
  defaults:
    _title: 'Department List'
@@ -101,7 +101,7 @@ company.departmentview:
  options:
     no_cache: 'TRUE'
 
-company.departmentmodal:
+department.modal:
  path: '/department/modal'
  defaults:
    _title: 'Department List'
@@ -109,15 +109,15 @@ company.departmentmodal:
  requirements:
    _permission: 'access content'
 
-company.designationadd:
+designation.add:
  path: '/designation/add'
  defaults:
-   _title: 'Add Designation Details'
+   _title: 'Add Designation'
    _form: '\Drupal\company\Form\DesignationForm'
  requirements:
    _permission: 'access content'
 
-company.designationedit:
+designation.edit:
  path: '/designation/edit/{arg}'
  defaults:
    _title: 'Update Designation Details'
@@ -149,7 +149,7 @@ company.configuration_shiftedit:
  requirements:
    _permission: 'access content'
 
-company.Designationview:
+designation.view:
  path: '/designation/view'
  defaults:
    _title: 'Designation List'

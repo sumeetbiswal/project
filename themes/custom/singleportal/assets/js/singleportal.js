@@ -16,7 +16,7 @@ jQuery("#printit").on('click', function() {
       });
 
 
-	jQuery('.active').parents('ul').parent('li').children('a').addClass('active');
+	//jQuery('.active').parents('ul').parent('li').children('a').addClass('active');
 	if (jQuery('[data-toggle=tooltip]').length) {
 		jQuery('[data-toggle=tooltip]').tooltip();
 	}

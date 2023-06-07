@@ -26,7 +26,7 @@ class EmployeeContactForm extends EmployeeFormBase {
 
 	if(!$this->store->get('personal_bypass'))
 	{
-		$response = new RedirectResponse(\Drupal::url('employee.empaddprsnl'));
+		$response = new RedirectResponse(\Drupal::url('employee.add'));
 		$response->send();
 	}
 	if(!$this->store->get('academic_back'))
@@ -292,7 +292,7 @@ class EmployeeContactForm extends EmployeeFormBase {
 		  '#title' => $this->t('Back'),
 		  '#type' => 'link',
 		  '#attributes' => ['class' => ['btn btn-default']],
-		  '#url' => \Drupal\Core\Url::fromRoute('employee.empaddprsnl'),
+		  '#url' => \Drupal\Core\Url::fromRoute('employee.add'),
 		  '#prefix' => '<br/><div class="row"><div class="col-md-5"></div><div class="col-md-4">',
 		];
 

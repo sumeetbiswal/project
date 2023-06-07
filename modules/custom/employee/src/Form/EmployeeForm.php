@@ -16,25 +16,25 @@ class EmployeeForm extends FormBase {
 	return 'company_form';
 
   }
-  
+
 public function buildForm(array $form, FormStateInterface $form_state) {
 
-	
+
 	$libobj = new \Drupal\library\Lib\LibController;
 	$compobj = new \Drupal\company\Model\CompanyModel;
-	
+
 	$mode = $libobj->getActionMode();
-	
+
    if($mode == 'edit'){
 		$pk = $libobj->getIdFromUrl();
 		$data = $compobj->getCompanyDetailsById($pk);
    }
- 
+
 $form['company']['#attributes']['enctype'] = "multipart/form-data";
 
 	$form['company']['#prefix'] = '<div class="row"> <div class="panel panel-inverse">
                             <div class="panel-heading"> Company details</div><div class="panel-body">';
-	
+
 	$form['company']['cname'] = array(
       '#type' => 'textfield',
       '#title' => t('Company Name:'),
@@ -45,14 +45,14 @@ $form['company']['#attributes']['enctype'] = "multipart/form-data";
 	 '#default_value' => isset($data)? $data->companyname : '',
 
     );
-	
+
 	$complist = $compobj->getCompanyTypeList();
 	$comp_option[''] = 'Select Type of Organisation';
 	foreach($complist AS $item)
 	{
 		$comp_option[$item->codename]  = $item->codevalues;
 	}
-	
+
 	$form['company']['ctype'] = array(
       '#type' => 'select',
       '#title' => t('Company Type:'),
@@ -105,8 +105,8 @@ $form['company']['#attributes']['enctype'] = "multipart/form-data";
 	 '#suffix' => '</div></div>',
     );
 	// $form['#suffix'] =  '</div>';
-	
-	
+
+
     $form['company']['#type'] = 'actions';
     $form['company']['submit'] = array(
       '#type' => 'submit',
@@ -116,7 +116,7 @@ $form['company']['#attributes']['enctype'] = "multipart/form-data";
 	  '#prefix' => '<div class="row"><div class="col-md-5"></div><div class="col-md-4">',
 	  '#suffix' => '',
 		  );
-		  
+
 	$form['company']['cancel'] = array(
       '#type' => 'submit',
       '#value' => t('Cancel'),
@@ -126,21 +126,21 @@ $form['company']['#attributes']['enctype'] = "multipart/form-data";
 	  '#suffix' => '</div></div>',
 		  );
 	$form['company']['cancel']['#submit'][] = '::ActionCancel';
-	
+
 	$form['company']['#suffix'] = '</div></div></div></div>';
-	
+
     return $form;
 
-	  
+
   }
-  
+
   public function ActionCancel(array &$form, FormStateInterface $form_state)
   {
-	  
-	$form_state->setRedirect('company.compview');
+
+	$form_state->setRedirect('company.view');
   }
-  
-  
+
+
   public function validateForm(array &$form, FormStateInterface $form_state) {
 	  if (strlen($form_state->getValue('cphone')) < 10) {
         $form_state->setErrorByName('cphone', $this->t('Mobile number is too short.'));
@@ -154,11 +154,11 @@ $form['company']['#attributes']['enctype'] = "multipart/form-data";
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $libobj = new \Drupal\library\Lib\LibController;
 	$compobj = new \Drupal\company\Model\CompanyModel;
-	
-	
+
+
    $field = $form_state->getValues();
-   
-    
+
+
 	 $field  = array(
               'companyname' =>  $field['cname'],
               'companycode' =>  $field['cname'],
@@ -167,11 +167,11 @@ $form['company']['#attributes']['enctype'] = "multipart/form-data";
               'phone' 		=>  $field['cphone'],
               'address' 	=>  $field['caddress'],
               'logo' 		=>  $field['clogo'],
-              
+
           );
-		 
+
 		 $mode = $libobj->getActionMode();
-		  
+
 		if($mode == 'add' )
 		{
 			$compobj->setCompany($field);
@@ -182,8 +182,8 @@ $form['company']['#attributes']['enctype'] = "multipart/form-data";
 			$compobj->updateCompany($field);
 			drupal_set_message("succesfully Updated.");
 		}
-        
-		$form_state->setRedirect('company.compview');	
+
+		$form_state->setRedirect('company.view');
   }
 }
 ?>
