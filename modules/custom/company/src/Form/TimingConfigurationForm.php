@@ -106,7 +106,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 		foreach ($result as $item) {
 		  $sl++;
       $codepk_encoded = $encrypt->encode($item->codepk);
-		  
+
       $url = $base_url.'/shift/edit/'.$codepk_encoded;
       $name = new FormattableMarkup('<i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i>', []);
       $edit = new FormattableMarkup('<a href=":link" style="text-align:center" >@name</a>', [':link' => $url, '@name' => $name]);

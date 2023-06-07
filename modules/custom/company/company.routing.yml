@@ -65,7 +65,7 @@ department.excel:
   _title: 'Department Export'
   _controller: '\Drupal\company\Controller\DepartmentController::exportToExcel'
  requirements:
-   _permission: 'access content'
+   _permission: 'dept export'
 
 designation.excel:
  path: '/designation/export/excel'
@@ -81,7 +81,7 @@ department.add:
    _title: 'Add Department'
    _form: '\Drupal\company\Form\DepartmentForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'dept add'
 
 department.edit:
  path: '/department/edit/{arg}'
@@ -89,7 +89,7 @@ department.edit:
    _title: 'Update Ddepartment Details'
    _form: '\Drupal\company\Form\DepartmentForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'dept edit'
 
 department.view:
  path: '/department/view'
@@ -97,7 +97,7 @@ department.view:
    _title: 'Department List'
    _controller: '\Drupal\company\Controller\DepartmentController::display'
  requirements:
-   _permission: 'access content'
+   _permission: 'dept view'
  options:
     no_cache: 'TRUE'
 
@@ -107,7 +107,7 @@ department.modal:
    _title: 'Department List'
    _controller: '\Drupal\company\Controller\DepartmentController::openDeptModal'
  requirements:
-   _permission: 'access content'
+   _permission: 'dept add'
 
 designation.add:
  path: '/designation/add'
@@ -115,7 +115,7 @@ designation.add:
    _title: 'Add Designation'
    _form: '\Drupal\company\Form\DesignationForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'desig add'
 
 designation.edit:
  path: '/designation/edit/{arg}'
@@ -123,7 +123,25 @@ designation.edit:
    _title: 'Update Designation Details'
    _form: '\Drupal\company\Form\DesignationForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'desig edit'
+
+company.designationexcel:
+  path: '/designation/export/excel'
+  defaults:
+    _title: 'Designation Export'
+    _controller: '\Drupal\company\Controller\DesignationController::exportToExcel'
+  requirements:
+    _permission: 'desig export'
+
+company.Designationview:
+  path: '/designation/view'
+  defaults:
+    _title: 'Designation List'
+    _controller: '\Drupal\company\Controller\DesignationController::Designationcontent'
+  requirements:
+    _permission: 'desig view'
+  options:
+    no_cache: 'TRUE'
 
 company.configuration:
  path: '/organisation/config'
@@ -158,6 +176,7 @@ designation.view:
    _permission: 'access content'
  options:
     no_cache: 'TRUE'
+
 
 company.projectlist:
  path: '/wordorder/list'
