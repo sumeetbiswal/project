@@ -9,6 +9,7 @@
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
+use Drupal\Component\Utility\Html;
 
 
 function singleportal_preprocess_page(&$variables) {
@@ -89,24 +90,89 @@ function singleportal_form_alter(&$form, $form_state, $form_id) {
 
 
 
-
-
 /**
- * Implements hook_menu_local_tasks_alter().
+ * Implements hook_preprocess_menu()
  */
 function singleportal_preprocess_menu(&$variables) {
-  $user = \Drupal::currentUser();
-  $roles = $user->getRoles();
-     if(in_array("administrator", $roles)) {
-      $variables['loggedin_user_role'] = "admin";
-  }else if(in_array("human_resources", $roles)) {
-      $variables['loggedin_user_role'] = "hr";
-  }
-  else {
-      $variables['loggedin_user_role'] = "employee";
-  }
+  if ($variables['menu_name'] === 'main') {
+    //adding class name as my-class.
+    //$variables['attributes']['class'][] = 'my-class';
+    //kint($variables['items']);
+    //unset($variables['items'][$key]);
+    $current_user = \Drupal::currentUser();
+    //Check the menu permission
+    foreach ($variables['items'] as $key => $item){
 
+        $parent_item = FALSE;
+        //kint(count($item['below']));
+        if(count($item['below']) > 0){
+          foreach($item['below'] as $child_key => $child_item){
+            $permission = $child_item['url']->getOptions()['permissions'];
+            if(!empty($permission)){
+              if($current_user->hasPermission($permission)){
+                $parent_item = TRUE;
+              }
+              else{
+                // remove the child element from submenu list if the user does not have permissions
+                unset($variables['items'][$key]['below'][$child_key]);
+              }
+            }
+            else{ //if there is no permission display to all user
+              $parent_item = TRUE;
+            }
+          }
+        }else{
+
+          //else part is for parent menu item which does not have any child
+
+          $permission = $item['url']->getOptions()['permissions'];
+          if(!empty($permission)){
+            if($current_user->hasPermission($permission)){
+              $parent_item = TRUE;
+            }
+          }
+          else{ //if there is no permission display to all user
+            $parent_item = TRUE;
+          }
+        }
+
+        if(!$parent_item){
+          unset($variables['items'][$key]);
+        }
+
+
+    }
+
+
+
+
+    foreach ($variables['items'] as $item) {
+      // get options
+      $options = $item['original_link']->getOptions();
+      //kint($item);
+      if ($options && isset($options['classes'])) {
+
+        $classes_array = explode(' ', $options['classes']);
+        foreach ($classes_array as $class) {
+          // add classes to class attribute
+         // $item['attributes']->addClass(Html::cleanCssIdentifier($class, []));
+          if (isset($options['classes'])) {
+            $item['attributes']->setAttribute('class', $options['classes']);
+          }
+          if (isset($options['permissions'])) {
+            $item['attributes']->setAttribute('permissions', $options['permissions']);
+          }
+          if (isset($options['sub_menu_class'])) {
+            $item['attributes']->setAttribute('sub_menu_column', $options['sub_menu_class']);
+          }
+        }
+      }
+
+    }
+
+  }
 }
+
 
 function singleportal_preprocess_menu__account(&$variables) {
   $user = \Drupal::currentUser();

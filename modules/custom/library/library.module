@@ -1,4 +1,10 @@
 <?php
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\library\Controller\MenuItemEditFormHandler;
+
+
 /**
  * Implements hook_theme().
  */
@@ -11,3 +17,19 @@ function library_theme() {
     ],
   ];
 }
+
+
+/**
+ * @param array $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ */
+function library_form_menu_link_content_form_alter(array &$form, FormStateInterface $form_state, $form_id)
+{
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(MenuItemEditFormHandler::class)
+    ->alterForm($form, $form_state, $form_id);
+}
+
+
+

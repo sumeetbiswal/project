@@ -30,4 +30,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: "/*/add\r\n/*/add/*\r\n/company/view\r\n/*/edit/*\r\n/organisation/*"
+    pages: "/*/add\r\n/*/add/*\r\n/company/view\r\n/*/edit/*\r\n/organisation/*\r\n/employee/preview"

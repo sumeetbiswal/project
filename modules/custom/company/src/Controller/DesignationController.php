@@ -33,7 +33,7 @@ class DesignationController extends ControllerBase {
     $sl = 0;
 
     $edit_access = FALSE;
-    if (\Drupal::currentUser()->hasPermission('desg edit')) {
+    if (\Drupal::currentUser()->hasPermission('desig edit')) {
       $edit_access = TRUE;
     }
 

@@ -35,30 +35,43 @@ branch export:
 
 
 
-company deptedit:
+dept edit:
     title: 'Department Edit'
     description: 'Provide access for editing Department details'
     restrict access: false
-company deptview:
+dept view:
     title: 'Department View'
     description: 'Provide access for viewing Department details'
     restrict access: false
-company deptadd:
+dept add:
     title: 'Department Add'
     description: 'Provide access for Adding Department details'
     restrict access: false
-company desigedit:
+dept export:
+  title: 'Department Export'
+  description: 'Provide access for Adding Department details'
+  restrict access: false
+
+
+desig edit:
     title: 'Designation Edit'
     description: 'Provide access for editing Designation details'
     restrict access: false
-company desigview:
+desig view:
     title: 'Designation View'
     description: 'Provide access for viewing Designation details'
     restrict access: false
-company desigadd:
+desig add:
     title: 'Designation Add'
     description: 'Provide access for Adding Designation details'
     restrict access: false
+desig export:
+  title: 'Designation Export'
+  description: 'Provide access for Adding Designation details'
+  restrict access: false
+
+
+
 company configview:
     title: 'Configuration View'
     description: 'Provide access for viewing Configuration details'

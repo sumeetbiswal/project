@@ -8,7 +8,7 @@ employee.emplist:
  options:
     no_cache: 'TRUE'
 
-employee.empaddprsnl:
+employee.add:
  path: '/employee/add'
  defaults:
    _title: 'Employee Create'

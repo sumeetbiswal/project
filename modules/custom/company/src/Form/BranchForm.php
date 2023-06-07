@@ -160,7 +160,7 @@ $form['branch']['pincode'] = array(
 	  '#attributes' => ['class' => ['btn btn-default']],
 	  '#prefix' => '',
 	  '#suffix' => '</div></div>',
-      '#url' => \Drupal\Core\Url::fromRoute('company.branchview'),
+      '#url' => \Drupal\Core\Url::fromRoute('branch.view'),
 		  );
 	//$form['branch']['cancel']['#submit'][] = '::ActionCancel';
 
@@ -180,7 +180,7 @@ $form['branch']['pincode'] = array(
   }
   public function ActionCancel(array &$form, FormStateInterface $form_state)
   {
-	$form_state->setRedirect('company.branchview');
+	$form_state->setRedirect('branch.view');
    }
   /**
    * {@inheritdoc}
@@ -229,7 +229,7 @@ $form['branch']['pincode'] = array(
 			$brnobj->updateBranch($data, $pk);
 			\Drupal::messenger()->addMessage($data['codevalues'] . " has succesfully Updated.");
 		}
-  	$form_state->setRedirect('company.branchview');
+  	$form_state->setRedirect('branch.view');
 
   }
   public function getCityList(array $form, FormStateInterface $form_state)

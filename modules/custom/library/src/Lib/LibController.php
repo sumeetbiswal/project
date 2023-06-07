@@ -211,9 +211,24 @@ class LibController extends ControllerBase {
      $current_route_permission = \Drupal::service('current_route_match')->getRouteObject()->getRequirements()['_permission'];
      $route_permission_name = explode(' ', $current_route_permission)[0];
 
+
+     $label = '';
+
+     //Get the route name of the ADD page and fetch title of it. to be used in ADD button Label.
+     $route_name = \Drupal::routeMatch()->getRouteName();
+     $route_name = explode('.', $route_name)[0];
+     $add_route_name = $route_name . '.add';
+
+     if ($route = \Drupal::service('router.route_provider')->getRouteByName($add_route_name)){
+       $title = $route->getDefault('_title');
+       $label = $title;
+     }
+
+
      $result = [
        'exist' => FALSE,
        'permission' => FALSE,
+       'label' => $label ,
      ];
      if(count($results) > 0){
        $result['exist'] = TRUE;

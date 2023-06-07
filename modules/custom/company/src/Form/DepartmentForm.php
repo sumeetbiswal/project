@@ -83,7 +83,7 @@ class DepartmentForm extends FormBase {
       //'#limit_validation_errors'  => array(),
       '#prefix'                   => '',
       '#suffix'                   => '</div></div>',
-      '#url' => \Drupal\Core\Url::fromRoute('company.departmentview'),
+      '#url' => \Drupal\Core\Url::fromRoute('department.view'),
     );
 	//$form['department']['#type'] = 'actions';
     //$form['department']['cancel']['#submit'][] = '::ActionCancel';
@@ -105,7 +105,7 @@ class DepartmentForm extends FormBase {
 
 	public function ActionCancel(array &$form, FormStateInterface $form_state)
 	{
-    $form_state->setRedirect('company.departmentview');
+    $form_state->setRedirect('department.view');
 	}
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
@@ -142,7 +142,7 @@ class DepartmentForm extends FormBase {
       \Drupal::messenger()->addMessage("succesfully Updated.");
     }
 
-   $form_state->setRedirect('company.departmentview');
+   $form_state->setRedirect('department.view');
 
   }
 }
