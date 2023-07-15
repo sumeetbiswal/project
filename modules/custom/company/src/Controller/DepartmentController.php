@@ -17,26 +17,20 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\library\Controller\Encrypt;
 use Drupal\company\Model\DepartmentModel;
 
-
-
 class DepartmentController extends ControllerBase {
   public function display() {
-
-   $dptobj = \Drupal::service('department.service');
-   $result = $dptobj->getAllDepartmentDetails();
-   $encrypt = new Encrypt;
-
+    $dptobj = \Drupal::service('department.service');
+    $result = $dptobj->getAllDepartmentDetails();
+    $encrypt = new Encrypt;
     global $base_url;
-	$asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
+    $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
     $rows = array();
     $sl = 0;
     foreach ($result as $row => $content) {
       $sl++;
       $html = ['#markup' => '<a href="'.$base_url.'/department/edit/'.$content->codepk.'" style="text-align:center">
-      <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
-      $rows[] =   array(
-                    'data' =>     array( $sl, $content->codevalues, $content->codename, render($html))
-      );
+              <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
+      $rows[] = array('data' => array( $sl, $content->codevalues, $content->codename, render($html)));
     }
     $element['display']['Departmentlist'] = array(
       '#type'       => 'table',
@@ -50,50 +44,36 @@ class DepartmentController extends ControllerBase {
 						<a href="'.$base_url.'/department/export/excel" data-toggle="tooltip" data-original-title="Excel"><img src="'.$asset_url.'/assets/images/icon/excel.png" /></a> &nbsp;
 						<a id="" data-toggle="tooltip" data-original-title="PDF"><img src="'.$asset_url.'/assets/images/icon/pdf.png" /></a> &nbsp;
 						<a id="printit" data-toggle="tooltip" data-original-title="Print"><img src="'.$asset_url.'/assets/images/icon/print.png" /></a>
-						</div>
-                        <div class="panel-wrapper collapse in" aria-expanded="true">
-                        <div class="panel-body">
-						<hr>
-                        <div id="editable-datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                        <div class="row"><div class="col-sm-6"><a href ="add"><span  type="button" class="btn btn-info">
-                        <i class="mdi mdi-plus"></i> Add </span></a></div> <br><br><br></div></div><div class="row"><div class="col-sm-12" id="printable">',
-      '#suffix'     => '</div></div></div></div></div></div>',
-	  '#empty'		=>	'No Department has been created yet.'
+						</div> <div class="panel-wrapper collapse in" aria-expanded="true"> <div class="panel-body">
+						<hr><div id="editable-datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row"><div class="col-sm-6"><a href ="add"><span  type="button" class="btn btn-info">
+            <i class="mdi mdi-plus"></i> Add </span></a></div> <br><br><br></div></div><div class="row"><div class="col-sm-12" id="printable">',
+      '#suffix'   => '</div></div></div></div></div></div>',
+	    '#empty'		=> 'No Department has been created yet.'
     );
-
     return $element;
   }
 
+  public function exportToExcel() {
 
-   public function exportToExcel()
-	 {
-
-		 $xcel = new \Drupal\library\Controller\Excel;
-		 $dptobj = new \Drupal\company\Model\DepartmentModel;
-		 $result = $dptobj->getAllDepartmentDetails();
-		 //$headings = "SLNO" . "\t" . "Department Name" . "\t" . "Department Code" . "\t";
-		 $headings = ['SLNO', 'Department Name', 'Department Code'];
-		 $dataRow = array();
-		 $dataRow = array($headings);
-		 foreach($result AS $item)
-		 {
-			 static $slno = 1;
-
-			 $dataRow[] = array(
-								$slno,
-								$item->codevalues,
-								$item->codename,
-
-							);
-
-			 $slno++;
-		 }
-		//echo "<pre/>";print_r($dataRow);die;
+    $xcel = new \Drupal\library\Controller\Excel;
+    $dptobj = new \Drupal\company\Model\DepartmentModel;
+    $result = $dptobj->getAllDepartmentDetails();
+    $headings = ['SLNO', 'Department Name', 'Department Code'];
+    $dataRow = array();
+    $dataRow = array($headings);
+    foreach($result AS $item) {
+    static $slno = 1;
+    $dataRow[] = array(
+            $slno,
+            $item->codevalues,
+            $item->codename,
+          );
+    $slno++;
+    }
 		$filename = 'department_details_'.date('ymds');
 		$result = $xcel->generateExcel($filename, $dataRow);
-
 	 }
-
 
   public function openDeptModal()
   {

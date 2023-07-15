@@ -15,15 +15,13 @@ class CompanyForm extends FormBase {
 
   public function getFormId() {
 	return 'company_form';
-
   }
 
 public function buildForm(array $form, FormStateInterface $form_state) {
 
-  $libobj = \Drupal::service('library.service');
+	$libobj = \Drupal::service('library.service');
 	$compobj = \Drupal::service('company.service');
 	$encrypt = new \Drupal\library\Controller\Encrypt;
-
 	$mode = $libobj->getActionMode();
 	$title = 'Add Company Details';
    if($mode == 'edit'){
@@ -36,89 +34,67 @@ public function buildForm(array $form, FormStateInterface $form_state) {
   $form['#attributes']['autocomplete'] = 'off';
   $form['#attached']['library'][] = 'singleportal/master-validation';
   $form['company']['#attributes']['enctype'] = "multipart/form-data";
-
-	$form['company']['#prefix'] = '<div class="row"> <div class="panel panel-inverse">
+  $form['company']['#prefix'] = '<div class="row"> <div class="panel panel-inverse">
                             <div class="panel-heading"> '.$title.'</div><div class="panel-body">';
-
 	$form['company']['cname'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Organisation Name:'),
-      //'#required' => TRUE,
-	 '#attributes' => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
-	 '#prefix' => '<div class="row">',
-	 //'#suffix' => '</div>',
-	 '#default_value' => isset($data)? $data->companyname : '',
-
-    );
+	'#type' => 'textfield',
+	'#title' => t('Organisation Name:'),
+	'#attributes' => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+	'#prefix' => '<div class="row">',
+	'#default_value' => isset($data)? $data->companyname : '',
+	);
 
 	$complist = $compobj->getCompanyTypeList();
 	$comp_option[''] = 'Select Type of Organisation';
-	foreach($complist AS $item)
-	{
+	foreach($complist AS $item) {
 		$comp_option[$item->codename]  = $item->codevalues;
 	}
 
 	$form['company']['ctype'] = array(
       '#type' => 'select',
       '#title' => t('Organisation Type:'),
-      //'#required' => TRUE,
 	  '#options' => $comp_option,
  	  '#attributes' => ['class' => ['form-control', 'validate[required]']],
-	  //'#prefix' => '<div class="col-md-6">',
-	 '#suffix' => '</div>',
-	 '#default_value' => isset($data)? $data->companytype : '',
-   '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Category which your organisation belongs to" data-toggle="tooltip"></i>',
+	  '#suffix' => '</div>',
+	  '#default_value' => isset($data)? $data->companytype : '',
+      '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Category which your organisation belongs to" data-toggle="tooltip"></i>',
     );
 	$form['company']['cemail'] = array(
       '#type' => 'email',
       '#title' => t('Email:'),
-      //'#required' => TRUE,
 	  '#attributes' => ['class' => ['form-control', 'validate[required,custom[email]]']],
-	   '#prefix' => '<div class="row">',
-	// '#suffix' => '</div>',
-	 	 '#default_value' => isset($data)? $data->email : '',
-
+      '#prefix' => '<div class="row">',
+ 	  '#default_value' => isset($data)? $data->email : '',
     );
 
 	$form['company']['cphone'] = array(
       '#type' => 'tel',
       '#title' => t('Phone number:'),
-    //  '#required' => TRUE,
 	  '#attributes' => ['class' => ['form-control', 'validate[required][custom[phone]]']],
-	  //'#prefix' => '<div class="col-md-6">',
-	 '#suffix' => '</div>',
-	 	 	 '#default_value' => isset($data)? $data->phone : '',
-
+	  '#suffix' => '</div>',
+	  '#default_value' => isset($data)? $data->phone : '',
     );
 	$form['company']['caddress1'] = array(
       '#type' => 'textfield',
       '#title' => t('Address Line-1:'),
-    //  '#required' => TRUE,
 	  '#attributes' => ['class' => ['form-control', 'validate[required]']],
 	  '#prefix' => '<div class="row">',
-	 //'#suffix' => '</div>',
-	 '#default_value' => isset($data)? $data->address1 : '',
+	  '#default_value' => isset($data)? $data->address1 : '',
 
     );
-
 	$form['company']['caddress2'] = array(
       '#type' => 'textfield',
       '#title' => t('Address Line-2:'),
-    //  '#required' => TRUE,
 	  '#attributes' => ['class' => ['form-control']],
-	  //'#prefix' => '<div class="row">',
-	 '#suffix' => '</div>',
-	 '#default_value' => isset($data)? $data->address2 : '',
+      '#suffix' => '</div>',
+	  '#default_value' => isset($data)? $data->address2 : '',
 
     );
-
 	$statelist = $libobj->getStateList();
-
 	$form['company']['state'] = array(
 		'#type'    => 'select',
 		'#title'   => t('State:'),
 		'#options' => $statelist,
-		//'#required'=> TRUE,
 		'#attributes'    => ['class' => ['form-control', 'validate[required]']],
 		'#prefix'        => '<div class="row">',
 		'#default_value' => isset($data)? $data->state : $form_state->getValue('state'),
@@ -136,18 +112,15 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	if (!empty($form_state->getValue('state'))) {
 		$statePk = $form_state->getValue('state');
     }
-	else{
+	else {
 		$statePk = isset($data)? $data->state : '';
 	}
-
 	$cityLst = [];
 	$cityLst = $libobj->getCityListByState($statePk);
-
 	$form['company']['city'] = array(
       '#type'          => 'select',
       '#title'         => t('City:'),
       '#options'       => $cityLst,
-      //'#required'      => TRUE,
       '#attributes'    => ['class' => ['form-control', 'validate[required]']],
       '#prefix'        => '<div id="citylist">',
       '#suffix'        => '</div></div>',
@@ -181,14 +154,11 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	 '#upload_location' => 'public://temp-img',
 	 '#attributes' => ['class' => ['form-control']],
 	 '#upload_validators'=> array('file_validate_extensions' => array('png'),),//  'file_validate_image_resolution' => array('140x25', '100x25')),
-	 //'#default_value'=> isset($data) ? array($data->clogo) : '',
 	 '#theme' => 'image_widget',
 	 '#preview_image_style' => 'medium',
 	 '#suffix' => '</div>',
 	 '#prefix' => '<div class="row">',
     );
-	// $form['#suffix'] =  '</div>';
-
 
     $form['company']['#type'] = 'actions';
     $form['company']['submit'] = array(
@@ -199,16 +169,6 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 	  '#prefix' => '<div class="row"></div><div class="row"><div class="col-md-5"></div><div class="col-md-4">',
 	  '#suffix' => '',
 		  );
-
-	/*$form['company']['cancel'] = array(
-      '#type' => 'submit',
-      '#value' => t('Cancel'),
-	  '#attributes' => ['class' => ['btn btn-default']],
-	  '#limit_validation_errors' => array(),
-	  '#prefix' => '',
-	  '#suffix' => '</div></div>',
-		  );*/
-
 	$form['company']['cancel'] = [
 		  '#title' => $this->t('Cancel'),
 		  '#type' => 'link',
@@ -218,30 +178,20 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 		  '#suffix' => '</div></div>',
 		];
 	$form['company']['cancel']['#submit'][] = '::ActionCancel';
-
 	$form['company']['#suffix'] = '</div></div></div></div>';
-
     return $form;
-
-
   }
 
-  public function ActionCancel(array &$form, FormStateInterface $form_state)
-  {
-
+  public function ActionCancel(array &$form, FormStateInterface $form_state) {
 	$form_state->setRedirect('company.compview');
   }
-
-
   public function validateForm(array &$form, FormStateInterface $form_state) {
-
-	  if (trim($form_state->getValue('cname')) == '' ) {
-        $form_state->setErrorByName('cname', $this->t('Enter your Organisation Name'));
-      }
+	if (trim($form_state->getValue('cname')) == '' ) {
+  	  $form_state->setErrorByName('cname', $this->t('Enter your Organisation Name'));
+	}
     else if(!preg_match("/^[A-Za-z]+((\s)?([A-Za-z])+)*$/", $form_state->getValue('cname'))) {
-        $form_state->setErrorByName('cname', $this->t('Enter a valid Organisation Name'));
+      $form_state->setErrorByName('cname', $this->t('Enter a valid Organisation Name'));
     }
-
 	 if (trim($form_state->getValue('ctype')) == '' ) {
         $form_state->setErrorByName('ctype', $this->t('Enter your Organisation Type'));
       }

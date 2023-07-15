@@ -31,19 +31,18 @@ class BranchController extends ControllerBase {
 	  $codepk_encoded = $encrypt->encode($content->codepk);
       $html = ['#markup' => '<a href="'.$base_url.'/branch/edit/'.$codepk_encoded.'" style="text-align:center"> 
       <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
-      $rows[] = 	array(
-                    'data' =>	  array( $sl, $content->codevalues, $content->location, $content->ct_name, $content->name, render($html))
+      $rows[] = array('data' => array( $sl, $content->codevalues, $content->location, $content->ct_name, $content->name, render($html))
       );
     }
 
     $element['display']['branchlist'] = array(
       '#type' 	    => 'table',
-      '#header' 	  =>  array(t('Sl no.'), t('Branch Name'),t('Location'), t('City'), t('State'), t('Action')),
-      '#rows'		    =>  $rows,
+      '#header' 	=>  array(t('Sl no.'), t('Branch Name'),t('Location'), t('City'), t('State'), t('Action')),
+      '#rows'		=>  $rows,
       '#attributes' => ['class' => ['table text-center table-hover table-striped table-bordered dataTable'], 'border' => '1', 'rules' => 'all', 'style'=>['text-align-last: center;']],
       '#prefix'     => '<div class="panel panel-info">
                         <h3 class="box-title col-md-10">Branch List</h3>
-                    <div class=" col-md-2">
+                        <div class=" col-md-2">
                         <a href="#" id="exportit" data-toggle="tooltip" data-original-title="Word Document"><img src="'.$asset_url.'/assets/images/icon/word.png" /></a> &nbsp;
 						<a href="'.$base_url.'/branch/export/excel" data-toggle="tooltip" data-original-title="Excel"><img src="'.$asset_url.'/assets/images/icon/excel.png" /></a> &nbsp;
 						<a id="" data-toggle="tooltip" data-original-title="PDF"><img src="'.$asset_url.'/assets/images/icon/pdf.png" /></a> &nbsp;
@@ -60,36 +59,29 @@ class BranchController extends ControllerBase {
     );
     return $element;
   }
-	
     
 	 public function exportToExcel()
 	 {
-		 $xcel =  \Drupal::service('excel.service');
-		 $brnobj = new BranchModel;
-		 $result = $brnobj->getAllBranchDetails();
-		 //$headings = "SLNO" . "\t" . "Branch Name" . "\t" . "State" . "\t" . "City" . "\t" . "Location" . "\t" . "Pincode" . "\t"; 
-		 $headings = ['SLNO', 'Branch Name', 'State', 'City', 'Location', 'Pincode'];
-		 $dataRow = array();
-		 $dataRow = array($headings);
-		 foreach($result AS $item)
+		$xcel =  \Drupal::service('excel.service');
+		$brnobj = new BranchModel;
+		$result = $brnobj->getAllBranchDetails();
+		$headings = ['SLNO', 'Branch Name', 'State', 'City', 'Location', 'Pincode'];
+		$dataRow = array();
+		$dataRow = array($headings);
+		foreach($result AS $item)
 		 {
-			 static $slno = 1;
-			 
-			 $dataRow[] = array(
-								$slno,
-								$item->codevalues,
-								$item->name,
-								$item->ct_name,
-								$item->location,								
-								$item->pincode,								
-							);
-			 
-			 $slno++;
+			static $slno = 1;
+			$dataRow[] = array(
+							$slno,
+							$item->codevalues,
+							$item->name,
+							$item->ct_name,
+							$item->location,								
+							$item->pincode,								
+						);
+			$slno++;
 		 }
-		//echo "<pre/>";print_r($dataRow);die;
 		$filename = 'branch_details_'.date('ymds');
-		$result = $xcel->generateExcel($filename, $dataRow);
-		
+		$result = $xcel->generateExcel($filename, $dataRow);		
 	 }
-	
  }
