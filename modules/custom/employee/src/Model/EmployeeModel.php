@@ -64,6 +64,7 @@ class EmployeeModel extends ControllerBase  {
 
 	public static function setPersonalInfo($user, $data, $opt, &$context )
 	{
+	  //echo "<pre/>";print_r($data);die;
 		//$context['message'] = "Now processing word...";
 		$query = \Drupal::database();
 
@@ -87,20 +88,25 @@ class EmployeeModel extends ControllerBase  {
 		}
 
 		//employeement info
-		foreach($data['experience'] AS $qual)
-		{
-			$query->query('insert into '.DataModel::EMPEXPRNC.' set userpk = :userpk, organisation = :organisation, designation= :designation, fromdate= :fromdate, todate= :todate',
-			array(':userpk'=>$user->Id(),':organisation'=>$qual['organisation'], ':designation'=>$qual['designation'], ':fromdate'=>$qual['fromdate'], ':todate'=>$qual['todate']));
+    if(!empty($data['experience'])) {
+      foreach ($data['experience'] as $qual) {
+        $query->query('insert into ' . DataModel::EMPEXPRNC . ' set userpk = :userpk, organisation = :organisation, designation= :designation, fromdate= :fromdate, todate= :todate',
+          array(':userpk' => $user->Id(), ':organisation' => $qual['organisation'], ':designation' => $qual['designation'], ':fromdate' => $qual['fromdate'], ':todate' => $qual['todate']));
 
-		}
-
+      }
+    }
 		//official info
 		$query->query('insert into '.DataModel::EMPOFFICIAL.' set userpk = :userpk, empid = :empid, department= :department, branch= :branch, designation= :designation, jobnature = :jobnature, email= :email, doj= :doj, jobtype= :jobtype, shifttime= :shifttime',
 		array(':userpk'=>$user->Id(), ':empid'=>$data['official']['id'], ':department'=>$data['official']['department'], ':branch'=>$data['official']['branch'], ':designation'=>$data['official']['designation'], ':jobnature'=>$data['official']['jobnature'], ':email'=>$data['official']['officialemail'], ':doj'=>$data['official']['doj'], ':jobtype'=>$data['official']['jobtype'],':shifttime'=>$data['official']['shifttime']));
 
-		$query->query('commit');
 
-	}
+		//tagging info
+    $query->query('insert into '.DataModel::EMPTAGGING.' set userpk = :userpk',
+      array(':userpk'=>$user->Id()));
+
+    $query->query('commit');
+
+  }
 
 	public static function finishOperation()
   {
@@ -111,7 +117,7 @@ class EmployeeModel extends ControllerBase  {
 
 	public function checkUserIdExist($username)
 	{
-		$query = db_select(DataModel::USERDATA, 'name');
+		$query = $this->connection->select(DataModel::USERDATA, 'name');
 				$query->fields('name');
 				$query->condition('status', 1, "=");
 				$query->condition('name', $username , "=");
@@ -123,7 +129,7 @@ class EmployeeModel extends ControllerBase  {
 
 	public function checkEMailIdExist($email)
 	{
-		$query = db_select(DataModel::USERDATA, 'mail');
+		$query = $this->connection->select(DataModel::USERDATA, 'mail');
 				$query->fields('mail');
 				$query->condition('status', 1, "=");
 				$query->condition('mail', $email , "=");
@@ -141,7 +147,7 @@ class EmployeeModel extends ControllerBase  {
 		$result = $query->execute()->fetch();
 		return $result;
 	}
-	/*
+	/**
 	* @parameter user id
 	* get official details
 	*/
@@ -168,7 +174,7 @@ class EmployeeModel extends ControllerBase  {
 		WHERE
 			oi.userpk = 4
 			;*/
-		$query = db_select(DataModel::EMPOFFICIAL, 'oi');
+		$query = $this->connection->select(DataModel::EMPOFFICIAL, 'oi');
 		$query->leftjoin(DataModel::CODEVAL, 'cv1', 'cv1.codename = oi.branch AND cv1.codetype = :brnc', array('brnc'=>'branch'));
 		$query->leftjoin(DataModel::CODEVAL, 'cv2', 'cv2.codename = oi.department AND cv2.codetype = :dept', array('dept'=>'department'));
 		$query->leftjoin(DataModel::CODEVAL, 'cv3', 'cv3.codename = oi.designation AND cv3.codetype = :desig', array('desig'=>'designation'));
@@ -190,7 +196,7 @@ class EmployeeModel extends ControllerBase  {
 		return $result;
 	}
 
-	/*
+	/**
 	* @parameter user id
 	* get contact details
 	*/
@@ -225,7 +231,7 @@ class EmployeeModel extends ControllerBase  {
 			LEFT JOIN srch_countries pcntry ON pcntry.id = cnt.perm_country
 		WHERE
 			cnt.userpk = 4;*/
-		$query = db_select(DataModel::EMPCONTACT, 'cnt');
+		$query = $this->connection->select(DataModel::EMPCONTACT, 'cnt');
 		$query->leftjoin(DataModel::STATE, 'st', 'st.id = cnt.res_state');
 		$query->leftjoin(DataModel::CITY, 'ct', 'ct.id = cnt.res_city');
 		$query->leftjoin(DataModel::COUNTRY, 'cntry', 'cntry.id = cnt.res_country');
@@ -259,7 +265,7 @@ class EmployeeModel extends ControllerBase  {
 
 	public function getAcademicDetailsById($id)
 	{
-	 	$query = db_select(DataModel::EMPACADEMIC, 'n');
+	 	$query = $this->connection->select(DataModel::EMPACADEMIC, 'n');
 		$query->fields('n');
 		$query->condition('userpk', $id ,"=");
 		$result = $query->execute()->fetchAll();
@@ -268,7 +274,7 @@ class EmployeeModel extends ControllerBase  {
 
 	public function getPrevEmployeementDetailsById($id)
 	{
-		$query = db_select(DataModel::EMPEXPRNC, 'n');
+		$query = $this->connection->select(DataModel::EMPEXPRNC, 'n');
 		$query->fields('n');
 		$query->condition('userpk', $id ,"=");
 		$result = $query->execute()->fetchAll();
@@ -277,7 +283,7 @@ class EmployeeModel extends ControllerBase  {
 
 	public function getEmployeeList()
 	{
-		$query = db_select(DataModel::EMPPERSONAL, 'n');
+		$query = $this->connection->select(DataModel::EMPPERSONAL, 'n');
 		$query -> innerJoin(DataModel::EMPOFFICIAL, 'nf','n.userpk = nf.userpk');
 		$query->orderBy('n.createdon', 'DESC');
 		$query->fields('n');
@@ -287,9 +293,55 @@ class EmployeeModel extends ControllerBase  {
 
 	}
 
+  /**
+   * Helper function to fetch employee based on
+   * key word search Autocomplete
+   * @param $input
+   */
+  public function getEmployeeListAutoComplete($input)
+  {
+    $query = $this->connection->select(DataModel::EMPPERSONAL, 'n');
+    $query -> innerJoin(DataModel::EMPOFFICIAL, 'nf','n.userpk = nf.userpk');
+    $query->orderBy('n.createdon', 'DESC');
+    $query->fields('n');
+    $query->fields('nf');
+
+    $orGroup = $query->orConditionGroup();
+    $orGroup
+      ->condition('n.firstname', "%" . $input . "%", 'LIKE')
+      ->condition('n.lastname', "%" . $input . "%", 'LIKE')
+      ->condition('nf.empid', "%" . $input . "%", 'LIKE');
+    $query->condition($orGroup);
+
+    $result = $query->execute()->fetchAll();
+    return $result;
+
+  }
+
+  /**
+   * Helper function to fetch employee based on
+   * key word search Autocomplete
+   * @param $input
+   */
+  public function getEmployeeAutoCompleteValueById($uid)
+  {
+    $query = $this->connection->select(DataModel::EMPPERSONAL, 'n');
+    $query -> innerJoin(DataModel::EMPOFFICIAL, 'nf','n.userpk = nf.userpk');
+    $query->orderBy('n.createdon', 'DESC');
+    $query->fields('n');
+    $query->fields('nf');
+
+    $data = $query->execute()->fetch();
+
+    $results = $data->firstname . ' ' . $data->lastname . ' (' . $data->empid. ')';
+
+    return $results;
+
+  }
+
 	public function getEmployeeCount()
 	{
-		$query = db_select(DataModel::EMPPERSONAL, 'n');
+		$query = $this->connection->select(DataModel::EMPPERSONAL, 'n');
 		$query->condition('status', 1, "=");
 		$query->fields('n');
 		$result = $query->execute()->fetchAll();
@@ -305,7 +357,7 @@ class EmployeeModel extends ControllerBase  {
 		$user = \Drupal::currentUser();
 		$personal_details = $this->getPersonalDetailsById($user->id());
 
-		$userobj = \Drupal::service('entity.manager')->getStorage('user')->load($user->id());
+		$userobj = \Drupal::service('entity_type.manager')->getStorage('user')->load($user->id());
 		$avatar = 'male.jpg';
 		if($userobj->user_picture->entity != NULL)
 		{
@@ -375,7 +427,7 @@ class EmployeeModel extends ControllerBase  {
 
 				;
 		*/
-		$query = db_select(DataModel::EMPPERSONAL, 'p');
+		$query = $this->connection->select(DataModel::EMPPERSONAL, 'p');
 		$query->leftjoin(DataModel::EMPCONTACT, 'c', 'p.userpk = c.userpk');
 		$query->leftjoin(DataModel::STATE, 's', 'c.res_state = s.id');
 		$query->leftjoin(DataModel::CITY, 'ct', 'c.res_city = ct.id');

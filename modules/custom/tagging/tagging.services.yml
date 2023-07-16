@@ -1,0 +1,4 @@
+services:
+  tagging.service:
+    class: Drupal\tagging\Model\TaggingModel
+    arguments: ['@database']

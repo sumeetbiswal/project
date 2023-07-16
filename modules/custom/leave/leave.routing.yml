@@ -7,3 +7,23 @@ leave.list:
    _permission: 'access content'
  options:
     no_cache: 'TRUE'
+
+leavetype.list:
+  path: '/leavetype/list'
+  defaults:
+    _title: 'Leave Type List'
+    _controller: '\Drupal\leave\Controller\LeaveType::leaveTypeList'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: 'TRUE'
+
+leavetype.add:
+  path: '/leavetype/add'
+  defaults:
+    _title: 'Add Leave Type'
+    _controller: '\Drupal\leave\Controller\Leave::leavelist'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: 'TRUE'

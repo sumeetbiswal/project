@@ -1,0 +1,77 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *
+ * @ingroup templates
+ */
+#}
+
+
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav">
+    <div class="sidebar-head">
+      <h3><span class="fa-fw open-close"><i class="ti-menu hidden-xs"></i><i class="ti-close visible-xs"></i></span> <span class="hide-menu">Navigation</span></h3>
+    </div>
+  {% import _self as menus %}
+
+  {#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+  #}
+  {{ menus.menu_links(items, attributes, 0) }}
+
+  {% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+  {% if items %}
+
+
+
+    {% for item in items %}
+
+      {% if loop.index == 1 %}
+      {% if menu_level == 0 %}
+      <ul{{ attributes.addClass('nav') }} id="side-menu">
+        {% else %}
+        <ul class="nav nav-second-level {{ item.url.getOptions().sub_menu_class }}">
+        {% endif %}
+      {% endif %}
+
+        {%
+          set active_class = item.in_active_trail ? 'active' : ''
+        %}
+        {% if menu_level == 0 and item.is_expanded %}
+        <li>
+          <a class="waves-effect {{ active_class }}" >
+            <i class="{{ item.url.getOptions().classes }}"></i>
+            <span class="hide-menu">{{ item.title }}<span class="fa arrow"></span></span>
+          </a>
+        {% else %}
+          <li>
+          <a href="{{ item.url }}" class="waves-effect {{ active_class }}">
+            <i class="{{ item.url.getOptions().classes }}"></i>
+            <span class="hide-menu">{{ item.title }}</span>
+          </a>
+        {% endif %}
+        {% if item.below %}
+          {{ menus.menu_links(item.below, attributes.removeClass('nav', 'navbar-nav', 'navbar-right'), menu_level + 1) }}
+        {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endmacro %}
+
+    <!-- End Navigation List -->
+
+  </div>
+</div>

@@ -1,0 +1,32 @@
+uuid: 5980cac2-1426-4379-8b86-ce484c1b2510
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+    - user
+  theme:
+    - singleportal
+id: pagetitle
+theme: singleportal
+region: content
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated
+  request_path:
+    id: request_path
+    negate: true
+    pages: "/tagging\r\n/organisation/config\r\n/organisation/config/*\r\n/company/view\r\n/employee/add\r\n/employee/add/*"

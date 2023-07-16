@@ -5,6 +5,7 @@ dependencies:
   module:
     - dashboard
     - system
+    - user
   theme:
     - singleportal
 id: employeelistcountblock
@@ -23,3 +24,11 @@ visibility:
     id: request_path
     negate: false
     pages: /home
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      content_editor: content_editor
+      administrator: administrator

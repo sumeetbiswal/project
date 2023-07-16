@@ -14,3 +14,6 @@ services:
   branch.service:
         class: Drupal\company\Model\BranchModel
         arguments: ['@database']
+  workorder.service:
+          class: Drupal\company\Model\WorkorderModel
+          arguments: ['@database']

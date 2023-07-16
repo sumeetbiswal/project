@@ -166,9 +166,9 @@ class LibController extends ControllerBase {
   }
 
    /*
-	* Generate default password
-	* Parameters required @string , @date of birth
-	* @return string@date_of_birth
+   * Generate default password
+   * Parameters required @string , @date of birth
+   * @return string@date_of_birth
    */
 
    public function generateDefaultPassword($str, $dob)
@@ -193,5 +193,66 @@ class LibController extends ControllerBase {
 	   $dbDate = $explode_dt[2].'-'.$explode_dt[1].'-'.$explode_dt[0];
 	   return $dbDate;
    }
+
+
+   /*
+    * This function helps to identify whether a path exist ?
+    * @param $path
+    * @return Boolean
+   */
+   public function isPathEnable($path, $action){
+     $path = $path . '/' . $action;
+     $query = $this->connection->select('router', 'r');
+     $query->fields('r', ['path']);
+     $query->condition('path', '%' . $path . '%' ,'LIKE');
+     $results = $query->execute()->fetchAll();
+
+     //get current route name. from that fetch route module name which will use on permission on twig file
+     $current_route_permission = \Drupal::service('current_route_match')->getRouteObject()->getRequirements()['_permission'];
+     $route_permission_name = explode(' ', $current_route_permission)[0];
+
+
+     $label = '';
+
+     //Get the route name of the ADD page and fetch title of it. to be used in ADD button Label.
+     $route_name = \Drupal::routeMatch()->getRouteName();
+     $route_name = explode('.', $route_name)[0];
+     $add_route_name = $route_name . '.add';
+
+     if ($route = \Drupal::service('router.route_provider')->getRouteByName($add_route_name)){
+       $title = $route->getDefault('_title');
+       $label = $title;
+     }
+
+
+     $result = [
+       'exist' => FALSE,
+       'permission' => FALSE,
+       'label' => $label ,
+     ];
+     if(count($results) > 0){
+       $result['exist'] = TRUE;
+     }
+
+     if (\Drupal::currentUser()->hasPermission($route_permission_name . ' '. $action)) {
+       $result['permission'] = TRUE;
+     }
+
+     return $result;
+   }
+
+
+  /*
+   * This function helps to set the page title at run time
+   * This usually being called when need of dynamic page title
+   * such as Edit page
+   * @param $title
+  */
+  public function setPageTitle($newTitle){
+    $request = \Drupal::request();
+    if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
+      $route->setDefault('_title', $newTitle);
+    }
+  }
 
 }

@@ -9,9 +9,11 @@
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
+use Drupal\Component\Utility\Html;
 
 
 function singleportal_preprocess_page(&$variables) {
+
 
 	if($variables['is_front'])
 	{
@@ -35,7 +37,7 @@ function singleportal_preprocess_page(&$variables) {
 
 	$variables['site_name'] = \Drupal::config('system.site')->get('name');
 
-	$variables['site_logo'] = file_create_url("public://logo-title.png");
+	$variables['site_logo'] = \Drupal::service('file_url_generator')->generateAbsoluteString("public://logo.png");
 	$variables['year'] = date('Y');
 	$variables['base_path'] = base_path();
 
@@ -46,24 +48,135 @@ function singleportal_preprocess_page(&$variables) {
 		$variables['white_box_exclud'] = TRUE;;
 	}
 
+  /* Check If user is logged in or not. else redirect to login page */
+  if(!$variables['user']->isAuthenticated()) {
+    if(!(\Drupal::service('path.matcher')->isFrontPage())){
+      $response = new RedirectResponse('/', 302);
+      $response->send(); exit;
+    }
+  }else{
+    if(\Drupal::service('path.matcher')->isFrontPage()){
+      $response = new RedirectResponse('/home', 302);
+      $response->send(); exit;
+    }
+  }
+
 }
 
+/**
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
+ */
+function singleportal_form_alter(&$form, $form_state, $form_id) {
+  if ( $form['#form_id'] == 'user_login_form' ) {
+    $form['actions']['submit']['#attributes']['class'][] = 'btn btn-primary btn-block';
+    $form['name']['#attributes']['class'][] = 'form-control';
+    $form['name']['#attributes']['placeholder'] = t('Username');
+    $form['pass']['#attributes']['class'][] = 'form-control';
+    $form['pass']['#attributes']['placeholder'] = t('Password');
+  }
+}
+
+/**
+ * Implementation of hook_theme_suggestions_form_element_alter().
+ */
+/*function singleportal_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
+
+  if (\Drupal::service('path.current')->getPath() == '/node') {
+    $suggestions[] = $variables['theme_hook_original'] . '--user-login-form';
+  }
+}*/
+
+
+
+/**
+ * Implements hook_preprocess_menu()
+ */
 function singleportal_preprocess_menu(&$variables) {
-  $user = \Drupal::currentUser();
-  $roles = $user->getRoles();
-     if(in_array("administrator", $roles)) {
-      $variables['loggedin_user_role'] = "admin";
-  }else if(in_array("human_resources", $roles)) {
-      $variables['loggedin_user_role'] = "hr";
-  }
-  else {
-      $variables['loggedin_user_role'] = "employee";
-  }
+  if ($variables['menu_name'] === 'main') {
+    //adding class name as my-class.
+    //$variables['attributes']['class'][] = 'my-class';
+    //kint($variables['items']);
+    //unset($variables['items'][$key]);
+    $current_user = \Drupal::currentUser();
+    //Check the menu permission
+    foreach ($variables['items'] as $key => $item){
 
+        $parent_item = FALSE;
+        //kint(count($item['below']));
+        if(count($item['below']) > 0){
+          foreach($item['below'] as $child_key => $child_item){
+            $permission = $child_item['url']->getOptions()['permissions'];
+            if(!empty($permission)){
+              if($current_user->hasPermission($permission)){
+                $parent_item = TRUE;
+              }
+              else{
+                // remove the child element from submenu list if the user does not have permissions
+                unset($variables['items'][$key]['below'][$child_key]);
+              }
+            }
+            else{ //if there is no permission display to all user
+              $parent_item = TRUE;
+            }
+          }
+        }else{
+
+          //else part is for parent menu item which does not have any child
+
+          $permission = $item['url']->getOptions()['permissions'];
+          if(!empty($permission)){
+            if($current_user->hasPermission($permission)){
+              $parent_item = TRUE;
+            }
+          }
+          else{ //if there is no permission display to all user
+            $parent_item = TRUE;
+          }
+        }
+
+        if(!$parent_item){
+          unset($variables['items'][$key]);
+        }
+
+
+    }
+
+
+
+
+    foreach ($variables['items'] as $item) {
+      // get options
+      $options = $item['original_link']->getOptions();
+      //kint($item);
+      if ($options && isset($options['classes'])) {
+
+        $classes_array = explode(' ', $options['classes']);
+        foreach ($classes_array as $class) {
+          // add classes to class attribute
+         // $item['attributes']->addClass(Html::cleanCssIdentifier($class, []));
+          if (isset($options['classes'])) {
+            $item['attributes']->setAttribute('class', $options['classes']);
+          }
+          if (isset($options['permissions'])) {
+            $item['attributes']->setAttribute('permissions', $options['permissions']);
+          }
+          if (isset($options['sub_menu_class'])) {
+            $item['attributes']->setAttribute('sub_menu_column', $options['sub_menu_class']);
+          }
+        }
+      }
+
+    }
+
+  }
 }
+
+
 function singleportal_preprocess_menu__account(&$variables) {
   $user = \Drupal::currentUser();
-  //$libobj = new \Drupal\employee\Model\EmployeeModel;
+
   $libobj = \Drupal::service('employee.service');
   $variables['#cache']['max-age'] = 0;
   if($user)
@@ -79,24 +192,30 @@ function singleportal_preprocess_menu__account(&$variables) {
 
     $variables['emailid'] = $username->getEmail();
 
-	$user_pic = \Drupal::service('entity_type.manager')->getStorage('user')->load($user->id());
+	  $user_pic = \Drupal::service('entity_type.manager')->getStorage('user')->load($user->id());
+
     if($user_pic->user_picture->entity != NULL)
     {
-      $variables['propic'] = $user_pic->user_picture->entity->getFileName();
+      $variables['propic'] = \Drupal::service('file_url_generator')->generateAbsoluteString($user_pic->user_picture->entity->getFileUri());
     }
     else
     {
+      global $base_url;
+      $default_theme_name = \Drupal::config('system.theme')->get('default');
+      $theme_path = \Drupal::service('extension.list.theme')->getPath($default_theme_name);
+
       if(@$gender == NULL)
-        $variables['propic'] = 'male.jpg';
+        $variables['propic'] = $base_url . '/' . $theme_path . '/assets/images/avatar/male.jpg';
       else if($gender == 'F')
-        $variables['propic'] = 'female.jpg';
+        $variables['propic'] = $base_url . '/' . $theme_path . '/assets/images/avatar/female.jpg';
       else
-        $variables['propic'] = 'male.jpg';
+        $variables['propic'] = $base_url . '/' . $theme_path . '/assets/images/avatar/male.jpg';
 
     }
   }
 
 }
+
 function singleportal_preprocess_html(&$variables) {
 
     $variables['attributes']['class'][] = 'fix-header';
@@ -128,4 +247,11 @@ function singleportal_preprocess_block__system_branding_block(&$variables) {
 
 function singleportal_admin_theme_info() {
 	echo "hiiiiiiiii";die;
+}
+
+function singleportal_preprocess_table(&$variables) {
+  $variables['attributes']['class'][] = 'table text-center table-hover table-striped table-bordered dataTable';
+  $variables['attributes']['style'][] = 'text-align-last: center';
+  //kint($variables);
+
 }

@@ -26,11 +26,15 @@ class EmployeePreview extends EmployeeFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
   $form['actions']['submit'] = array();
- 
- 	$libobj = new \Drupal\library\Lib\LibController;
- 	$brnobj = new \Drupal\company\Model\BranchModel;
- 	$desgnobj = new \Drupal\company\Model\DesignationModel;
- 	$deptobj = new \Drupal\company\Model\DepartmentModel;
+
+ 	$libobj = \Drupal::service('library.service');
+ 	$brnobj = \Drupal::service('branch.service');
+ 	$desgnobj = \Drupal::service('designation.service');
+ 	$deptobj = \Drupal::service('department.service');
+
+
+
+
   global $base_url;
   $form['employee']['#prefix'] = '<div class="container-fluid">
                 <div class="row">
@@ -40,16 +44,16 @@ class EmployeePreview extends EmployeeFormBase {
                                 <div class="panel-body">
                                 <form class="form-horizontal" role="form">
                                   <div class="form-body">';
-	
+
   $form['employee']['#suffix'] = '</form></div></div></div></div></div></div>';
-  
-  
+
+
     $form['employee']['firstname'] = array(
       '#type' 		   => 'item',
       '#title' 		   => $this->t('First Name:'),
       '#markup'      => $this->store->get('firstname'),
       '#prefix'      => '<h3 class="box-title">Personal Info <div class="pull-right">
-                          <a href="'.$base_url.'/employee/add/personal"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;" data-toggle="tooltip" data-original-title="Edit"></i></a> 
+                          <a href="'.$base_url.'/employee/add/personal"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;" data-toggle="tooltip" data-original-title="Edit"></i></a>
                           </div> </h3><hr class="m-t-0 m-b-40"><div class="row">',
       '#suffix'      => '',
     );
@@ -75,7 +79,7 @@ class EmployeePreview extends EmployeeFormBase {
       '#prefix'      => ' ',
       '#suffix'      => '</div>',
     );
-	
+
 	switch($this->store->get('gender'))
 	{
 		CASE 'M':
@@ -88,7 +92,7 @@ class EmployeePreview extends EmployeeFormBase {
 			$gender = 'Other';
 			break;
 	}
-	
+
     $form['employee']['gender'] = array(
       '#type' 		   => 'item',
       '#title' 		   => $this->t('Gender:'),
@@ -131,15 +135,15 @@ class EmployeePreview extends EmployeeFormBase {
       '#prefix'      => ' ',
       '#suffix'      => '</div>',
     );
-    
+
     //***************************************************************
-    
+
     $form['employee']['phoneno'] = array(
       '#type' 		   => 'item',
       '#title' 		   => $this->t('Phone no.:'),
       '#markup'      => $this->store->get('phoneno'),
       '#prefix'      => '</br> </br> <h3 class="box-title">Contact Info <div class="pull-right">
-                          <a href="'.$base_url.'/employee/add/contact"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a> 
+                          <a href="'.$base_url.'/employee/add/contact"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a>
                           </div> </h3><hr class="m-t-0 m-b-40"><div class="row">',
       '#suffix'      => '',
     );
@@ -195,7 +199,7 @@ class EmployeePreview extends EmployeeFormBase {
       '#prefix'      => ' ',
       '#suffix'      => '</div>',
     );
-    
+
   $state_name = $libobj ->getStateNameById($this->store->get('state'));
   $city_name = $libobj ->getCityNameById($this->store->get('city'));
   $country_name = $libobj ->getCountryNameById($this->store->get('country'));
@@ -276,10 +280,10 @@ class EmployeePreview extends EmployeeFormBase {
       '#prefix'      => ' ',
       '#suffix'      => '</div>',
     );
-    
+
     }
     //***************************************************************
-	
+
 	$rows = [];
 	foreach($this->store->get('qualification') AS $item)
 	{
@@ -287,19 +291,19 @@ class EmployeePreview extends EmployeeFormBase {
 					$item['class'], $item['stream'], $item['university'], $item['yearofpassing'], $item['score'] . ' %'
 		          ];
 	}
-		
+
 	$form['employee']['qual'] = array(
       '#type' 	    => 'table',
       '#header' 	=>  array(t('Class'), t('Stream'),t('University'), t('Passing Year'), t('Score')),
       '#rows'		=>  $rows,
       '#attributes' => ['class' => ['table text-center table-hover table-striped table-bordered dataTable'], 'border' => '1', 'rules' => 'all', 'style'=>['text-align-last: center;']],
 	  '#prefix'      => '</br> </br> <h3 class="box-title">Academic Info <div class="pull-right">
-                          <a href="'.$base_url.'/employee/add/academics"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a> 
+                          <a href="'.$base_url.'/employee/add/academics"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a>
                           </div> </h3><hr class="m-t-0 m-b-40"><div class="row">',
 	  '#empty'		=>	'No Qualification details are available'
     );
-    
-	
+
+
 	$rows = [];
 	foreach($this->store->get('experience') AS $item)
 	{
@@ -307,7 +311,7 @@ class EmployeePreview extends EmployeeFormBase {
 					$item['organisation'], $item['designation'], $item['fromdate'], $item['todate']
 		          ];
 	}
-		
+
 	$form['employee']['expr'] = array(
       '#type' 	    => 'table',
       '#header' 	=>  array(t('Organisation'), t('Designation'),t('From Date'), t('To Date')),
@@ -318,22 +322,22 @@ class EmployeePreview extends EmployeeFormBase {
                         <hr class="m-t-0 m-b-40"><div class="row">',
 	  '#empty'		=>	'No Employment Details are Available'
     );
-    
+
     //***************************************************************
-    
+
     $form['employee']['id'] = array(
       '#type' 		   => 'item',
       '#title' 		   => $this->t('Employee ID:'),
       '#markup'      => $this->store->get('id'),
       '#prefix'      => '<br/><br/><h3 class="box-title">Official Info <div class="pull-right">
-                        <a href="'.$base_url.'/employee/add/official"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a> 
+                        <a href="'.$base_url.'/employee/add/official"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a>
                         </div> </h3><hr class="m-t-0 m-b-40"><div class="row">',
       '#suffix'      => '',
     );
-    
+
     $result = $brnobj->getBranchNameFromCode($this->store->get('branch'));
     $branch_name = $result->codevalues;
-	
+
     $form['employee']['branch'] = array(
       '#type' 		   => 'item',
       '#title' 		   => $this->t('Branch:'),
@@ -341,10 +345,10 @@ class EmployeePreview extends EmployeeFormBase {
       '#prefix'      => '',
       '#suffix'      => '</div>',
     );
-	
+
     $result = $desgnobj->getDesignationNameFromCode($this->store->get('designation'));
     $designation_name = $result->codevalues;
-	
+
     $form['employee']['designation'] = array(
       '#type' 		   => 'item',
       '#title' 		   => $this->t('Designation:'),
@@ -352,10 +356,10 @@ class EmployeePreview extends EmployeeFormBase {
       '#prefix'      => '<div class="row">',
       '#suffix'      => '',
     );
-   
+
     $result = $deptobj->getDepartmentNameFromCode($this->store->get('department'));
     $department_name = $result->codevalues;
-	
+
     $form['employee']['department'] = array(
       '#type' 		   => 'item',
       '#title' 		   => $this->t('Department:'),
@@ -377,7 +381,7 @@ class EmployeePreview extends EmployeeFormBase {
       '#prefix'      => ' ',
       '#suffix'      => '</div>',
     );
-    $jobnature = $libobj->getCodeValues('jobnature', $this->store->get('jobnature')); 
+    $jobnature = $libobj->getCodeValues('jobnature', $this->store->get('jobnature'));
 
     $form['employee']['jobnature'] = array(
       '#type' 		   => 'item',
@@ -393,7 +397,7 @@ class EmployeePreview extends EmployeeFormBase {
       '#prefix'      => ' ',
       '#suffix'      => '</div>',
     );
-    $jobtype = $libobj->getCodeValues('jobtype', $this->store->get('jobtype')); 
+    $jobtype = $libobj->getCodeValues('jobtype', $this->store->get('jobtype'));
 
     $form['employee']['jobtype'] = array(
       '#type' 		   => 'item',
@@ -402,8 +406,8 @@ class EmployeePreview extends EmployeeFormBase {
       '#prefix'      => '<div class="row">',
       '#suffix'      => '',
     );
-    $jobshift = $libobj->getCodeValues('jobshift',$this->store->get('shifttime')); 
-    
+    $jobshift = $libobj->getCodeValues('jobshift',$this->store->get('shifttime'));
+
     $form['employee']['jobshift'] = array(
       '#type' 		   => 'item',
       '#title' 		   => $this->t('Job Shift:'),
@@ -411,10 +415,10 @@ class EmployeePreview extends EmployeeFormBase {
       '#prefix'      => ' ',
       '#suffix'      => '</div>',
     );
-    
+
     //***************************************************************
-    
-    
+
+
     $form['employee']['cancel'] = [
 		  '#title' => $this->t('Cancel'),
 		  '#type' => 'link',
@@ -423,7 +427,7 @@ class EmployeePreview extends EmployeeFormBase {
 		  '#prefix' => '<div class="form-actions"><div class="row"><hr class="m-t-0 m-b-40">
                     <div class="col-md-9"><div class="row"><div class="col-md-offset-3 col-md-9">',
 		];
-	
+
 	$form['employee']['#type'] = 'actions';
   $form['employee']['submit'] = array(
       '#type' => 'submit',
@@ -437,16 +441,16 @@ class EmployeePreview extends EmployeeFormBase {
   }
   public function validateForm(array &$form, FormStateInterface $form_state) {
 
-    
+
   }
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) { 
-   
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+
    parent::saveData();
   }
-  
 
-  
+
+
 }

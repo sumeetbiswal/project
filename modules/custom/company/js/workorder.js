@@ -1,6 +1,5 @@
 (function($) {
-  $(document).ready(function() {
-         
+  $(document).ready(function() {   
 	$('#edit-workname').parent().removeClass();
 	$('#edit-workname').parent().addClass('col-md-9');
 	$('#edit-workname').parent().parent().parent().removeClass('');

@@ -173,7 +173,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 		  '#title' => $this->t('Cancel'),
 		  '#type' => 'link',
 		  '#attributes' => ['class' => ['btn btn-default']],
-		  '#url' => \Drupal\Core\Url::fromRoute('company.compview'),
+		  '#url' => \Drupal\Core\Url::fromRoute('company.view'),
 		  '#prefix' => '&nbsp; &nbsp; &nbsp; &nbsp;',
 		  '#suffix' => '</div></div>',
 		];
@@ -182,8 +182,9 @@ public function buildForm(array $form, FormStateInterface $form_state) {
     return $form;
   }
 
-  public function ActionCancel(array &$form, FormStateInterface $form_state) {
-	$form_state->setRedirect('company.compview');
+  public function ActionCancel(array &$form, FormStateInterface $form_state)
+  {
+	$form_state->setRedirect('company.view');
   }
   public function validateForm(array &$form, FormStateInterface $form_state) {
 	if (trim($form_state->getValue('cname')) == '' ) {
@@ -276,7 +277,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 		}
 
 
-		$form_state->setRedirect('company.compview');
+		$form_state->setRedirect('company.view');
   }
 
   public function getCityList(array $form, FormStateInterface $form_state)

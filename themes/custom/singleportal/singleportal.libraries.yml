@@ -34,6 +34,7 @@ login-styling:
       assets/css/login/bootstrap-extend.min599c.css: {}
       assets/css/login/site.min599c.css: {}
       assets/css/login/login-v2.min599c.css: {}
+      assets/css/login/login.css: {}
 
 multistep-style:
   header: true
@@ -78,3 +79,7 @@ dashboard:
     assets/plugins/bower_components/waypoints/lib/jquery.waypoints.js: {}
     assets/plugins/bower_components/counterup/jquery.counterup.min.js: {}
     assets/js/dashboard3.js: {}
+
+autocomplete:
+  js:
+    assets/js/custom-autocomplete.js: {}

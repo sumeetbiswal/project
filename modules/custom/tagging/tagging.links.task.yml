@@ -1,0 +1,11 @@
+tagging.tab_1:
+  route_name : untag.list
+  title: Un Allocated
+  base_route: untag.list
+  weight: 10
+
+tagging.tab_2:
+  route_name: tagging.search
+  title: Search
+  base_route: untag.list
+  weight: 20

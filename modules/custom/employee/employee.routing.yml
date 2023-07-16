@@ -7,9 +7,9 @@ employee.emplist:
    _permission: 'access content'
  options:
     no_cache: 'TRUE'
-    
-employee.empaddprsnl:
- path: '/employee/add/personal'
+
+employee.add:
+ path: '/employee/add'
  defaults:
    _title: 'Employee Create'
    _form: '\Drupal\employee\Form\Multistep\EmployeePersonalForm'
@@ -31,15 +31,15 @@ employee.empaddacademic:
    _form: '\Drupal\employee\Form\Multistep\EmployeeAcademicworkForm'
  requirements:
    _permission: 'access content'
-   
+
 employee.empaddoffcl:
  path: '/employee/add/official'
  defaults:
    _title: 'Employee Create'
    _form: '\Drupal\employee\Form\Multistep\EmployeeOfficialForm'
  requirements:
-   _permission: 'access content' 
-   
+   _permission: 'access content'
+
 employee.preview:
  path: '/employee/preview'
  defaults:
@@ -47,7 +47,7 @@ employee.preview:
    _form: '\Drupal\employee\Form\Multistep\EmployeePreview'
  requirements:
    _permission: 'access content'
-   
+
 employee.profile:
  path: '/profile'
  defaults:
@@ -65,4 +65,12 @@ employee.employeeexcel:
   _controller: '\Drupal\employee\Controller\Employee::exportToExcel'
  requirements:
    _permission: 'access content'
-    
+
+employee.autocomplete:
+ path: '/employee/list'
+ defaults:
+   _title: 'Team List'
+   _controller: '\Drupal\employee\Controller\Employee::employeeAutocomplete'
+   _format: json
+ requirements:
+   _permission: 'access content'

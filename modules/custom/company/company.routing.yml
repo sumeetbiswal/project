@@ -1,10 +1,10 @@
 company.add:
  path: '/company/add'
  defaults:
-   _title: 'Company Details'
+   _title: 'Add Organisation'
    _form: '\Drupal\company\Form\CompanyForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'organisation add'
 
 company.edit:
  path: '/company/edit/{arg}'
@@ -12,62 +12,62 @@ company.edit:
    _title: 'Update Details'
    _form: '\Drupal\company\Form\CompanyForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'organisation edit'
 
-company.compview:
+company.view:
  path: '/company/view'
  defaults:
    _title: 'Company Details'
    _controller: '\Drupal\company\Controller\CompanyController::display'
  requirements:
-   _permission: 'access content'
+   _permission: 'organisation view'
  options:
     no_cache: 'TRUE'
 
-company.branchadd:
+branch.add:
  path: '/branch/add'
  defaults:
-   _title: 'Add New Branch'
+   _title: 'Add Branch'
    _form: '\Drupal\company\Form\BranchForm'
  requirements:
    _role: 'administrator'
-   _permission: 'access content'
-  
-company.branchedit:
+   _permission: 'branch add'
+
+branch.edit:
  path: '/branch/edit/{arg}'
  defaults:
    _title: 'Edit Branch'
    _form: '\Drupal\company\Form\BranchForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'branch edit'
 
-company.branchview:
+branch.view:
  path: '/branch/list'
  defaults:
-   _title: 'Branch list'
+   _title: 'Branch List'
    _controller: '\Drupal\company\Controller\BranchController::display'
  requirements:
-   _permission: 'access content'
+   _permission: 'branch view'
  options:
     no_cache: 'TRUE'
-    
-company.branchexcel:
+
+branch.excel:
  path: '/branch/export/excel'
  defaults:
   _title: 'Branch Export'
   _controller: '\Drupal\company\Controller\BranchController::exportToExcel'
  requirements:
-   _permission: 'access content'
+   _permission: 'branch export'
 
-company.departmentexcel:
+department.excel:
  path: '/department/export/excel'
  defaults:
   _title: 'Department Export'
   _controller: '\Drupal\company\Controller\DepartmentController::exportToExcel'
  requirements:
-   _permission: 'access content'
- 
-company.designationexcel:
+   _permission: 'dept export'
+
+designation.excel:
  path: '/designation/export/excel'
  defaults:
   _title: 'Designation Export'
@@ -75,55 +75,73 @@ company.designationexcel:
  requirements:
    _permission: 'access content'
 
-company.departmentadd:
+department.add:
  path: '/department/add'
  defaults:
-   _title: 'Add Department Details'
+   _title: 'Add Department'
    _form: '\Drupal\company\Form\DepartmentForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'dept add'
 
-company.departmentedit:
+department.edit:
  path: '/department/edit/{arg}'
  defaults:
    _title: 'Update Ddepartment Details'
    _form: '\Drupal\company\Form\DepartmentForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'dept edit'
 
-company.departmentview:
+department.view:
  path: '/department/view'
  defaults:
    _title: 'Department List'
    _controller: '\Drupal\company\Controller\DepartmentController::display'
  requirements:
-   _permission: 'access content'
+   _permission: 'dept view'
  options:
     no_cache: 'TRUE'
-    
-company.departmentmodal:
+
+department.modal:
  path: '/department/modal'
  defaults:
    _title: 'Department List'
    _controller: '\Drupal\company\Controller\DepartmentController::openDeptModal'
  requirements:
-   _permission: 'access content'
-    
-company.designationadd:
+   _permission: 'dept add'
+
+designation.add:
  path: '/designation/add'
  defaults:
-   _title: 'Add Designation Details'
+   _title: 'Add Designation'
    _form: '\Drupal\company\Form\DesignationForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'desig add'
 
-company.designationedit:
+designation.edit:
  path: '/designation/edit/{arg}'
  defaults:
    _title: 'Update Designation Details'
    _form: '\Drupal\company\Form\DesignationForm'
  requirements:
-   _permission: 'access content'
+   _permission: 'desig edit'
+
+company.designationexcel:
+  path: '/designation/export/excel'
+  defaults:
+    _title: 'Designation Export'
+    _controller: '\Drupal\company\Controller\DesignationController::exportToExcel'
+  requirements:
+    _permission: 'desig export'
+
+company.Designationview:
+  path: '/designation/view'
+  defaults:
+    _title: 'Designation List'
+    _controller: '\Drupal\company\Controller\DesignationController::Designationcontent'
+  requirements:
+    _permission: 'desig view'
+  options:
+    no_cache: 'TRUE'
 
 company.configuration:
  path: '/organisation/config'
@@ -132,7 +150,7 @@ company.configuration:
    _form: '\Drupal\company\Form\ConfigurationForm'
  requirements:
    _permission: 'access content'
-   
+
 company.configuration_shift:
  path: '/organisation/config/shift'
  defaults:
@@ -140,7 +158,7 @@ company.configuration_shift:
    _form: '\Drupal\company\Form\TimingConfigurationForm'
  requirements:
    _permission: 'access content'
-   
+
 company.configuration_shiftedit:
  path: '/shift/edit/{arg}'
  defaults:
@@ -149,31 +167,16 @@ company.configuration_shiftedit:
  requirements:
    _permission: 'access content'
 
-company.Designationview:
+designation.view:
  path: '/designation/view'
  defaults:
-   _title: 'View Details'
+   _title: 'Designation List'
    _controller: '\Drupal\company\Controller\DesignationController::Designationcontent'
  requirements:
    _permission: 'access content'
  options:
     no_cache: 'TRUE'
 
-company.development:
- path: '/designation/add'
- defaults:
-   _title: 'Designation Details'
-   _form: '\Drupal\company\Form\DesignationForm'
- requirements:
-   _permission: 'access content'
-   
-company.sit:
- path: '/designation/add'
- defaults:
-   _title: 'Designation Details'
-   _form: '\Drupal\company\Form\DesignationForm'
- requirements:
-   _permission: 'access content'
 
 company.projectlist:
  path: '/wordorder/list'
@@ -200,3 +203,4 @@ company.projectedit:
    _form: '\Drupal\company\Form\WorkorderForm'
  requirements:
    _permission: 'access content'
+

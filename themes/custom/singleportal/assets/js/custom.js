@@ -4,10 +4,10 @@ Author : WrapPixel (http://www.wrappixel.com)
  */
 
 $(document).ready(function () {
-  
+
     $(function () {
         $(".preloader").fadeOut();
-        
+
     });
     // Theme settings
     $(".open-close").click(function () {
@@ -32,7 +32,7 @@ $(document).ready(function () {
         else {
             $('.fxhdr').attr('checked', false);
         }
-       
+
     });
     //Loads the correct sidebar on window load,
     //collapses the sidebar on window resize.
@@ -77,7 +77,7 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     // Collapse Panels
     (function ($, window, document) {
         var panelSelector = '[data-perform="panel-collapse"]';
@@ -199,7 +199,7 @@ $(function () {
                 $('#side-menu').metisMenu();
             }
             else {
-               
+
             }
         });
-    });        
+    });

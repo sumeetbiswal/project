@@ -25,11 +25,11 @@ class EmployeeOfficialForm extends EmployeeFormBase {
    * {@inheritdoc}.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-	 
+
 	 global $base_url;
-	 
+
       if(!$this->store->get('academic_bypass'))
-      {	
+      {
         $response = new RedirectResponse(\Drupal::url('employee.empaddacademic'));
         $response->send();
       }
@@ -37,14 +37,14 @@ class EmployeeOfficialForm extends EmployeeFormBase {
 	  {
 		parent::deleteOfficialStore();
 	  }
-		
+
     $form = parent::buildForm($form, $form_state);
     $form['actions']['submit'] = array();
-    $desobj = new \Drupal\company\Model\DesignationModel;
-    $depobj = new \Drupal\company\Model\DepartmentModel;
-    $brnobj = new \Drupal\company\Model\BranchModel;
-    $libobj = new \Drupal\library\Lib\LibController;
-    $conobj = new \Drupal\company\Model\ConfigurationModel;
+    $desobj = \Drupal::service('designation.service');
+    $depobj = \Drupal::service('department.service');
+    $brnobj = \Drupal::service('branch.service');
+    $libobj = \Drupal::service('library.service');
+    $conobj = \Drupal::service('configuration.service');
 
     $form['employee']['#prefix'] = '<ul id="eliteregister">
                                     <li class="active">Personal Details</li>
@@ -56,9 +56,9 @@ class EmployeeOfficialForm extends EmployeeFormBase {
 	$form['employee']['#suffix'] = '</div></div>';
 	$form['#attached']['library'][] = 'singleportal/master-validation';
  	$form['#attached']['library'][] = 'singleportal/datetimepicker';
-  
+
   $empid_config = $conobj->getEmployeeIdConfig();
-  
+
   $form['employee']['id'] = array(
     '#type'          => 'textfield',
     '#title'         => $this->t('Employee ID'),
@@ -72,27 +72,27 @@ class EmployeeOfficialForm extends EmployeeFormBase {
   {
 	  $form['employee']['id']['#value'] = $empid_config['empid'];
   }
-  
+
   $brnlist = $brnobj->getAllBranchDetails();
   $brn_option[''] = 'Select Branch';
   foreach($brnlist AS $item)
    {
     $brn_option[$item->codename]  = $item->codevalues;
    }
-   
+
   $form['employee']['branch'] = array(
     '#type'          => 'select',
     '#title'         => $this->t('Branch'),
-    '#default_value' => $this->store->get('branch') ? $this->store->get('branch') : '',	
+    '#default_value' => $this->store->get('branch') ? $this->store->get('branch') : '',
     '#attributes'    => ['class' => ['form-control', 'validate[required]']],
     '#options'       => $brn_option,
-  ); 
-  
+  );
+
   $deplist = $depobj->getDepartmentList();
   $form['employee']['department'] = array(
     '#type'          => 'select',
     '#title'         => $this->t('Department'),
-    '#default_value' => $this->store->get('department') ? $this->store->get('department') : '',	
+    '#default_value' => $this->store->get('department') ? $this->store->get('department') : '',
     '#attributes'    => ['class' => ['form-control', 'validate[required]']],
 	'#options' => $deplist,
     '#field_suffix' => '<a href="'.$base_url.'/department/modal" class="use-ajax button"><i class="fadehide mdi mdi-settings fa-fw"></i></a>',
@@ -106,21 +106,21 @@ class EmployeeOfficialForm extends EmployeeFormBase {
 					],
 				  ],
   );
-  
+
 	if (!empty($form_state->getValue('department'))) {
       $department = $form_state->getValue('department');
     }
 	else{
 		$department = isset($data)? $data->department : '';
 	}
-	
+
 	$dsgn = [];
 	$dsgn = $desobj->getDesignationList($department);
 
  $form['employee']['designation'] = array(
     '#type'          => 'select',
     '#title'         => $this->t('Designation'),
-    '#default_value' => $this->store->get('designation') ? $this->store->get('designation') : '',	
+    '#default_value' => $this->store->get('designation') ? $this->store->get('designation') : '',
     '#attributes'    => ['class' => ['form-control', 'validate[required]']],
     '#options'       => $dsgn,
     '#prefix'        => '<div id="desgn_list">',
@@ -132,59 +132,59 @@ class EmployeeOfficialForm extends EmployeeFormBase {
   $form['employee']['role'] = array(
     '#type'          => 'select',
     '#title'         => $this->t('Role'),
-    '#default_value' => $this->store->get('role') ? $this->store->get('role') : '',	
+    '#default_value' => $this->store->get('role') ? $this->store->get('role') : '',
     '#attributes'    => ['class' => ['form-control', 'validate[required]']],
     '#options'       => $rolelist,
     '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Provide Role for employee. Default role will be Authenticated if no special role is given." data-toggle="tooltip"></i>',
 
   );
-  
+
   $natureofjob = $conobj->getJobNature();
 
   $form['employee']['jobnature'] = array(
     '#type'          => 'select',
     '#title'         => $this->t('Nature of job'),
-    '#default_value' => $this->store->get('jobnature') ? $this->store->get('jobnature') : '',	
+    '#default_value' => $this->store->get('jobnature') ? $this->store->get('jobnature') : '',
     '#options'       => $natureofjob,
     '#attributes'    => ['class' => ['form-control', 'validate[required]']],
     );
   $form['employee']['officialemail'] = array(
     '#type'          => 'textfield',
     '#title'         => $this->t('Email'),
-    '#default_value' => $this->store->get('officialemail') ? $this->store->get('officialemail') : '',	
+    '#default_value' => $this->store->get('officialemail') ? $this->store->get('officialemail') : '',
     '#attributes'    => ['class' => ['form-control', 'validate[required,custom[email]]']],
     '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Your Official Email ID" data-toggle="tooltip"></i>',
   );
   $form['employee']['doj'] = array(
     '#type'          => 'textfield',
     '#title'         => $this->t('Date of Joining'),
-    '#default_value' => $this->store->get('doj') ? $this->store->get('doj') : '',	
+    '#default_value' => $this->store->get('doj') ? $this->store->get('doj') : '',
 	  '#attributes'    => ['id' => ['datetimepicker'], 'class' => ['form-control', 'validate[required]']],
- 
+
   );
-  
+
   $jobtype = $conobj->getJobType();
-   
+
   $form['employee']['jobtype'] = array(
     '#type'          => 'select',
     '#title'         => $this->t('Job type'),
     '#options'       => $jobtype,
-    '#default_value' => $this->store->get('jobtype') ? $this->store->get('jobtype') : '',	
+    '#default_value' => $this->store->get('jobtype') ? $this->store->get('jobtype') : '',
     '#attributes'    => ['class' => ['form-control', 'validate[required]']],
   );
-  
+
   $jobshift = $conobj->getJobShift();
 
   $form['employee']['shifttime'] = array(
     '#type'          => 'select',
     '#title'         => $this->t('Shift time'),
     '#options'       => $jobshift,
-    '#default_value' => $this->store->get('jobtype') ? $this->store->get('jobtype') : '',	
+    '#default_value' => $this->store->get('jobtype') ? $this->store->get('jobtype') : '',
     '#attributes'    => ['class' => ['form-control', 'validate[required]']],
     '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Helps to identify working hours" data-toggle="tooltip"></i>',
 
   );
-  
+
   $form['employee']['cancel'] = [
 		  '#title' => $this->t('Back'),
 		  '#type' => 'link',
@@ -192,7 +192,7 @@ class EmployeeOfficialForm extends EmployeeFormBase {
 		  '#url' => \Drupal\Core\Url::fromRoute('employee.empaddacademic'),
 		  '#prefix' => '<br/><div class="row"><div class="col-md-5"></div><div class="col-md-4">',
 		];
-	
+
 	$form['employee']['#type'] = 'actions';
     $form['employee']['submit'] = array(
       '#type' => 'submit',
@@ -202,17 +202,17 @@ class EmployeeOfficialForm extends EmployeeFormBase {
       '#prefix' => '',
       '#suffix' => '</div></div>',
 		);
-	$this->store->set('official_back', TRUE);	
+	$this->store->set('official_back', TRUE);
     return $form;
   }
- 
+
   public function validateForm(array &$form, FormStateInterface $form_state) {
-	  
-	  $empObj = new \Drupal\employee\Model\EmployeeModel;
-	  
+
+	  $empObj = \Drupal::service('employee.service');
+
 	  $checkEmpIdDuplicacy = $empObj->checkUserIdExist(trim($form_state->getValue('id')));
 	  $checkEmailDuplicacy = $empObj->checkEMailIdExist(trim($form_state->getValue('officialemail')));
-	 
+
 	if (trim($form_state->getValue('id')) == '' ) {
         $form_state->setErrorByName('id', $this->t('Enter your Employee id'));
     }
@@ -222,7 +222,7 @@ class EmployeeOfficialForm extends EmployeeFormBase {
 	}
     if (trim($form_state->getValue('department')) == '' ) {
         $form_state->setErrorByName('department', $this->t('Enter your Department'));
-    }    
+    }
     if (trim($form_state->getValue('branch')) == '' ) {
         $form_state->setErrorByName('branch', $this->t('Enter your Branch'));
     }
@@ -239,7 +239,7 @@ class EmployeeOfficialForm extends EmployeeFormBase {
         $form_state->setErrorByName('officialemail', $this->t('Enter your Email Id'));
     }
     else if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $form_state->getValue('officialemail'))) {
-        $form_state->setErrorByName('officialemail', $this->t('Enter your valid Email Id')); 
+        $form_state->setErrorByName('officialemail', $this->t('Enter your valid Email Id'));
     }
 	else if(!empty($checkEmailDuplicacy))
 	{
@@ -254,29 +254,28 @@ class EmployeeOfficialForm extends EmployeeFormBase {
     if (trim($form_state->getValue('shifttime')) == '' ) {
         $form_state->setErrorByName('shifttime', $this->t('Enter your shift time'));
     }
-    
-    
+
+
   }
   /**
    * {@inheritdoc}
    */
 
-  public function submitForm(array &$form, FormStateInterface $form_state) { 
-    
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+
 	 $field_list = array('id', 'department', 'branch', 'designation', 'role', 'jobnature',
                          'officialemail', 'doj', 'jobtype', 'shifttime');
-	 
+
     foreach($field_list AS $val)
      {
 			$this->store->set($val, $form_state->getValue($val));
      }
-	
-	
+
+
     $form_state->setRedirect('employee.preview');
   }
-   
-public function getList(array $form, FormStateInterface $form_state)
-  {
-	return $form['employee']['designation'];
+
+  public function getList(array $form, FormStateInterface $form_state){
+	  return $form['employee']['designation'];
   }
 }
