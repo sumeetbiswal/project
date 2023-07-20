@@ -12,20 +12,22 @@ use Drupal\Core\Block\BlockBase;
  *   admin_label = @Translation("Employee List Count block"),
  * )
  */
-class EmployeelistCount extends BlockBase {
-  /**
-   * {@inheritdoc}
-   */
-  public function build() {
-	global $base_url;
-	$emp_obj = \Drupal::service('employee.service');;
-	$count = $emp_obj->getEmployeeCount();
+class EmployeelistCount extends BlockBase
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function build()
+    {
+        global $base_url;
+        $emp_obj = \Drupal::service('employee.service');;
+        $count = $emp_obj->getEmployeeCount();
 
-    return [
-	  '#theme' => 'employee_count_card',
-	  '#emp_count' =>	$count
-    ];
-  }
+        return [
+        '#theme' => 'employee_count_card',
+        '#emp_count' =>    $count
+        ];
+    }
 
 
 }
