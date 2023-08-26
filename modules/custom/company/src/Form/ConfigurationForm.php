@@ -141,11 +141,10 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
-	//$configobj = new \Drupal\company\Model\ConfigurationModel;
 	$configobj = \Drupal::service('configuration.service');
 
     $field = $form_state->getValues();
-	$employeeIdType = ($field['empidtype']) ? 'Automatic' : 'Manual';
+	  $employeeIdType = ($field['empidtype']) ? 'Automatic' : 'Manual';
     $branchCodeType = ($field['Branchcode']) ? 'on' : 'off';
     $designationCodeType = ($field['Designationcode']) ? 'on' : 'off';
     $departmentCodeType = ($field['Departmentcode']) ? 'on' : 'off';

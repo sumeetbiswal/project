@@ -1,7 +1,3 @@
-/*!
-Template Name : Ample Admin - The Ultimate Dashboad Template
-Author : WrapPixel (http://www.wrappixel.com)
- */
 
 $(document).ready(function () {
 

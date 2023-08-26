@@ -18,6 +18,10 @@ function themable_forms_theme_suggestions_form_element(array $variables) {
     $suggestions[] = 'form_element__' . $variables['element']['#form_id'] . '__' . $variables['element']['#type'];
   }
 
+  if (isset($variables['element']['#name'])) {
+    $suggestions[] = 'form_element__' . $variables['element']['#name'] . '__' . $variables['element']['#type'];
+  }
+
   return $suggestions;
 }
 
@@ -43,6 +47,7 @@ function themable_forms_theme_suggestions_form_element_label(array $variables) {
  * Implements hook_preprocess_form_element().
  */
 function themable_forms_preprocess_form_element(array &$variables) {
+
   if (!isset($variables['label'])) {
     return;
   }

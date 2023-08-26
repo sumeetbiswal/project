@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Contains \Drupal\company\Form\BranchForm.
+ * Contains \Drupal\company\Form\LeaveTypeForm.
  */
 
 namespace Drupal\company\Form;
@@ -11,7 +11,7 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\library\Lib\LibController;
 
 /**
- * BranchForm
+ * LeaveTypeForm
  */
 class BranchForm extends FormBase {
 

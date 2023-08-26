@@ -1,0 +1,4 @@
+services:
+  leave.service:
+    class: Drupal\leave\Model\LeavesModel
+    arguments: ['@database']

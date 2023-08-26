@@ -2,6 +2,7 @@
 
 namespace Drupal\company\Model;
 use Drupal\Core\Database\Connection;
+use Drupal\library\Lib\DataModel;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Link;
@@ -25,7 +26,7 @@ class BranchModel extends ControllerBase {
 
 	public function getBranchDetailsById($id = 1)
 	{
-		$query = $this->connection->select('srch_codevalues', 'n');
+		$query = $this->connection->select(DataModel::CODEVAL, 'n');
 				$query->fields('n');
 				$query->condition('codetype', 'branch', "=");
 				$query->condition('codepk', $id, "=");
@@ -39,7 +40,7 @@ class BranchModel extends ControllerBase {
     public function getAllBranchDetails()
 	{
 
-		$query = $this->connection->select('srch_codevalues', 'n');
+		$query = $this->connection->select(DataModel::CODEVAL, 'n');
 		$query->leftJoin('srch_cities', 'ct', 'n.city = ct.id');
 		$query->leftJoin('srch_states', 'st', 'n.state = st.id');
 		$query->fields('n');
@@ -55,7 +56,7 @@ class BranchModel extends ControllerBase {
 	public function setBranch($field)
 	{
 		$query = \Drupal::database();
-           $query ->insert('srch_codevalues')
+           $query ->insert(DataModel::CODEVAL)
                ->fields($field)
                ->execute();
 	}
@@ -63,7 +64,7 @@ class BranchModel extends ControllerBase {
 	public function updateBranch($field, $id)
 	{
 		$query = \Drupal::database();
-          $query->update('srch_codevalues')
+          $query->update(DataModel::CODEVAL)
               ->fields($field)
               ->condition('codepk', $id)
               ->execute();
@@ -76,7 +77,7 @@ class BranchModel extends ControllerBase {
 	*/
 	public function getBranchNameFromCode($branchcode)
 	{
-		$query = $this->connection->select('srch_codevalues', 'n');
+		$query = $this->connection->select(DataModel::CODEVAL, 'n');
 				$query->fields('n');
 				$query->condition('codetype', 'branch', "=");
 				$query->condition('codename', $branchcode, "=");

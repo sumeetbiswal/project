@@ -2,3 +2,23 @@ leave list:
     title: 'Leave List'
     description: 'list of Leave applied by the employee'
     restrict access: false
+
+leavetype list:
+  title: 'Leave Type List'
+  description: 'permission to view list of leave type'
+  restrict access: false
+
+leavetype export:
+  title: 'Leave Type Export'
+  description: 'permission to export list of leave type'
+  restrict access: false
+
+leavetype add:
+  title: 'Leave Type Add'
+  description: 'permission to add new leave type'
+  restrict access: false
+
+leavetype edit:
+  title: 'Edit Leave Type'
+  description: 'permission to edit leave type'
+  restrict access: false

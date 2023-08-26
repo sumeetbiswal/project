@@ -12,7 +12,7 @@ class CompanyController extends ControllerBase {
 
 	global $base_url;
 
-	//$compobj = new \Drupal\company\Model\CompanyModel;
+	//$compobj = new \Drupal\company\Model\LeavesModel;
     $compobj = \Drupal::service('company.service');
 	$data = $compobj->getCompanyDetailsById(1);
 	$encrypt = new \Drupal\library\Controller\Encrypt;

@@ -255,3 +255,13 @@ function singleportal_preprocess_table(&$variables) {
   //kint($variables);
 
 }
+
+/*
+function singleportal_preprocess_form_element(&$variables) {
+
+  if ($variables['type'] === 'checkbox') {
+    kint($variables);
+    $variables['label']['#attributes']['class'] = ['ckecbox-is-checked'];
+  }
+}*/
+

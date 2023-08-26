@@ -21,7 +21,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
 
 
 	$libobj = new \Drupal\library\Lib\LibController;
-	$compobj = new \Drupal\company\Model\CompanyModel;
+	$compobj = new \Drupal\company\Model\LeaveModel;
 
 	$mode = $libobj->getActionMode();
 
@@ -153,7 +153,7 @@ $form['company']['#attributes']['enctype'] = "multipart/form-data";
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $libobj = new \Drupal\library\Lib\LibController;
-	$compobj = new \Drupal\company\Model\CompanyModel;
+	$compobj = new \Drupal\company\Model\LeaveModel;
 
 
    $field = $form_state->getValues();

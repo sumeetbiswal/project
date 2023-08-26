@@ -8,6 +8,14 @@ leave.list:
  options:
     no_cache: 'TRUE'
 
+leave.add:
+  path: '/leave/add'
+  defaults:
+    _title: 'Apply Leave'
+    _form: '\Drupal\leave\Form\LeaveTypeForm'
+  requirements:
+    _permission: 'leave add'
+
 leavetype.list:
   path: '/leavetype/list'
   defaults:
@@ -22,8 +30,14 @@ leavetype.add:
   path: '/leavetype/add'
   defaults:
     _title: 'Add Leave Type'
-    _controller: '\Drupal\leave\Controller\Leave::leavelist'
+    _form: '\Drupal\leave\Form\LeaveTypeForm'
   requirements:
-    _permission: 'access content'
-  options:
-    no_cache: 'TRUE'
+    _permission: 'leavetype add'
+
+leavetype.edit:
+  path: '/leavetype/edit/{arg}'
+  defaults:
+    _title: 'Edit Leave Type'
+    _form: '\Drupal\leave\Form\LeaveTypeForm'
+  requirements:
+    _permission: 'leavetype edit'

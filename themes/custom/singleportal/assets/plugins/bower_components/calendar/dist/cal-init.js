@@ -15,7 +15,7 @@
 
 
     /* on drop */
-    CalendarApp.prototype.onDrop = function (eventObj, date) { 
+    CalendarApp.prototype.onDrop = function (eventObj, date) {
         var $this = this;
             // retrieve the dropped element's stored Event Object
             var originalEventObject = eventObj.data('eventObject');
@@ -90,14 +90,14 @@
                         end: end,
                         allDay: false,
                         className: categoryClass
-                    }, true);  
+                    }, true);
                     $this.$modal.modal('hide');
                 }
                 else{
                     alert('You have to give a title to your event');
                 }
                 return false;
-                
+
             });
             $this.$calendarObj.fullCalendar('unselect');
     },
@@ -131,7 +131,7 @@
         var today = new Date($.now());
 
         var defaultEvents =  [{
-                title: 'Released Ample Admin!',
+                title: 'Released',
                 start: new Date($.now() + 506800000),
                 className: 'bg-info'
             }, {
@@ -158,7 +158,7 @@
                 start: new Date($.now() - 399000000),
                 end: new Date($.now() - 219000000),
                 className: 'bg-info'
-            },  
+            },
               {
                 title: 'Hanns birthday',
                 start: new Date($.now() + 868000000),
@@ -173,10 +173,10 @@
         $this.$calendarObj = $this.$calendar.fullCalendar({
             slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
             minTime: '08:00:00',
-            maxTime: '19:00:00',  
-            defaultView: 'month',  
-            handleWindowResize: true,   
-             
+            maxTime: '19:00:00',
+            defaultView: 'month',
+            handleWindowResize: true,
+
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -207,7 +207,7 @@
 
    //init CalendarApp
     $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp
-    
+
 }(window.jQuery),
 
 //initializing CalendarApp
