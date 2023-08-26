@@ -1,0 +1,7 @@
+services:
+  login_auth.login_redirect:
+    class: Drupal\login\EventSubscriber\DrupalLoginRedirectSubscriber
+    arguments: ['@request_stack', '@config.factory', '@path_alias.manager',
+      '@path.matcher', '@current_user']
+    tags:
+      - { name: event_subscriber }
