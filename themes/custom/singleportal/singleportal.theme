@@ -48,19 +48,6 @@ function singleportal_preprocess_page(&$variables) {
 		$variables['white_box_exclud'] = TRUE;;
 	}
 
-  /* Check If user is logged in or not. else redirect to login page */
-  if(!$variables['user']->isAuthenticated()) {
-    if(!(\Drupal::service('path.matcher')->isFrontPage())){
-      $response = new RedirectResponse('/', 302);
-      $response->send(); exit;
-    }
-  }else{
-    if(\Drupal::service('path.matcher')->isFrontPage()){
-      $response = new RedirectResponse('/home', 302);
-      $response->send(); exit;
-    }
-  }
-
 }
 
 /**

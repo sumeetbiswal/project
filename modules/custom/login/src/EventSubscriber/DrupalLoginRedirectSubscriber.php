@@ -101,11 +101,10 @@ class DrupalLoginRedirectSubscriber implements EventSubscriberInterface {
       $current_path = Url::fromRoute('<current>')->toString();
 
       $exclude_paths = [
-        '/user',
-        '/user/login',
         '/user/logout',
         '/user/password',
         'user/reset',
+        '/'
       ];
 
       $exclude_paths_by_patterns = [
@@ -139,13 +138,23 @@ class DrupalLoginRedirectSubscriber implements EventSubscriberInterface {
           ->getQueryString();
         $destination_path = $current_path . '?' . $current_path_query_params;
 
-        $url = Url::fromRoute('user.login', [], [
-          'query' => [
-            'destination' => $destination_path,
-          ],
+        $url = Url::fromRoute('<front>', [], [
+         // 'query' => [
+          //  'destination' => $destination_path,
+         // ],
         ])->toString();
 
-        $response = new RedirectResponse($url, $this->redirectCode);
+        if (!$this->pathMatcher->isFrontPage()){
+          $response = new RedirectResponse($url, $this->redirectCode);
+          $response->send();
+          exit(0);
+        }
+
+      }
+    }
+    else{
+      if ($this->pathMatcher->isFrontPage()){
+        $response = new RedirectResponse('/home', $this->redirectCode);
         $response->send();
         exit(0);
       }
