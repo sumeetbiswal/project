@@ -77,14 +77,12 @@ function singleportal_preprocess_menu(&$variables) {
   if ($variables['menu_name'] === 'main') {
     // Adding class name as my-class.
     // $variables['attributes']['class'][] = 'my-class';
-    // kint($variables['items']);
     // unset($variables['items'][$key]);.
     $current_user = \Drupal::currentUser();
     // Check the menu permission.
     foreach ($variables['items'] as $key => $item) {
 
       $parent_item = FALSE;
-      // kint(count($item['below']));.
       if (count($item['below']) > 0) {
         foreach ($item['below'] as $child_key => $child_item) {
           $permission = $child_item['url']->getOptions()['permissions'];
@@ -127,7 +125,6 @@ function singleportal_preprocess_menu(&$variables) {
     foreach ($variables['items'] as $item) {
       // Get options.
       $options = $item['original_link']->getOptions();
-      // kint($item);
       if ($options && isset($options['classes'])) {
 
         $classes_array = explode(' ', $options['classes']);
@@ -241,8 +238,6 @@ function singleportal_preprocess_block__system_branding_block(&$variables) {
  *
  */
 function singleportal_admin_theme_info() {
-  echo "hiiiiiiiii";
-  die;
 }
 
 /**
@@ -251,5 +246,4 @@ function singleportal_admin_theme_info() {
 function singleportal_preprocess_table(&$variables) {
   $variables['attributes']['class'][] = 'table text-center table-hover table-striped table-bordered dataTable';
   $variables['attributes']['style'][] = 'text-align-last: center';
-  // kint($variables);
 }
