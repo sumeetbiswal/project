@@ -3,20 +3,22 @@
 namespace Drupal\login\EventSubscriber;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Http\RequestStack;
 use Drupal\Core\Path\PathMatcherInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\path_alias\AliasManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Drupal\Core\Http\RequestStack;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Drupal\Core\Session\AccountInterface;
 
 /**
  * Event Subscriber for Drupal Login Class DrupalLoginRedirectSubscriber.
  *
- * @package Drupal\spe_setsounds_login\EventSubscriber
+ * @package Drupal\login\EventSubscriber
+ *
+ * @category DrupalLoginRedirectSubscriber
  */
 class DrupalLoginRedirectSubscriber implements EventSubscriberInterface {
 
@@ -77,10 +79,10 @@ class DrupalLoginRedirectSubscriber implements EventSubscriberInterface {
    *   Current User.
    */
   public function __construct(RequestStack $requestStack,
-    ConfigFactoryInterface $configFactory,
-    AliasManagerInterface $alias_manager,
-    PathMatcherInterface $pathMatcher,
-    AccountInterface $currentUser) {
+        ConfigFactoryInterface $configFactory,
+        AliasManagerInterface $alias_manager,
+        PathMatcherInterface $pathMatcher,
+        AccountInterface $currentUser) {
     $this->requestStack = $requestStack;
     $this->configFactory = $configFactory;
     $this->aliasManager = $alias_manager;
@@ -104,7 +106,7 @@ class DrupalLoginRedirectSubscriber implements EventSubscriberInterface {
         '/user/logout',
         '/user/password',
         'user/reset',
-        '/'
+        '/',
       ];
 
       $exclude_paths_by_patterns = [
@@ -138,13 +140,9 @@ class DrupalLoginRedirectSubscriber implements EventSubscriberInterface {
           ->getQueryString();
         $destination_path = $current_path . '?' . $current_path_query_params;
 
-        $url = Url::fromRoute('<front>', [], [
-         // 'query' => [
-          //  'destination' => $destination_path,
-         // ],
-        ])->toString();
+        $url = Url::fromRoute('<front>', [], [])->toString();
 
-        if (!$this->pathMatcher->isFrontPage()){
+        if (!$this->pathMatcher->isFrontPage()) {
           $response = new RedirectResponse($url, $this->redirectCode);
           $response->send();
           exit(0);
@@ -152,8 +150,8 @@ class DrupalLoginRedirectSubscriber implements EventSubscriberInterface {
 
       }
     }
-    else{
-      if ($this->pathMatcher->isFrontPage()){
+    else {
+      if ($this->pathMatcher->isFrontPage()) {
         $response = new RedirectResponse('/home', $this->redirectCode);
         $response->send();
         exit(0);
