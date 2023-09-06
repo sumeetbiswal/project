@@ -219,11 +219,19 @@ class LibController extends ControllerBase
 
         $label = '';
 
-        //Get the route name of the ADD page and fetch title of it. to be used in ADD button Label.
+        // Get the route name of the ADD page and fetch title of it. to be used in ADD button Label.
+        // Get the route name of listing page.
+        // Get the module name from route name
+        // Generate add page route name of that module
         $route_name = \Drupal::routeMatch()->getRouteName();
-        $route_name = explode('.', $route_name)[0];
-        $add_route_name = $route_name . '.add';
+        $route_name_module = explode('.', $route_name)[0];
+        // Check if the route is coming from view, then take the 2nd array parameter
+        if($route_name_module == 'view'){
+          $route_name_module = explode('.', $route_name)[1];
+        }
+        $add_route_name = $route_name_module . '.add'; // Generate add page route name
 
+        // Check the Add page route details
         if ($route = \Drupal::service('router.route_provider')->getRouteByName($add_route_name)) {
             $title = $route->getDefault('_title');
             $label = $title;

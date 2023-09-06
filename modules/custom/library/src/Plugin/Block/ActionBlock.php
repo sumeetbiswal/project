@@ -23,7 +23,7 @@ class ActionBlock extends BlockBase
     {
         $lib = \Drupal::service('library.service');
 
-        //Get the current page title
+        //Get the current page path
         $current_path = \Drupal::service('path.current')->getPath();
         $current_path = explode('/', $current_path)[1];
 

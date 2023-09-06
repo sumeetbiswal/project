@@ -41,15 +41,6 @@ branch.edit:
  requirements:
    _permission: 'branch edit'
 
-branch.view:
- path: '/branch/list'
- defaults:
-   _title: 'Branch List'
-   _controller: '\Drupal\company\Controller\BranchController::display'
- requirements:
-   _permission: 'branch view'
- options:
-    no_cache: 'TRUE'
 
 branch.excel:
  path: '/branch/export/excel'

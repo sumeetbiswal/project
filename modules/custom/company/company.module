@@ -1,4 +1,5 @@
 <?php
+use Drupal\views\ViewExecutable;
 
 function company_theme($existing, $type, $theme, $path) {
 
@@ -70,3 +71,33 @@ function company_preprocess_form_element(&$variables, $hook, &$info) {
   $info['template'] = 'form-element--multistep-form-three';
 	}
 }*/
+
+
+
+
+
+function company_views_pre_render($view){
+
+  //if ($view->name == 'branch_list') {
+
+  $encrypt = \Drupal::service('encrypt.service');
+  $lib = \Drupal::service('library.service');
+  $result = $view->result;
+
+  foreach ($result as $i => $row) {
+    $encrypted_codepk = $encrypt->encode($view->result[$i]->codepk);
+    $view->result[$i]->srch_codevalues_description = $encrypted_codepk;
+
+    if(isset($view->result[$i]->srch_codevalues_city) && !empty($view->result[$i]->srch_codevalues_city)){
+      $view->result[$i]->srch_codevalues_city =  $lib->getCityNameById($view->result[$i]->srch_codevalues_city);
+    }
+
+    if(isset($view->result[$i]->srch_codevalues_state) && !empty($view->result[$i]->srch_codevalues_state)){
+      $view->result[$i]->srch_codevalues_state =  $lib->getStateNameById($view->result[$i]->srch_codevalues_state);
+    }
+
+  }
+
+  //}
+
+}
