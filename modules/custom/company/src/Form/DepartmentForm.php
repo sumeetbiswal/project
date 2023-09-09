@@ -84,7 +84,7 @@ class DepartmentForm extends FormBase
         '#attributes'               => ['class'   => ['btn btn-default']],
         '#prefix'                   => '',
         '#suffix'                   => '</div></div>',
-        '#url' => \Drupal\Core\Url::fromRoute('department.view'),
+        '#url' => \Drupal\Core\Url::fromRoute('view.department.list'),
         );
         return $form;
 
@@ -103,7 +103,7 @@ class DepartmentForm extends FormBase
 
     public function ActionCancel(array &$form, FormStateInterface $form_state)
     {
-        $form_state->setRedirect('department.view');
+        $form_state->setRedirect('view.department.list');
     }
 
     public function submitForm(array &$form, FormStateInterface $form_state)
@@ -139,7 +139,7 @@ class DepartmentForm extends FormBase
             \Drupal::messenger()->addMessage("succesfully Updated.");
         }
 
-        $form_state->setRedirect('department.view');
+        $form_state->setRedirect('view.department.list');
 
     }
 }

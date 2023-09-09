@@ -82,16 +82,6 @@ department.edit:
  requirements:
    _permission: 'dept edit'
 
-department.view:
- path: '/department/view'
- defaults:
-   _title: 'Department List'
-   _controller: '\Drupal\company\Controller\DepartmentController::display'
- requirements:
-   _permission: 'dept view'
- options:
-    no_cache: 'TRUE'
-
 department.modal:
  path: '/department/modal'
  defaults:
@@ -123,16 +113,6 @@ company.designationexcel:
     _controller: '\Drupal\company\Controller\DesignationController::exportToExcel'
   requirements:
     _permission: 'desig export'
-
-company.Designationview:
-  path: '/designation/view'
-  defaults:
-    _title: 'Designation List'
-    _controller: '\Drupal\company\Controller\DesignationController::Designationcontent'
-  requirements:
-    _permission: 'desig view'
-  options:
-    no_cache: 'TRUE'
 
 company.configuration:
  path: '/organisation/config'

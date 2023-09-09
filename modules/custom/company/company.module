@@ -1,4 +1,6 @@
 <?php
+
+use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ViewExecutable;
 
 function company_theme($existing, $type, $theme, $path) {
@@ -82,8 +84,9 @@ function company_views_pre_render($view){
 
   $encrypt = \Drupal::service('encrypt.service');
   $lib = \Drupal::service('library.service');
-  $result = $view->result;
+  $department = \Drupal::service('department.service');
 
+  $result = $view->result;
   foreach ($result as $i => $row) {
     $encrypted_codepk = $encrypt->encode($view->result[$i]->codepk);
     $view->result[$i]->srch_codevalues_description = $encrypted_codepk;
@@ -96,8 +99,52 @@ function company_views_pre_render($view){
       $view->result[$i]->srch_codevalues_state =  $lib->getStateNameById($view->result[$i]->srch_codevalues_state);
     }
 
+    if ($view->id() == 'designation') {
+     // $view->result[$i]->srch_codevalues_parent = $department->getDepartmentNameById($view->result[$i]->srch_codevalues_parent);
+    }
+
+    /*$input = $view->exposed_raw_input;
+    // Views Query.
+    $query = $view->build_info['query'];
+    // Left Join any table here.
+    $query->leftJoin('srch_codevalues', 'srch_codevalues', 'srch_codevalues.codepk = srch_codevalues.parent');
+    // Add fields of table you joined.
+    $query->fields('parent');
+    $query->distinct();
+    // Re-construct the Views Query by adding left join.
+    $view->build_info['query'] = $query;
+    $view->build_info['count_query'] = $query;*/
+    //need to write alter query
+
   }
 
   //}
 
+}
+
+function company_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  if ($view->id() == 'designation') {
+    kint($query);
+      $configuration = [
+        'type'       => 'LEFT',
+        'table'      => 'srch_codevalues',
+        'field'      => 'codepk',
+        'left_table' => 'srch_codevalues',
+        'left_field' => 'parent',
+       // 'operator'   => '=',
+      ];
+      $join_obj = \Drupal\views\Views::pluginManager('join')->createInstance('standard', $configuration);
+
+
+      $rel = $query->addRelationship('s1', $join_obj, 'parentw');
+     // $query->addTable('webform_submission_data', $rel, $join_obj, 'webform_submission_field_job_center_posting_status');
+
+
+     /* $join_obj->extra[] = array(
+        'field'=>'name',
+        'value' => 'status',
+      );*/
+      $join_obj->extra_type = 'AND';
+     // $query->addWhere('', 'webform_submission_field_job_center_posting_status.value', 'reviewed', 'IN');
+  }
 }
