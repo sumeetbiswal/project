@@ -80,8 +80,6 @@ function company_preprocess_form_element(&$variables, $hook, &$info) {
 
 function company_views_pre_render($view){
 
-  //if ($view->name == 'branch_list') {
-
   $encrypt = \Drupal::service('encrypt.service');
   $lib = \Drupal::service('library.service');
   $department = \Drupal::service('department.service');
@@ -89,62 +87,7 @@ function company_views_pre_render($view){
   $result = $view->result;
   foreach ($result as $i => $row) {
     $encrypted_codepk = $encrypt->encode($view->result[$i]->codepk);
-    $view->result[$i]->srch_codevalues_description = $encrypted_codepk;
-
-    if(isset($view->result[$i]->srch_codevalues_city) && !empty($view->result[$i]->srch_codevalues_city)){
-      $view->result[$i]->srch_codevalues_city =  $lib->getCityNameById($view->result[$i]->srch_codevalues_city);
-    }
-
-    if(isset($view->result[$i]->srch_codevalues_state) && !empty($view->result[$i]->srch_codevalues_state)){
-      $view->result[$i]->srch_codevalues_state =  $lib->getStateNameById($view->result[$i]->srch_codevalues_state);
-    }
-
-    if ($view->id() == 'designation') {
-     // $view->result[$i]->srch_codevalues_parent = $department->getDepartmentNameById($view->result[$i]->srch_codevalues_parent);
-    }
-
-    /*$input = $view->exposed_raw_input;
-    // Views Query.
-    $query = $view->build_info['query'];
-    // Left Join any table here.
-    $query->leftJoin('srch_codevalues', 'srch_codevalues', 'srch_codevalues.codepk = srch_codevalues.parent');
-    // Add fields of table you joined.
-    $query->fields('parent');
-    $query->distinct();
-    // Re-construct the Views Query by adding left join.
-    $view->build_info['query'] = $query;
-    $view->build_info['count_query'] = $query;*/
-    //need to write alter query
-
-  }
-
-  //}
-
-}
-
-function company_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
-  if ($view->id() == 'designation') {
-    kint($query);
-      $configuration = [
-        'type'       => 'LEFT',
-        'table'      => 'srch_codevalues',
-        'field'      => 'codepk',
-        'left_table' => 'srch_codevalues',
-        'left_field' => 'parent',
-       // 'operator'   => '=',
-      ];
-      $join_obj = \Drupal\views\Views::pluginManager('join')->createInstance('standard', $configuration);
-
-
-      $rel = $query->addRelationship('s1', $join_obj, 'parentw');
-     // $query->addTable('webform_submission_data', $rel, $join_obj, 'webform_submission_field_job_center_posting_status');
-
-
-     /* $join_obj->extra[] = array(
-        'field'=>'name',
-        'value' => 'status',
-      );*/
-      $join_obj->extra_type = 'AND';
-     // $query->addWhere('', 'webform_submission_field_job_center_posting_status.value', 'reviewed', 'IN');
+    $view->result[$i]->srch_view_codevalues_description = $encrypted_codepk;
   }
 }
+

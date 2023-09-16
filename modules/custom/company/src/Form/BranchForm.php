@@ -154,7 +154,7 @@ class BranchForm extends FormBase
         '#attributes' => ['class' => ['btn btn-default']],
         '#prefix' => '',
         '#suffix' => '</div></div>',
-        '#url' => \Drupal\Core\Url::fromRoute('view.branch.list'),
+        '#url' => \Drupal\Core\Url::fromRoute('view.branch.page'),
           );
 
         return $form;
@@ -170,7 +170,7 @@ class BranchForm extends FormBase
     }
     public function ActionCancel(array &$form, FormStateInterface $form_state)
     {
-        $form_state->setRedirect('view.branch.list');
+        $form_state->setRedirect('view.branch.page');
     }
     /**
      * {@inheritdoc}
@@ -218,7 +218,7 @@ class BranchForm extends FormBase
             $brnobj->updateBranch($data, $pk);
             \Drupal::messenger()->addMessage($data['codevalues'] . " has succesfully Updated.");
         }
-        $form_state->setRedirect('view.branch.list');
+        $form_state->setRedirect('view.branch.page');
 
     }
     public function getCityList(array $form, FormStateInterface $form_state)

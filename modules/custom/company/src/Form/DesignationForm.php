@@ -110,7 +110,7 @@ class DesignationForm extends FormBase
         '#attributes' => ['class'   => ['btn btn-default']],
         '#prefix'    => '',
         '#suffix'    => '</div></div>',
-        '#url' => \Drupal\Core\Url::fromRoute('view.designation.list'),
+        '#url' => \Drupal\Core\Url::fromRoute('designation.view'),
         );
         $form['designation']['cancel']['#submit'][] = '::ActionCancel';
 
@@ -124,7 +124,7 @@ class DesignationForm extends FormBase
 
     public function ActionCancel(array &$form, FormStateInterface $form_state)
     {
-        $form_state->setRedirect('view.designation.list');
+        $form_state->setRedirect('designation.view');
     }
 
     public function submitForm(array &$form, FormStateInterface $form_state)
@@ -166,7 +166,7 @@ class DesignationForm extends FormBase
             \Drupal::messenger()->addMessage($field['codevalues'] . " has succesfully Updated.");
         }
 
-        $form_state->setRedirect('view.designation.list');
+        $form_state->setRedirect('designation.view');
 
     }
 }
