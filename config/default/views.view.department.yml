@@ -1,14 +1,14 @@
-uuid: 8fc2ce98-fa8a-445d-84be-fd16babc6d43
+uuid: 56c382c8-682a-41bd-9e26-cd23c71ac913
 langcode: en
 status: true
 dependencies:
   module:
     - user
     - view_custom_table
-id: branch
-label: Branch
+id: department
+label: Department
 module: views
-description: 'This helps to manage branch view'
+description: 'This helps to manage department view'
 tag: ''
 base_table: srch_view_codevalues
 base_field: codepk
@@ -19,7 +19,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Branch
+      title: Department
       fields:
         counter:
           id: counter
@@ -79,7 +79,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: 'Branch Name'
+          label: 'Department Name'
           exclude: false
           alter:
             alter_text: false
@@ -128,154 +128,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: 'Branch Code'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-        location:
-          id: location
-          table: srch_view_codevalues
-          field: location
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: standard
-          label: Location
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-        city:
-          id: city
-          table: srch_view_codevalues
-          field: city
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: standard
-          label: City
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-        state:
-          id: state
-          table: srch_view_codevalues
-          field: state
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: standard
-          label: State
+          label: 'Department Code'
           exclude: false
           alter:
             alter_text: false
@@ -436,7 +289,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a href="http://xsmind.lndo.site/branch/edit/{{ description }}" style="text-align:center;"><i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'
+            text: '<a href="http://xsmind.lndo.site/department/edit/{{ description }}" style="text-align:center;"><i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'
             make_link: false
             path: ''
             absolute: false
@@ -504,7 +357,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'branch view'
+          perm: 'dept view'
       cache:
         type: none
         options: {  }
@@ -534,7 +387,7 @@ display:
           admin_label: ''
           plugin_id: string
           operator: '='
-          value: Branch
+          value: Department
           group: 1
           exposed: false
           expose:
@@ -616,7 +469,7 @@ display:
     display_options:
       display_description: 'This helps to manage branch view'
       display_extenders: {  }
-      path: branch
+      path: department
     cache_metadata:
       max-age: -1
       contexts:

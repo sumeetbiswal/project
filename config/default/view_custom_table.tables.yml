@@ -4,3 +4,9 @@ srch_codevalues:
   description: 'This is point to master Tables srch codevalues'
   column_relations: 'a:0:{}'
   created_by: '1'
+srch_view_codevalues:
+  table_name: srch_view_codevalues
+  table_database: default
+  description: 'srch_codevalues view table'
+  column_relations: 'a:0:{}'
+  created_by: '1'
