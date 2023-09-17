@@ -138,17 +138,6 @@ company.configuration_shiftedit:
  requirements:
    _permission: 'access content'
 
-designation.view:
- path: '/designation/view'
- defaults:
-   _title: 'Designation List'
-   _controller: '\Drupal\company\Controller\DesignationController::Designationcontent'
- requirements:
-   _permission: 'access content'
- options:
-    no_cache: 'TRUE'
-
-
 company.projectlist:
  path: '/wordorder/list'
  defaults:
@@ -174,4 +163,3 @@ company.projectedit:
    _form: '\Drupal\company\Form\WorkorderForm'
  requirements:
    _permission: 'access content'
-

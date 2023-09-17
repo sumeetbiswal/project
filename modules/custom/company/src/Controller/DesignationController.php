@@ -2,96 +2,80 @@
 
 namespace Drupal\company\Controller;
 
-use Drupal\Component\Render\FormattableMarkup;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\ReplaceCommand;
-use Drupal\Core\Ajax\CssCommand;
-use Drupal\Core\Ajax\AfterCommand;
-use Drupal\Core\Ajax\HtmlCommand;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Render\MainContent\AjaxRenderer;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Link;
-use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\library\Controller\Encrypt;
-use Drupal\company\Model\DesignationModel;
-use Drupal\company\Model\DepartmentModel;
 
-class DesignationController extends ControllerBase
-{
-    public function Designationcontent()
-    {
+/**
+ * Control Designation module.
+ */
+class DesignationController extends ControllerBase {
 
-        $dptobj = \Drupal::service('designation.service');
-        $depobj = \Drupal::service('department.service');
-        $result = $dptobj->getAllDesignationDetails();
-        $encrypt = new Encrypt;
+  /**
+   * The excel service.
+   *
+   * @var \Drupal\library\Controller\Excel
+   */
+  protected $excel;
 
-        global $base_url;
-        $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
-        $rows = array();
-        $sl = 0;
+  /**
+   * The designation service.
+   *
+   * @var \Drupal\company\Model\DesignationModel
+   */
+  protected $designation;
 
-        $edit_access = false;
-        if (\Drupal::currentUser()->hasPermission('desig edit')) {
-            $edit_access = true;
-        }
+  /**
+   * DesignationController constructor.
+   *
+   * @param \Drupal\library\Controller\Excel $excel
+   *   The excel generator.
+   * @param \Drupal\company\Model\DesignationModel $designation
+   *   Helper service for Designation.
+   */
+  public function __construct($excel, $designation) {
+    $this->excel = $excel;
+    $this->designation = $designation;
+  }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   The Drupal service container.
+   *
+   * @return static
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('excel.service'),
+      $container->get('designation.service')
+    );
+  }
 
-        foreach ($result as $row => $content) {
-            $dept = $depobj->getDepartmentDetailsById($content->parent);
-            $sl++;
-            $codepk_encoded = $encrypt->encode($content->codepk);
-            $edit = '';
-            if ($edit_access) {
-                $url = $base_url.'/designation/edit/'.$codepk_encoded;
-                $name = new FormattableMarkup('<i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i>', []);
-                $edit = new FormattableMarkup('<a href=":link" style="text-align:center" >@name</a>', [':link' => $url, '@name' => $name]);
-            }
+  /**
+   * Generate Excel.
+   */
+  public function exportToExcel() {
 
+    $result = $this->designation->getAllDesignationDetails();
 
-            $rows[] =   array(
-                    'data' =>  array( $sl, $content->codevalues, $content->codename, $dept->codevalues, $edit)
-            );
-        }
-        $element['display']['Designationlist'] = array(
-        '#type'       => 'table',
-        '#header'     =>  array(t('Sl No.'), t('Designation Name'), t('Designation Code'),t('Department'), t('Action')),
-        '#rows'       =>  $rows,
-        '#empty'        =>    'No Designation has been created yet.'
-        );
-        return $element;
+    $headings = ['SLNO', 'Designation Name', 'Designation Code', 'Department'];
+    $dataRow = [];
+    $dataRow = [$headings];
+    foreach ($result as $item) {
+      static $slno = 1;
+
+      $dataRow[] = [
+        $slno,
+        $item->codevalues,
+        $item->codename,
+        $item->codevalues,
+      ];
+      $slno++;
     }
-    public function exportToExcel()
-    {
+    $filename = 'designation_details_' . date('ymds');
+    $result = $this->excel->generateExcel($filename, $dataRow);
 
-        $xcel =  \Drupal::service('excel.service');
-        $dptobj = \Drupal::service('designation.service');
-        $depobj = \Drupal::service('department.service');
-        $result = $dptobj->getAllDesignationDetails();
-
-        $headings = ['SLNO', 'Designation Name', 'Designation Code', 'Department'];
-        $dataRow = array();
-        $dataRow = array($headings);
-        foreach($result AS $item)
-        {
-            static $slno = 1;
-
-            $dataRow[] = array(
-              $slno,
-              $item->codevalues,
-              $item->codename,
-              $item->codevalues,
-
-            );
-
-            $slno++;
-        }
-        $filename = 'designation_details_'.date('ymds');
-        $result = $xcel->generateExcel($filename, $dataRow);
-
-    }
+  }
 
 }
