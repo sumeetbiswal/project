@@ -103,15 +103,15 @@ class DepartmentForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
 
-    $mode = $libobj->getActionMode();
+    $mode = $this->library->getActionMode();
 
     if ($mode == 'edit') {
-      $pk = $libobj->getIdFromUrl();
+      $pk = $this->library->getIdFromUrl();
       $pk = $this->encrypt->decode($pk);
       $data = $this->department->getDepartmentDetailsById($pk);
 
       $form_title = 'Edit Department - ' . $data->codevalues;
-      $libobj->setPageTitle($form_title);
+      $this->library->setPageTitle($form_title);
     }
 
     $form['#attached']['library'][] = 'singleportal/master-validation';
