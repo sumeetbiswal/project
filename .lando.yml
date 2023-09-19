@@ -14,3 +14,7 @@ tooling:
 services:
   myservice:
     type: phpmyadmin
+  database:
+    run_as_root:
+      # Assign permission databases.
+      - mysql -uroot -e "GRANT SUPER ON *.* to 'drupal9'@'%' IDENTIFIED by 'drupal9';"
