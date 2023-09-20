@@ -289,7 +289,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a href="http://xsmind.lndo.site/department/edit/{{ description }}" style="text-align:center;"><i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'
+            text: '<a href="/department/edit/{{ description }}" style="text-align:center;"><i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'
             make_link: false
             path: ''
             absolute: false
