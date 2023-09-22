@@ -25,20 +25,20 @@ class DesignationModel extends ControllerBase
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
-    }    
+    }
     public function getDesignationDetailsById($id = 1)
     {
         $query = $this->connection->select('srch_codevalues', 'n');
-        $query->fields('n');    
+        $query->fields('n');
         $query->condition('codetype', 'designation', "=");
         $query->condition('codepk', $id, "=");
         $query->condition('status', 1, "=");
         $result = $query->execute()->fetchAll();
-        
-        $res = @$result[0];    
+
+        $res = @$result[0];
         return $res;
     }
-    
+
     public function setDesignation($field)
     {
         $query = \Drupal::database();
@@ -46,7 +46,7 @@ class DesignationModel extends ControllerBase
                ->fields($field)
                ->execute();
     }
-    
+
     public function updateDesignation($field, $id)
     {
         $query = \Drupal::database();
@@ -59,15 +59,15 @@ class DesignationModel extends ControllerBase
     public function getAllDesignationDetails()
     {
         $query = $this->connection->select('srch_codevalues', 'n');
-        $query->fields('n');    
+        $query->fields('n');
         $query->condition('status', 1, "=");
         $query->orderBy('createdon', 'DESC');
         $query->condition('codetype', 'designation', "=");
         $result = $query->execute()->fetchAll();
-    
+
         return $result;
-    } 
-  
+    }
+
 
     public function getDesignationList($department)
     {
@@ -75,22 +75,22 @@ class DesignationModel extends ControllerBase
             $res1[''] = 'Select Designation';
             return $res1;
         }
-        
+
         //get codepk from dept code
         $query_dpt = $this->connection->select('srch_codevalues', 'n');
-        $query_dpt->fields('n');    
+        $query_dpt->fields('n');
         $query_dpt->condition('codetype', 'department', "=");
         $query_dpt->condition('codename', $department, "=");
         $dept_pk = $query_dpt->execute()->fetch();
-        
-        
+
+
         //get designation list
         $query = $this->connection->select('srch_codevalues', 'n');
-        $query->fields('n');    
+        $query->fields('n');
         $query->condition('codetype', 'designation', "=");
         $query->condition('parent', $dept_pk->codepk, "=");
         $result1 = $query->execute()->fetchAll();
-        
+
         $res1[''] = 'Select Designation';
         foreach($result1 AS $val1)
         {
@@ -99,21 +99,21 @@ class DesignationModel extends ControllerBase
         return $res1;
     }
 
-    /*
-    * get designation name from designation code
+    /**
+    * Get designation name from designation code.
+    *
     * @input designation code
     * @output designation name
     */
-    public function getDesignationNameFromCode($designationcode)
-    {
-        $query = $this->connection->select('srch_codevalues', 'n');
-        $query->fields('n');    
-        $query->condition('codetype', 'designation', "=");
-        $query->condition('codename', $designationcode, "=");
-        $query->condition('status', 1, "=");
-        $result = $query->execute()->fetch();
-        
-        return $result;
-    }
+  public function getDesignationNameFromCode($designationcode) {
+    $query = $this->connection->select('srch_codevalues', 'n');
+    $query->fields('n');
+    $query->condition('codetype', 'designation', "=");
+    $query->condition('codename', $designationcode, "=");
+    $query->condition('status', 1, "=");
+    $result = $query->execute()->fetch();
+
+    return $result;
+  }
 
 }

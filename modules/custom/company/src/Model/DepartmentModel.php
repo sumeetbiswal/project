@@ -122,4 +122,15 @@ class DepartmentModel extends ControllerBase
         return $result;
     }
 
+  public function getDepartmentNameById($codepk){
+    $query = $this->connection->select('srch_codevalues', 'codepk');
+    $query->fields('codepk');
+    $query->condition('status', 1, "=");
+    $query->condition('codepk', $codepk, "=");
+    $result = $query->execute()->fetch();
+
+    $res = $result->codevalues;
+    return $res;
+  }
+
 }
