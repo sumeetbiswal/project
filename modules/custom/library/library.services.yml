@@ -1,7 +1,7 @@
 services:
   library.service:
     class: Drupal\library\Lib\LibController
-    arguments: ['@database']
+    arguments: ['@database', '@request_stack', '@current_user', '@router.route_provider', '@current_route_match', '@entity_type.manager']
   excel.service:
         class: Drupal\library\Controller\Excel
         arguments: ['@database']

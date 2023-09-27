@@ -3,8 +3,8 @@
 namespace Drupal\company\Form;
 
 use Drupal\company\Model\ConfigurationModel;
-use Drupal\company\Model\WorkorderModel;
 use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\company\Model\WorkorderModel;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -13,9 +13,9 @@ use Drupal\library\Lib\LibController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * WorkorderForm creates the Form for Workorder.
+ * TeamorderForm creates the Form for Team.
  */
-class WorkorderForm extends FormBase {
+class TeamorderForm extends FormBase {
   /**
    * Include the messenger service.
    *
@@ -95,28 +95,29 @@ class WorkorderForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'workorder_form';
+    return 'teamorder_form';
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+
     $mode = $this->library->getActionMode();
 
     $form['#attached']['library'][] = 'singleportal/master-validation';
     $form['#attached']['library'][] = 'company/workorder-lib';
     $form['#attributes']['class'] = 'form-horizontal';
     $form['#attributes']['autocomplete'] = 'off';
-    $form['department']['#prefix'] = '<div class="row"> <div class="panel panel-inverse"><h3 class="box-title">Work Order</h3>
-                                      <hr/><div class="panel-body">';
-    $form['workorder']['workname'] = [
+
+    $form['workorder']['teamname'] = [
       '#type'          => 'textfield',
-      '#title'         => $this->t('Work order Name:'),
+      '#title'         => $this->t('Team order Name:'),
       '#attributes'    => [
         'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
       ],
-      '#prefix'        => '<div class="row">',
+      '#prefix'        => '<div class="row"><div class="col-md-12">',
+      '#suffix'        => '</div></div>',
       '#default_value' => isset($data) ? $data->codevalues : '',
     ];
 
@@ -124,7 +125,7 @@ class WorkorderForm extends FormBase {
     $work_config = [];
     $work_config['disabled'] = '';
     $work_config['workordercode'] = '';
-    $work_config['helpmsg'] = 'Mention Workorder Code of the person';
+    $work_config['helpmsg'] = 'Mention Teamorder Number';
 
     if ($workcode_config->codevalues == 'off') {
       $work_config['disabled'] = 'disabled';
@@ -132,101 +133,41 @@ class WorkorderForm extends FormBase {
       $work_config['helpmsg'] = 'Workorder Code will be auto generate';
     }
 
-    $form['workorder']['workcode'] = [
+    $form['workorder']['teamcode'] = [
       '#type'          => 'textfield',
-      '#title'         => $this->t('Work order No:'),
+      '#title'         => $this->t('Team order No:'),
       '#attributes'    => [
         'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
       ],
-      '#suffix'        => '</div>',
+      '#prefix'        => '<div class="row"><div class="col-md-12">',
+      '#suffix'        => '</div></div>',
       '#default_value' => isset($data) ? $data->codename : $work_config['workordercode'],
       '#disabled'      => $work_config['disabled'],
       '#default_value' => isset($data) ? $data->codevalues : '',
       '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="' . $work_config['helpmsg'] . '" data-toggle="tooltip"></i>',
     ];
 
-    // Repeater Field for Team Form.
-    $team_field_count = $form_state->get('num_team');
-
-    if (empty($team_field_count)) {
-      $team_field_count = $form_state->set('num_team', 1);
+    $worklist = $this->workorder->getWorkorderList();
+    $work_option[''] = 'Select WorkOrder';
+    foreach ($worklist as $item) {
+      $work_option[$item->codepk] = $item->codevalues;
     }
 
-    $form['addmore']['actions'] = [
-      '#type' => 'actions',
-    ];
-    $form['addmore']['actions']['add_team'] = [
-      '#type' => 'submit',
-      '#name' => 'Team',
-      '#prefix' => $html,
-      '#value' => ' ',
-      '#limit_validation_errors' => [],
-      '#submit' => ['::addOneTeam'],
-      '#attributes' => ['class' => ['addmore']],
-      '#ajax' => [
-        'callback' => '::addmoreCallbackTeam',
-        'wrapper' => "team-id",
-      ],
-    ];
-
-    $form['team']['teamorder'] = [
-      // '#prefix' => $html,
-      '#prefix' => '<div id="team-id"><div class="panel-body">',
-      '#suffix' => '</div></div>',
-      '#attributes' => ['class' => ['']],
-      '#type' => 'table',
-      '#title' => 'Sample Table',
-      '#header' => [
-        ['data' => 'SLNO', 'class' => 'text-center', 'width' => '1%'],
-        ['data' => 'Team Name', 'class' => 'text-center', 'width' => '13%'],
-        ['data' => 'Team Order No', 'class' => 'text-center', 'width' => '13%'],
-        ['data' => 'Action', 'class' => 'text-left', 'width' => '13%'],
-      ],
-    ];
-
-    for ($i = 0; $i < $form_state->get('num_team'); $i++) {
-      $cntq = $i + 1;
-
-      $form['team']['teamorder'][$i]['slno'] = [
-        '#type'            => 'item',
-        '#markup' => $cntq,
-        '#title_display' => 'invisible',
-      ];
-
-      $form['team']['teamorder'][$i]['name'] = [
-        '#type'             => 'textfield',
-        '#title'             => $this->t('Team Name'),
-        '#default_value'     => '',
-        '#title_display' => 'invisible',
-        '#attributes'    => ['class' => ['form-control']],
-        '#prefix'    => '',
-      ];
-      $form['team']['teamorder'][$i]['order'] = [
-        '#type'             => 'textfield',
-        '#title'             => $this->t('Team Order No'),
-        '#default_value'     => '',
-        '#title_display' => 'invisible',
-        '#attributes'    => ['class' => ['form-control']],
-      ];
-
-      if ($i == $form_state->get('num_team') - 1) {
-        $form['team']['teamorder'][$i]['actions']['remove_name_team'] = [
-          '#type' => 'submit',
-          '#name' => 'qualification_remove' . $i,
-          '#value' => '.',
-          '#attributes' => ['class' => ['removeitem']],
-          '#limit_validation_errors' => [],
-          '#submit' => ['::removeCallbackTeam'],
-          '#ajax' => [
-            'callback' => '::addmoreCallbackTeam',
-            'wrapper' => "team-id",
-            'progress' => [
-              'type' => 'throbber',
-            ],
-          ],
-        ];
-      }
+    if ($mode == 'edit') {
+      $codepk = $data->parent;
+      $res = $this->department->getDepartmentDetailsById($codepk);
+      $workList = $res->codename;
     }
+
+    $form['workorder']['workorder'] = [
+      '#type'          => 'select',
+      '#title'         => $this->t('Work Order :'),
+      '#options'       => $work_option,
+      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#prefix'        => '<div class="row"><div class="col-md-12">',
+      '#suffix'        => '</div></div>',
+      '#default_value' => isset($data) ? $workList : '',
+    ];
 
     // End of Repeater Field.
     $form['save']['submit'] = [
@@ -243,7 +184,7 @@ class WorkorderForm extends FormBase {
       '#title' => $this->t('Cancel'),
       '#attributes'               => ['class' => ['btn btn-default']],
       '#suffix'                   => '</div></div>',
-      '#url' => Url::fromRoute('view.workorder.page'),
+      '#url' => Url::fromRoute('view.workorder.teamorder'),
     ];
     $form_state->setCached(FALSE);
     return $form;
@@ -266,29 +207,19 @@ class WorkorderForm extends FormBase {
     $code_config = $this->configuration->getWorkorderCodeConfig();
 
     // Check codevalues OFF then auto generate the code values.
-    $code = ($code_config->codevalues == 'on') ? $field['workcode'] : $this->library->generateCode('WR', $field['workname']);
+    $code = ($code_config->codevalues == 'on') ? $field['teamcode'] : $this->library->generateCode('WR', $field['workname']);
 
     $data = [
-      'workorder' => [
-        'codename'    => $code,
-        'codevalues' => $field['workname'],
-      ],
-      'teamorder'    => [],
+      'codename'     => $code,
+      'codevalues' => $field['teamname'],
+      'parent' => $field['workorder'],
     ];
 
-    // Looping team repeater array and collecting data.
-    foreach ($field['teamorder'] as $team) {
-      $data['teamorder'][] = [
-        'codename'     => $team['order'],
-        'codevalues' => $team['name'],
-      ];
-    }
+    $this->workorder->setTeamOrder($data);
 
-    $this->workorder->setWorkOrder($data);
+    $this->messenger->addMessage("Teamorder has been created.");
 
-    $this->messenger->addMessage("Word order has been created.");
-
-    $form_state->setRedirect('view.workorder.page');
+    $form_state->setRedirect('view.workorder.teamorder');
   }
 
 }
