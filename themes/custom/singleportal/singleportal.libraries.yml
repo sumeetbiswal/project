@@ -20,7 +20,7 @@ js-footer:
     assets/js/print/printThis.js: {}
     assets/js/wordexport/FileSaver.js: {}
     assets/js/wordexport/jquery.wordexport.js: {}
-    assets/js/singleportal.js: {}
+    assets/js/custom/singleportal.js: {}
     assets/bootstrap/dist/js/bootstrap.min.js: {}
     assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js: {}
     assets/js/custom.min.js: {}
@@ -82,4 +82,4 @@ dashboard:
 
 autocomplete:
   js:
-    assets/js/custom-autocomplete.js: {}
+    assets/js/custom/custom-autocomplete.js: {}
