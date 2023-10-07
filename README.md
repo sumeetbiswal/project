@@ -1,179 +1,75 @@
-Xsmind
-==============
+<img alt="Drupal Logo" src="https://www.drupal.org/files/Wordmark_blue_RGB.png" height="60px">
 
-## Environments
-xsmind.com ( `[test]`(https://test.xsmind.com//), [prd](https://www.xsmind.com/))  
+Drupal is an open source content management platform supporting a variety of
+websites ranging from personal weblogs to large community-driven websites. For
+more information, visit the Drupal website, [Drupal.org][Drupal.org], and join
+the [Drupal community][Drupal community].
 
-## Database Dumps
+## Contributing
 
-Databases are automatically dumped at midnight for our development environment for each site. They are dumped to the following locations:  
-  
-[xsmind.sql](https://test.xsmind.com/database/xsmind.sql)  
+Drupal is developed on [Drupal.org][Drupal.org], the home of the international
+Drupal community since 2001!
 
-## Installing with Lando
+[Drupal.org][Drupal.org] hosts Drupal's [GitLab repository][GitLab repository],
+its [issue queue][issue queue], and its [documentation][documentation]. Before
+you start working on code, be sure to search the [issue queue][issue queue] and
+create an issue if your aren't able to find an existing issue.
 
-### Before set-up xsmind
-1. Make sure you already have lando installed with the latest version (Need to call to ITPS to perform the installation):
-    - MacOS https://docs.devwithlando.io/installation/macos.html
-    - Linux https://docs.devwithlando.io/installation/linux.html
-    - Windows https://docs.devwithlando.io/installation/windows.html
-    - From source https://docs.devwithlando.io/installation/source.html
-    - Update https://docs.devwithlando.io/installation/updating.html
+Every issue on Drupal.org automatically creates a new community-accessible fork
+that you can contribute to. Learn more about the code contribution process on
+the [Issue forks & merge requests page][issue forks].
 
-Only windows users, possible considerations for use wsl with lando check this:
-https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly
-https://github.com/lando/lando/issues/564
+## Usage
 
-### Building xsmind-lando for local
-1. Clone the repo. `git clone https://github.com/sumeetbiswal/project.git xsmind-lando` (Due to we are using https instead ssh to avoid issues with SPE Network/VPN, when you run `git push` you will need to enter your github.com credentials).
-2. Enter xsmind-lando `cd xsmind-lando`.
-3. Get a database backup from either this options
-    - Acquia Cloud either stage or prod environments.
-    - Section above Database Dumps.
-4. The DB always should be one of the latest one. Import the latest production database first and test database at a later stage. 
-5. Create the database folder: `mkdir database`
-6. Move the .sql inside the database folder. (Should be appear only one file with **xsmind** word in the file name e.g. dev-xsmind.sql)
-7. Make a copy of lando/lando.env file with the name .env (this file should not be under git.) `cp lando/lando.env .env`
-8. Make a copy of example.settings.local.php and rename to settings.local.php `cp docroot/sites/default/example.settings.local.php docroot/sites/default/settings.local.php`
-9. Run `make build` command.
-10. For the first time the `make build` should run on `outsite of VPN` since it downloads all the containers from the outside network.
-11. Wait to finish the build.
-12. Run `make ci` to load the local config split (this turns on stage_file_proxy, changes shield settings and other local dev items.)
-13. Go to google-chrome to http://xsmind.lndo.site/user
+For a brief introduction, see [USAGE.txt](/core/USAGE.txt). You can also find
+guides, API references, and more by visiting Drupal's [documentation
+page][documentation].
 
-** We need to verify the local config settings b/c shield should be turned off b/c it seems that shield is still on but it is not supposed to be on after the config split settings are synced to the database (remove me once verified).
+You can quickly extend Drupal's core feature set by installing any of its
+[thousands of free and open source modules][modules]. With Drupal and its
+module ecosystem, you can often build most or all of what your project needs
+before writing a single line of code.
 
-**Notes** 
-Run `make` or `make help` to see all available commands.
+## Changelog
 
-## Installing with SPEDD
+Drupal keeps detailed [change records][changelog]. You can search Drupal's
+changes for a record of every notable breaking change and new feature since
+2011.
 
-### Requirements
-1. Latest version of docker and docker-compose
-2. You should be able to run make commands
-    - Linux and Mac Users no more action needed.
-    - For windows users use Docker Desktop Edge 2.1.6.1
-    - Windows 10 build >1709
-    - Install WSL (Windows Subsystem Linux) https://docs.microsoft.com/en-us/windows/wsl/install-win10
-    - Use WSL2 https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
-    - Configure Docker with WSL https://docs.docker.com/docker-for-windows/wsl-tech-preview/
+## Security
 
-### Building xsmind-spedd for local
-1. Clone the repo. `git clone https://github.com/sumeetbiswal/project.git xsmind-spedd` (Due to we are using https instead ssh to avoid issues with SPE Network/VPN, when you run `git push` you will need to enter your github.spehosting.com credentials).
-2. `cd xsmind-spedd`.
-3. Get a database backup from either this options
-    - Acquia Cloud either stage or prod environments.
-    - Section above Database Dumps.
-4. Create the database folder: `mkdir database/backup`
-5. Move the .sql inside the database folder. (the file should placed and named as database/backup/backup.sql)
-6. Make a copy of spedd/spedd.env file with the name .env (this file should not be under git.) `cp spedd/spedd.env .env`
-7. Make a copy of example-spedd.settings.local.php and rename to settings.local.php `cp docroot/sites/default/example-spedd.settings.local.php docroot/sites/default/settings.local.php`
-8. Edit the Makefile, comment the lando lines and uncomment the spedd.
-9. Run `make init_reverse_proxy` command.
-10. Run `make build` command.
-11. Wait to finish the build.
-12. Go to google-chrome to http://xsmind.spe.localhost/user
+For a list of security announcements, see the [Security advisories
+page][Security advisories] (available as [an RSS feed][security RSS]). This
+page also describes how to subscribe to these announcements via email.
 
-**Notes**
-Only works under google chrome now.
-SAMLIDP for local does not work under SPEDD.
-Run `make` or `make help` to see all available commands.
+For information about the Drupal security process, or to find out how to report
+a potential security issue to the Drupal security team, see the [Security team
+page][security team].
 
-### SPEDD Workflow
-1. If you already build, you can run `make stop` to stop containers.
-2. `make start` to continue working.
-3. Re-import the DB and apply updates and configs `make rebuild`
-4. Destroy containers for app `make destroy`
-5. Clean all `make destroy-all`
-6. Run make for more info.
-7. you can add custom command on xsmind-commands.mk file.
+## Need a helping hand?
 
-## Use HTTP on local not HTTPS
-For local and debug please use only http, for that please comment the lines 80, 81 nad 82 in docroot/.htaccess
-And please DO NOT commit that change.
+Visit the [Support page][support] or browse [over a thousand Drupal
+providers][service providers] offering design, strategy, development, and
+hosting services.
 
-## Rebuild drupal instance
-For further rebuild process, you only need to run one command, because all is already prepared.
-To rebuild from latest state of Prod database + current dev changes, run only:
+## Legal matters
 
-`make build` 
+Know your rights when using Drupal by reading Drupal core's
+[license](/core/LICENSE.txt).
 
-## Update db
-Only needs to download the version of db from Acquia Cloud either stage or prod environments, and replace it in database folder.
-Then run `make rebuild`
+Learn about the [Drupal trademark and logo policy here][trademark].
 
-## Simple SAML for local
-
-By default when you run `make build` or `make up` or `make rebuild` or `lando start` the container for simplesaml will up, to check the IDP run `make getsaml` command or visit http://samlidp.xsmind.lndo.site:8080/simplesaml
-Only runs for lando.
-
-## Lando + Xdebug + PHPStorm
-
-1. By default for xsmind xdebug is enabled, you can check in .lando.yml file appears `xdebug: true` under services and appserver.
-2. Go to PHPStorm > Preferences > Languages and Frameworks > PHP
-3. Select in PHP Language level: 7.2
-4. Leave in black Interpreter.
-5. In `Include path` section, remove all items added, and add (+) only 
-    - For Mac users: `/Users/<yourUserName>/.lando/compose/xsmind`
-    - For Windows: `path/to/.lando/compose/xsmind`
-6. Apply and Save
-7. Go to Menu > Run > Start listening for PHP Debug Connections (or click in telephone icon)
-8. Select a breakpoint and happy debugging... 
-9. Xdebug should be run under http not https to avoid any weird issues
-
-## Check the quality of the code.
-
-There are two commands to check the code using phpcs.
-Please check the code and apply the code standards before open the PR.
-
-Will run only for modules/custom:
-
-```
-# Run for all custom modules (modules/custom/*)
-make phpcs
-
-# Run for specific module (modules/custom/company)
-make phpcs company
-
-# Run for all custom themes (themes/custom/*)
-make phpcs-theme
-
-# Run for specific custom theme (themes/custom/singleportal)
-make phpcs-theme singleportal
-```
-
-## Migration to https://github.com/sumeetbiswal/project.git
-
-### Continue working on the same instance with the same remote. (Recommended)
- 1. `cd path/xsmind/project`
- 2. `git remote set-url origin https://github.com/sumeetbiswal/project.git`
- 3. Continue with the normal workflow.
-
-### Continue working on the same instance with new remote.
- 1. `cd path/xsmind/project`
- 2. `git remote add scm-isg https://github.com/sumeetbiswal/project.git`
- 3. Use `git push/pull scm-isg branch-name`
-
-## GitFlow and Conventions
-
-We are using GitFlow to contribute the project, please check the documentation
-https://datasift.github.io/gitflow/IntroducingGitFlow.html
-
-As per SPE Policy you should create branches with following naming conventions
-
- 1.  Feature branch - For any new features or enhancements, branch name should start with feature/ or feature_
- 2.  Release branch - For any new releases , branch name should start with release/ or release_
- 3.  QA branch - For any QA testing , branch name should start with qa/ or qa_
- 4.  Hotfix branch  - For production bug fixes, branch name should start with hotfix/ or hotfix_
- 5.  UAT branch - For any UAT testing , branch name should start with uat/ or uat_
- 6.  Bugfix branch - For QA/UAT/Release bug fixes, branch n ame should start withbugfix/ or bugfix_
-
-## CHANGELOG
-
-To make it easier for users and contributors to see precisely what notable changes have been made between each release (or version) of xsmind.com.
-@See more details on https://keepachangelog.com/en/1.0.0/
-
-Every release must be update the changelog.
-
-Changelog files:
-* CHANGELOG-1.x.md
+[Drupal.org]: https://www.drupal.org
+[Drupal community]: https://www.drupal.org/community
+[GitLab repository]: https://git.drupalcode.org/project/drupal
+[issue queue]: https://www.drupal.org/project/issues/drupal
+[issue forks]: https://www.drupal.org/drupalorg/docs/gitlab-integration/issue-forks-merge-requests
+[documentation]: https://www.drupal.org/documentation
+[changelog]: https://www.drupal.org/list-changes/drupal
+[modules]: https://www.drupal.org/project/project_module
+[security advisories]: https://www.drupal.org/security
+[security RSS]: https://www.drupal.org/security/rss.xml
+[security team]: https://www.drupal.org/drupal-security-team
+[service providers]: https://www.drupal.org/drupal-services
+[support]: https://www.drupal.org/support
+[trademark]: https://www.drupal.com/trademark
