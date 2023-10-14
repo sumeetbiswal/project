@@ -110,6 +110,15 @@ class WorkorderForm extends FormBase {
     $form['#attributes']['autocomplete'] = 'off';
     $form['department']['#prefix'] = '<div class="row"> <div class="panel panel-inverse"><h3 class="box-title">Work Order</h3>
                                       <hr/><div class="panel-body">';
+
+    if ($mode == 'edit') {
+      $pk = $this->library->getIdFromUrl();
+      $pk = $this->encrypt->decode($pk);
+
+      $data = $this->workorder->getWorkorderById($pk);
+
+    }
+
     $form['workorder']['workname'] = [
       '#type'          => 'textfield',
       '#title'         => $this->t('Work order Name:'),
@@ -117,6 +126,7 @@ class WorkorderForm extends FormBase {
         'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix'        => '<div class="row">',
+      '#suffix'        => '</div>',
       '#default_value' => isset($data) ? $data->codevalues : '',
     ];
 
@@ -124,7 +134,7 @@ class WorkorderForm extends FormBase {
     $work_config = [];
     $work_config['disabled'] = '';
     $work_config['workordercode'] = '';
-    $work_config['helpmsg'] = 'Mention Workorder Code of the person';
+    $work_config['helpmsg'] = 'Mention Workorder number or Project number';
 
     if ($workcode_config->codevalues == 'off') {
       $work_config['disabled'] = 'disabled';
@@ -138,95 +148,12 @@ class WorkorderForm extends FormBase {
       '#attributes'    => [
         'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
       ],
+      '#prefix'        => '<div class="row">',
       '#suffix'        => '</div>',
       '#default_value' => isset($data) ? $data->codename : $work_config['workordercode'],
       '#disabled'      => $work_config['disabled'],
-      '#default_value' => isset($data) ? $data->codevalues : '',
       '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="' . $work_config['helpmsg'] . '" data-toggle="tooltip"></i>',
     ];
-
-    // Repeater Field for Team Form.
-    $team_field_count = $form_state->get('num_team');
-
-    if (empty($team_field_count)) {
-      $team_field_count = $form_state->set('num_team', 1);
-    }
-
-    $form['addmore']['actions'] = [
-      '#type' => 'actions',
-    ];
-    $form['addmore']['actions']['add_team'] = [
-      '#type' => 'submit',
-      '#name' => 'Team',
-      '#prefix' => $html,
-      '#value' => ' ',
-      '#limit_validation_errors' => [],
-      '#submit' => ['::addOneTeam'],
-      '#attributes' => ['class' => ['addmore']],
-      '#ajax' => [
-        'callback' => '::addmoreCallbackTeam',
-        'wrapper' => "team-id",
-      ],
-    ];
-
-    $form['team']['teamorder'] = [
-      // '#prefix' => $html,
-      '#prefix' => '<div id="team-id"><div class="panel-body">',
-      '#suffix' => '</div></div>',
-      '#attributes' => ['class' => ['']],
-      '#type' => 'table',
-      '#title' => 'Sample Table',
-      '#header' => [
-        ['data' => 'SLNO', 'class' => 'text-center', 'width' => '1%'],
-        ['data' => 'Team Name', 'class' => 'text-center', 'width' => '13%'],
-        ['data' => 'Team Order No', 'class' => 'text-center', 'width' => '13%'],
-        ['data' => 'Action', 'class' => 'text-left', 'width' => '13%'],
-      ],
-    ];
-
-    for ($i = 0; $i < $form_state->get('num_team'); $i++) {
-      $cntq = $i + 1;
-
-      $form['team']['teamorder'][$i]['slno'] = [
-        '#type'            => 'item',
-        '#markup' => $cntq,
-        '#title_display' => 'invisible',
-      ];
-
-      $form['team']['teamorder'][$i]['name'] = [
-        '#type'             => 'textfield',
-        '#title'             => $this->t('Team Name'),
-        '#default_value'     => '',
-        '#title_display' => 'invisible',
-        '#attributes'    => ['class' => ['form-control']],
-        '#prefix'    => '',
-      ];
-      $form['team']['teamorder'][$i]['order'] = [
-        '#type'             => 'textfield',
-        '#title'             => $this->t('Team Order No'),
-        '#default_value'     => '',
-        '#title_display' => 'invisible',
-        '#attributes'    => ['class' => ['form-control']],
-      ];
-
-      if ($i == $form_state->get('num_team') - 1) {
-        $form['team']['teamorder'][$i]['actions']['remove_name_team'] = [
-          '#type' => 'submit',
-          '#name' => 'qualification_remove' . $i,
-          '#value' => '.',
-          '#attributes' => ['class' => ['removeitem']],
-          '#limit_validation_errors' => [],
-          '#submit' => ['::removeCallbackTeam'],
-          '#ajax' => [
-            'callback' => '::addmoreCallbackTeam',
-            'wrapper' => "team-id",
-            'progress' => [
-              'type' => 'throbber',
-            ],
-          ],
-        ];
-      }
-    }
 
     // End of Repeater Field.
     $form['save']['submit'] = [
@@ -269,24 +196,22 @@ class WorkorderForm extends FormBase {
     $code = ($code_config->codevalues == 'on') ? $field['workcode'] : $this->library->generateCode('WR', $field['workname']);
 
     $data = [
-      'workorder' => [
-        'codename'    => $code,
-        'codevalues' => $field['workname'],
-      ],
-      'teamorder'    => [],
+      'codename'    => $code,
+      'codevalues' => $field['workname'],
     ];
 
-    // Looping team repeater array and collecting data.
-    foreach ($field['teamorder'] as $team) {
-      $data['teamorder'][] = [
-        'codename'     => $team['order'],
-        'codevalues' => $team['name'],
-      ];
+    $mode = $this->library->getActionMode();
+
+    if ($mode == 'add') {
+      $this->workorder->setWorkOrder($data);
+      $this->messenger->addMessage($data['codevalues'] . " is created.");
     }
-
-    $this->workorder->setWorkOrder($data);
-
-    $this->messenger->addMessage("Word order has been created.");
+    if ($mode == 'edit') {
+      $pk = $this->library->getIdFromUrl();
+      $pk = $this->encrypt->decode($pk);
+      $this->workorder->updateWorkorder($data, $pk);
+      $this->messenger->addMessage($data['codevalues'] . " is succesfully Updated.");
+    }
 
     $form_state->setRedirect('view.workorder.page');
   }

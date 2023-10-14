@@ -45,6 +45,19 @@ class WorkorderModel extends ControllerBase {
   }
 
   /**
+   * Helper function to get Work Order details by ID.
+   */
+  public function getWorkorderById($pk) {
+    $query = $this->connection->select(DataModel::CODEVAL, 'n');
+    $query->fields('n');
+    $query->condition('n.codetype', 'workorder', "=");
+    $query->condition('n.codepk', $pk, "=");
+    $result = $query->execute()->fetch();
+
+    return $result;
+  }
+
+  /**
    * Helper function to create workorder.
    *
    * @param string $data
@@ -54,19 +67,20 @@ class WorkorderModel extends ControllerBase {
   public function setWorkOrder($data) {
     $data['workorder']['codetype'] = 'workorder';
 
-    $last_workorder_id = $this->connection->insert(DataModel::CODEVAL)
-      ->fields($data['workorder'])
+    $this->connection->insert(DataModel::CODEVAL)
+      ->fields($data)
       ->execute();
+  }
 
-    foreach ($data['teamorder'] as $team) {
-      // Inserting column codetype & parent.
-      $team['codetype'] = 'teamorder';
-      $team['parent']   = $last_workorder_id;
+  /**
+   * Helper function to update updateWorkorder.
+   */
+  public function updateWorkorder($data, $pk) {
 
-      $this->connection->insert(DataModel::CODEVAL)
-        ->fields($team)
-        ->execute();
-    }
+    $this->connection->update(DataModel::CODEVAL)
+      ->fields($data)
+      ->condition('codepk', $pk)
+      ->execute();
   }
 
   /**
