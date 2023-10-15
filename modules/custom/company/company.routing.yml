@@ -161,3 +161,11 @@ teamorder.add:
     _form: '\Drupal\company\Form\TeamorderForm'
   requirements:
     _permission: 'access content'
+
+teamorder.edit:
+  path: '/teamorder/edit/{arg}'
+  defaults:
+    _title: ' Add Teamorder'
+    _form: '\Drupal\company\Form\TeamorderForm'
+  requirements:
+    _permission: 'access content'

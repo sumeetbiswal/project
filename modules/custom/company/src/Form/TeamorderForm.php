@@ -110,6 +110,14 @@ class TeamorderForm extends FormBase {
     $form['#attributes']['class'] = 'form-horizontal';
     $form['#attributes']['autocomplete'] = 'off';
 
+    if ($mode == 'edit') {
+      $pk = $this->library->getIdFromUrl();
+      $pk = $this->encrypt->decode($pk);
+
+      $data = $this->workorder->getTeamorderById($pk);
+
+    }
+
     $form['workorder']['teamname'] = [
       '#type'          => 'textfield',
       '#title'         => $this->t('Team order Name:'),
@@ -143,7 +151,7 @@ class TeamorderForm extends FormBase {
       '#suffix'        => '</div></div>',
       '#default_value' => isset($data) ? $data->codename : $work_config['workordercode'],
       '#disabled'      => $work_config['disabled'],
-      '#default_value' => isset($data) ? $data->codevalues : '',
+      '#default_value' => isset($data) ? $data->codename : '',
       '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="' . $work_config['helpmsg'] . '" data-toggle="tooltip"></i>',
     ];
 
@@ -155,8 +163,8 @@ class TeamorderForm extends FormBase {
 
     if ($mode == 'edit') {
       $codepk = $data->parent;
-      $res = $this->department->getDepartmentDetailsById($codepk);
-      $workList = $res->codename;
+      $res = $this->workorder->getWorkorderById($codepk);
+      $workList = $res->codepk;
     }
 
     $form['workorder']['workorder'] = [
@@ -215,9 +223,18 @@ class TeamorderForm extends FormBase {
       'parent' => $field['workorder'],
     ];
 
-    $this->workorder->setTeamOrder($data);
+    $mode = $this->library->getActionMode();
 
-    $this->messenger->addMessage("Teamorder has been created.");
+    if ($mode == 'add') {
+      $this->workorder->setTeamOrder($data);
+      $this->messenger->addMessage($data['codevalues'] . " is created.");
+    }
+    if ($mode == 'edit') {
+      $pk = $this->library->getIdFromUrl();
+      $pk = $this->encrypt->decode($pk);
+      $this->workorder->updateTeamorder($data, $pk);
+      $this->messenger->addMessage($data['codevalues'] . " is succesfully Updated.");
+    }
 
     $form_state->setRedirect('view.workorder.teamorder');
   }

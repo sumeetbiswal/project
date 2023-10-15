@@ -65,7 +65,7 @@ class WorkorderModel extends ControllerBase {
    *   which needs to be insert in srch_codevalues table.
    */
   public function setWorkOrder($data) {
-    $data['workorder']['codetype'] = 'workorder';
+    $data['codetype'] = 'workorder';
 
     $this->connection->insert(DataModel::CODEVAL)
       ->fields($data)
@@ -87,16 +87,25 @@ class WorkorderModel extends ControllerBase {
    * Helper function to create Team order.
    */
   public function setTeamOrder($data) {
-    $data['workorder']['codetype'] = 'workorder';
-
     // Inserting column codetype & parent.
-    $team['codetype']   = 'teamorder';
-    $team['codename']   = $data['codename'];
-    $team['codevalues'] = $data['codevalues'];
-    $team['parent']     = $data['parent'];
+    $data['codetype']   = 'teamorder';
 
     $this->connection->insert(DataModel::CODEVAL)
-      ->fields($team)
+      ->fields($data)
+      ->execute();
+
+  }
+
+  /**
+   * Helper function to update Team order.
+   */
+  public function updateTeamorder($data, $pk) {
+    // Inserting column codetype & parent.
+    $data['codetype']   = 'teamorder';
+
+    $this->connection->update(DataModel::CODEVAL)
+      ->fields($data)
+      ->condition('codepk', $pk)
       ->execute();
 
   }
@@ -132,6 +141,19 @@ class WorkorderModel extends ControllerBase {
     }
 
     return $res;
+  }
+
+  /**
+   * Helper function to get Team Order details by ID.
+   */
+  public function getTeamorderById($pk) {
+    $query = $this->connection->select(DataModel::CODEVAL, 'n');
+    $query->fields('n');
+    $query->condition('n.codetype', 'teamorder', "=");
+    $query->condition('n.codepk', $pk, "=");
+    $result = $query->execute()->fetch();
+
+    return $result;
   }
 
 }
