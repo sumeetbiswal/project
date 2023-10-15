@@ -12,17 +12,19 @@ use Drupal\Core\Block\BlockBase;
  *   admin_label = @Translation("Change Password block"),
  * )
  */
-class ChangePassword extends BlockBase {
-  /**
-   * {@inheritdoc}
-   */
-  public function build() {
-	global $base_url;
-    return [
-			'#theme' => 'change_password_card',
-			'#lastchanged'	=>	'30'
-    ];
-  }
+class ChangePassword extends BlockBase
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function build()
+    {
+        global $base_url;
+        return [
+        '#theme' => 'change_password_card',
+        '#lastchanged'    =>    '30'
+        ];
+    }
 
  
 }

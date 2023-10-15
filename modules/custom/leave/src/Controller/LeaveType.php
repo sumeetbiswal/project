@@ -9,8 +9,10 @@ use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 
-class LeaveType extends ControllerBase {
- public function leaveTypeList() {
+class LeaveType extends ControllerBase
+{
+    public function leaveTypeList()
+    {
 
    global $base_url;
 
@@ -53,5 +55,5 @@ class LeaveType extends ControllerBase {
     );
     return $element;
 
- }
+    }
 }

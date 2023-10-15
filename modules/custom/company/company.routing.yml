@@ -41,15 +41,6 @@ branch.edit:
  requirements:
    _permission: 'branch edit'
 
-branch.view:
- path: '/branch/list'
- defaults:
-   _title: 'Branch List'
-   _controller: '\Drupal\company\Controller\BranchController::display'
- requirements:
-   _permission: 'branch view'
- options:
-    no_cache: 'TRUE'
 
 branch.excel:
  path: '/branch/export/excel'
@@ -91,16 +82,6 @@ department.edit:
  requirements:
    _permission: 'dept edit'
 
-department.view:
- path: '/department/view'
- defaults:
-   _title: 'Department List'
-   _controller: '\Drupal\company\Controller\DepartmentController::display'
- requirements:
-   _permission: 'dept view'
- options:
-    no_cache: 'TRUE'
-
 department.modal:
  path: '/department/modal'
  defaults:
@@ -133,16 +114,6 @@ company.designationexcel:
   requirements:
     _permission: 'desig export'
 
-company.Designationview:
-  path: '/designation/view'
-  defaults:
-    _title: 'Designation List'
-    _controller: '\Drupal\company\Controller\DesignationController::Designationcontent'
-  requirements:
-    _permission: 'desig view'
-  options:
-    no_cache: 'TRUE'
-
 company.configuration:
  path: '/organisation/config'
  defaults:
@@ -167,40 +138,34 @@ company.configuration_shiftedit:
  requirements:
    _permission: 'access content'
 
-designation.view:
- path: '/designation/view'
+workorder.add:
+ path: '/workorder/add'
  defaults:
-   _title: 'Designation List'
-   _controller: '\Drupal\company\Controller\DesignationController::Designationcontent'
- requirements:
-   _permission: 'access content'
- options:
-    no_cache: 'TRUE'
-
-
-company.projectlist:
- path: '/wordorder/list'
- defaults:
-   _title: 'Project List'
-   _controller: '\Drupal\company\Controller\WorkorderController::listing'
- requirements:
-   _permission: 'access content'
- options:
-    no_cache: 'TRUE'
-
-company.projectadd:
- path: '/wordorder/add'
- defaults:
-   _title: 'Work Order'
+   _title: ' Add Workorder'
    _form: '\Drupal\company\Form\WorkorderForm'
  requirements:
    _permission: 'access content'
 
-company.projectedit:
- path: '/wordorder/edit/{arg}'
+workorder.edit:
+ path: '/workorder/edit/{arg}'
  defaults:
    _title: 'Edit Work Order'
    _form: '\Drupal\company\Form\WorkorderForm'
  requirements:
    _permission: 'access content'
 
+teamorder.add:
+  path: '/teamorder/add'
+  defaults:
+    _title: ' Add Teamorder'
+    _form: '\Drupal\company\Form\TeamorderForm'
+  requirements:
+    _permission: 'access content'
+
+teamorder.edit:
+  path: '/teamorder/edit/{arg}'
+  defaults:
+    _title: ' Add Teamorder'
+    _form: '\Drupal\company\Form\TeamorderForm'
+  requirements:
+    _permission: 'access content'

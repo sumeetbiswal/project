@@ -8,8 +8,10 @@ use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 
-class Leave extends ControllerBase {
- public function leavelist() {
+class Leave extends ControllerBase
+{
+    public function leavelist()
+    {
 
    global $base_url;
   $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
@@ -23,5 +25,5 @@ class Leave extends ControllerBase {
     );
     return $element;
 
- }
+    }
 }

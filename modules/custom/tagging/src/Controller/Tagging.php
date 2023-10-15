@@ -10,39 +10,43 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\library\Controller\Encrypt;
 use Drupal\Component\Render\FormattableMarkup;
 
-class Tagging extends ControllerBase {
+class Tagging extends ControllerBase
+{
 
- public function getlist() {
+    public function getlist()
+    {
 
-   $tagging = \Drupal::service('tagging.service');
-   $encrypt = \Drupal::service('encrypt.service');
+        $tagging = \Drupal::service('tagging.service');
+        $encrypt = \Drupal::service('encrypt.service');
 
-   $result = $tagging->getUnEmployeeList();
+        $result = $tagging->getUnEmployeeList();
 
-   $rows = [];
+        $rows = [];
 
-   foreach($result AS $item){
+        foreach($result AS $item){
 
-     $name = $item->firstname.' '.$item->lastname;
-     $project = ($item->won) ? $item->won : '';
-     $supervisor = ($item->supervisor) ? $item->supervisor : '';
-     $hr = ($item->hr) ? $item->hr : '';
+            $name = $item->firstname.' '.$item->lastname;
+            $project = ($item->won) ? $item->won : '';
+            $supervisor = ($item->supervisor) ? $item->supervisor : '';
+            $hr = ($item->hr) ? $item->hr : '';
 
-     $icon_color = empty($project) ? 'icon-red' : '';
+            $icon_color = empty($project) ? 'icon-red' : '';
 
-     $tagpk_encoded = $encrypt->encode($item->tagpk);
+            $tagpk_encoded = $encrypt->encode($item->tagpk);
 
-     $edit = array('data' => new FormattableMarkup('<a href=":link" style="text-align:center">
+            $edit = array('data' => new FormattableMarkup(
+                '<a href=":link" style="text-align:center">
       <i class="mdi mdi-tag ' . $icon_color . '" title="" data-toggle="tooltip" data-original-title="Tag to a team"></i></a>',
-         [':link' => '/tagging/edit/' . $tagpk_encoded])
-       );
+                [':link' => '/tagging/edit/' . $tagpk_encoded]
+            )
+            );
 
-     $rows[] = array(
-       'data' =>	  array( $item->empid, $name , $project, $supervisor, $hr, $edit)
-     );
-   }
+            $rows[] = array(
+            'data' =>      array( $item->empid, $name , $project, $supervisor, $hr, $edit)
+            );
+        }
 
-   $headers = array(
+        $headers = array(
               t('Employee ID'),
               t('Name'),
               t('Project'),
@@ -51,15 +55,15 @@ class Tagging extends ControllerBase {
               t('Action')
           );
 
-   $element['display']['employeelist'] = array(
-     '#type' 	    => 'table',
-     '#header' 	  =>  $headers,
-     '#rows'      =>  $rows,
-     '#empty'     =>  'No Un Allocated Employee are there.',
-     '#caption'   =>  'Un Allocated List'
-   );
+        $element['display']['employeelist'] = array(
+        '#type'         => 'table',
+        '#header'       =>  $headers,
+        '#rows'      =>  $rows,
+        '#empty'     =>  'No Un Allocated Employee are there.',
+        '#caption'   =>  'Un Allocated List'
+        );
 
-   return $element;
- }
+        return $element;
+    }
 
 }

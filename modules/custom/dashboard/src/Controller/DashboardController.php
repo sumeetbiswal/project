@@ -6,14 +6,16 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 
-class DashboardController extends ControllerBase {
+class DashboardController extends ControllerBase
+{
 
-public function display() {
-    global $base_url;
+    public function display()
+    {
+        global $base_url;
 
-return array(
-      '#markup' => $this->t(''),
-	  /*  <div class="row">
+        return array(
+          '#markup' => $this->t(''),
+        /*  <div class="row">
                               <a href="'.$base_url.'/settings/password"><div class="col-lg-3 col-sm-6 col-xs-12">
                                 <div class="white-box" style="box-shadow: 0 4px 8px 0 grey;">
                                     <h3 class="box-title">Change password</h3>
@@ -52,6 +54,6 @@ return array(
                             </div></a>
                         </div>
                '),*/
-    );  
-  }
+        );  
+    }
 }
