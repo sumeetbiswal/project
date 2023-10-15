@@ -3,26 +3,25 @@
 namespace Drupal\company\Form;
 
 use Drupal\company\Model\DepartmentModel;
-use Drupal\library\Lib\LibController;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\CloseModalDialogCommand;
 use Drupal\Core\Ajax\AppendCommand;
 
 /**
- *
+ * DepartmentModalForm created modal form for department.
  */
 class DepartmentModalForm extends DepartmentForm {
 
   /**
-   *
+   * {@inheritDoc}
    */
   public function getFormId() {
     return 'department_modal_form';
   }
 
   /**
-   *
+   * {@inheritDoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
 
@@ -47,11 +46,10 @@ class DepartmentModalForm extends DepartmentForm {
   }
 
   /**
-   *
+   * Helper function to submit the department form value through ajax command.
    */
   public function submitFormAjax(array &$form, FormStateInterface $form_state) {
     // $response = new AjaxResponse();
-    $libobj = new LibController();
     $brnobj = new DepartmentModel();
 
     $fieldData = $form_state->getValues();
@@ -66,13 +64,10 @@ class DepartmentModalForm extends DepartmentForm {
     ];
 
     $brnobj->setDepartment($fieldData);
-    $renderer = \Drupal::service('renderer');
     $response = new AjaxResponse();
     $response->addCommand(new CloseModalDialogCommand());
 
     $response->addCommand(new AppendCommand('#edit-department', '<option value="' . $codename . '" selected>' . $name . '</option>'));
-    // \Drupal::formBuilder()->doBuildForm($form['#multistep-form-four'], $field, $form_state);
-    // $response->addCommand(new ReplaceCommand("#edit-department", $renderer->render($form['employee']['department'])));
     return $response;
   }
 

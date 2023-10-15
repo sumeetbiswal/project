@@ -2,18 +2,86 @@
 
 namespace Drupal\company\Form;
 
+use Drupal\company\Model\ConfigurationModel;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Render\FormattableMarkup;
+use Drupal\library\Controller\Encrypt;
+use Drupal\library\Lib\LibController;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- *
+ * TimingConfigurationForm creates form for the time config.
  */
 class TimingConfigurationForm extends FormBase {
+  /**
+   * Include the messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
 
   /**
+   * Include the custom library service.
    *
+   * @var \Drupal\library\Lib\LibController
+   */
+  protected $library;
+
+  /**
+   * Include the custom library service.
+   *
+   * @var \Drupal\library\Controller\Encrypt
+   */
+  protected $encrypt;
+
+  /**
+   * Include the custom configuration service.
+   *
+   * @var \Drupal\company\Model\ConfigurationModel
+   */
+  protected $configuration;
+
+  /**
+   * BranchForm constructor.
+   *
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger service.
+   * @param \Drupal\library\Lib\LibController $library
+   *   The library service.
+   * @param \Drupal\library\Controller\Encrypt $encrypt
+   *   The library service.
+   * @param \Drupal\company\Model\ConfigurationModel $configuration
+   *   The configuration service.
+   */
+  public function __construct(MessengerInterface $messenger, LibController $library, Encrypt $encrypt, ConfigurationModel $configuration) {
+    $this->messenger = $messenger;
+    $this->library = $library;
+    $this->encrypt = $encrypt;
+    $this->configuration = $configuration;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   The Drupal service container.
+   *
+   * @return static
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('messenger'),
+      $container->get('library.service'),
+      $container->get('encrypt.service'),
+      $container->get('configuration.service'),
+    );
+  }
+
+  /**
+   * {@inheritDoc}
    */
   public function getFormId() {
     return 'tming_configuration_form';
@@ -21,15 +89,12 @@ class TimingConfigurationForm extends FormBase {
   }
 
   /**
-   *
+   * {@inheritDoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     global $base_url;
-    $libobj = \Drupal::service('library.service');
-    $configobj = \Drupal::service('configuration.service');
-    $encrypt = \Drupal::service('encrypt.service');
 
-    $result = $configobj->getShiftTimingList();
+    $result = $this->configuration->getShiftTimingList();
 
     $form['company']['#attributes']['enctype'] = "multipart/form-data";
     $form['#attached']['library'][] = 'singleportal/time-picker';
@@ -39,14 +104,14 @@ class TimingConfigurationForm extends FormBase {
     $mode = $libobj->getActionMode();
 
     if ($mode == 'edit') {
-      $pk = $libobj->getIdFromUrl();
-      $pk = $encrypt->decode($pk);
-      $data = $configobj->getShiftDetailsById($pk);
+      $pk = $this->library->getIdFromUrl();
+      $pk = $this->encrypt->decode($pk);
+      $data = $this->configuration->getShiftDetailsById($pk);
     }
 
     $form['company']['shiftname'] = [
       '#type' => 'textfield',
-      '#title' => t('Shift Name:'),
+      '#title' => $this->t('Shift Name:'),
       '#attributes' => ['class' => ['form-control']],
       '#prefix' => '<div class="row">',
       '#suffix' => '</div>',
@@ -57,7 +122,7 @@ class TimingConfigurationForm extends FormBase {
 
     $form['company']['fromtime'] = [
       '#type' => 'textfield',
-      '#title' => t('Time From:'),
+      '#title' => $this->t('Time From:'),
       '#attributes' => ['class' => ['form-control'], 'id' => 'time1'],
       '#prefix' => '<div class="row">',
       '#suffix' => '</div>',
@@ -67,7 +132,7 @@ class TimingConfigurationForm extends FormBase {
 
     $form['company']['totime'] = [
       '#type' => 'textfield',
-      '#title' => t('To Time:'),
+      '#title' => $this->t('To Time:'),
       '#attributes' => ['class' => ['form-control'], 'id' => 'time2'],
       '#prefix' => '<div class="row">',
       '#suffix' => '</div>',
@@ -102,20 +167,29 @@ class TimingConfigurationForm extends FormBase {
     $sl = 0;
     foreach ($result as $item) {
       $sl++;
-      $codepk_encoded = $encrypt->encode($item->codepk);
+      $codepk_encoded = $this->encrypt->encode($item->codepk);
 
       $url = $base_url . '/shift/edit/' . $codepk_encoded;
       $name = new FormattableMarkup('<i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i>', []);
-      $edit = new FormattableMarkup('<a href=":link" style="text-align:center" >@name</a>', [':link' => $url, '@name' => $name]);
+      $edit = new FormattableMarkup(
+        '<a href=":link" style="text-align:center" >@name</a>',
+        [':link' => $url, '@name' => $name]);
 
       $rows[] = [
-        'data' => [$sl, $item->codevalues, $item->description . ' - ' . $item->email, $edit],
+        'data' => [
+          $sl, $item->codevalues, $item->description . ' - ' . $item->email, $edit,
+        ],
       ];
     }
 
     $form['company']['shiftlist'] = [
       '#type'         => 'table',
-      '#header'       => [t('SL'), t('Shift Name'), t('Timing'), t('Action')],
+      '#header'       => [
+        $this->t('SL'),
+        $this->t('Shift Name'),
+        $this->t('Timing'),
+        $this->t('Action'),
+      ],
       '#rows'            => $rows,
       '#attributes' => ['class' => ['table text-center table-hover table-striped table-bordered dataTable']],
       '#prefix'     => '<br/><br/><br/>',
@@ -126,7 +200,7 @@ class TimingConfigurationForm extends FormBase {
   }
 
   /**
-   *
+   * {@inheritDoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
 
@@ -146,16 +220,13 @@ class TimingConfigurationForm extends FormBase {
   }
 
   /**
-   *
+   * {@inheritDoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $configobj = \Drupal::service('configuration.service');
-    $libobj = \Drupal::service('library.service');
-    $encrypt = \Drupal::service('encrypt.service');
 
     $fieldval = $form_state->getValues();
 
-    $codename = $libobj->generateCode('SHFT', $fieldval['shiftname']);
+    $codename = $this->library->generateCode('SHFT', $fieldval['shiftname']);
 
     $field = [
       'codetype'    => 'jobshift',
@@ -165,17 +236,17 @@ class TimingConfigurationForm extends FormBase {
       'email'        => $fieldval['totime'],
     ];
 
-    $mode = $libobj->getActionMode();
+    $mode = $this->library->getActionMode();
 
     if ($mode == 'edit') {
-      $pk = $libobj->getIdFromUrl();
-      $pk = $encrypt->decode($pk);
-      $configobj->updateShiftTiming($field, $pk);
-      \Drupal::messenger()->addMessage($field['codevalues'] . " has been updated.");
+      $pk = $this->library->getIdFromUrl();
+      $pk = $this->encrypt->decode($pk);
+      $this->configuration->updateShiftTiming($field, $pk);
+      $this->messenger->addMessage($field['codevalues'] . " has been updated.");
     }
     else {
-      $configobj->setShiftTiming($field);
-      \Drupal::messenger()->addMessage($field['codevalues'] . " has been created.");
+      $this->configuration->setShiftTiming($field);
+      $this->messenger->addMessage($field['codevalues'] . " has been created.");
     }
 
     $form_state->setRedirect('company.configuration_shift');

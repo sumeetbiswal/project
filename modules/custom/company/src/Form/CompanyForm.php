@@ -2,16 +2,96 @@
 
 namespace Drupal\company\Form;
 
+use Drupal\company\Model\CompanyModel;
+use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use Drupal\library\Controller\Encrypt;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\file\Entity\File;
+use Drupal\library\Lib\LibController;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\File\FileSystemInterface;
 
 /**
- * CompanyForm creates the Form for Branch.
+ * CompanyForm creates the Form for Company.
  */
 class CompanyForm extends FormBase {
+  /**
+   * Include the messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
+   * Include the custom library service.
+   *
+   * @var \Drupal\library\Lib\LibController
+   */
+  protected $library;
+
+  /**
+   * Include the company service.
+   *
+   * @var \Drupal\company\Model\CompanyModel
+   */
+  protected $company;
+
+  /**
+   * Include the cache service.
+   *
+   * @var \Symfony\Component\DependencyInjection\ContainerInterface
+   */
+  protected $cache;
+
+  /**
+   * The file system service.
+   *
+   * @var \Drupal\Core\File\FileSystemInterface
+   */
+  protected $fileSystem;
+
+  /**
+   * CompanyForm constructor.
+   *
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger service.
+   * @param \Drupal\library\Lib\LibController $library
+   *   The library service.
+   * @param \Drupal\company\Model\CompanyModel $company
+   *   The company service.
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $cache
+   *   The company service.
+   * @param \Drupal\Core\File\FileSystemInterface $file_system
+   *   The filesystem service.
+   */
+  public function __construct(MessengerInterface $messenger, LibController $library, CompanyModel $company, CacheBackendInterface $cache, FileSystemInterface $file_system) {
+    $this->messenger = $messenger;
+    $this->library = $library;
+    $this->company = $company;
+    $this->cache = $cache;
+    $this->fileSystem = $file_system;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+   *   The Drupal service container.
+   *
+   * @return static
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('messenger'),
+      $container->get('library.service'),
+      $container->get('company.service'),
+      $container->get('cache.render'),
+      $container->get('file_system'),
+    );
+  }
 
   /**
    * {@inheritDoc}
@@ -25,15 +105,13 @@ class CompanyForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
 
-    $libobj = \Drupal::service('library.service');
-    $compobj = \Drupal::service('company.service');
     $encrypt = new Encrypt();
-    $mode = $libobj->getActionMode();
+    $mode = $this->library->getActionMode();
     $title = 'Add Company Details';
     if ($mode == 'edit') {
-      $pk = $libobj->getIdFromUrl();
+      $pk = $this->library->getIdFromUrl();
       $pk = $encrypt->decode($pk);
-      $data = $compobj->getCompanyDetailsById($pk);
+      $data = $this->company->getCompanyDetailsById($pk);
       $title = 'Edit Company Details';
     }
     $form['#attributes']['class'] = 'form-horizontal';
@@ -46,13 +124,13 @@ class CompanyForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Organisation Name:'),
       '#attributes' => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']
+        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix' => '<div class="row">',
       '#default_value' => isset($data) ? $data->companyname : '',
     ];
 
-    $complist = $compobj->getCompanyTypeList();
+    $complist = $this->company->getCompanyTypeList();
     $comp_option[''] = 'Select Type of Organisation';
     foreach ($complist as $item) {
       $comp_option[$item->codename] = $item->codevalues;
@@ -70,7 +148,9 @@ class CompanyForm extends FormBase {
     $form['company']['cemail'] = [
       '#type' => 'email',
       '#title' => $this->t('Email:'),
-      '#attributes' => ['class' => ['form-control', 'validate[required,custom[email]]']],
+      '#attributes' => [
+        'class' => ['form-control', 'validate[required,custom[email]]'],
+      ],
       '#prefix' => '<div class="row">',
       '#default_value' => isset($data) ? $data->email : '',
     ];
@@ -78,7 +158,9 @@ class CompanyForm extends FormBase {
     $form['company']['cphone'] = [
       '#type' => 'tel',
       '#title' => $this->t('Phone number:'),
-      '#attributes' => ['class' => ['form-control', 'validate[required][custom[phone]]']],
+      '#attributes' => [
+        'class' => ['form-control', 'validate[required][custom[phone]]'],
+      ],
       '#suffix' => '</div>',
       '#default_value' => isset($data) ? $data->phone : '',
     ];
@@ -98,7 +180,7 @@ class CompanyForm extends FormBase {
       '#default_value' => isset($data) ? $data->address2 : '',
 
     ];
-    $statelist = $libobj->getStateList();
+    $statelist = $this->library->getStateList();
     $form['company']['state'] = [
       '#type'    => 'select',
       '#title'   => $this->t('State:'),
@@ -112,7 +194,6 @@ class CompanyForm extends FormBase {
         'event' => 'change',
         'progress' => [
           'type' => 'throbber',
-          'message' => $this->t(''),
         ],
       ],
     ];
@@ -124,7 +205,7 @@ class CompanyForm extends FormBase {
       $statePk = isset($data) ? $data->state : '';
     }
     $cityLst = [];
-    $cityLst = $libobj->getCityListByState($statePk);
+    $cityLst = $this->library->getCityListByState($statePk);
     $form['company']['city'] = [
       '#type'          => 'select',
       '#title'         => $this->t('City:'),
@@ -139,7 +220,7 @@ class CompanyForm extends FormBase {
       '#type'          => 'select',
       '#title'         => $this->t('Country:'),
       '#options' => [
-        '101' => $this->$this->t('India'),
+        '101' => $this->t('India'),
       ],
       '#attributes'    => ['class' => ['form-control', 'validate[required]']],
       '#default_value' => isset($data) ? $data->country : '',
@@ -186,7 +267,7 @@ class CompanyForm extends FormBase {
       '#prefix' => '&nbsp; &nbsp; &nbsp; &nbsp;',
       '#suffix' => '</div></div>',
     ];
-    $form['company']['cancel']['#submit'][] = '::ActionCancel';
+    $form['company']['cancel']['#submit'][] = '::actionCancel';
     $form['company']['#suffix'] = '</div></div></div></div>';
     return $form;
   }
@@ -194,7 +275,7 @@ class CompanyForm extends FormBase {
   /**
    * Helper function to redirect user on clicking of cancel button.
    */
-  public function ActionCancel(array &$form, FormStateInterface $form_state) {
+  public function actionCancel(array &$form, FormStateInterface $form_state) {
     $form_state->setRedirect('company.view');
   }
 
@@ -231,11 +312,11 @@ class CompanyForm extends FormBase {
     }
 
     if (trim($form_state->getValue('caddress1')) == '') {
-      $form_state->setErrorByName('caddress1', $this->t('Enter your Address '));
+      $form_state->setErrorByName('caddress1', $this->t('Enter your Address.'));
     }
 
     if (trim($form_state->getValue('pincode')) == '') {
-      $form_state->setErrorByName('pincode', $this->t('Enter your pincode '));
+      $form_state->setErrorByName('pincode', $this->t('Enter your pincode.'));
     }
   }
 
@@ -243,10 +324,6 @@ class CompanyForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $libobj = \Drupal::service('library.service');
-    $compobj = \Drupal::service('company.service');
-
-
     $field = $form_state->getValues();
 
     $data = [
@@ -263,15 +340,15 @@ class CompanyForm extends FormBase {
       'pincode'     => $field['pincode'],
     ];
 
-    $mode = $libobj->getActionMode();
+    $mode = $this->library->getActionMode();
 
     if ($mode == 'add') {
-      $compobj->setCompany($data);
-      \Drupal::messenger()->addMessage($data['companyname'] . " has succesfully created.");
+      $this->company->setCompany($data);
+      $this->messenger->addMessage($data['companyname'] . " has succesfully created.");
     }
     if ($mode == 'edit') {
-      $compobj->updateCompany($data);
-      \Drupal::messenger()->addMessage($data['companyname'] . "  has succesfully Updated.");
+      $this->company->updateCompany($data);
+      $this->messenger->addMessage($data['companyname'] . "  has succesfully Updated.");
     }
 
     /*
@@ -280,12 +357,12 @@ class CompanyForm extends FormBase {
      */
     if (!empty($field['clogo'][0]) && isset($field['clogo'][0])) {
       $logo_file = file::load($field['clogo'][0]);
-      $logo_path = \Drupal::service('file_system')->realpath($logo_file->getFileUri());
-      $move_to_path = \Drupal::service('file_system')->realpath('public://logo.png');
+      $logo_path = $this->fileSystem->realpath($logo_file->getFileUri());
+      $move_to_path = $this->fileSystem->realpath('public://logo.png');
       rename($logo_path, $move_to_path);
 
       // Clearing only render cache to reflect logo immiditaely.
-      \Drupal::service('cache.render')->invalidateAll();
+      $this->cache->invalidateAll();
     }
 
     $form_state->setRedirect('company.view');
