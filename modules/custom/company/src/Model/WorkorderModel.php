@@ -88,7 +88,7 @@ class WorkorderModel extends ControllerBase {
    */
   public function setTeamOrder($data) {
     // Inserting column codetype & parent.
-    $data['codetype']   = 'teamorder';
+    $data['codetype'] = 'teamorder';
 
     $this->connection->insert(DataModel::CODEVAL)
       ->fields($data)
@@ -101,7 +101,7 @@ class WorkorderModel extends ControllerBase {
    */
   public function updateTeamorder($data, $pk) {
     // Inserting column codetype & parent.
-    $data['codetype']   = 'teamorder';
+    $data['codetype'] = 'teamorder';
 
     $this->connection->update(DataModel::CODEVAL)
       ->fields($data)

@@ -45,7 +45,6 @@ class BranchModel extends ControllerBase {
    * Helper function to get all branch list.
    */
   public function getAllBranchDetails() {
-
     $query = $this->connection->select('srch_codevalues', 'n');
     $query->leftJoin('srch_cities', 'ct', 'n.city = ct.id');
     $query->leftJoin('srch_states', 'st', 'n.state = st.id');

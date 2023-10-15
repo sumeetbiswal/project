@@ -63,14 +63,13 @@
     description_display == 'invisible' ? 'visually-hidden',
   ]
 %}
-<div{{ attributes.addClass(classes) }}>
 
-<div class="col-md-6"><div class="form-group">
+<div class="col-md-4"><div class="form-group">
   {% if label_display in ['before', 'invisible'] %}
     {{ label }}
   {% endif %}
 
-  <div class="col-md-9">
+  <div class="col-md-8">
 
   {% if prefix is not empty %}
     <span class="field-prefix">{{ prefix }}</span>
@@ -101,4 +100,3 @@
 
  </div>
  </div></div>
-</div>

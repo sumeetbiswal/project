@@ -247,3 +247,13 @@ function singleportal_preprocess_table(&$variables) {
   $variables['attributes']['class'][] = 'table text-center table-hover table-striped table-bordered dataTable';
   $variables['attributes']['style'][] = 'text-align-last: center';
 }
+
+/*
+function singleportal_preprocess_form_element(&$variables) {
+
+  if ($variables['type'] === 'checkbox') {
+    kint($variables);
+    $variables['label']['#attributes']['class'] = ['ckecbox-is-checked'];
+  }
+}*/
+

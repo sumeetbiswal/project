@@ -1,7 +1,6 @@
  $(document).ready(function () {
  // toat popup js
     // $.toast({
-        // heading: 'Welcome to Ample admin'
         // , text: 'Use the predefined ones, or specify a custom position object.'
         // , position: 'top-right'
         // , loaderBg: '#fff'
@@ -9,7 +8,7 @@
         // , hideAfter: 3500
         // , stack: 6
     // })
-$('#calendar').fullCalendar('option', 'height', 745);       
+$('#calendar').fullCalendar('option', 'height', 745);
 // Dashboard 1 Morris-chart
 Morris.Area({
     element: 'morris-area-chart2'
@@ -63,7 +62,7 @@ new Chartist.Bar('#ct-daily-sales', {
   labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   series: [
     [5, 4, 3, 7, 5, 2, 3]
-    
+
   ]
 }, {
   axisX: {
@@ -72,7 +71,7 @@ new Chartist.Bar('#ct-daily-sales', {
     // On the x-axis start means top and end means bottom
     position: 'start'
   },
-  
+
   chartPadding: {
     top:-20,
     left:45,
@@ -94,12 +93,12 @@ var chart = new Chartist.Line('#ct-weather', {
   labels: ['1', '2', '3', '4', '5', '6'],
   series: [
     [1, 0, 5, 3, 2, 2.5]
-    
+
   ]
 }, {
   showArea: true,
   showPoint: false,
-  
+
   chartPadding: {
     left: -20
   },
@@ -112,7 +111,7 @@ var chart = new Chartist.Line('#ct-weather', {
     showGrid: true
   },
   fullWidth: true,
-  
+
 });
 //ct-visits
 new Chartist.Line('#ct-visits', {
@@ -123,10 +122,10 @@ new Chartist.Line('#ct-visits', {
   ]
 }, {
   top:0,
-  
+
   low:1,
   showPoint: true,
-  
+
   fullWidth: true,
   plugins: [
     Chartist.plugins.tooltip()
