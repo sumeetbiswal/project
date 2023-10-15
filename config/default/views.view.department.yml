@@ -373,8 +373,8 @@ display:
           plugin_id: standard
           order: DESC
           expose:
-            label: ''
-            field_identifier: ''
+            label: Codepk
+            field_identifier: codepk
           exposed: false
       arguments: {  }
       filters:

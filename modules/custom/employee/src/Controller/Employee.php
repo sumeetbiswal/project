@@ -15,8 +15,7 @@ use Drupal\Core\Entity\Element\EntityAutocomplete;
 class Employee extends ControllerBase
 {
 
-    public function emplist()
-    {
+    public function emplist() {
 
 
         $empobj = \Drupal::service('employee.service');
@@ -219,7 +218,7 @@ class Employee extends ControllerBase
 
         $empobj = \Drupal::service('employee.service');
         $result = $empobj->getEmployeeListAutoComplete($input);
-  
+
         foreach($result AS $key => $item){
             $results[] = [
             'value' => $item->userpk,
