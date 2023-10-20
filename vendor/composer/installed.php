@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'adc25f3cafddd87fba8704b72eaa73c15589ee26',
+        'reference' => 'f49121001e44ef962ffd7d72b20f895439162963',
         'name' => 'drupal/legacy-project',
         'dev' => true,
     ),
@@ -427,7 +427,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'adc25f3cafddd87fba8704b72eaa73c15589ee26',
+            'reference' => 'f49121001e44ef962ffd7d72b20f895439162963',
             'dev_requirement' => false,
         ),
         'drupal/shield' => array(
@@ -717,12 +717,12 @@
             ),
         ),
         'psy/psysh' => array(
-            'pretty_version' => 'v0.11.21',
-            'version' => '0.11.21.0',
+            'pretty_version' => 'v0.11.22',
+            'version' => '0.11.22.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../psy/psysh',
             'aliases' => array(),
-            'reference' => 'bcb22101107f3bf770523b65630c9d547f60c540',
+            'reference' => '128fa1b608be651999ed9789c95e6e2a31b5802b',
             'dev_requirement' => false,
         ),
         'ralouphie/getallheaders' => array(
