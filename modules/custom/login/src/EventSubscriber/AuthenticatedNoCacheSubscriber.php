@@ -7,12 +7,14 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
+ * Event Subscriber Class AuthenticatedNoCacheSubscriber.
  *
+ * @package Drupal\login\EventSubscriber
  */
 class AuthenticatedNoCacheSubscriber implements EventSubscriberInterface {
 
   /**
-   *
+   * {@inheritDoc}
    */
   public function onRespond(ResponseEvent $event) {
     $response = $event->getResponse();
@@ -20,7 +22,7 @@ class AuthenticatedNoCacheSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   *
+   * {@inheritDoc}
    */
   public static function getSubscribedEvents() {
     $events[KernelEvents::RESPONSE][] = ['onRespond'];
