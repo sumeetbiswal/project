@@ -806,3 +806,23 @@ $databases['default']['default'] = array (
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 );
 $settings['config_sync_directory'] = 'config/default';
+$_ENV['XSMIND_ENVIRONMENT'] = 'test';
+if(isset($_ENV['XSMIND_ENVIRONMENT'])) {
+  if(($_ENV['XSMIND_ENVIRONMENT'])== 'test') {
+    $config['config_split.config_split.test']['status'] = true;
+    $config['config_split.config_split.test']['folder'] = 'config/splits/test/';
+  } else if (($_ENV['XSMIND_ENVIRONMENT'])== 'prod') {
+      $config['config_split.config_split.prod']['status'] = true;
+      $config['config_split.config_split.prod']['folder'] = 'config/splits/prod/';
+    }
+    else {
+      $config['config_split.config_split.dev']['status'] = true;
+      $config['config_split.config_split.dev']['folder'] = 'config/splits/dev/';
+
+    }
+}
+else {
+  $config['config_split.config_split.local']['status'] = true;
+  $config['config_split.config_split.local']['folder'] = 'config/splits/local/';
+ 
+}

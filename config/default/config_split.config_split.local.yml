@@ -1,0 +1,18 @@
+uuid: 8d51d423-06f7-4326-8ddb-b6787574420c
+langcode: en
+status: false
+dependencies: {  }
+id: local
+label: Local
+description: ''
+weight: 0
+folder: ''
+module: {  }
+theme: {  }
+blacklist: {  }
+graylist:
+  - core.extension
+  - devel.settings
+  - devel.toolbar.settings
+graylist_dependents: true
+graylist_skip_equal: false
