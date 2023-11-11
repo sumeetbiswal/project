@@ -26,6 +26,7 @@
         "drupal/shield": "^1.7",
         "drupal/themable_forms": "^1.0@beta",
         "drupal/view_custom_table": "^2.0",
+        "drupal/webform": "^6.2",
         "drush/drush": "*",
         "kint-php/kint": "^5.0"
     },
