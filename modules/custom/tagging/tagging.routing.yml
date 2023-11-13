@@ -23,4 +23,3 @@ tagging.tagedit:
    _form: '\Drupal\tagging\Form\TaggingForm'
  requirements:
    _permission: 'access content'
-

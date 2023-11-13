@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * This is the module to alter user login form behavior.
+ */
+
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -10,5 +15,3 @@ function login_form_user_login_form_alter(&$form, FormStateInterface $form_state
   $form['#validate'][] = '\Drupal\login\Controller\LoginController::validate';
 
 }
-
-

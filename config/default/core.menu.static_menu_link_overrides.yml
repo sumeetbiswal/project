@@ -20,7 +20,7 @@ definitions:
     enabled: false
     expanded: false
   user__logout:
-    weight: -45
+    weight: -47
     menu_name: account
     parent: ''
     expanded: false
