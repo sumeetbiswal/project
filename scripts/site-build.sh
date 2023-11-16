@@ -4,9 +4,9 @@ echo "Xsmind site build started..."
 echo "Dropping Schema..."
 
 drush sql-drop --yes
-echo "Importing database SQL file."
+echo "Importing xsmind.sql file."
 drush sql-cli < database/xsmind.sql
-echo "Sql dump Imported..."
+echo "Database Imported..."
 
 
 echo ""

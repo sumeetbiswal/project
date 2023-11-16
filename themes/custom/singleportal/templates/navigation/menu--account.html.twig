@@ -1,32 +1,71 @@
-<ul class="nav navbar-top-links navbar-right pull-right">
-	<li class="dropdown">
-		<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="javascript:void(0)"> <img src="{{ propic }}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">{{ username }}</b><span class="caret"></span> </a>
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import _self as menus %}
 
-			<ul class="dropdown-menu dropdown-user animated fadeIn">
-				<li>
-					<div class="dw-user-box" style="display: flex;">
-						<div class="u-img"><img src="{{ propic }}"  style="width: 67px; height:76px" alt="user" /></div>
-						<div class="u-text">
-							<h4>{{ username }}</h4>
-							<p class="text-muted">{{ emailid }}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
-					</div>
-				</li>
-				<li role="separator" class="divider"></li>
-				<li><a href="{{url('<front>')}}profile"><i class="ti-user"></i> My Profile</a></li>
-				<li><a href="{{url('<front>')}}settings/password"><i class="ti-lock"></i> Change Password</a></li>
-				<li role="separator" class="divider"></li>
-				<li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li>
-				<li role="separator" class="divider"></li>
-        <!-- <li><a href="{{  url('<front>')  }}user/logout"><i class="fa fa-power-off"></i> Logout</a></li> -->
-        <li id="logout"><a href="javascript:void(0)"><i class="fa fa-power-off"></i> Logout</a></li>
-        </ul>
-	</li>
+{#
+We call a macro which calls itself to render the full tree.
+@see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+<ul class="nav navbar-top-links navbar-right pull-right">
+  <li class="dropdown">
+    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="javascript:void(0)"> <img src="{{ propic }}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">{{ username }}</b><span class="caret"></span> </a>
+    <ul{{ attributes.addClass('dropdown-menu dropdown-user animated fadeIn') }}>
+      <li>
+        <div class="dw-user-box" style="display: flex;">
+          <div class="u-img"><img src="{{ propic }}"  style="width: 67px; height:76px" alt="user" /></div>
+          <div class="u-text">
+            <h4>{{ username }}</h4>
+            <p class="text-muted">{{ emailid }}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+        </div>
+      </li>
+{{ menus.menu_links(items, attributes, 0) }}
+
+{% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% if menu_level == 0 %}
+
+    {% else %}
+      <ul>
+    {% endif %}
+    {% for item in items %}
+      <li role="separator" class="divider"></li>
+      <li{{ item.attributes }}>
+        <a href="{{ item.url }}"><i class="{{ item.url.getOptions().classes }}"></i> {{ item.title }}</a>
+        {% if item.below %}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+
+  {% endif %}
+{% endmacro %}
+    </ul>
+  </li>
 </ul>
 
 <div class="custom-modal" id="warning-popup" style="display:none">
   <div class="sweet-overlay" tabindex="-1" style="opacity: 1.01; display: block;"></div>
   <div class="sweet-alert visible"  data-has-cancel-button="true" data-has-confirm-button="true"
-  data-allow-outside-click="false" data-has-done-function="true" data-animation="pop" data-timer="null" style="display: block; margin-top: -184px;">
+       data-allow-outside-click="false" data-has-done-function="true" data-animation="pop" data-timer="null" style="display: block; margin-top: -184px;">
     <div class="mdi mdi-help-circle-outline" style="color:#F8BB86; font-size:113px; height: 130px; display: block;">
     </div> <h2>Are you sure?</h2>
     <p style="display: block;">Do you really want to logout now from current session?</p>
@@ -34,7 +73,7 @@
       <button class="cancel" tabindex="2" style="display: inline-block; box-shadow: none;">Cancel</button>
       <div class="sa-confirm-button-container">
         <button onclick="location.href='{{  url('<front>')  }}user/logout';" tabindex="1" style="display: inline-block; background-color: rgb(221, 107, 85);">Logout</button><div class="la-ball-fall">
-      </div>
+        </div>
       </div>
     </div>
   </div>

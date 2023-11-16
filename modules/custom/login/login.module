@@ -1,12 +1,17 @@
 <?php
 
+/**
+ * @file
+ * This is the module to alter user login form behavior.
+ */
+
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Implements hook_form_user_login_form_alter().
+ */
 function login_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
+  $form['#submit'][] = '\Drupal\login\Controller\LoginController::authentication';
+  $form['#validate'][] = '\Drupal\login\Controller\LoginController::validate';
 
-  $form['#submit'][] = '\Drupal\login\Controller\LoginController::Authentication';
-  $form['#validate'][] = '\Drupal\login\Controller\LoginController::Validate';
- //echo "<pre/>";print_r($form);die;
 }
-
-

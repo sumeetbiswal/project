@@ -2,58 +2,78 @@
 
 namespace Drupal\leave\Controller;
 
-
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Link;
-use Drupal\Core\Url;
-use Drupal\Core\Form\FormStateInterface;
 
-class LeaveType extends ControllerBase
-{
-    public function leaveTypeList()
-    {
+/**
+ * Controller for the leaveType.
+ */
+class LeaveType extends ControllerBase {
 
-   global $base_url;
+  /**
+   * Helper function to get Leave Type List.
+   */
+  public function leaveTypeList() {
 
-   $libobj = \Drupal::service('library.service');
-   $encrypt = \Drupal::service('encrypt.service');
-   $leave = \Drupal::service('leave.service');
+    global $base_url;
 
-   $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
-   $rows = [];
-   $header  = [t('Leave Type.'), t('Leave Code'), t('Allotment'), t('Status')];
+    $encrypt = \Drupal::service('encrypt.service');
+    $leave = \Drupal::service('leave.service');
 
-   $edit_access = FALSE;
-   if (\Drupal::currentUser()->hasPermission('leavetype edit')) {
-     $edit_access = TRUE;
-   }
+    // $asset_url = $base_url.'/'.\Drupal::theme()->getActiveTheme()->getPath();
+    $rows = [];
+    $header = [
+      $this->t('Leave Type.'),
+      $this->t('Leave Code'),
+      $this->t('Allotment'),
+      $this->t('Status'),
+    ];
 
-   $result = $leave->getLeaveTypeList();
+    $edit_access = FALSE;
+    if (\Drupal::currentUser()->hasPermission('leavetype edit')) {
+      $edit_access = TRUE;
+    }
 
-   foreach ($result as $row => $content) {
-     $codepk_encoded = $encrypt->encode($content->codepk);
+    $result = $leave->getLeaveTypeList();
 
-     $edit = '';
-     if ($edit_access) {
-       $url = $base_url.'/leavetype/edit/'.$codepk_encoded;
-       $name = new FormattableMarkup('<i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i>', []);
-       $edit = new FormattableMarkup('<a href=":link" style="text-align:center" >@name</a>', [':link' => $url, '@name' => $name]);
-     }
+    foreach ($result as $content) {
+      $codepk_encoded = $encrypt->encode($content->codepk);
 
-     $rows[] =   array(
-       'data' =>	  array( $content->codevalues, $content->codename, $content->weight, $content->status, $edit)
-     );
-   }
+      $edit = '';
+      if ($edit_access) {
+        $url = $base_url . '/leavetype/edit/' . $codepk_encoded;
+        $name = new FormattableMarkup('<i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i>', []);
+        $edit = new FormattableMarkup(
+          '<a href=":link" style="text-align:center" >@name</a>',
+          [':link' => $url, '@name' => $name],
+        );
+      }
 
-  $element['display']['Leavelist'] = array(
-      '#type' 	    => 'table',
-      '#header' 	  =>  $header,
-      '#rows'		    =>  $rows,
-      '#attributes' => ['class' => ['table text-center table-hover table-striped table-bordered dataTable'], 'style'=>['text-align-last: center;']],
-	  '#empty'		=>	'No Leaves Types created yet.'
-    );
+      $rows[] = [
+        'data' => [
+          $content->codevalues,
+          $content->codename,
+          $content->weight,
+          $content->status,
+          $edit,
+        ],
+      ];
+    }
+
+    $element['display']['Leavelist'] = [
+      '#type'         => 'table',
+      '#header'       => $header,
+      '#rows'            => $rows,
+      '#attributes' => [
+        'class' => [
+          'table text-center table-hover table-striped table-bordered dataTable',
+        ],
+        'style' => ['text-align-last: center;'],
+      ],
+      '#empty'        => 'No Leaves Types created yet.',
+    ];
     return $element;
 
-    }
+  }
+
 }
