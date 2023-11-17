@@ -136,10 +136,9 @@ class DrupalLoginRedirectSubscriber implements EventSubscriberInterface {
         }
 
         // Preserve parameters.
-        $current_path_query_params = $this->requestStack->getCurrentRequest()
-          ->getQueryString();
-        $destination_path = $current_path . '?' . $current_path_query_params;
-
+        // $current_path_query_params=$this->requestStack->getCurrentRequest().
+        // ->getQueryString();
+        // $destination_path = $current_path . '?'.$current_path_query_params;.
         $url = Url::fromRoute('<front>', [], [])->toString();
 
         if (!$this->pathMatcher->isFrontPage()) {

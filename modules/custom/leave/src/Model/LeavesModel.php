@@ -1,12 +1,14 @@
 <?php
 
 namespace Drupal\leave\Model;
+
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 use Drupal\library\Lib\DataModel;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
-
+/**
+ * Model file for the Leave.
+ */
 class LeavesModel extends ControllerBase {
 
   /**
@@ -17,22 +19,28 @@ class LeavesModel extends ControllerBase {
   private $connection;
 
   /**
+   * Constructor for the LeavesModel.
+   *
    * @param \Drupal\Core\Database\Connection $connection
-   *  The database connection.
+   *   The database connection.
    */
   public function __construct(Connection $connection) {
     $this->connection = $connection;
   }
 
-	public function setLeaveType($field)
-	{
-		$query = \Drupal::database();
-           $query ->insert(DataModel::CODEVAL)
-               ->fields($field)
-               ->execute();
-	}
+  /**
+   * Helper function to create the leaveType.
+   */
+  public function setLeaveType($field) {
+    $this->connection->insert(DataModel::CODEVAL)
+      ->fields($field)
+      ->execute();
+  }
 
-  public function getLeaveTypeList(){
+  /**
+   * Helper function to get the leave type list.
+   */
+  public function getLeaveTypeList() {
     $query = $this->connection->select(DataModel::CODEVAL, 'n');
     $query->fields('n');
     $query->condition('codetype', 'leavetype', "=");
@@ -41,7 +49,10 @@ class LeavesModel extends ControllerBase {
     return $result;
   }
 
-  public function getLeaveTypeDetailsById($pk){
+  /**
+   * Helper function to get the leave type details from ID.
+   */
+  public function getLeaveTypeDetailsById($pk) {
     $query = $this->connection->select(DataModel::CODEVAL, 'n');
     $query->fields('n');
     $query->condition('codetype', 'leavetype', "=");
@@ -51,11 +62,14 @@ class LeavesModel extends ControllerBase {
     return $result;
   }
 
-  public function updateLeaveType($data, $pk){
-    $query = \Drupal::database();
-    $query->update(DataModel::CODEVAL)
+  /**
+   * Helper function to update the leave type.
+   */
+  public function updateLeaveType($data, $pk) {
+    $this->connection->update(DataModel::CODEVAL)
       ->fields($data)
       ->condition('codepk', $pk)
       ->execute();
   }
+
 }
