@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'f49121001e44ef962ffd7d72b20f895439162963',
+        'reference' => '7efe1823c32d9382e43b3b09d05495873de7302a',
         'name' => 'drupal/legacy-project',
         'dev' => true,
     ),
@@ -427,7 +427,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'f49121001e44ef962ffd7d72b20f895439162963',
+            'reference' => '7efe1823c32d9382e43b3b09d05495873de7302a',
             'dev_requirement' => false,
         ),
         'drupal/shield' => array(
@@ -455,6 +455,15 @@
             'install_path' => __DIR__ . '/../../modules/contrib/view_custom_table',
             'aliases' => array(),
             'reference' => '2.0.4',
+            'dev_requirement' => false,
+        ),
+        'drupal/webform' => array(
+            'pretty_version' => '6.2.0',
+            'version' => '6.2.0.0',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../modules/contrib/webform',
+            'aliases' => array(),
+            'reference' => '6.2.0',
             'dev_requirement' => false,
         ),
         'drush/drush' => array(
