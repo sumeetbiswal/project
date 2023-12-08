@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'ca1c109247c984b81b369e70db6952afd7b3b2f4',
+        'reference' => '725b4d208427f473f371dbc76e0ee64f2220a9dc',
         'name' => 'drupal/legacy-project',
         'dev' => true,
     ),
@@ -200,12 +200,12 @@
             'dev_requirement' => false,
         ),
         'drupal/config_filter' => array(
-            'pretty_version' => '1.10.0',
-            'version' => '1.10.0.0',
+            'pretty_version' => '1.12.0',
+            'version' => '1.12.0.0',
             'type' => 'drupal-module',
             'install_path' => __DIR__ . '/../../modules/contrib/config_filter',
             'aliases' => array(),
-            'reference' => '8.x-1.10',
+            'reference' => '8.x-1.12',
             'dev_requirement' => false,
         ),
         'drupal/config_split' => array(
@@ -427,7 +427,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'ca1c109247c984b81b369e70db6952afd7b3b2f4',
+            'reference' => '725b4d208427f473f371dbc76e0ee64f2220a9dc',
             'dev_requirement' => false,
         ),
         'drupal/shield' => array(
