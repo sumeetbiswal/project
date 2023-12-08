@@ -83,6 +83,10 @@ function view_custom_table_views_data() {
           $column_type_values = explode('(', $column->Type);
           $column_type = $column_type_values[0];
         }
+        else if (strpos($column->Type, ' unsigned')) {
+          $column_type_values = explode(' unsigned', $column->Type);
+          $column_type = $column_type_values[0];
+        }
         else {
           $column_type = $column->Type;
         }
