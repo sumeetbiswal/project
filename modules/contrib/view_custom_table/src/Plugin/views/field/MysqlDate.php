@@ -151,25 +151,27 @@ class MysqlDate extends FieldPluginBase implements ContainerFactoryPluginInterfa
    */
   public function render(ResultRow $values) {
     $date_value = $this->getValue($values);
-    $value = strtotime($date_value);
-    $format = $this->options['date_format'];
-    $customDateFormat = [
-      'custom',
-      'raw time ago',
-      'time ago',
-      'raw time hence',
-      'time hence',
-      'raw time span',
-      'time span',
-      'raw time span',
-      'inverse time span',
-      'time span',
-    ];
-    if (in_array($format, $customDateFormat)) {
-      $custom_format = $this->options['custom_date_format'];
+    if ($date_value != NULL) {
+      $value = strtotime($date_value);
+      $format = $this->options['date_format'];
+      $customDateFormat = [
+        'custom',
+        'raw time ago',
+        'time ago',
+        'raw time hence',
+        'time hence',
+        'raw time span',
+        'time span',
+        'raw time span',
+        'inverse time span',
+        'time span',
+      ];
+      if (in_array($format, $customDateFormat)) {
+        $custom_format = $this->options['custom_date_format'];
+      }
     }
 
-    if ($value) {
+    if (isset($value) && $value != NULL) {
       $timezone = !empty($this->options['timezone']) ? $this->options['timezone'] : NULL;
       // Will be positive for a datetime in the past (ago), and negative for a
       // datetime in the future (hence).

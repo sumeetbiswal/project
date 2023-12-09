@@ -96,7 +96,12 @@ class EditTableRelations extends FormBase {
       $all_entities = $this->entityManager->getDefinitions();
       foreach ($all_entities as $entity_name => $entity) {
         if ($entity->getBaseTable()) {
-          $entities[$entity_name] = $entity->getLabel()->render();
+          if (is_string($entity->getLabel())){
+            $entities[$entity_name] = $entity->getLabel();
+          }
+          else {
+            $entities[$entity_name] = $entity->getLabel()->render();
+          }
         }
       }
     }
