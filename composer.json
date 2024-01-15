@@ -25,6 +25,7 @@
         "drupal/devel": "^5.1",
         "drupal/shield": "^1.7",
         "drupal/themable_forms": "^1.0@beta",
+        "drupal/upgrade_status": "^4.0",
         "drupal/view_custom_table": "^2.0",
         "drupal/webform": "^6.2",
         "drush/drush": "*",
