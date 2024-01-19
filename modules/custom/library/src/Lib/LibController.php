@@ -340,7 +340,7 @@ class LibController extends ControllerBase {
    *   New title.
    */
   public function setPageTitle($newTitle) {
-    if ($route = $this->request->attributes->get(RouteObjectInterface::ROUTE_OBJECT)) {
+    if ($route = $this->request->attributes->get(Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
       $route->setDefault('_title', $newTitle);
     }
   }

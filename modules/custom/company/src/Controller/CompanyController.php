@@ -68,7 +68,7 @@ class CompanyController extends ControllerBase {
     $comp_details = [];
     if (!empty($data)) {
       $comp_details = [
-        'logo' => file_create_url("public://logo.png"),
+        'logo' => \Drupal::service('file_url_generator')->generateAbsoluteString("public://logo.png"),
         'name' => $data->companyname,
         'type' => $data->codevalues,
         'email' => $data->email,
