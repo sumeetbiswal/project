@@ -41,7 +41,6 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
-  practise: 0
   rdf: 0
   search: 0
   shield: 0
@@ -61,6 +60,7 @@ module:
   webform: 0
   webform_access: 0
   webform_attachment: 0
+  webform_devel: 0
   webform_image_select: 0
   webform_node: 0
   webform_ui: 0
@@ -73,5 +73,4 @@ theme:
   stable: 0
   classy: 0
   singleportal: 0
-  bartik: 0
 profile: standard
