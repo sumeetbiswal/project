@@ -1,6 +1,6 @@
 type: theme
 name: 'Single Portal '
-base theme: classy
+base theme: false
 description: 'Single Portal theme'
 core_version_requirement: ^9 || ^10
 
