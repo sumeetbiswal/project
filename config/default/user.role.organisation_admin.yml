@@ -13,7 +13,6 @@ permissions:
   - 'branch edit'
   - 'branch export'
   - 'branch view'
-  - 'company deptview'
   - 'dept view'
   - 'organisation add'
   - 'organisation edit'
