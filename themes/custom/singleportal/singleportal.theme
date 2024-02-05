@@ -242,7 +242,7 @@ function singleportal_preprocess_breadcrumb(&$variables) {
  *
  */
 function singleportal_preprocess_block__system_branding_block(&$variables) {
-  $variables['organisation_logo'] = file_create_url("public://logo.png");
+  $variables['organisation_logo'] = \Drupal::service('file_url_generator')->generateAbsoluteString("public://logo.png");
 }
 
 /**

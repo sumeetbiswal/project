@@ -1,9 +1,8 @@
-core: 8.x
 type: theme
 name: 'Single Portal '
-base theme: classy
+base theme: false
 description: 'Single Portal theme'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 
 regions:
   header: 'Header'

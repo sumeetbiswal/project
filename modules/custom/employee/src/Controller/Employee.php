@@ -30,7 +30,7 @@ class Employee extends ControllerBase
             $html = ['#markup' => '<a href="'.$base_url.'/employee/edit/'.$codepk_encoded.'" style="text-align:center">
       <i class="icon-note" title="" data-toggle="tooltip" data-original-title="Edit"></i></a>'];
             $rows[] =     array(
-                    'data' =>      array( $content->empid, $content->firstname.' '.$content->lastname , $content->doj, $content->designation, $content->department, render($html))
+                    'data' =>      array( $content->empid, $content->firstname.' '.$content->lastname , $content->doj, $content->designation, $content->department, Drupal\Core\Render\RendererInterface::render($html))
             );
         }
         $element['display']['employeelist'] = array(
