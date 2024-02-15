@@ -1,9 +1,12 @@
 uuid: f3621823-ad1d-4593-858b-ec008dc0c472
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - file
 id: hr_manager
 label: 'HR Manager'
 weight: 5
 is_admin: null
-permissions: {  }
+permissions:
+  - 'delete own files'

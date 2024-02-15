@@ -41,6 +41,7 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  phpass: 0
   search: 0
   shield: 0
   shortcut: 0
@@ -52,7 +53,6 @@ module:
   toolbar: 0
   tour: 0
   update: 0
-  upgrade_status: 0
   user: 0
   view_custom_table: 0
   views_ui: 0

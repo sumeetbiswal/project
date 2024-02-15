@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - company
+    - file
 id: organisation_admin
 label: 'Organisation Admin'
 weight: 4
@@ -13,6 +14,7 @@ permissions:
   - 'branch edit'
   - 'branch export'
   - 'branch view'
+  - 'delete own files'
   - 'dept view'
   - 'organisation add'
   - 'organisation edit'
