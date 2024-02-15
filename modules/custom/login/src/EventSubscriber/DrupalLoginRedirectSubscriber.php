@@ -3,7 +3,7 @@
 namespace Drupal\login\EventSubscriber;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Http\RequestStack;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
@@ -67,7 +67,7 @@ class DrupalLoginRedirectSubscriber implements EventSubscriberInterface {
   /**
    * Force SAML Login to anonymous users.
    *
-   * @param \Drupal\Core\Http\RequestStack $requestStack
+   * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
    *   Request stack.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
    *   Config factory service.
