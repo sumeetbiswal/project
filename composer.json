@@ -23,7 +23,7 @@
         "drupal/core-recommended": "^10",
         "drupal/core-vendor-hardening": "^9.4",
         "drupal/devel": "^5.1",
-        "drupal/seven": "^1.0",
+        "drupal/mediteran": "^1.32",
         "drupal/shield": "^1.7",
         "drupal/themable_forms": "^1.0@beta",
         "drupal/view_custom_table": "^2.0",

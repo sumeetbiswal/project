@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5cc4dd8d9af1156b23579823137ba0a",
+    "content-hash": "ae3c6114c499abe490bec15d42d329fe",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2097,27 +2097,27 @@
             }
         },
         {
-            "name": "drupal/seven",
-            "version": "1.0.0",
+            "name": "drupal/mediteran",
+            "version": "1.32.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/seven.git",
-                "reference": "1.0.0"
+                "url": "https://git.drupalcode.org/project/mediteran.git",
+                "reference": "8.x-1.32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/seven-1.0.0.zip",
-                "reference": "1.0.0",
-                "shasum": "88e86926388c7e6cf66b0502d13a0470ce2399cd"
+                "url": "https://ftp.drupal.org/files/projects/mediteran-8.x-1.32.zip",
+                "reference": "8.x-1.32",
+                "shasum": "85e0a94bf5f98626e1eb2c88f6b9467c1fdaf9ec"
             },
             "require": {
-                "drupal/core": "^9 || ^10"
+                "drupal/core": "^9.2 || ^10"
             },
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0",
-                    "datestamp": "1683652106",
+                    "version": "8.x-1.32",
+                    "datestamp": "1699979844",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2130,30 +2130,38 @@
             ],
             "authors": [
                 {
-                    "name": "bnjmnm",
-                    "homepage": "https://www.drupal.org/user/2369194"
+                    "name": "bataboza",
+                    "homepage": "https://www.drupal.org/user/3581173"
                 },
                 {
-                    "name": "lauriii",
-                    "homepage": "https://www.drupal.org/user/1078742"
+                    "name": "doxigo",
+                    "homepage": "https://www.drupal.org/user/1331334"
                 },
                 {
-                    "name": "mcrittenden",
-                    "homepage": "https://www.drupal.org/user/420631"
+                    "name": "dqd",
+                    "homepage": "https://www.drupal.org/user/1001934"
                 },
                 {
-                    "name": "mrfelton",
-                    "homepage": "https://www.drupal.org/user/305669"
+                    "name": "Hosisam",
+                    "homepage": "https://www.drupal.org/user/3449435"
                 },
                 {
-                    "name": "TravisCarden",
-                    "homepage": "https://www.drupal.org/user/236758"
+                    "name": "Nitin shrivastava",
+                    "homepage": "https://www.drupal.org/user/3725211"
+                },
+                {
+                    "name": "paulrad",
+                    "homepage": "https://www.drupal.org/user/3722439"
+                },
+                {
+                    "name": "szeidler",
+                    "homepage": "https://www.drupal.org/user/767652"
                 }
             ],
-            "description": "The Seven theme from Drupal 8/9 moved to contrib",
-            "homepage": "https://www.drupal.org/project/seven",
+            "description": "Mediteran is a clean and simple administration theme designed by <a href=\"https://drupalation.com\" target=\"_blank\">Drupalation</a> and supported by <a href=\"https://ramsalt.com\" target=\"_blank\">Ramsalt</a>.",
+            "homepage": "https://www.drupal.org/project/mediteran",
             "support": {
-                "source": "https://git.drupalcode.org/project/seven"
+                "source": "https://git.drupalcode.org/project/mediteran"
             }
         },
         {

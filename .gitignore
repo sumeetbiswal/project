@@ -6,6 +6,8 @@ css
 /sites/default/files/avatar
 /sites/default/files/styles
 /sites/default/files/php
+/sites/default/files/css
+/sites/default/files/js
 /sites/*/files
 .DS_Store
 .idea/vcs.xml
