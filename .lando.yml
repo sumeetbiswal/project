@@ -1,8 +1,8 @@
 name: xsmind
-recipe: drupal9
+recipe: drupal10
 config:
   webroot: .
-  drush: ^11
+  drush: ^12
   xdebug: true
   php: '8.1'
   conf:
@@ -27,7 +27,7 @@ services:
   database:
     run_as_root:
       # Assign permission databases.
-      - mysql -uroot -e "GRANT SUPER ON *.* to 'drupal9'@'%' IDENTIFIED by 'drupal9';"
+      - mysql -uroot -e "GRANT SUPER ON *.* to 'drupal10'@'%' IDENTIFIED by 'drupal10';"
 
 tooling:
   build-site:
