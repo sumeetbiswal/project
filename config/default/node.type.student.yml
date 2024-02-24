@@ -1,0 +1,18 @@
+uuid: 46e08961-3cd1-4fd3-a6be-87178de54ded
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Student
+type: student
+description: 'This helps to create student information.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

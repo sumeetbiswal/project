@@ -1,0 +1,62 @@
+uuid: b519f9a1-8c5c-4eb9-b497-be2a4f7f3fac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.student.field_father_s_name
+    - field.field.node.student.field_first_name
+    - field.field.node.student.field_last_name
+    - field.field.node.student.field_mother_s_name
+    - node.type.student
+  module:
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.student.default
+targetEntityType: node
+bundle: student
+mode: default
+content:
+  field_father_s_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_first_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_last_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_mother_s_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }
