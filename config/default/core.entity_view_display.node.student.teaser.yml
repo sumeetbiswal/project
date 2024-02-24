@@ -1,0 +1,35 @@
+uuid: e374c7fa-461c-4044-b2dd-d0accb7a2f54
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.student.field_father_s_name
+    - field.field.node.student.field_first_name
+    - field.field.node.student.field_last_name
+    - field.field.node.student.field_mother_s_name
+    - node.type.student
+  module:
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.student.teaser
+targetEntityType: node
+bundle: student
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_father_s_name: true
+  field_first_name: true
+  field_last_name: true
+  field_mother_s_name: true
