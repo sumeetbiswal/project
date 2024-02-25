@@ -1,0 +1,23 @@
+uuid: cc7b47eb-a419-4ae4-a2a1-7410b868c815
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_roll_no
+    - node.type.student
+id: node.student.field_roll_no
+field_name: field_roll_no
+entity_type: node
+bundle: student
+label: 'Roll No'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

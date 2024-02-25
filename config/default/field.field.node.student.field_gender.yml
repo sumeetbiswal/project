@@ -1,0 +1,21 @@
+uuid: fe2e7122-750b-4394-b163-764d3590e47c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gender
+    - node.type.student
+  module:
+    - options
+id: node.student.field_gender
+field_name: field_gender
+entity_type: node
+bundle: student
+label: Gender
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

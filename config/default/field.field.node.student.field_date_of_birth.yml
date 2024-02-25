@@ -1,0 +1,21 @@
+uuid: 3926c7c9-22c1-43b9-a2c9-3ecf2b5d8e48
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_birth
+    - node.type.student
+  module:
+    - datetime
+id: node.student.field_date_of_birth
+field_name: field_date_of_birth
+entity_type: node
+bundle: student
+label: 'Date of birth'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

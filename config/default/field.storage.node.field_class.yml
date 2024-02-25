@@ -1,0 +1,63 @@
+uuid: d64ae5e0-e755-453b-8831-5a2be5d228a8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_class
+field_name: field_class
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: lkg
+      label: LKG
+    -
+      value: ukg
+      label: UKG
+    -
+      value: '1'
+      label: '1'
+    -
+      value: '2'
+      label: '2'
+    -
+      value: '3'
+      label: '3'
+    -
+      value: '4'
+      label: '4'
+    -
+      value: '5'
+      label: '5'
+    -
+      value: '6'
+      label: '6'
+    -
+      value: '7'
+      label: '7'
+    -
+      value: '8'
+      label: '8'
+    -
+      value: '9'
+      label: '9'
+    -
+      value: '10'
+      label: '10'
+    -
+      value: '11'
+      label: '11'
+    -
+      value: '12'
+      label: '12'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

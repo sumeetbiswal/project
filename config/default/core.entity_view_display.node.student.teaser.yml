@@ -4,10 +4,23 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.student.field_admission_no
+    - field.field.node.student.field_are_you_physically_disable
+    - field.field.node.student.field_blood_group
+    - field.field.node.student.field_caste
+    - field.field.node.student.field_class
+    - field.field.node.student.field_date_of_birth
     - field.field.node.student.field_father_s_name
     - field.field.node.student.field_first_name
+    - field.field.node.student.field_gender
+    - field.field.node.student.field_identification_mark
     - field.field.node.student.field_last_name
     - field.field.node.student.field_mother_s_name
+    - field.field.node.student.field_mother_tongue
+    - field.field.node.student.field_religion
+    - field.field.node.student.field_roll_no
+    - field.field.node.student.field_section
+    - field.field.node.student.field_student_photo
     - node.type.student
   module:
     - field_layout
@@ -29,7 +42,20 @@ content:
     weight: 100
     region: content
 hidden:
+  field_admission_no: true
+  field_are_you_physically_disable: true
+  field_blood_group: true
+  field_caste: true
+  field_class: true
+  field_date_of_birth: true
   field_father_s_name: true
   field_first_name: true
+  field_gender: true
+  field_identification_mark: true
   field_last_name: true
   field_mother_s_name: true
+  field_mother_tongue: true
+  field_religion: true
+  field_roll_no: true
+  field_section: true
+  field_student_photo: true
