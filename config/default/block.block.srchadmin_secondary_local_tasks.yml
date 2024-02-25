@@ -1,0 +1,22 @@
+uuid: e717fb52-0633-451e-9b48-5e87553b842a
+langcode: en
+status: true
+dependencies:
+  theme:
+    - srchadmin
+_core:
+  default_config_hash: 2L0geP-ixCbCkEpW6BVF6H7vDUZN4ea07_Y9CociQm4
+id: srchadmin_secondary_local_tasks
+theme: srchadmin
+region: header
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

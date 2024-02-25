@@ -1,0 +1,15 @@
+type: theme
+name: 'Srchadmin'
+base theme: 'mediteran'
+description: 'srch admin theme'
+core_version_requirement: ^9 || ^10
+
+regions:
+  header: 'Header'
+  mainmenu: 'Main Navigation'
+  breadcrumb: 'Breadcrumb'
+  message: 'Status Message'
+  dashleft: 'Dashboard Left Column'
+  dashright: 'Dashboard Right Column'
+  content: 'Content'
+  footer: 'Footer'

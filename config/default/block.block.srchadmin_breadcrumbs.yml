@@ -1,0 +1,22 @@
+uuid: ef2fee58-139a-4a45-96c6-f34b23033ebe
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - srchadmin
+_core:
+  default_config_hash: NjcxOBrPOiK5-38t56DwFBDVY4yer7YSlbRWXFuHe7A
+id: srchadmin_breadcrumbs
+theme: srchadmin
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

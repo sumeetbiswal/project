@@ -1,0 +1,20 @@
+uuid: 40421934-b48c-4ada-a448-1372cba320ee
+langcode: en
+status: true
+dependencies:
+  theme:
+    - srchadmin
+_core:
+  default_config_hash: CdXfDmRgAvms7EQovxxWPdYi0GitxeRbVtScYK16ZH0
+id: srchadmin_local_actions
+theme: srchadmin
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }
