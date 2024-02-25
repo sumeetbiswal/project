@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'aeee6e529191cf2fe3daf38844f06bf4cac54cc7',
+        'reference' => '64b1a84bf071d479ae4d6e9fcd6d41640f612f3e',
         'name' => 'drupal/legacy-project',
         'dev' => true,
     ),
@@ -430,7 +430,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'aeee6e529191cf2fe3daf38844f06bf4cac54cc7',
+            'reference' => '64b1a84bf071d479ae4d6e9fcd6d41640f612f3e',
             'dev_requirement' => false,
         ),
         'drupal/mediteran' => array(
@@ -676,8 +676,8 @@
         'psr/container-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.1|2.0',
-                1 => '^1.0',
+                0 => '^1.0',
+                1 => '1.1|2.0',
             ),
         ),
         'psr/event-dispatcher' => array(

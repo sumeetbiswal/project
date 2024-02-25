@@ -1,0 +1,36 @@
+uuid: 81d2cf6e-2ed6-482e-be2e-f4b285cc290e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_father_s_occupation
+field_name: field_father_s_occupation
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: government_sector
+      label: 'Government sector'
+    -
+      value: private_sector
+      label: 'Private sector'
+    -
+      value: business
+      label: Business
+    -
+      value: self_employed
+      label: 'Self employed'
+    -
+      value: others
+      label: Others
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

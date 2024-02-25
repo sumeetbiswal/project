@@ -1,0 +1,45 @@
+uuid: 613de9b6-93e8-47d5-88c0-a7fe8387e488
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_section
+field_name: field_section
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: a
+      label: A
+    -
+      value: b
+      label: B
+    -
+      value: c
+      label: C
+    -
+      value: d
+      label: D
+    -
+      value: e
+      label: E
+    -
+      value: f
+      label: F
+    -
+      value: g
+      label: G
+    -
+      value: h
+      label: H
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

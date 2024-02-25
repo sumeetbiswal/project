@@ -1,0 +1,33 @@
+uuid: 6e2c88bb-8543-4d7c-a320-393bd26e666c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_caste
+field_name: field_caste
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: sc
+      label: SC
+    -
+      value: st
+      label: ST
+    -
+      value: obc
+      label: OBC
+    -
+      value: general
+      label: General
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

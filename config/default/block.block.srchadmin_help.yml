@@ -1,0 +1,22 @@
+uuid: 179375a8-fdcf-44ae-a2d5-7c1cbae5e456
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - srchadmin
+_core:
+  default_config_hash: jccFSSVqV0WCDb6NtML1VWAWTtDbZ-zn5YgTRMgMrIM
+id: srchadmin_help
+theme: srchadmin
+region: header
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

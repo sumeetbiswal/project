@@ -1,0 +1,45 @@
+uuid: a1660bee-5d49-4f1d-bebf-4e96c7f86a8a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_blood_group
+field_name: field_blood_group
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: a
+      label: A+
+    -
+      value: b
+      label: B+
+    -
+      value: o
+      label: O+
+    -
+      value: ab
+      label: AB+
+    -
+      value: an
+      label: A-
+    -
+      value: bn
+      label: B-
+    -
+      value: abn
+      label: AB-
+    -
+      value: 'on'
+      label: O-
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

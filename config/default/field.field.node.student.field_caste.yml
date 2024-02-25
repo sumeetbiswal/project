@@ -1,0 +1,21 @@
+uuid: 9fde8401-1090-421d-8946-0e2115e39b25
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_caste
+    - node.type.student
+  module:
+    - options
+id: node.student.field_caste
+field_name: field_caste
+entity_type: node
+bundle: student
+label: Caste
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

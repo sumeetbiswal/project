@@ -1,0 +1,21 @@
+uuid: 308645b7-dc7a-4fbe-b127-e36c168cf022
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_father_s_occupation
+    - node.type.student
+  module:
+    - options
+id: node.student.field_father_s_occupation
+field_name: field_father_s_occupation
+entity_type: node
+bundle: student
+label: "Father's occupation"
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
