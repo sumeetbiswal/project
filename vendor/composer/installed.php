@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1371e5f33172bab52bba76d7c3a344667edbe112',
+        'reference' => 'aeee6e529191cf2fe3daf38844f06bf4cac54cc7',
         'name' => 'drupal/legacy-project',
         'dev' => true,
     ),
@@ -430,7 +430,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1371e5f33172bab52bba76d7c3a344667edbe112',
+            'reference' => 'aeee6e529191cf2fe3daf38844f06bf4cac54cc7',
             'dev_requirement' => false,
         ),
         'drupal/mediteran' => array(
@@ -578,12 +578,12 @@
             'dev_requirement' => false,
         ),
         'nikic/php-parser' => array(
-            'pretty_version' => 'v5.0.0',
-            'version' => '5.0.0.0',
+            'pretty_version' => 'v5.0.1',
+            'version' => '5.0.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nikic/php-parser',
             'aliases' => array(),
-            'reference' => '4a21235f7e56e713259a6f76bf4b5ea08502b9dc',
+            'reference' => '2218c2252c874a4624ab2f613d86ac32d227bc69',
             'dev_requirement' => false,
         ),
         'orno/di' => array(
@@ -676,8 +676,8 @@
         'psr/container-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '^1.0',
-                1 => '1.1|2.0',
+                0 => '1.1|2.0',
+                1 => '^1.0',
             ),
         ),
         'psr/event-dispatcher' => array(
