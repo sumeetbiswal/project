@@ -1,0 +1,23 @@
+uuid: a1f8e591-c2c4-4b1c-9fbb-c8c4ce117fa3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_phone_number
+    - node.type.student
+id: node.student.field_phone_number
+field_name: field_phone_number
+entity_type: node
+bundle: student
+label: 'Phone number'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

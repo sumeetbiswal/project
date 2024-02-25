@@ -1,0 +1,19 @@
+uuid: 08e9e15b-ca84-4316-b477-ba896b8cd9bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_present_address
+    - node.type.student
+id: node.student.field_present_address
+field_name: field_present_address
+entity_type: node
+bundle: student
+label: 'Present address'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

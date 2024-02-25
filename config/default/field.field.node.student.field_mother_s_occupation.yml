@@ -1,0 +1,21 @@
+uuid: 824e8b00-fb06-4233-9436-95bae96e39bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mother_s_occupation
+    - node.type.student
+  module:
+    - options
+id: node.student.field_mother_s_occupation
+field_name: field_mother_s_occupation
+entity_type: node
+bundle: student
+label: "Mother's occupation"
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,19 @@
+uuid: 0369dad4-e321-4833-9014-9034414e052a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nationality
+    - node.type.student
+id: node.student.field_nationality
+field_name: field_nationality
+entity_type: node
+bundle: student
+label: Nationality
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

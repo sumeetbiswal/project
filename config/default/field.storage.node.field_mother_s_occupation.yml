@@ -1,0 +1,39 @@
+uuid: 97feaa99-6375-4d16-a59f-ffa97a46b739
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_mother_s_occupation
+field_name: field_mother_s_occupation
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: government_sector
+      label: 'Government sector'
+    -
+      value: private_sector
+      label: 'Private sector'
+    -
+      value: business
+      label: Business
+    -
+      value: self_employed
+      label: 'Self employed'
+    -
+      value: others
+      label: Others
+    -
+      value: house_wife
+      label: 'House wife'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
