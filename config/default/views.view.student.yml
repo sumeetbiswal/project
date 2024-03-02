@@ -377,7 +377,7 @@ display:
           exposed: true
           expose:
             operator_id: field_roll_no_value_op
-            label: 'Roll No (field_roll_no)'
+            label: 'Roll No'
             description: ''
             use_operator: false
             operator: field_roll_no_value_op

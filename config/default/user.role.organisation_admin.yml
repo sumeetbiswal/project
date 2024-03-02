@@ -2,21 +2,43 @@ uuid: 91817ee7-8531-437a-9538-b91f274e4312
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.student
   module:
+    - block
     - company
+    - contextual
     - file
+    - node
+    - system
+    - toolbar
+    - tour
 id: organisation_admin
 label: 'Organisation Admin'
 weight: 4
 is_admin: null
 permissions:
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access toolbar'
+  - 'access tour'
+  - 'administer blocks'
   - 'branch add'
   - 'branch edit'
   - 'branch export'
   - 'branch view'
+  - 'create student content'
+  - 'delete any student content'
   - 'delete own files'
+  - 'delete own student content'
+  - 'delete student revisions'
   - 'dept view'
+  - 'edit any student content'
+  - 'edit own student content'
   - 'organisation add'
   - 'organisation edit'
   - 'organisation export'
   - 'organisation view'
+  - 'revert student revisions'
+  - 'view student revisions'
+  - 'view the administration theme'
