@@ -1,0 +1,7 @@
+name: School
+description: This Modules is for Managing School application
+package: Custom
+type: module
+core_version_requirement: ^10
+libraries:
+  - school/toolbar-icon

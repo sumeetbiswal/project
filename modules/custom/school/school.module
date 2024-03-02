@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * School module file for overriding functionality.
+ */
+
+
+/*
+ * Implements hook_toolbar_alter()
+ */
+function school_toolbar_alter(&$items) {
+  $items['administration']['#attached']['library'][] = 'school/toolbar-icon';
+}
