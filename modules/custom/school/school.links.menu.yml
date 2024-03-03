@@ -1,0 +1,6 @@
+school.student:
+  title: 'Student'
+  route_name: view.student.page_1
+  description: 'Custom Link'
+  parent: system.admin
+  weight: -65

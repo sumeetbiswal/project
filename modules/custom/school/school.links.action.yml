@@ -4,6 +4,6 @@ school.student_list:
   route_parameters:
     node_type: 'student'
   title: 'Add Student'
-  class: \Drupal\school\Plugin\Menu\LocalAction\DpkLocalAction
+  class: \Drupal\school\Plugin\Menu\LocalAction\SchoolLocalAction
   appears_on:
     - view.student.page_1
