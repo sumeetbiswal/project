@@ -8,68 +8,68 @@ definitions:
     expanded: false
     enabled: true
   standard__front_page:
-    weight: -46
     menu_name: main
     parent: ''
-    enabled: false
+    weight: -46
     expanded: false
+    enabled: false
   user__page:
+    menu_name: account
+    parent: ''
     weight: -50
-    menu_name: account
-    parent: ''
-    enabled: false
     expanded: false
+    enabled: false
   user__logout:
-    weight: -47
     menu_name: account
     parent: ''
+    weight: -47
     expanded: false
     enabled: false
   system__admin_content:
-    weight: -64
     menu_name: admin
     parent: system.admin
+    weight: -64
     expanded: false
     enabled: true
   system__admin_structure:
-    weight: -63
     menu_name: admin
     parent: system.admin
+    weight: -63
     expanded: false
     enabled: true
   system__themes_page:
-    weight: -62
     menu_name: admin
     parent: system.admin
+    weight: -62
     expanded: false
     enabled: true
   system__modules_list:
-    weight: -61
     menu_name: admin
     parent: system.admin
+    weight: -61
     expanded: false
     enabled: true
   system__admin_config:
-    weight: -60
     menu_name: admin
     parent: system.admin
+    weight: -60
     expanded: false
     enabled: true
   entity__user__collection:
-    weight: -59
     menu_name: admin
     parent: system.admin
+    weight: -59
     expanded: false
     enabled: true
   system__admin_reports:
-    weight: -58
     menu_name: admin
     parent: system.admin
+    weight: -58
     expanded: false
     enabled: true
   help__main:
-    weight: -57
     menu_name: admin
     parent: system.admin
+    weight: -57
     expanded: false
     enabled: true
