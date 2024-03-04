@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Modifies All local actions to add a destination.
  */
-class DpkLocalAction extends LocalActionDefault {
+class SchoolLocalAction extends LocalActionDefault {
 
   /**
    * The redirect destination.
