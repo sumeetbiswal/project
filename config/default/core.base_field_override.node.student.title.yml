@@ -1,18 +1,17 @@
-uuid: 124bc02d-fcf0-4faf-a915-b7703c78b0b4
+uuid: ea68adf9-a1fc-42eb-8d01-cd60ad10e422
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_first_name
     - node.type.student
-id: node.student.field_first_name
-field_name: field_first_name
+id: node.student.title
+field_name: title
 entity_type: node
 bundle: student
-label: 'First Name'
+label: Name
 description: ''
 required: true
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }
