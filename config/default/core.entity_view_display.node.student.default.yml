@@ -12,17 +12,15 @@ dependencies:
     - field.field.node.student.field_email
     - field.field.node.student.field_father_s_name
     - field.field.node.student.field_father_s_occupation
-    - field.field.node.student.field_first_name
     - field.field.node.student.field_gender
     - field.field.node.student.field_identification_mark
-    - field.field.node.student.field_last_name
     - field.field.node.student.field_local_guardian
+    - field.field.node.student.field_mobile_number
     - field.field.node.student.field_mother_s_name
     - field.field.node.student.field_mother_s_occupation
     - field.field.node.student.field_mother_tongue
     - field.field.node.student.field_nationality
     - field.field.node.student.field_permanent_address
-    - field.field.node.student.field_phone_number
     - field.field.node.student.field_present_address
     - field.field.node.student.field_religion
     - field.field.node.student.field_roll_no
@@ -114,14 +112,6 @@ content:
     third_party_settings: {  }
     weight: 118
     region: content
-  field_first_name:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 101
-    region: content
   field_gender:
     type: list_default
     label: hidden
@@ -136,14 +126,6 @@ content:
     third_party_settings: {  }
     weight: 113
     region: content
-  field_last_name:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 102
-    region: content
   field_local_guardian:
     type: string
     label: hidden
@@ -151,6 +133,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 122
+    region: content
+  field_mobile_number:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 127
     region: content
   field_mother_s_name:
     type: string
@@ -189,15 +179,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 125
-    region: content
-  field_phone_number:
-    type: number_integer
-    label: hidden
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings: {  }
-    weight: 121
     region: content
   field_present_address:
     type: basic_string

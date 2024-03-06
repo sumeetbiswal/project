@@ -13,17 +13,15 @@ dependencies:
     - field.field.node.student.field_email
     - field.field.node.student.field_father_s_name
     - field.field.node.student.field_father_s_occupation
-    - field.field.node.student.field_first_name
     - field.field.node.student.field_gender
     - field.field.node.student.field_identification_mark
-    - field.field.node.student.field_last_name
     - field.field.node.student.field_local_guardian
+    - field.field.node.student.field_mobile_number
     - field.field.node.student.field_mother_s_name
     - field.field.node.student.field_mother_s_occupation
     - field.field.node.student.field_mother_tongue
     - field.field.node.student.field_nationality
     - field.field.node.student.field_permanent_address
-    - field.field.node.student.field_phone_number
     - field.field.node.student.field_present_address
     - field.field.node.student.field_religion
     - field.field.node.student.field_roll_no
@@ -60,17 +58,15 @@ hidden:
   field_email: true
   field_father_s_name: true
   field_father_s_occupation: true
-  field_first_name: true
   field_gender: true
   field_identification_mark: true
-  field_last_name: true
   field_local_guardian: true
+  field_mobile_number: true
   field_mother_s_name: true
   field_mother_s_occupation: true
   field_mother_tongue: true
   field_nationality: true
   field_permanent_address: true
-  field_phone_number: true
   field_present_address: true
   field_religion: true
   field_roll_no: true

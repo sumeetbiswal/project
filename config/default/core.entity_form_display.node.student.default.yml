@@ -12,17 +12,15 @@ dependencies:
     - field.field.node.student.field_email
     - field.field.node.student.field_father_s_name
     - field.field.node.student.field_father_s_occupation
-    - field.field.node.student.field_first_name
     - field.field.node.student.field_gender
     - field.field.node.student.field_identification_mark
-    - field.field.node.student.field_last_name
     - field.field.node.student.field_local_guardian
+    - field.field.node.student.field_mobile_number
     - field.field.node.student.field_mother_s_name
     - field.field.node.student.field_mother_s_occupation
     - field.field.node.student.field_mother_tongue
     - field.field.node.student.field_nationality
     - field.field.node.student.field_permanent_address
-    - field.field.node.student.field_phone_number
     - field.field.node.student.field_present_address
     - field.field.node.student.field_religion
     - field.field.node.student.field_roll_no
@@ -41,8 +39,7 @@ third_party_settings:
   field_group:
     group_student_information:
       children:
-        - field_first_name
-        - field_last_name
+        - title
         - field_class
         - field_section
         - field_gender
@@ -72,11 +69,11 @@ third_party_settings:
       children:
         - field_father_s_name
         - field_mother_s_name
+        - field_mobile_number
         - field_blood_group
         - field_father_s_occupation
         - field_mother_s_occupation
         - field_email
-        - field_phone_number
         - field_local_guardian
         - field_nationality
         - field_present_address
@@ -106,13 +103,13 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_admission_no:
     type: string_textfield
-    weight: 8
+    weight: 10
     region: content
     settings:
       size: 60
@@ -120,37 +117,37 @@ content:
     third_party_settings: {  }
   field_are_you_physically_disable:
     type: options_select
-    weight: 10
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   field_blood_group:
     type: options_select
-    weight: 4
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   field_caste:
     type: options_select
-    weight: 14
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
   field_class:
     type: options_select
-    weight: 3
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_date_of_birth:
     type: datetime_default
-    weight: 6
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   field_email:
     type: email_default
-    weight: 7
+    weight: 15
     region: content
     settings:
       placeholder: ''
@@ -158,7 +155,7 @@ content:
     third_party_settings: {  }
   field_father_s_name:
     type: string_textfield
-    weight: 2
+    weight: 9
     region: content
     settings:
       size: 60
@@ -166,43 +163,35 @@ content:
     third_party_settings: {  }
   field_father_s_occupation:
     type: options_select
-    weight: 5
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_first_name:
-    type: string_textfield
-    weight: 1
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_gender:
     type: options_select
-    weight: 5
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   field_identification_mark:
     type: string_textarea
-    weight: 11
+    weight: 13
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_last_name:
+  field_local_guardian:
     type: string_textfield
-    weight: 2
+    weight: 16
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_local_guardian:
+  field_mobile_number:
     type: string_textfield
-    weight: 9
+    weight: 11
     region: content
     settings:
       size: 60
@@ -210,7 +199,7 @@ content:
     third_party_settings: {  }
   field_mother_s_name:
     type: string_textfield
-    weight: 3
+    weight: 10
     region: content
     settings:
       size: 60
@@ -218,13 +207,13 @@ content:
     third_party_settings: {  }
   field_mother_s_occupation:
     type: options_select
-    weight: 6
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
   field_mother_tongue:
     type: string_textfield
-    weight: 12
+    weight: 14
     region: content
     settings:
       size: 60
@@ -232,7 +221,7 @@ content:
     third_party_settings: {  }
   field_nationality:
     type: string_textfield
-    weight: 10
+    weight: 17
     region: content
     settings:
       size: 60
@@ -240,22 +229,15 @@ content:
     third_party_settings: {  }
   field_permanent_address:
     type: string_textarea
-    weight: 12
+    weight: 19
     region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_phone_number:
-    type: number
-    weight: 8
-    region: content
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
   field_present_address:
     type: string_textarea
-    weight: 11
+    weight: 18
     region: content
     settings:
       rows: 5
@@ -263,7 +245,7 @@ content:
     third_party_settings: {  }
   field_religion:
     type: string_textfield
-    weight: 9
+    weight: 11
     region: content
     settings:
       size: 60
@@ -271,20 +253,20 @@ content:
     third_party_settings: {  }
   field_roll_no:
     type: number
-    weight: 7
+    weight: 9
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_section:
     type: options_select
-    weight: 4
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   field_student_photo:
     type: image_image
-    weight: 13
+    weight: 15
     region: content
     settings:
       progress_indicator: throbber
@@ -292,7 +274,7 @@ content:
     third_party_settings: {  }
   field_upload_parents_photo:
     type: image_image
-    weight: 13
+    weight: 20
     region: content
     settings:
       progress_indicator: throbber
@@ -307,21 +289,21 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 6
+    weight: 7
     region: content
     settings:
       display_label: false
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 7
+    weight: 2
     region: content
     settings:
       size: 60

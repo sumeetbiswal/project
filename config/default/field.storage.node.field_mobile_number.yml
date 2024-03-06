@@ -1,16 +1,17 @@
-uuid: 9fbc0adf-3b10-4ef8-8a44-e93d36be6b1d
+uuid: 4216a117-cd9c-4719-87ab-18f8269a1cfe
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_phone_number
-field_name: field_phone_number
+id: node.field_mobile_number
+field_name: field_mobile_number
 entity_type: node
-type: integer
+type: string
 settings:
-  unsigned: false
-  size: normal
+  max_length: 10
+  case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1
