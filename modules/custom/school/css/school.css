@@ -1,7 +1,7 @@
 .toolbar-icon-school-student::before {
   background-image: url('./student.png');
 }
-.toolbar-icon-menu-link-contentf52bad4e-81c0-4d65-8409-71a0bca4f714::before {
+.toolbar-icon-school-teacher::before {
   background-image: url('./teacher.png');
   width: 20px !important;
 }
