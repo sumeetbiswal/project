@@ -1,0 +1,19 @@
+uuid: dfb5565f-1291-4650-b585-dc387bb00e13
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nationality
+    - node.type.teacher
+id: node.teacher.field_nationality
+field_name: field_nationality
+entity_type: node
+bundle: teacher
+label: Nationality
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

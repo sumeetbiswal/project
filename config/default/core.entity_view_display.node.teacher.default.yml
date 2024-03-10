@@ -1,0 +1,144 @@
+uuid: f5111cc1-9382-4366-b7e8-d4b5c7854e2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.teacher.field_blood_group
+    - field.field.node.teacher.field_date_of_birth
+    - field.field.node.teacher.field_email
+    - field.field.node.teacher.field_gender
+    - field.field.node.teacher.field_image
+    - field.field.node.teacher.field_mobile_number
+    - field.field.node.teacher.field_nationality
+    - field.field.node.teacher.field_permanent_address
+    - field.field.node.teacher.field_present_address
+    - field.field.node.teacher.field_qualification
+    - field.field.node.teacher.field_religion
+    - field.field.node.teacher.field_subject
+    - field.field.node.teacher.field_teacher_id
+    - image.style.wide
+    - node.type.teacher
+  module:
+    - datetime
+    - field_layout
+    - image
+    - layout_discovery
+    - options
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.teacher.default
+targetEntityType: node
+bundle: teacher
+mode: default
+content:
+  field_blood_group:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_date_of_birth:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_email:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_gender:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: wide
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_mobile_number:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_nationality:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_permanent_address:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_present_address:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_qualification:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_religion:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_subject:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_teacher_id:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 13
+    region: content
+hidden: {  }

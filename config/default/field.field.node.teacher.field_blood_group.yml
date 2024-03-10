@@ -1,0 +1,21 @@
+uuid: 1594a417-80c0-4542-a849-d433ca182eac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_blood_group
+    - node.type.teacher
+  module:
+    - options
+id: node.teacher.field_blood_group
+field_name: field_blood_group
+entity_type: node
+bundle: teacher
+label: 'Blood Group'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

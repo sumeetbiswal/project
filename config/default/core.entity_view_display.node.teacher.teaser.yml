@@ -1,0 +1,65 @@
+uuid: e1144c3a-f068-486f-8608-684f5e74c32d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.teacher.field_blood_group
+    - field.field.node.teacher.field_date_of_birth
+    - field.field.node.teacher.field_email
+    - field.field.node.teacher.field_gender
+    - field.field.node.teacher.field_image
+    - field.field.node.teacher.field_mobile_number
+    - field.field.node.teacher.field_nationality
+    - field.field.node.teacher.field_permanent_address
+    - field.field.node.teacher.field_present_address
+    - field.field.node.teacher.field_qualification
+    - field.field.node.teacher.field_religion
+    - field.field.node.teacher.field_subject
+    - field.field.node.teacher.field_teacher_id
+    - image.style.medium
+    - node.type.teacher
+  module:
+    - field_layout
+    - image
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: node.teacher.teaser
+targetEntityType: node
+bundle: teacher
+mode: teaser
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_blood_group: true
+  field_date_of_birth: true
+  field_email: true
+  field_gender: true
+  field_mobile_number: true
+  field_nationality: true
+  field_permanent_address: true
+  field_present_address: true
+  field_qualification: true
+  field_religion: true
+  field_subject: true
+  field_teacher_id: true

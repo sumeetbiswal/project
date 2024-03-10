@@ -4,3 +4,9 @@ school.student:
   description: 'Custom Link'
   parent: system.admin
   weight: -65
+school.teacher:
+  title: 'Teacher'
+  route_name: view.teacher.page_1
+  description: 'Custom Link'
+  parent: system.admin
+  weight: -65

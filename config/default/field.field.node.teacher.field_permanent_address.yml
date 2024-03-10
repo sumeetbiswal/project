@@ -1,0 +1,19 @@
+uuid: 40a350ce-56f3-4792-b7cc-e86ee5fa0746
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_permanent_address
+    - node.type.teacher
+id: node.teacher.field_permanent_address
+field_name: field_permanent_address
+entity_type: node
+bundle: teacher
+label: 'Permanent Address'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
