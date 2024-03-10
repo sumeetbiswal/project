@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.2",
         "drupal/config_split": "^1.9",
         "drupal/core-composer-scaffold": "^10",
@@ -43,11 +44,16 @@
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "drupal/core-vendor-hardening": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "cweagans/composer-patches": true
         },
         "sort-packages": true
     },
     "extra": {
+        "enable-patching": true,
+        "patches": {
+            
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "./"
