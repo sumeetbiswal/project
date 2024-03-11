@@ -19,14 +19,5 @@ php /app/vendor/drush/drush/drush cache-rebuild
 
 
 echo ""
-echo "importing configuration."
-php /app/vendor/drush/drush/drush config-import --yes
-
-
-echo ""
-echo "Updating DB..."
-php /app/vendor/drush/drush/drush updatedb --yes
-
-
-echo "Clearing Cache"
-php /app/vendor/drush/drush/drush cache-rebuild
+echo "Deployment started...."
+php /app/vendor/drush/drush/drush deploy
