@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.teacher.field_blood_group
     - field.field.node.teacher.field_date_of_birth
     - field.field.node.teacher.field_email
+    - field.field.node.teacher.field_experience
     - field.field.node.teacher.field_gender
     - field.field.node.teacher.field_image
     - field.field.node.teacher.field_mobile_number
@@ -54,6 +55,7 @@ hidden:
   field_blood_group: true
   field_date_of_birth: true
   field_email: true
+  field_experience: true
   field_gender: true
   field_mobile_number: true
   field_nationality: true
