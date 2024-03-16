@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '64b1a84bf071d479ae4d6e9fcd6d41640f612f3e',
+        'reference' => '1d695001255139e79eda0a7952455d3b82a3fa81',
         'name' => 'drupal/legacy-project',
         'dev' => true,
     ),
@@ -125,6 +125,15 @@
             'install_path' => __DIR__ . '/../consolidation/site-process',
             'aliases' => array(),
             'reference' => '6c44638d7af8a8b4abe12c3180701243f480539d',
+            'dev_requirement' => false,
+        ),
+        'cweagans/composer-patches' => array(
+            'pretty_version' => '1.7.3',
+            'version' => '1.7.3.0',
+            'type' => 'composer-plugin',
+            'install_path' => __DIR__ . '/../cweagans/composer-patches',
+            'aliases' => array(),
+            'reference' => 'e190d4466fe2b103a55467dfa83fc2fecfcaf2db',
             'dev_requirement' => false,
         ),
         'dflydev/dot-access-data' => array(
@@ -430,7 +439,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '64b1a84bf071d479ae4d6e9fcd6d41640f612f3e',
+            'reference' => '1d695001255139e79eda0a7952455d3b82a3fa81',
             'dev_requirement' => false,
         ),
         'drupal/mediteran' => array(
