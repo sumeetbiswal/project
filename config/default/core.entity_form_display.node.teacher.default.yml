@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.teacher.field_blood_group
     - field.field.node.teacher.field_date_of_birth
     - field.field.node.teacher.field_email
+    - field.field.node.teacher.field_experience
     - field.field.node.teacher.field_gender
     - field.field.node.teacher.field_image
     - field.field.node.teacher.field_mobile_number
@@ -20,55 +21,102 @@ dependencies:
     - node.type.teacher
   module:
     - datetime
+    - field_group
     - field_layout
     - image
     - layout_discovery
-    - path
+    - text
 third_party_settings:
   field_layout:
     id: layout_onecol
     settings:
       label: ''
+  field_group:
+    group_basic_information:
+      children:
+        - title
+        - field_qualification
+        - field_gender
+        - field_date_of_birth
+        - field_blood_group
+        - field_mobile_number
+        - field_email
+        - field_permanent_address
+        - field_present_address
+        - field_religion
+        - field_nationality
+        - field_image
+      label: 'Basic Information'
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
+    group_official_information:
+      children:
+        - field_teacher_id
+        - field_subject
+        - field_experience
+      label: 'Official information'
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
 id: node.teacher.default
 targetEntityType: node
 bundle: teacher
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 15
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_blood_group:
     type: options_select
-    weight: 11
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_date_of_birth:
     type: datetime_default
-    weight: 9
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_email:
     type: email_default
-    weight: 6
+    weight: 7
     region: content
     settings:
       placeholder: ''
       size: 60
     third_party_settings: {  }
+  field_experience:
+    type: text_textarea_with_summary
+    weight: 4
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
   field_gender:
     type: options_select
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_image:
     type: image_image
-    weight: 13
+    weight: 12
     region: content
     settings:
       progress_indicator: throbber
@@ -76,7 +124,7 @@ content:
     third_party_settings: {  }
   field_mobile_number:
     type: string_textfield
-    weight: 5
+    weight: 6
     region: content
     settings:
       size: 60
@@ -84,7 +132,7 @@ content:
     third_party_settings: {  }
   field_nationality:
     type: string_textfield
-    weight: 12
+    weight: 11
     region: content
     settings:
       size: 60
@@ -92,7 +140,7 @@ content:
     third_party_settings: {  }
   field_permanent_address:
     type: string_textarea
-    weight: 7
+    weight: 8
     region: content
     settings:
       rows: 5
@@ -100,7 +148,7 @@ content:
     third_party_settings: {  }
   field_present_address:
     type: string_textarea
-    weight: 8
+    weight: 9
     region: content
     settings:
       rows: 5
@@ -132,55 +180,24 @@ content:
     third_party_settings: {  }
   field_teacher_id:
     type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  title:
+    type: string_textfield
     weight: 1
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  path:
-    type: path
-    weight: 18
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    weight: 16
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 19
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    weight: 17
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  title:
-    type: string_textfield
-    weight: 0
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 14
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true
