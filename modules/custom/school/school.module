@@ -11,6 +11,9 @@
  */
 function school_toolbar_alter(&$items) {
   $items['administration']['#attached']['library'][] = 'school/toolbar-icon';
+
+  // Remove the "Back to site" button from toolbar.
+  unset($items['home']);
 }
 
 
