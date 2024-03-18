@@ -11,4 +11,24 @@
  */
 function school_toolbar_alter(&$items) {
   $items['administration']['#attached']['library'][] = 'school/toolbar-icon';
+
+  // Remove the "Back to site" button from toolbar.
+  unset($items['home']);
+}
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function school_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  // Hiding revision information for Teacher & Student node edit form.
+  $form_exception = [
+    'node_teacher_form',
+    'node_student_form'
+  ];
+
+  if (in_array($form_id, $form_exception)) {
+    $form['revision_information']['#access'] = FALSE;
+  }
 }

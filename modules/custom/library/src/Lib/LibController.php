@@ -3,7 +3,7 @@
 namespace Drupal\library\Lib;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Http\RequestStack;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Session\AccountInterface;
