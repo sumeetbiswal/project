@@ -1,0 +1,4 @@
+student export:
+  title: 'Student Printing'
+  description: 'Provide access for printing Student details'
+  restrict access: false

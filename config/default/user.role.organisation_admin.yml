@@ -10,7 +10,7 @@ dependencies:
     - contextual
     - file
     - node
-    - system
+    - school
     - toolbar
     - tour
 id: organisation_admin
@@ -40,5 +40,5 @@ permissions:
   - 'organisation export'
   - 'organisation view'
   - 'revert student revisions'
+  - 'student export'
   - 'view student revisions'
-  - 'view the administration theme'

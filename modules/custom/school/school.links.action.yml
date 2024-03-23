@@ -6,7 +6,8 @@ school.student_list:
   title: 'Add Student'
   class: \Drupal\school\Plugin\Menu\LocalAction\SchoolLocalAction
   appears_on:
-    - view.student.page_1 
+    - view.student.page_1
+
 school.Teacher_list:
   route_name: 'node.add'
   base_route: entity.node.canonical
@@ -15,4 +16,4 @@ school.Teacher_list:
   title: 'Add teacher'
   class: \Drupal\school\Plugin\Menu\LocalAction\SchoolLocalAction
   appears_on:
-    - view.teacher.page_1     
+    - view.teacher.page_1

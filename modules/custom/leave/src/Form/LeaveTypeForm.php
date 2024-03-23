@@ -96,12 +96,12 @@ class LeaveTypeForm extends FormBase {
     if(!empty($form_state->getValue('carryforward'))){
       $carryforward = $form_state->getValue('carryforward');
     }
-    
+
     $form['leavetype']['carryforward'] = array(
       '#type'          => 'checkboxes',
       '#title'         => t('Carry Forward:'),
       '#options'       => ['m' => 'Next Month', 'y' => 'Next Year'],
-      '#attributes'    => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+      '#attributes'    => ['class' => ['validate[required,custom[onlyLetterSp]]']],
        '#prefix'        => '<div class="row">',
       '#suffix'        => '</div>',
       '#default_value' => isset($data)? explode(',', $data->location) : $carryforward
