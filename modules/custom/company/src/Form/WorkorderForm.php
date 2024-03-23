@@ -123,7 +123,7 @@ class WorkorderForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Work order Name:'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix'        => '<div class="row">',
       '#suffix'        => '</div>',
@@ -146,7 +146,7 @@ class WorkorderForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Work order No:'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix'        => '<div class="row">',
       '#suffix'        => '</div>',

@@ -144,7 +144,7 @@ class BranchForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Branch Code:'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#suffix'        => '</div>',
       '#default_value' => isset($data) ? $data->codename : $brnch_config['branchcode'],
@@ -184,7 +184,7 @@ class BranchForm extends FormBase {
       '#type'          => 'select',
       '#title'         => $this->t('City:'),
       '#options'       => $cityLst,
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#prefix'        => '<div id="citylist">',
       '#suffix'        => '</div></div>',
       '#default_value' => isset($data) ? $data->city : $form_state->getValue('city'),
@@ -193,7 +193,7 @@ class BranchForm extends FormBase {
     $form['branch']['location'] = [
       '#type'          => 'textfield',
       '#title'         => $this->t('Location:'),
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#prefix'        => '<div class="row">',
       '#default_value' => isset($data) ? $data->location : '',
     ];
@@ -202,7 +202,7 @@ class BranchForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Pincode'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required]'],
+        'class' => ['validate[required]'],
         'id' => ['pincode'],
       ],
       '#default_value' => isset($data) ? $data->pincode : '',
@@ -223,7 +223,7 @@ class BranchForm extends FormBase {
       '#type' => 'link',
       '#title' => $this->t('Cancel'),
       '#attributes' => ['class' => ['btn btn-default']],
-      '#prefix' => '',
+      '#prefix' => '', 
       '#suffix' => '</div></div>',
       '#url' => Url::fromRoute('view.branch.page'),
     ];

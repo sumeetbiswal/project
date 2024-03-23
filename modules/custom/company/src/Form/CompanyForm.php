@@ -124,7 +124,7 @@ class CompanyForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Organisation Name:'),
       '#attributes' => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix' => '<div class="row">',
       '#default_value' => isset($data) ? $data->companyname : '',
@@ -140,7 +140,7 @@ class CompanyForm extends FormBase {
       '#type' => 'select',
       '#title' => $this->t('Organisation Type:'),
       '#options' => $comp_option,
-      '#attributes' => ['class' => ['form-control', 'validate[required]']],
+      '#attributes' => ['class' => ['validate[required]']],
       '#suffix' => '</div>',
       '#default_value' => isset($data) ? $data->companytype : '',
       '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Category which your organisation belongs to" data-toggle="tooltip"></i>',
@@ -149,7 +149,7 @@ class CompanyForm extends FormBase {
       '#type' => 'email',
       '#title' => $this->t('Email:'),
       '#attributes' => [
-        'class' => ['form-control', 'validate[required,custom[email]]'],
+        'class' => ['validate[required,custom[email]]'],
       ],
       '#prefix' => '<div class="row">',
       '#default_value' => isset($data) ? $data->email : '',
@@ -159,7 +159,7 @@ class CompanyForm extends FormBase {
       '#type' => 'tel',
       '#title' => $this->t('Phone number:'),
       '#attributes' => [
-        'class' => ['form-control', 'validate[required][custom[phone]]'],
+        'class' => ['validate[required][custom[phone]]'],
       ],
       '#suffix' => '</div>',
       '#default_value' => isset($data) ? $data->phone : '',
@@ -167,7 +167,7 @@ class CompanyForm extends FormBase {
     $form['company']['caddress1'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Address Line-1:'),
-      '#attributes' => ['class' => ['form-control', 'validate[required]']],
+      '#attributes' => ['class' => ['validate[required]']],
       '#prefix' => '<div class="row">',
       '#default_value' => isset($data) ? $data->address1 : '',
 
@@ -175,7 +175,6 @@ class CompanyForm extends FormBase {
     $form['company']['caddress2'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Address Line-2:'),
-      '#attributes' => ['class' => ['form-control']],
       '#suffix' => '</div>',
       '#default_value' => isset($data) ? $data->address2 : '',
 
@@ -185,7 +184,7 @@ class CompanyForm extends FormBase {
       '#type'    => 'select',
       '#title'   => $this->t('State:'),
       '#options' => $statelist,
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#prefix'        => '<div class="row">',
       '#default_value' => isset($data) ? $data->state : $form_state->getValue('state'),
       '#ajax' => [
@@ -210,7 +209,7 @@ class CompanyForm extends FormBase {
       '#type'          => 'select',
       '#title'         => $this->t('City:'),
       '#options'       => $cityLst,
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#prefix'        => '<div id="citylist">',
       '#suffix'        => '</div></div>',
       '#default_value' => isset($data) ? $data->city : $form_state->getValue('city'),
@@ -222,7 +221,7 @@ class CompanyForm extends FormBase {
       '#options' => [
         '101' => $this->t('India'),
       ],
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#default_value' => isset($data) ? $data->country : '',
       '#prefix' => '<div class="row">',
     ];
@@ -230,7 +229,7 @@ class CompanyForm extends FormBase {
     $form['company']['pincode'] = [
       '#type'          => 'textfield',
       '#title'         => $this->t('Pincode'),
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#default_value' => isset($data) ? $data->pincode : '',
       '#suffix'        => '</div>',
 
@@ -241,7 +240,6 @@ class CompanyForm extends FormBase {
       '#title' => $this->t('Organisation logo:'),
       '#description'     => $this->t('Upload your company Logo png only <br/> Reslution should be 140 X 25'),
       '#upload_location' => 'public://temp-img',
-      '#attributes' => ['class' => ['form-control']],
     // 'file_validate_image_resolution' => array('140x25', '100x25')),
       '#upload_validators' => ['file_validate_extensions' => ['png']],
       '#theme' => 'image_widget',

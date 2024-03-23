@@ -64,7 +64,7 @@ class EmployeeOfficialForm extends EmployeeFormBase
         '#type'          => 'textfield',
         '#title'         => $this->t('Employee ID'),
         '#default_value' => $this->store->get('id') ? $this->store->get('id') : '',
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#disabled'      => $empid_config['disabled'],
         '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="'.$empid_config['helpmsg'].'" data-toggle="tooltip"></i>',
 
@@ -84,7 +84,7 @@ class EmployeeOfficialForm extends EmployeeFormBase
         '#type'          => 'select',
         '#title'         => $this->t('Branch'),
         '#default_value' => $this->store->get('branch') ? $this->store->get('branch') : '',
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#options'       => $brn_option,
         );
 
@@ -93,7 +93,7 @@ class EmployeeOfficialForm extends EmployeeFormBase
         '#type'          => 'select',
         '#title'         => $this->t('Department'),
         '#default_value' => $this->store->get('department') ? $this->store->get('department') : '',
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#options' => $deplist,
         '#field_suffix' => '<a href="'.$base_url.'/department/modal" class="use-ajax button"><i class="fadehide mdi mdi-settings fa-fw"></i></a>',
         '#ajax' => [
@@ -120,7 +120,7 @@ class EmployeeOfficialForm extends EmployeeFormBase
         '#type'          => 'select',
         '#title'         => $this->t('Designation'),
         '#default_value' => $this->store->get('designation') ? $this->store->get('designation') : '',
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#options'       => $dsgn,
         '#prefix'        => '<div id="desgn_list">',
         '#suffix'        => '</div>',
@@ -132,7 +132,7 @@ class EmployeeOfficialForm extends EmployeeFormBase
         '#type'          => 'select',
         '#title'         => $this->t('Role'),
         '#default_value' => $this->store->get('role') ? $this->store->get('role') : '',
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#options'       => $rolelist,
         '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Provide Role for employee. Default role will be Authenticated if no special role is given." data-toggle="tooltip"></i>',
 
@@ -145,20 +145,20 @@ class EmployeeOfficialForm extends EmployeeFormBase
         '#title'         => $this->t('Nature of job'),
         '#default_value' => $this->store->get('jobnature') ? $this->store->get('jobnature') : '',
         '#options'       => $natureofjob,
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         );
         $form['employee']['officialemail'] = array(
         '#type'          => 'textfield',
         '#title'         => $this->t('Email'),
         '#default_value' => $this->store->get('officialemail') ? $this->store->get('officialemail') : '',
-        '#attributes'    => ['class' => ['form-control', 'validate[required,custom[email]]']],
+        '#attributes'    => ['class' => ['validate[required,custom[email]]']],
         '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Your Official Email ID" data-toggle="tooltip"></i>',
         );
         $form['employee']['doj'] = array(
         '#type'          => 'textfield',
         '#title'         => $this->t('Date of Joining'),
         '#default_value' => $this->store->get('doj') ? $this->store->get('doj') : '',
-        '#attributes'    => ['id' => ['datetimepicker'], 'class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['id' => ['datetimepicker'], 'class' => ['validate[required]']],
 
         );
 
@@ -169,7 +169,7 @@ class EmployeeOfficialForm extends EmployeeFormBase
         '#title'         => $this->t('Job type'),
         '#options'       => $jobtype,
         '#default_value' => $this->store->get('jobtype') ? $this->store->get('jobtype') : '',
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         );
 
         $jobshift = $conobj->getJobShift();
@@ -179,7 +179,7 @@ class EmployeeOfficialForm extends EmployeeFormBase
         '#title'         => $this->t('Shift time'),
         '#options'       => $jobshift,
         '#default_value' => $this->store->get('jobtype') ? $this->store->get('jobtype') : '',
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#field_suffix' => '<i class="fadehide mdi mdi-help-circle" title="Helps to identify working hours" data-toggle="tooltip"></i>',
 
         );

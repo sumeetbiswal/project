@@ -88,7 +88,6 @@ class ConfigurationForm extends FormBase {
       '#title' => $this->t('Auto EmpID'),
         // '#required' => TRUE,
       '#attributes' => [
-        'class' => ['form-control'],
         'data-toggle' => 'toggle',
         'data-on' => 'ON',
         'data-off' => 'OFF',
@@ -103,7 +102,6 @@ class ConfigurationForm extends FormBase {
     $form['company']['codeformat'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Code Format:'),
-      '#attributes' => ['class' => ['form-control']],
       '#states' => [
         'visible' => [
           ':input[name="empidtype"]' => ['checked' => TRUE],
@@ -121,7 +119,6 @@ class ConfigurationForm extends FormBase {
       '#title' => $this->t('Branch Code'),
       // '#required' => TRUE,
       '#attributes' => [
-        'class' => ['form-control'],
         'data-toggle' => 'toggle',
         'data-on' => 'ON',
         'data-off' => 'OFF',
@@ -139,7 +136,6 @@ class ConfigurationForm extends FormBase {
       '#title' => $this->t('Department Code'),
       // '#required' => TRUE,
       '#attributes' => [
-        'class' => ['form-control'],
         'data-toggle' => 'toggle',
         'data-on' => 'ON',
         'data-off' => 'OFF',
@@ -158,7 +154,6 @@ class ConfigurationForm extends FormBase {
       '#title' => $this->t('Designation Code'),
       // '#required' => TRUE,
       '#attributes' => [
-        'class' => ['form-control'],
         'data-toggle' => 'toggle',
         'data-on' => 'ON',
         'data-off' => 'OFF',
@@ -177,7 +172,6 @@ class ConfigurationForm extends FormBase {
       '#title' => $this->t('Workorder code'),
       // '#required' => TRUE,
       '#attributes' => [
-        'class' => ['form-control'],
         'data-toggle' => 'toggle',
         'data-on' => 'ON',
         'data-off' => 'OFF',

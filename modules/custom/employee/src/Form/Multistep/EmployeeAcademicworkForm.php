@@ -105,7 +105,6 @@ class EmployeeAcademicworkForm extends EmployeeFormBase
             //'#title' => t('Block title'),
             '#markup' => $cntq,
             '#title_display' => 'invisible',
-            // '#attributes'    => ['class' => ['form-control']],
 
             ];
 
@@ -114,7 +113,6 @@ class EmployeeAcademicworkForm extends EmployeeFormBase
             '#type'            => 'select',
             '#options'       => $option,
             '#title_display' => 'invisible',
-            '#attributes'    => ['class' => ['form-control']],
             '#default_value' => isset($temp_stor[$i]['class']) ? $temp_stor[$i]['class'] : '',
 
 
@@ -125,7 +123,6 @@ class EmployeeAcademicworkForm extends EmployeeFormBase
             '#title'             => $this->t('stream'),
             '#default_value'     => isset($temp_stor[$i]['stream']) ? $temp_stor[$i]['stream'] : '',
             '#title_display' => 'invisible',
-            '#attributes'    => ['class' => ['form-control']],
 
             ];
             $form['qualification']['academics'][$i]['university'] = [
@@ -133,21 +130,19 @@ class EmployeeAcademicworkForm extends EmployeeFormBase
             '#title'             => $this->t('University'),
             '#default_value'     => isset($temp_stor[$i]['university']) ? $temp_stor[$i]['university'] : '',
             '#title_display' => 'invisible',
-            '#attributes'    => ['class' => ['form-control']],
             ];
             $form['qualification']['academics'][$i]['yearofpassing'] = [
             '#type'             => 'date',
             '#title'             => $this->t('Year Of passing'),
             '#default_value'     => isset($temp_stor[$i]['yearofpassing']) ? $temp_stor[$i]['yearofpassing'] : '',
             '#title_display' => 'invisible',
-            '#attributes'    => ['class' => ['form-control'], 'type' => 'date', 'max' => date('Y-m-d')],
+            '#attributes'    => ['type' => 'date', 'max' => date('Y-m-d')],
             ];
             $form['qualification']['academics'][$i]['score'] = [
             '#type'             => 'textfield',
             '#title'             => $this->t('Score'),
             '#default_value'     => isset($temp_stor[$i]['score']) ? $temp_stor[$i]['score'] : '',
             '#title_display' => 'invisible',
-            '#attributes'    => ['class' => ['form-control']],
             ];
 
             if ($i ==  $form_state->get('num_qual') - 1) {
@@ -225,7 +220,6 @@ class EmployeeAcademicworkForm extends EmployeeFormBase
             //'#title' => t('Block title'),
             '#markup' => $cnt,
             '#title_display' => 'invisible',
-            '#attributes'    => ['class' => ['form-control']],
 
             ];
 
@@ -234,7 +228,6 @@ class EmployeeAcademicworkForm extends EmployeeFormBase
             '#title'             => $this->t('Organisation'),
             '#default_value'     =>isset($temp_stor_emp[$i]['organisation']) ? $temp_stor_emp[$i]['organisation'] : '',
             '#title_display' => 'invisible',
-            '#attributes'    => ['class' => ['form-control']],
 
             ];
 
@@ -243,7 +236,6 @@ class EmployeeAcademicworkForm extends EmployeeFormBase
             '#title'             => $this->t('Designation'),
             '#default_value'     => isset($temp_stor_emp[$i]['designation']) ? $temp_stor_emp[$i]['designation'] : '',
             '#title_display' => 'invisible',
-            '#attributes'    => ['class' => ['form-control']],
 
             ];
             $form['employee']['exp'][$i]['fromdate'] = [
@@ -251,7 +243,7 @@ class EmployeeAcademicworkForm extends EmployeeFormBase
             '#title'             => $this->t('From Date'),
             '#default_value'     => isset($temp_stor_emp[$i]['fromdate']) ? $temp_stor_emp[$i]['fromdate'] : '',
             '#title_display' => 'invisible',
-            '#attributes'    => ['class' => ['form-control'], 'type' => 'date', 'max' => date('Y-m-d')],
+            '#attributes'    => ['type' => 'date', 'max' => date('Y-m-d')],
 
             ];
             $form['employee']['exp'][$i]['todate'] = [
@@ -259,7 +251,7 @@ class EmployeeAcademicworkForm extends EmployeeFormBase
             '#title'             => $this->t('TO Date'),
             '#default_value'     => isset($temp_stor_emp[$i]['todate']) ? $temp_stor_emp[$i]['todate'] : '',
             '#title_display' => 'invisible',
-            '#attributes'    => ['class' => ['form-control'], 'type' => 'date', 'max' => date('Y-m-d') ],
+            '#attributes'    => ['type' => 'date', 'max' => date('Y-m-d') ],
 
             ];
 

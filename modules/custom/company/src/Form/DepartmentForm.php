@@ -122,7 +122,7 @@ class DepartmentForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Department Name:'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix'        => '<div class="row">',
       '#suffix'        => '</div>',
@@ -144,7 +144,7 @@ class DepartmentForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Department Code:'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix'        => '<div class="row">',
       '#suffix'        => '</div>',

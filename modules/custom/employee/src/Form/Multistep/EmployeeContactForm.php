@@ -54,21 +54,21 @@ class EmployeeContactForm extends EmployeeFormBase
         $form['employee']['phoneno'] = array(
         '#type'          => 'textfield',
         '#title'         => t('Phone number:'),
-        '#attributes'    => ['class' => ['form-control', 'validate[required][custom[phone]]']],
+        '#attributes'    => ['class' => ['validate[required][custom[phone]]']],
         '#default_value' => $this->store->get('phoneno') ? $this->store->get('phoneno') : '',
         '#prefix'        => '<div class="row">',
         );
         $form['employee']['altphoneno'] = array(
         '#type'          => 'textfield',
         '#title'         => t('Alternative phone number'),
-        '#attributes'    => ['class' => ['form-control', 'validate[required][custom[phone]]']],
+        '#attributes'    => ['class' => ['validate[required][custom[phone]]']],
         '#default_value' => $this->store->get('altphoneno') ? $this->store->get('altphoneno') : '',
         '#suffix'        => '</div>',
         );
         $form['employee']['emergencyno'] = array(
         '#type'          => 'textfield',
         '#title'         => t('Emergency Contact:'),
-        '#attributes'    => ['class' => ['form-control', 'validate[required][custom[phone]]']],
+        '#attributes'    => ['class' => ['validate[required][custom[phone]]']],
         '#default_value' => $this->store->get('emergencyno') ? $this->store->get('emergencyno') : '',
         '#prefix'        => '<div class="row">',
         );
@@ -82,7 +82,7 @@ class EmployeeContactForm extends EmployeeFormBase
                           'Wife'       => $this->t('Wife'),
                           'Sibling'       => $this->t('Sibling'),
                         ],
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#default_value' => $this->store->get('relationship') ? $this->store->get('relationship') : '',
         '#field_suffix' => '<i class="mdi mdi-help-circle fadehide" title="Relationship with emergency contact person" data-toggle="tooltip"></i>',
         '#suffix'        => '</div>',
@@ -91,7 +91,7 @@ class EmployeeContactForm extends EmployeeFormBase
         '#type'          => 'textfield',
         '#title'         => $this->t('Email'),
         '#default_value' => $this->store->get('email') ? $this->store->get('email') : '',
-        '#attributes'    => ['class' => ['form-control', 'validate[required,custom[email]]']],
+        '#attributes'    => ['class' => ['validate[required,custom[email]]']],
         '#field_suffix' => '<i class="mdi mdi-help-circle fadehide" title="Your Personal Email ID" data-toggle="tooltip"></i>',
         '#prefix'        => '<div class="row">',
         );
@@ -102,7 +102,6 @@ class EmployeeContactForm extends EmployeeFormBase
         '#description'     => t('Upload your profile picture jpg/jpeg/png only'),
         '#upload_validators'=> array('jpg', 'jpeg', 'png'),
         '#upload_location' => 'public://avatar/',
-        '#attributes'     => ['class' => ['form-control']],
         '#default_value'=> $this->store->get('image') ? array($this->store->get('image')) : '',
         '#suffix'        => '</div>',
         );
@@ -115,7 +114,7 @@ class EmployeeContactForm extends EmployeeFormBase
         $form['employee']['address1'] = array(
         '#type'          => 'textfield',
         '#title'         => t('Address Line 1'),
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#default_value' => $this->store->get('address1') ? $this->store->get('address1') : '',
         '#suffix'        => '</div>',
         );
@@ -123,7 +122,7 @@ class EmployeeContactForm extends EmployeeFormBase
         $form['employee']['address2'] = array(
         '#type'          => 'textfield',
         '#title'         => t('Address Line 2:'),
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#default_value' => $this->store->get('address2') ? $this->store->get('address2') : '',
         '#prefix'        => '<div class="row">',
         );
@@ -134,7 +133,7 @@ class EmployeeContactForm extends EmployeeFormBase
         '#type'          => 'select',
         '#title'         => t('State:'),
         '#options' => $statelist,
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#suffix'        => '</div>',
         '#default_value' => $this->store->get('state') ? $this->store->get('state') : '',
         '#ajax' => [
@@ -162,10 +161,9 @@ class EmployeeContactForm extends EmployeeFormBase
         '#type'          => 'select',
         '#title'         => t('City:'),
         '#options'       => $cityLst,
-        '#attributes'    => ['class' => ['form-control']],
         '#prefix'        => '<div id="citylist">',
         '#suffix'        => '</div>',
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#default_value' => $this->store->get('city') ? $this->store->get('city') : '',
         '#validated' => true
         );
@@ -177,14 +175,14 @@ class EmployeeContactForm extends EmployeeFormBase
         '#options' => [
             '101' => $this->t('India'),
         ],
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#default_value' => $this->store->get('country') ? $this->store->get('country') : '',
         );
 
         $form['employee']['pincode'] = array(
         '#type'          => 'textfield',
         '#title'         => t('Pincode'),
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#default_value' => $this->store->get('pincode') ? $this->store->get('pincode') : '',
         );
         $form['employee']['addresscopy'] = array(
@@ -219,7 +217,7 @@ class EmployeeContactForm extends EmployeeFormBase
         $form['employee']['permanentaddress1'] = array(
         '#type'          => 'textfield',
         '#title'         => t('Address Line 1'),
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#value'        =>  isset($ad)? $ad : '',
         '#default_value' => $this->store->get('permanentaddress1') ? $this->store->get('permanentaddress1') : '',
         );
@@ -227,7 +225,7 @@ class EmployeeContactForm extends EmployeeFormBase
         $form['employee']['permanentaddress2'] = array(
         '#type'          => 'textfield',
         '#title'         => t('Address Line 2:'),
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
         '#default_value' => $this->store->get('permanentaddress2') ? $this->store->get('permanentaddress2') : '',
         );
             $statelist = $libobj->getStateList();
@@ -244,7 +242,7 @@ class EmployeeContactForm extends EmployeeFormBase
                             'message' => t(''),
                         ],
                       ],
-            '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+            '#attributes'    => ['class' => ['validate[required]']],
             '#default_value' => isset($permanentstate)? $data->permanentstate : $form_state->getValue('permanentstate'),
         );
 
@@ -266,7 +264,7 @@ class EmployeeContactForm extends EmployeeFormBase
           '#options'       => $cityLst,
           '#prefix'        => '<div id="permcitylist">',
         '#suffix'        => '</div>',
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
           '#default_value' => $this->store->get('permanentcity') ? $this->store->get('permanentcity') : '',
         );
 
@@ -276,14 +274,14 @@ class EmployeeContactForm extends EmployeeFormBase
         '#options' => [
                 '101' => $this->t('India'),
         ],
-        '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+        '#attributes'    => ['class' => ['validate[required]']],
            '#default_value' => $this->store->get('permanentcountry') ? $this->store->get('permanentcountry') : '',
           );
 
           $form['employee']['permanentpincode'] = array(
           '#type'          => 'textfield',
           '#title'         => t('Pincode'),
-          '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+          '#attributes'    => ['class' => ['validate[required]']],
            '#default_value' => $this->store->get('permanentpincode') ? $this->store->get('permanentpincode') : '',
           '#suffix'        => '</div>',
 
