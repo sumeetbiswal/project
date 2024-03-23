@@ -1,6 +1,6 @@
 uuid: f10754f6-be6b-4353-b511-35e9f3f320d6
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - library
@@ -11,7 +11,7 @@ dependencies:
 id: documentactionblock
 theme: singleportal
 region: content
-weight: -4
+weight: -2
 provider: null
 plugin: document_action_block
 settings:

@@ -1,0 +1,18 @@
+uuid: d9af1e20-b16b-49a2-95bf-df0d77c1480e
+langcode: en
+status: true
+dependencies:
+  theme:
+    - singleportal
+id: singleportal_primaryadminactions
+theme: singleportal
+region: content
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }
