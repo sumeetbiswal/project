@@ -8,6 +8,7 @@
  */
 
 use Drupal\user\Entity\User;
+use Drupal\Component\Utility\Html;
 
 /**
  *
@@ -63,12 +64,18 @@ function singleportal_form_alter(&$form, $form_state, $form_id) {
 /**
  * Implementation of hook_theme_suggestions_form_element_alter().
  */
-/*function singleportal_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
+function singleportal_theme_suggestions_form_element_alter(array &$suggestions, array $variables, $hook) {
+  /*$element = $variables['element'];
+  if($element['#type'] == 'checkbox' ){
 
-if (\Drupal::service('path.current')->getPath() == '/node') {
-$suggestions[] = $variables['theme_hook_original'] . '--user-login-form';
+    //echo "<pre/>";print_r($element);die;
+  }
+
+  if(strpos($element['#id'], "edit-") !== false && $element['#type'] == 'checkbox') {
+    $suggestions[] = $hook . '__leavetype_form__checkbox';
+  }*/
+
 }
-}*/
 
 /**
  * Implements hook_preprocess_menu()
@@ -220,8 +227,72 @@ function singleportal_preprocess_block(&$variables) {
   if ($variables['plugin_id'] === 'system_powered_by_block') {
     $variables['year'] = date('Y');
   }
+
+  if ($variables['plugin_id'] === 'local_actions_block') {
+    $variables['export'] = FALSE;
+
+    //Get the current page path
+    $current_path = \Drupal::service('path.current')->getPath();
+    $current_path = explode('/', $current_path)[1];
+
+    if (\Drupal::currentUser()->hasPermission($current_path . ' ' . 'export')) {
+      $variables['export'] = TRUE;
+    }
+  }
 }
 
+/**
+ * template_preprocess_select()
+ */
+function singleportal_preprocess_select(&$variables) {
+  $element = $variables['element'];
+
+
+    $variables['attributes']['class'][] = 'form-control';
+
+}
+
+
+
+/**
+ * hook_preprocess_input()
+ */
+function singleportal_preprocess_input(&$variables) {
+  $element = $variables['element'];
+
+  // Apply this class to all input except submit button.
+  if ($element['#type'] == 'submit') {
+    $variables['attributes']['class'][] = 'btn btn-info';
+  }
+  else {
+    $variables['attributes']['class'][] = 'form-control';
+  }
+}
+
+
+/**
+ * hook_preprocess_form_element_label()
+ */
+function singleportal_preprocess_form_element_label(&$variables) {
+  $element = $variables['element'];
+
+  // Apply this class to all label except checkbox.
+  if ($element['#form_element_type'] != 'checkbox') {
+    $variables['attributes']['class'][] = 'control-label';
+
+    // Form field label width is different with respect to pages.
+    switch ($element['#form_id']) {
+
+      CASE 'views_exposed_form':
+       // $variables['attributes']['class'][] = 'col-md-3';
+        break;
+
+      default:
+        $variables['attributes']['class'][] = 'col-md-3';
+        break;
+    }
+  }
+}
 /**
  *
  */
@@ -246,6 +317,25 @@ function singleportal_preprocess_block__system_branding_block(&$variables) {
 }
 
 /**
+ * Extends template_preprocess_menu_local_action().
+ *
+ * Add Bootstrap button classes to a single local action link.
+ *
+ * Default template: menu-local-action.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: A render element containing:
+ *     - #link: A menu link array with 'title', 'url', and (optionally)
+ *       'localized_options' keys.
+ */
+function singleportal_preprocess_menu_local_action(&$variables) {
+  // Customise Menu local action text. (Add button UI customisation)
+  $html = ['#markup' => '<span  type="button" class="btn btn-info"><i class="mdi mdi-plus"></i>' . $variables['link']['#title'] . '</span>'];
+  $variables['link']['#title'] = $html;
+}
+
+/**
  *
  */
 function singleportal_admin_theme_info() {
@@ -261,9 +351,8 @@ function singleportal_preprocess_table(&$variables) {
 
 /*
 function singleportal_preprocess_form_element(&$variables) {
-
+echo "<pre/>";print_r($variables['element']);
   if ($variables['type'] === 'checkbox') {
-    kint($variables);
     $variables['label']['#attributes']['class'] = ['ckecbox-is-checked'];
   }
 }*/

@@ -30,7 +30,6 @@ branch.add:
    _title: 'Add Branch'
    _form: '\Drupal\company\Form\BranchForm'
  requirements:
-   _role: 'administrator'
    _permission: 'branch add'
 
 branch.edit:

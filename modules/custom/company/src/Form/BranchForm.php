@@ -122,7 +122,7 @@ class BranchForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Branch Name:'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix'        => '<div class="row">',
       '#default_value' => isset($data) ? $data->codevalues : '',
@@ -158,7 +158,7 @@ class BranchForm extends FormBase {
       '#type'    => 'select',
       '#title'   => $this->t('State:'),
       '#options' => $statelist,
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#prefix'        => '<div class="row">',
       '#default_value' => isset($data) ? $data->state : $form_state->getValue('state'),
       '#ajax' => [
