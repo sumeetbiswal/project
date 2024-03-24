@@ -50,7 +50,7 @@ class TaggingForm extends FormBase {
     $form['tagging']['empid'] = [
       '#type'          => 'textfield',
       '#title'         => t('Employee Id:'),
-      '#attributes'    => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+      '#attributes'    => ['class' => ['validate[required,custom[onlyLetterSp]]']],
       '#disabled'      => 'disabled',
       '#prefix'        => '<div class="row">',
       '#default_value' => $data->empid,
@@ -64,7 +64,7 @@ class TaggingForm extends FormBase {
     $form['tagging']['empname'] = [
       '#type'          => 'textfield',
       '#title'         => t('Name:'),
-      '#attributes'    => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+      '#attributes'    => ['class' => ['validate[required,custom[onlyLetterSp]]']],
       '#disabled'      => 'disabled',
       '#suffix'        => '</div>',
       '#default_value' => $data->firstname . ' ' . $data->lastname,
@@ -80,7 +80,7 @@ class TaggingForm extends FormBase {
       '#type'          => 'select',
       '#title'         => t('Project :'),
       '#options'       => $won_list,
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#prefix'        => '<div class="row">',
       '#default_value' => isset($data) ? $data->won : '',
       '#ajax' => [
@@ -108,7 +108,7 @@ class TaggingForm extends FormBase {
       '#type'          => 'select',
       '#title'         => t('Team :'),
       '#options'       => $team_list,
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#prefix'        => '<div id="teamlist">',
       '#suffix'        => '</div></div>',
       '#default_value' => isset($data) ? $data->ton : '',
@@ -124,7 +124,7 @@ class TaggingForm extends FormBase {
       '#title'         => t('Supervisor :'),
       '#autocomplete_route_name' => 'employee.autocomplete',
       // '#autocomplete_route_parameters' => ['pwon' => 'hello'],
-      '#attributes'    => ['class' => ['form-control', 'validate[required]', 'MYCUSTOM-autocomplete']],
+      '#attributes'    => ['class' => ['validate[required]', 'MYCUSTOM-autocomplete']],
       '#prefix'        => '<div class="row">',
       '#default_value' => $supervisor_default_value,
     ];
@@ -141,7 +141,7 @@ class TaggingForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => t('HR Manager :'),
       '#autocomplete_route_name' => 'employee.autocomplete',
-      '#attributes'    => ['class' => ['form-control', 'validate[required]', 'MYCUSTOM-autocomplete']],
+      '#attributes'    => ['class' => ['validate[required]', 'MYCUSTOM-autocomplete']],
       '#suffix'        => '</div>',
       '#default_value' => $hr_default_value,
     ];
@@ -153,7 +153,7 @@ class TaggingForm extends FormBase {
     $form['tagging']['role'] = [
       '#type'          => 'textfield',
       '#title'         => t('Role:'),
-      '#attributes'    => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+      '#attributes'    => ['class' => ['validate[required,custom[onlyLetterSp]]']],
       '#prefix'        => '<div class="row">',
       '#default_value' => $data->role,
     ];

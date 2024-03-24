@@ -136,7 +136,7 @@ class DesignationForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Designation Name:'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix'        => '<div class="row"><div class="col-md-12">',
       '#suffix'        => '</div></div>',
@@ -159,7 +159,7 @@ class DesignationForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Designation Code:'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix'        => '<div class="row"><div class="col-md-12">',
       '#suffix'        => '</div></div>',
@@ -184,7 +184,7 @@ class DesignationForm extends FormBase {
       '#type'          => 'select',
       '#title'         => $this->t('Department :'),
       '#options'       => $dept_option,
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#prefix'        => '<div class="row"><div class="col-md-12">',
       '#suffix'        => '</div></div>',
       '#default_value' => isset($data) ? $dept : '',

@@ -122,7 +122,7 @@ class TeamorderForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Team order Name:'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix'        => '<div class="row"><div class="col-md-12">',
       '#suffix'        => '</div></div>',
@@ -145,7 +145,7 @@ class TeamorderForm extends FormBase {
       '#type'          => 'textfield',
       '#title'         => $this->t('Team order No:'),
       '#attributes'    => [
-        'class' => ['form-control', 'validate[required,custom[onlyLetterSp]]'],
+        'class' => ['validate[required,custom[onlyLetterSp]]'],
       ],
       '#prefix'        => '<div class="row"><div class="col-md-12">',
       '#suffix'        => '</div></div>',
@@ -171,7 +171,7 @@ class TeamorderForm extends FormBase {
       '#type'          => 'select',
       '#title'         => $this->t('Work Order :'),
       '#options'       => $work_option,
-      '#attributes'    => ['class' => ['form-control', 'validate[required]']],
+      '#attributes'    => ['class' => ['validate[required]']],
       '#prefix'        => '<div class="row"><div class="col-md-12">',
       '#suffix'        => '</div></div>',
       '#default_value' => isset($data) ? $workList : '',

@@ -53,7 +53,7 @@ class LeaveTypeForm extends FormBase {
     $form['leavetype']['name'] = array(
       '#type'          => 'textfield',
       '#title'         => t('Leave Type:'),
-      '#attributes'    => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+      '#attributes'    => ['class' => ['validate[required,custom[onlyLetterSp]]']],
       '#prefix'        => '<div class="row">',
       '#suffix'        => '</div>',
       '#default_value' => isset($data)? $data->codevalues : '',
@@ -64,7 +64,7 @@ class LeaveTypeForm extends FormBase {
     $form['leavetype']['code'] = array(
       '#type'          => 'textfield',
       '#title'         => t('Leave Code:'),
-      '#attributes'    => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+      '#attributes'    => ['class' => ['validate[required,custom[onlyLetterSp]]']],
       '#prefix'        => '<div class="row">',
       '#suffix'        => '</div>',
       '#default_value' => isset($data)? $data->codename : '',
@@ -74,7 +74,7 @@ class LeaveTypeForm extends FormBase {
     $form['leavetype']['allotment'] = array(
       '#type'          => 'textfield',
       '#title'         => t('Leave Allot:'),
-      '#attributes'    => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+      '#attributes'    => ['class' => ['validate[required,custom[onlyLetterSp]]']],
       '#prefix'        => '<div class="row">',
       //'#suffix'        => '</div>',
       '#default_value' => isset($data)? $data->weight : ''
@@ -85,7 +85,7 @@ class LeaveTypeForm extends FormBase {
       '#type'          => 'select',
       '#title'         => t('Per:'),
       '#options'       => ['M' => 'Month', 'Y' => 'Year'],
-      '#attributes'    => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+      '#attributes'    => ['class' => ['validate[required,custom[onlyLetterSp]]']],
      // '#prefix'        => '<div class="row">',
       '#suffix'        => '</div>',
       '#default_value' => isset($data)? $data->email : $form_state->getValue('allotmentper')
@@ -112,7 +112,7 @@ class LeaveTypeForm extends FormBase {
       '#type'          => 'select',
       '#title'         => t('Status:'),
       '#options'       => ['1' => 'Active', '0' => 'Inactive'],
-      '#attributes'    => ['class' => ['form-control', 'validate[required,custom[onlyLetterSp]]']],
+      '#attributes'    => ['class' => ['validate[required,custom[onlyLetterSp]]']],
       '#prefix'        => '<div class="row">',
       '#suffix'        => '</div>',
       '#default_value' => isset($data)? $data->status : $form_state->getValue('status'),

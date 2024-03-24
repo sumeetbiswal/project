@@ -99,7 +99,6 @@ class ChangePassword extends FormBase {
       '#type'          => 'password',
       '#title'         => $this->t('Current Password:'),
       '#required'      => TRUE,
-      '#attributes'    => ['class' => ['form-control']],
       '#prefix' => '<div class="row">',
       '#suffix' => '</div>',
 
@@ -109,7 +108,6 @@ class ChangePassword extends FormBase {
       '#type'          => 'password',
       '#title'         => $this->t('New Password:'),
       '#required'      => TRUE,
-      '#attributes'    => ['class' => ['form-control']],
       '#prefix' => '<div class="row">',
       '#suffix' => '</div>',
 
@@ -118,7 +116,6 @@ class ChangePassword extends FormBase {
       '#type'          => 'password',
       '#title'         => $this->t('Confirm password:'),
       '#required'      => TRUE,
-      '#attributes'    => ['class' => ['form-control']],
       '#prefix' => '<div class="row">',
       '#suffix' => '</div>',
     ];

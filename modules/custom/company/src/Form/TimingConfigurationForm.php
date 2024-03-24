@@ -112,7 +112,6 @@ class TimingConfigurationForm extends FormBase {
     $form['company']['shiftname'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Shift Name:'),
-      '#attributes' => ['class' => ['form-control']],
       '#prefix' => '<div class="row">',
       '#suffix' => '</div>',
       '#default_value' => isset($data) ? $data->codevalues : '',
@@ -123,7 +122,7 @@ class TimingConfigurationForm extends FormBase {
     $form['company']['fromtime'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Time From:'),
-      '#attributes' => ['class' => ['form-control'], 'id' => 'time1'],
+      '#attributes' => ['id' => 'time1'],
       '#prefix' => '<div class="row">',
       '#suffix' => '</div>',
       '#default_value' => isset($data) ? $data->description : '',
@@ -133,7 +132,7 @@ class TimingConfigurationForm extends FormBase {
     $form['company']['totime'] = [
       '#type' => 'textfield',
       '#title' => $this->t('To Time:'),
-      '#attributes' => ['class' => ['form-control'], 'id' => 'time2'],
+      '#attributes' => ['id' => 'time2'],
       '#prefix' => '<div class="row">',
       '#suffix' => '</div>',
       '#default_value' => isset($data) ? $data->email : '',
