@@ -42,95 +42,90 @@
   ]
 %}
 
-<div class="row"></div>
-<div class="panel panel-info">
-  <div class="panel-wrapper collapse in" aria-expanded="true">
-    <div class="panel-body">
-      <div id="editable-datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-      </div>
-      <div class="row">
-        <div class="col-sm-12" id="printable">
 
-          <table{{ attributes.addClass(classes) }} data-striping="1" data-once="tableresponsive" style="text-align-last: center">
-            {% if caption_needed %}
-              <caption>
-              {% if caption %}
-                {{ caption }}
-              {% else %}
-                {{ title }}
+<div id="editable-datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+</div>
+<div class="row">
+  <div class="col-sm-12" id="printable">
+
+    <table{{ attributes.addClass(classes) }} data-striping="1" data-once="tableresponsive" style="text-align-last: center">
+      {% if caption_needed %}
+        <caption>
+        {% if caption %}
+          {{ caption }}
+        {% else %}
+          {{ title }}
+        {% endif %}
+        {% if (summary_element is not empty) %}
+          {{ summary_element }}
+        {% endif %}
+        </caption>
+      {% endif %}
+      {% if header %}
+        <thead>
+          <tr>
+            {% for key, column in header %}
+              {% if column.default_classes %}
+                {%
+                  set column_classes = [
+                    'views-field',
+                    'views-field-' ~ fields[key],
+                  ]
+                %}
               {% endif %}
-              {% if (summary_element is not empty) %}
-                {{ summary_element }}
+              <th{{ column.attributes.addClass(column_classes).setAttribute('scope', 'col') }}>
+                {%- if column.wrapper_element -%}
+                  <{{ column.wrapper_element }}>
+                    {%- if column.url -%}
+                      <a href="{{ column.url }}" title="{{ column.title }}" rel="nofollow">{{ column.content }}{{ column.sort_indicator }}</a>
+                    {%- else -%}
+                      {{ column.content }}{{ column.sort_indicator }}
+                    {%- endif -%}
+                  </{{ column.wrapper_element }}>
+                {%- else -%}
+                  {%- if column.url -%}
+                    <a href="{{ column.url }}" title="{{ column.title }}" rel="nofollow">{{ column.content }}{{ column.sort_indicator }}</a>
+                  {%- else -%}
+                    {{- column.content }}{{ column.sort_indicator }}
+                  {%- endif -%}
+                {%- endif -%}
+              </th>
+            {% endfor %}
+          </tr>
+        </thead>
+      {% endif %}
+      <tbody>
+        {% for row in rows %}
+          <tr{{ row.attributes }}>
+            {% for key, column in row.columns %}
+              {% if column.default_classes %}
+                {%
+                  set column_classes = [
+                    'views-field'
+                  ]
+                %}
+                {% for field in column.fields %}
+                  {% set column_classes = column_classes|merge(['views-field-' ~ field]) %}
+                {% endfor %}
               {% endif %}
-              </caption>
-            {% endif %}
-            {% if header %}
-              <thead>
-                <tr>
-                  {% for key, column in header %}
-                    {% if column.default_classes %}
-                      {%
-                        set column_classes = [
-                          'views-field',
-                          'views-field-' ~ fields[key],
-                        ]
-                      %}
-                    {% endif %}
-                    <th{{ column.attributes.addClass(column_classes).setAttribute('scope', 'col') }}>
-                      {%- if column.wrapper_element -%}
-                        <{{ column.wrapper_element }}>
-                          {%- if column.url -%}
-                            <a href="{{ column.url }}" title="{{ column.title }}" rel="nofollow">{{ column.content }}{{ column.sort_indicator }}</a>
-                          {%- else -%}
-                            {{ column.content }}{{ column.sort_indicator }}
-                          {%- endif -%}
-                        </{{ column.wrapper_element }}>
-                      {%- else -%}
-                        {%- if column.url -%}
-                          <a href="{{ column.url }}" title="{{ column.title }}" rel="nofollow">{{ column.content }}{{ column.sort_indicator }}</a>
-                        {%- else -%}
-                          {{- column.content }}{{ column.sort_indicator }}
-                        {%- endif -%}
-                      {%- endif -%}
-                    </th>
+              <td{{ column.attributes.addClass(column_classes) }}>
+                {%- if column.wrapper_element -%}
+                  <{{ column.wrapper_element }}>
+                  {% for content in column.content %}
+                    {{ content.separator }}{{ content.field_output }}
                   {% endfor %}
-                </tr>
-              </thead>
-            {% endif %}
-            <tbody>
-              {% for row in rows %}
-                <tr{{ row.attributes }}>
-                  {% for key, column in row.columns %}
-                    {% if column.default_classes %}
-                      {%
-                        set column_classes = [
-                          'views-field'
-                        ]
-                      %}
-                      {% for field in column.fields %}
-                        {% set column_classes = column_classes|merge(['views-field-' ~ field]) %}
-                      {% endfor %}
-                    {% endif %}
-                    <td{{ column.attributes.addClass(column_classes) }}>
-                      {%- if column.wrapper_element -%}
-                        <{{ column.wrapper_element }}>
-                        {% for content in column.content %}
-                          {{ content.separator }}{{ content.field_output }}
-                        {% endfor %}
-                        </{{ column.wrapper_element }}>
-                      {%- else -%}
-                        {% for content in column.content %}
-                          {{- content.separator }}{{ content.field_output -}}
-                        {% endfor %}
-                      {%- endif %}
-                    </td>
+                  </{{ column.wrapper_element }}>
+                {%- else -%}
+                  {% for content in column.content %}
+                    {{- content.separator }}{{ content.field_output -}}
                   {% endfor %}
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+                {%- endif %}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
+

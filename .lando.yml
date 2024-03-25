@@ -36,10 +36,12 @@ tooling:
     description: "Rebuild Xsmind App"
     cmd:
       - appserver: ./scripts/site-build.sh
+
   windrush:
     service: appserver
     description: Run drush in Windows host OS
     cmd: php /app/vendor/drush/drush/drush
+
   xdebug-on:
     service: appserver
     description: Enable Xdebug.
