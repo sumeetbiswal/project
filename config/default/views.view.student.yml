@@ -650,7 +650,7 @@ display:
           exposed: true
           expose:
             operator_id: field_class_value_op
-            label: 'Class (field_class)'
+            label: Class
             description: ''
             use_operator: false
             operator: field_class_value_op
@@ -695,7 +695,7 @@ display:
           exposed: true
           expose:
             operator_id: field_section_value_op
-            label: 'Section (field_section)'
+            label: Section
             description: ''
             use_operator: false
             operator: field_section_value_op

@@ -140,3 +140,21 @@ input[type=radio] {
   transition: background 0.5s ease;
   border-radius: 0;
 }
+
+fieldset {
+  all: revert;
+  border: 1px solid silver;
+  margin-bottom: 30px;
+}
+legend {
+  all: revert;
+
+  display: block;
+  width: unset;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+}
