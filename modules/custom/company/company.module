@@ -91,7 +91,7 @@ function company_views_pre_render($view) {
 
   $result = $view->result;
   foreach ($result as $i => $row) {
-   // $encrypted_codepk = $encrypt->encode($view->result[$i]->codepk);
-   // $view->result[$i]->srch_view_codevalues_description = $encrypted_codepk;
+    $encrypted_codepk = $encrypt->encode($view->result[$i]->codepk);
+    $view->result[$i]->srch_view_codevalues_description = $encrypted_codepk;
   }
 }
