@@ -340,7 +340,7 @@ class LibController extends ControllerBase {
    *   New title.
    */
   public function setPageTitle($newTitle) {
-    if ($route = $this->requestStack->attributes->get(RouteObjectInterface::ROUTE_OBJECT)) {
+    if ($route = $this->requestStack->getMainRequest()->attributes->get(RouteObjectInterface::ROUTE_OBJECT)) {
       $route->setDefault('_title', $newTitle);
     }
   }
