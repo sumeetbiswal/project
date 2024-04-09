@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Session\AccountInterface;
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
+use Drupal\Core\Routing\RouteObjectInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 
@@ -340,7 +340,7 @@ class LibController extends ControllerBase {
    *   New title.
    */
   public function setPageTitle($newTitle) {
-    if ($route = $this->request->attributes->get(Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
+    if ($route = $this->requestStack->getMainRequest()->attributes->get(RouteObjectInterface::ROUTE_OBJECT)) {
       $route->setDefault('_title', $newTitle);
     }
   }
