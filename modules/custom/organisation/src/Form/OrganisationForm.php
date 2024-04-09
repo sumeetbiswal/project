@@ -118,8 +118,6 @@ class OrganisationForm extends FormBase {
     $form['#attributes']['autocomplete'] = 'off';
     $form['#attached']['library'][] = 'singleportal/master-validation';
     $form['organisation']['#attributes']['enctype'] = "multipart/form-data";
-    $form['organisation']['#prefix'] = '<div class="row"> <div class="panel panel-inverse">
-                            <div class="panel-heading"> ' . $title . '</div><div class="panel-body">';
     $form['organisation']['cname'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Organisation Name:'),
@@ -266,7 +264,6 @@ class OrganisationForm extends FormBase {
       '#suffix' => '</div></div>',
     ];
     $form['organisation']['cancel']['#submit'][] = '::actionCancel';
-    $form['organisation']['#suffix'] = '</div></div></div></div>';
     return $form;
   }
 
@@ -306,7 +303,6 @@ class OrganisationForm extends FormBase {
     }
     if (strlen($form_state->getValue('cphone')) < 10) {
       $form_state->setErrorByName('cphone', $this->t('Mobile number is too short.'));
-      echo "<div>errorrrr</div>";
     }
 
     if (trim($form_state->getValue('caddress1')) == '') {

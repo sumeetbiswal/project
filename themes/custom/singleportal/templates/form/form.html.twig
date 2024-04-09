@@ -12,20 +12,18 @@
  * @ingroup themeable
  */
 #}
-{% if attributes.class == 'views-exposed-form' %}
-  <div class="panel">
-    <div class="panel-body">
-      <form{{ attributes }}>
-        {% if attributes.class == 'views-exposed-form' %}
-        <div class="border-content">
-          {% endif %}
-          {{ children }}
-          {% if attributes.class == 'views-exposed-form' %}
-        </div>
-        {% endif %}
-      </form>
-    </div>
+{% if attributes.class == 'views-exposed-form' or 'node-form' in attributes.class %}
+<form{{ attributes }}>
+  {% if attributes.class == 'views-exposed-form' %}
+  <div class="border-content">
+  {% endif %}
+    {{ children }}
+  {% if attributes.class == 'views-exposed-form' %}
   </div>
+  {% endif %}
+</form>
+
 {% else %}
+  <div class="panel {{ attributes.class }}"></div>
   <form{{ attributes }}>{{ children }}</form>
 {% endif %}

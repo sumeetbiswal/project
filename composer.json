@@ -52,7 +52,9 @@
     "extra": {
         "enable-patching": true,
         "patches": {
-            
+            "drupal/core": {
+                "Fixes for Cannot read properties of null (reading 'nodeType') on node.page.body": "https://www.drupal.org/files/issues/2024-01-08/3413079-9.patch"
+            }
         },
         "drupal-scaffold": {
             "locations": {
