@@ -1,0 +1,19 @@
+services:
+  organisation.service:
+    class: Drupal\organisation\Model\OrganisationModel
+    arguments: ['@database']
+  department.service:
+      class: Drupal\organisation\Model\DepartmentModel
+      arguments: ['@database']
+  configuration.service:
+        class: Drupal\organisation\Model\ConfigurationModel
+        arguments: ['@database']
+  designation.service:
+        class: Drupal\organisation\Model\DesignationModel
+        arguments: ['@database']
+  branch.service:
+        class: Drupal\organisation\Model\BranchModel
+        arguments: ['@database']
+  workorder.service:
+          class: Drupal\organisation\Model\WorkorderModel
+          arguments: ['@database']

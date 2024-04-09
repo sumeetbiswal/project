@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Contains \Drupal\company\Form\CompanyForm.
+ * Contains \Drupal\organisation\Form\OrganisationForm.
  */
 
 namespace Drupal\employee\Form;
@@ -15,7 +15,7 @@ class EmployeeForm extends FormBase
 
     public function getFormId()
     {
-        return 'company_form';
+        return 'organisation_form';
 
     }
 
@@ -25,48 +25,48 @@ class EmployeeForm extends FormBase
 
 
         $libobj = new \Drupal\library\Lib\LibController;
-        $compobj = new \Drupal\company\Model\CompanyModel;
+        $compobj = new \Drupal\organisation\Model\OrganisationModel;
 
         $mode = $libobj->getActionMode();
 
         if($mode == 'edit') {
             $pk = $libobj->getIdFromUrl();
-            $data = $compobj->getCompanyDetailsById($pk);
+            $data = $compobj->getOrganisationDetailsById($pk);
         }
 
-        $form['company']['#attributes']['enctype'] = "multipart/form-data";
+        $form['organisation']['#attributes']['enctype'] = "multipart/form-data";
 
-        $form['company']['#prefix'] = '<div class="row"> <div class="panel panel-inverse">
-                            <div class="panel-heading"> Company details</div><div class="panel-body">';
+        $form['organisation']['#prefix'] = '<div class="row"> <div class="panel panel-inverse">
+                            <div class="panel-heading"> Organisation details</div><div class="panel-body">';
 
-        $form['company']['cname'] = array(
+        $form['organisation']['cname'] = array(
         '#type' => 'textfield',
-        '#title' => t('Company Name:'),
+        '#title' => t('Organisation Name:'),
         '#required' => true,
         '#prefix' => '<div class="row"><div class="col-md-6">',
         '#suffix' => '</div>',
-        '#default_value' => isset($data)? $data->companyname : '',
+        '#default_value' => isset($data)? $data->organisationname : '',
 
         );
 
-        $complist = $compobj->getCompanyTypeList();
+        $complist = $compobj->getOrganisationTypeList();
         $comp_option[''] = 'Select Type of Organisation';
         foreach($complist AS $item)
         {
             $comp_option[$item->codename]  = $item->codevalues;
         }
 
-        $form['company']['ctype'] = array(
+        $form['organisation']['ctype'] = array(
         '#type' => 'select',
-        '#title' => t('Company Type:'),
+        '#title' => t('Organisation Type:'),
         '#required' => true,
         '#options' => $comp_option,
         '#prefix' => '<div class="col-md-6">',
         '#suffix' => '</div></div>',
-        '#default_value' => isset($data)? $data->companytype : '',
+        '#default_value' => isset($data)? $data->organisationtype : '',
 
         );
-        $form['company']['cemail'] = array(
+        $form['organisation']['cemail'] = array(
         '#type' => 'email',
         '#title' => t('Email:'),
         '#required' => true,
@@ -76,7 +76,7 @@ class EmployeeForm extends FormBase
 
         );
 
-        $form['company']['cphone'] = array(
+        $form['organisation']['cphone'] = array(
         '#type' => 'tel',
         '#title' => t('Phone number:'),
         //  '#required' => TRUE,
@@ -85,7 +85,7 @@ class EmployeeForm extends FormBase
                '#default_value' => isset($data)? $data->phone : '',
 
         );
-        $form['company']['caddress'] = array(
+        $form['organisation']['caddress'] = array(
         '#type' => 'textarea',
         '#title' => t('Address:'),
         //  '#required' => TRUE,
@@ -94,9 +94,9 @@ class EmployeeForm extends FormBase
         '#default_value' => isset($data)? $data->address : '',
 
         );
-        $form['company']['clogo'] = array(
+        $form['organisation']['clogo'] = array(
         '#type' => 'file',
-        '#title' => t('Upload your Company logo:'),
+        '#title' => t('Upload your Organisation logo:'),
         '#upload_location' => 'public://',
         // '#suffix' =>  '</div>',
         '#prefix' => '<div class="col-md-6">',
@@ -105,8 +105,8 @@ class EmployeeForm extends FormBase
         // $form['#suffix'] =  '</div>';
 
 
-        $form['company']['#type'] = 'actions';
-        $form['company']['submit'] = array(
+        $form['organisation']['#type'] = 'actions';
+        $form['organisation']['submit'] = array(
         '#type' => 'submit',
         '#default_value' => ($mode == 'add') ? $this->t('Submit') : $this->t('Update'),
         '#button_type' => 'primary',
@@ -115,7 +115,7 @@ class EmployeeForm extends FormBase
         '#suffix' => '',
         );
 
-        $form['company']['cancel'] = array(
+        $form['organisation']['cancel'] = array(
           '#type' => 'submit',
           '#value' => t('Cancel'),
         '#attributes' => ['class' => ['btn btn-default']],
@@ -123,9 +123,9 @@ class EmployeeForm extends FormBase
         '#prefix' => '',
         '#suffix' => '</div></div>',
           );
-        $form['company']['cancel']['#submit'][] = '::ActionCancel';
+        $form['organisation']['cancel']['#submit'][] = '::ActionCancel';
 
-        $form['company']['#suffix'] = '</div></div></div></div>';
+        $form['organisation']['#suffix'] = '</div></div></div></div>';
 
         return $form;
 
@@ -135,7 +135,7 @@ class EmployeeForm extends FormBase
     public function ActionCancel(array &$form, FormStateInterface $form_state)
     {
 
-        $form_state->setRedirect('company.view');
+        $form_state->setRedirect('organisation.view');
     }
 
 
@@ -153,16 +153,16 @@ class EmployeeForm extends FormBase
     public function submitForm(array &$form, FormStateInterface $form_state)
     {
         $libobj = new \Drupal\library\Lib\LibController;
-        $compobj = new \Drupal\company\Model\CompanyModel;
+        $compobj = new \Drupal\organisation\Model\OrganisationModel;
 
 
         $field = $form_state->getValues();
 
 
         $field  = array(
-              'companyname' =>  $field['cname'],
-              'companycode' =>  $field['cname'],
-              'companytype' =>  $field['ctype'],
+              'organisationname' =>  $field['cname'],
+              'organisationcode' =>  $field['cname'],
+              'organisationtype' =>  $field['ctype'],
               'email'        =>  $field['cemail'],
               'phone'         =>  $field['cphone'],
               'address'     =>  $field['caddress'],
@@ -173,15 +173,15 @@ class EmployeeForm extends FormBase
         $mode = $libobj->getActionMode();
 
         if($mode == 'add' ) {
-            $compobj->setCompany($field);
+            $compobj->setOrganisation($field);
             drupal_set_message("succesfully saved.");
         }
         if($mode == 'edit' ) {
-            $compobj->updateCompany($field);
+            $compobj->updateOrganisation($field);
             drupal_set_message("succesfully Updated.");
         }
 
-        $form_state->setRedirect('company.view');
+        $form_state->setRedirect('organisation.view');
     }
 }
 ?>

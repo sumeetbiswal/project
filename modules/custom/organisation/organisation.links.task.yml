@@ -1,0 +1,11 @@
+organisation.tab_1:
+  route_name : organisation.configuration
+  title: General
+  base_route: organisation.configuration
+  weight: 10
+
+organisation.tab_2:
+  route_name: organisation.configuration_shift
+  title: Timing
+  base_route: organisation.configuration
+  weight: 20
