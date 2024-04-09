@@ -1,0 +1,17 @@
+organisation.branch_list:
+  route_name: 'branch.add'
+  title: 'Add Branch'
+  appears_on:
+    - view.branch.page
+
+organisation.department_list:
+  route_name: 'department.add'
+  title: 'Add Department'
+  appears_on:
+    - view.department.page
+
+organisation.designation_list:
+  route_name: 'designation.add'
+  title: 'Add Designation'
+  appears_on:
+    - view.designation.page

@@ -12,7 +12,7 @@ class DataModel extends ControllerBase
     const STATE         =     'srch_states';
     const CITY             =     'srch_cities';
     const COUNTRY         =     'srch_countries';
-    const COMPANYINFO     =     'srch_companyinfo';
+    const ORGANISATIONINFO     =     'srch_organisationinfo';
 
     const EMPPERSONAL     = 'srch_personalinfo';
     const EMPCONTACT    = 'srch_contactinfo';

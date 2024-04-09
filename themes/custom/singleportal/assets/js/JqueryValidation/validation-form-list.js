@@ -4,7 +4,7 @@ $(document).ready(function(){
    $("#multistep_form_three").validationEngine();
    $("#multistep-form-four").validationEngine();
    $("#branch-form").validationEngine();
-   $("#company-form").validationEngine();
+   $("#organisation-form").validationEngine();
    $("#department-form").validationEngine();
    $("#designation-form").validationEngine();
 });

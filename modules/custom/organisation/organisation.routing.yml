@@ -1,0 +1,170 @@
+organisation.add:
+ path: '/organisation/add'
+ defaults:
+   _title: 'Add Organisation'
+   _form: '\Drupal\organisation\Form\OrganisationForm'
+ requirements:
+   _permission: 'organisation add'
+
+organisation.edit:
+ path: '/organisation/edit/{arg}'
+ defaults:
+   _title: 'Update Details'
+   _form: '\Drupal\organisation\Form\OrganisationForm'
+ requirements:
+   _permission: 'organisation edit'
+
+organisation.view:
+ path: '/organisation/view'
+ defaults:
+   _title: 'Organisation Details'
+   _controller: '\Drupal\organisation\Controller\OrganisationController::display'
+ requirements:
+   _permission: 'organisation view'
+ options:
+    no_cache: 'TRUE'
+
+branch.add:
+ path: '/branch/add'
+ defaults:
+   _title: 'Add Branch'
+   _form: '\Drupal\organisation\Form\BranchForm'
+ requirements:
+   _permission: 'branch add'
+
+branch.edit:
+ path: '/branch/edit/{arg}'
+ defaults:
+   _title: 'Edit Branch'
+   _form: '\Drupal\organisation\Form\BranchForm'
+ requirements:
+   _permission: 'branch edit'
+
+
+branch.excel:
+ path: '/branch/export/excel'
+ defaults:
+  _title: 'Branch Export'
+  _controller: '\Drupal\organisation\Controller\BranchController::exportToExcel'
+ requirements:
+   _permission: 'branch export'
+
+department.excel:
+ path: '/department/export/excel'
+ defaults:
+  _title: 'Department Export'
+  _controller: '\Drupal\organisation\Controller\DepartmentController::exportToExcel'
+ requirements:
+   _permission: 'dept export'
+
+designation.excel:
+ path: '/designation/export/excel'
+ defaults:
+  _title: 'Designation Export'
+  _controller: '\Drupal\organisation\Controller\DesignationController::exportToExcel'
+ requirements:
+   _permission: 'access content'
+
+department.add:
+ path: '/department/add'
+ defaults:
+   _title: 'Add Department'
+   _form: '\Drupal\organisation\Form\DepartmentForm'
+ requirements:
+   _permission: 'dept add'
+
+department.edit:
+ path: '/department/edit/{arg}'
+ defaults:
+   _title: 'Update Ddepartment Details'
+   _form: '\Drupal\organisation\Form\DepartmentForm'
+ requirements:
+   _permission: 'dept edit'
+
+department.modal:
+ path: '/department/modal'
+ defaults:
+   _title: 'Department List'
+   _controller: '\Drupal\organisation\Controller\DepartmentController::openDeptModal'
+ requirements:
+   _permission: 'dept add'
+
+designation.add:
+ path: '/designation/add'
+ defaults:
+   _title: 'Add Designation'
+   _form: '\Drupal\organisation\Form\DesignationForm'
+ requirements:
+   _permission: 'desig add'
+
+designation.edit:
+ path: '/designation/edit/{arg}'
+ defaults:
+   _title: 'Update Designation Details'
+   _form: '\Drupal\organisation\Form\DesignationForm'
+ requirements:
+   _permission: 'desig edit'
+
+organisation.designationexcel:
+  path: '/designation/export/excel'
+  defaults:
+    _title: 'Designation Export'
+    _controller: '\Drupal\organisation\Controller\DesignationController::exportToExcel'
+  requirements:
+    _permission: 'desig export'
+
+organisation.configuration:
+ path: '/organisation/config'
+ defaults:
+   _title: 'Genarel Configuration'
+   _form: '\Drupal\organisation\Form\ConfigurationForm'
+ requirements:
+   _permission: 'access content'
+
+organisation.configuration_shift:
+ path: '/organisation/config/shift'
+ defaults:
+   _title: 'Shift Timing Configuration'
+   _form: '\Drupal\organisation\Form\TimingConfigurationForm'
+ requirements:
+   _permission: 'access content'
+
+organisation.configuration_shiftedit:
+ path: '/shift/edit/{arg}'
+ defaults:
+   _title: 'Shift Timing Configuration'
+   _form: '\Drupal\organisation\Form\TimingConfigurationForm'
+ requirements:
+   _permission: 'access content'
+
+workorder.add:
+ path: '/workorder/add'
+ defaults:
+   _title: ' Add Workorder'
+   _form: '\Drupal\organisation\Form\WorkorderForm'
+ requirements:
+   _permission: 'access content'
+
+workorder.edit:
+ path: '/workorder/edit/{arg}'
+ defaults:
+   _title: 'Edit Work Order'
+   _form: '\Drupal\organisation\Form\WorkorderForm'
+ requirements:
+   _permission: 'access content'
+
+teamorder.add:
+  path: '/teamorder/add'
+  defaults:
+    _title: ' Add Teamorder'
+    _form: '\Drupal\organisation\Form\TeamorderForm'
+  requirements:
+    _permission: 'access content'
+
+teamorder.edit:
+  path: '/teamorder/edit/{arg}'
+  defaults:
+    _title: ' Add Teamorder'
+    _form: '\Drupal\organisation\Form\TeamorderForm'
+  requirements:
+    _permission: 'access content'
