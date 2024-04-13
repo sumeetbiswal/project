@@ -101,7 +101,7 @@ class TimingConfigurationForm extends FormBase {
 
     $form['organisation']['#suffix'] = '</div>';
 
-    $mode = $libobj->getActionMode();
+    $mode = $this->library->getActionMode();
 
     if ($mode == 'edit') {
       $pk = $this->library->getIdFromUrl();
