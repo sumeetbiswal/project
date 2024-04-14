@@ -3202,6 +3202,10 @@ ul.common li a:hover {
 .alert-success {
   background: #e8f9e6;
   color: #2fb419;
+  background-repeat: no-repeat;
+  background-position: 16px 19px;
+  padding: 15px 20px 15px 46px;
+  background-image: url(../images/icon/check.svg);
 }
 .alert-dark {
   background: #313131;
