@@ -1,3 +1,6 @@
+body {
+  padding-top: 0 !important;
+}
 #printit {
   color: black !important;
   cursor: pointer;
@@ -157,4 +160,16 @@ legend {
   line-height: inherit;
   color: #333;
   border: 0;
+}
+
+.alert-danger a {
+  font-weight: bold;
+  color: #e32700;
+}
+.alert-warning a {
+  font-weight: bold;
+  color: #e29700;
+}
+.alert-danger a:hover {
+  text-decoration: underline;
 }
