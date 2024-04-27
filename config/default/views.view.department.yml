@@ -285,7 +285,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: custom
-          label: 'Custom text'
+          label: Actions
           exclude: false
           alter:
             alter_text: true
