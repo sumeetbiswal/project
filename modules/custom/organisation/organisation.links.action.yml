@@ -15,3 +15,15 @@ organisation.designation_list:
   title: 'Add Designation'
   appears_on:
     - view.designation.page
+
+organisation.workorder_list:
+  route_name: 'workorder.add'
+  title: 'Add Workorder'
+  appears_on:
+    - view.workorder.page
+
+organisation.teamorder_list:
+  route_name: 'teamorder.add'
+  title: 'Add Teamorder'
+  appears_on:
+    - view.workorder.teamorder
