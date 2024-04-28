@@ -162,6 +162,13 @@ function mediteran_form_node_form_alter(&$form, FormStateInterface $form_state) 
 
   $form['revision_information']['#type'] = 'container';
   $form['revision_information']['#group'] = 'meta';
+  $form_object = $form_state->getFormObject();
+  $node = $form_object->getEntity();
+  $content_type = $node->bundle();
+  if($content_type == 'student') {
+    $form['actions']['delete']['#access'] = FALSE;
+    $form['actions']['preview']['#access'] = FALSE;
+  }
 }
 
 /**
