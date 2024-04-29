@@ -81,8 +81,7 @@ display:
           hide_alter_empty: true
           action_title: Action
           include_exclude: include
-          selected_actions:
-            - node_delete_action
+          selected_actions: {  }
         title:
           id: title
           table: node_field_data
