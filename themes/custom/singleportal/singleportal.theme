@@ -65,7 +65,6 @@ function singleportal_form_node_form_alter(&$form, FormStateInterface $form_stat
   $node = $form_object->getEntity();
   $content_type = $node->bundle();
   if($content_type == 'student') {
-    $form['actions']['delete']['#access'] = FALSE;
     $form['actions']['preview']['#access'] = FALSE;
   }
 }
