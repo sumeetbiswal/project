@@ -57,3 +57,16 @@ tooling:
     cmd:
       - rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && kill -USR2 $(pgrep -o php-fpm) > /dev/null || /etc/init.d/apache2 reload
       - tput setaf 1 && echo "Xdebug Off" && tput sgr 0 && echo
+
+  phpcs:
+    service: appserver
+    cmd:
+      - "/app/vendor/bin/phpcs"
+  phpcbf:
+    service: appserver
+    cmd:
+      - "/app/vendor/bin/phpcbf"
+  phpstan:
+    service: appserver
+    cmd:
+      - "/app/vendor/bin/phpstan"
