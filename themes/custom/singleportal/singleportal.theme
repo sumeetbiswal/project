@@ -6,7 +6,7 @@
  *
  * Place your custom PHP code in this file.
  */
-
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\user\Entity\User;
 use Drupal\Component\Utility\Html;
 
@@ -60,7 +60,14 @@ function singleportal_form_alter(&$form, $form_state, $form_id) {
     $form['pass']['#attributes']['placeholder'] = t('Password');
   }
 }
-
+function singleportal_form_node_form_alter(&$form, FormStateInterface $form_state) {
+  $form_object = $form_state->getFormObject();
+  $node = $form_object->getEntity();
+  $content_type = $node->bundle();
+  if($content_type == 'student') {
+    $form['actions']['preview']['#access'] = FALSE;
+  }
+}
 /**
  * Implementation of hook_theme_suggestions_form_element_alter().
  */
