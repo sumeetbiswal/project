@@ -1,0 +1,5 @@
+leave.branch_list:
+  route_name: 'leavetype.add'
+  title: 'Add Leave Type'
+  appears_on:
+    - view.leavetype.page
