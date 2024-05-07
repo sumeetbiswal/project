@@ -1,0 +1,19 @@
+parameters:
+  level: 1
+  bootstrapFiles:
+  - core/tests/bootstrap.php
+  scanFiles:
+  - core/includes/errors.inc
+  paths:
+  - modules/custom
+  - themes/custom
+  #- profiles/custom
+  #- tests
+  excludePaths:
+  #- Journaleight theme is a contributed paid theme from themeforest.in
+  #- Since it does not support D10. This has been moved to Custom folder.
+  #- docroot/themes/custom/journaleight
+
+  ignoreErrors:
+    # new static() is a best practice in Drupal, so we cannot fix that.
+    #- "#^Unsafe usage of new static#"

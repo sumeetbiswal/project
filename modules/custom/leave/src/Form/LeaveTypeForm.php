@@ -134,7 +134,7 @@ class LeaveTypeForm extends FormBase {
       '#attributes' => ['class' => ['btn btn-default']],
       '#prefix' => '',
       '#suffix' => '</div></div>',
-      '#url' => \Drupal\Core\Url::fromRoute('leavetype.list'),
+      '#url' => \Drupal\Core\Url::fromRoute('view.leavetype.page'),
     );
 
     return $form;
@@ -194,7 +194,7 @@ class LeaveTypeForm extends FormBase {
       $leave->updateLeaveType($data, $pk);
       \Drupal::messenger()->addMessage($data['codevalues'] . " has succesfully Updated.");
     }
-    $form_state->setRedirect('leavetype.list');
+    $form_state->setRedirect('view.leavetype.page');
   }
 }
 ?>

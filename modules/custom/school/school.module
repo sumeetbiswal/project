@@ -20,15 +20,10 @@ function school_toolbar_alter(&$items) {
 /**
  * Implements hook_form_alter().
  */
-function school_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function school_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 
-  // Hiding revision information for Teacher & Student node edit form.
-  $form_exception = [
-    'node_teacher_form',
-    'node_student_form'
-  ];
-
-  if (in_array($form_id, $form_exception)) {
-    $form['revision_information']['#access'] = FALSE;
-  }
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(\Drupal\school\Controller\SchoolFormAlter::class)
+    ->alterForm($form, $form_state, $form_id);
 }
+

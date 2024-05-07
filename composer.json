@@ -45,7 +45,9 @@
             "drupal/core-project-message": true,
             "drupal/core-vendor-hardening": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true
         },
         "sort-packages": true
     },
@@ -111,5 +113,9 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "require-dev": {
+        "drupal/core-dev": "^10",
+        "phpstan/phpstan-deprecation-rules": "^1.1"
     }
 }
