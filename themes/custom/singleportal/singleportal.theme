@@ -302,7 +302,7 @@ function singleportal_preprocess_form_element_label(&$variables) {
     $variables['attributes']['class'][] = 'control-label';
 
     // Form field label width is different with respect to pages.
-    if(isset($element['#form_id'])){
+    if(isset($element['#form_id'])) {
       switch ($element['#form_id']) {
 
         CASE 'views_exposed_form':
