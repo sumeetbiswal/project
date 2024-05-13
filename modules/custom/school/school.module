@@ -27,3 +27,13 @@ function school_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterfac
     ->alterForm($form, $form_state, $form_id);
 }
 
+/**
+ * Implements hook_theme().
+ */
+function school_theme($existing, $type, $theme, $path) {
+  return array(
+    'student_count_card' => array(
+      'variables' => array('student_count' => NULL,),
+    ),
+  );
+}
