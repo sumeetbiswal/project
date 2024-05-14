@@ -3,3 +3,6 @@
   flex-direction: column;
   gap: 15px;
 }
+.user-login-form #edit-submit {
+  margin-top: 15px;
+}
