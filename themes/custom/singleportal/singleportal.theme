@@ -54,7 +54,7 @@ function singleportal_preprocess_page(&$variables) {
 function singleportal_form_alter(&$form, $form_state, $form_id) {
   if ($form['#form_id'] == 'user_login_form') {
     $form['actions']['submit']['#attributes']['class'][] = 'btn btn-primary btn-block';
-    $form['#attributes']['class'][] = 'form-horizontal form-material';
+    $form['#attributes']['class'][] = 'form-horizontal';
     $form['name']['#attributes']['class'][] = 'form-control';
     $form['name']['#attributes']['placeholder'] = t('Username');
     $form['pass']['#attributes']['class'][] = 'form-control';
