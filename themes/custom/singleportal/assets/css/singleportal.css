@@ -103,6 +103,11 @@ i.icon-red {
 .form-actions {
   margin-top: 20px;
 }
+.user-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 .border-content {
   padding: 15px;
   border: 1px solid #e9e9e9;
