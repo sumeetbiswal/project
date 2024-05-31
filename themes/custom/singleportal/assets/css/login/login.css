@@ -27,3 +27,25 @@
 .page-login-v2 .page-login-main {
     padding: 135px 60px 180px !important;
 }
+form.user-pass {
+  width: 40%;
+  margin: 5% auto;
+  background: white;
+  padding: 52px;
+}
+.logo-reset-page {
+  margin: 0 auto;
+}
+.user-pass .brand-logo-reset {
+  display: flex;
+  margin-bottom: 10%;
+}
+.white-box .box-title {
+  margin: 0px 0px 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.user-pass p {
+  margin: 16px 0px;
+}

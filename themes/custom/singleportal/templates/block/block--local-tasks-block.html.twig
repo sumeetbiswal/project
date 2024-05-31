@@ -7,8 +7,11 @@
 #}
 {% block content %}
   {% if content %}
-    <nav class="row active" role="navigation" aria-label="{{ 'Tabs'|t }}">
-      {{ content }}
-    </nav>
+  {% set url = url('<current>') %}
+    {% if 'user/password' not in url|render|render %}
+      <nav class="row active" role="navigation" aria-label="{{ 'Tabs'|t }}">
+        {{ content }}
+      </nav>
+    {% endif %}
   {% endif %}
 {% endblock %}

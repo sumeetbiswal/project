@@ -15,7 +15,7 @@ use Drupal\Component\Utility\Html;
  */
 function singleportal_preprocess_page(&$variables) {
 
-  if ($variables['is_front']) {
+  if ($variables['is_front']  || \Drupal::service('path.current')->getPath() == '/user/password') {
     $variables['#attached']['library'][] = 'singleportal/login-styling';
   }
   elseif (\Drupal::service('path.current')->getPath() == '/batch') {
@@ -60,6 +60,12 @@ function singleportal_form_alter(&$form, $form_state, $form_id) {
     $form['pass']['#attributes']['class'][] = 'form-control';
     $form['pass']['#attributes']['placeholder'] = t('Password');
   }
+  // if ($form['#form_id'] == 'user-pass') {
+  //    $form['actions']['submit']['#attributes']['class'][] = 'btn btn-primary btn-block';
+  //   $form['#attributes']['class'][] = 'form-horizontal';
+  //    $form['name']['#attributes']['class'][] = 'form-control';
+  //   $form['name']['#attributes']['placeholder'] = t('Username or Email');
+  // }
 }
 function singleportal_form_node_form_alter(&$form, FormStateInterface $form_state) {
   $form_object = $form_state->getFormObject();
