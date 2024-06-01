@@ -60,12 +60,10 @@ function singleportal_form_alter(&$form, $form_state, $form_id) {
     $form['pass']['#attributes']['class'][] = 'form-control';
     $form['pass']['#attributes']['placeholder'] = t('Password');
   }
-  // if ($form['#form_id'] == 'user-pass') {
-  //    $form['actions']['submit']['#attributes']['class'][] = 'btn btn-primary btn-block';
-  //   $form['#attributes']['class'][] = 'form-horizontal';
-  //    $form['name']['#attributes']['class'][] = 'form-control';
-  //   $form['name']['#attributes']['placeholder'] = t('Username or Email');
-  // }
+  if ($form['#form_id'] == 'user_pass') {
+    $form['actions']['submit']['#attributes']['value'][] = 'Reset';
+    $form['name']['#attributes']['placeholder'] = t('Enter Username or Email id');
+  }
 }
 function singleportal_form_node_form_alter(&$form, FormStateInterface $form_state) {
   $form_object = $form_state->getFormObject();

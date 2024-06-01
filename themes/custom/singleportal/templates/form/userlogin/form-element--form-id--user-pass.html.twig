@@ -48,7 +48,6 @@
   set classes = [
   'js-form-item',
   'form-item',
-  'white-box',
   'js-form-type-' ~ type|clean_class,
   'form-type-' ~ type|clean_class,
   'js-form-item-' ~ name|clean_class,
@@ -68,7 +67,6 @@
           <img class="logo-reset-page" src="/sites/default/files/logo.png" alt="logo" width="190" height="60">
         </div>
 <div{{ attributes.addClass(classes) }}>
- <h3 class="box-title m-b-0">Reset your password</h3>
   {% if prefix is not empty %}
     <span class="field-prefix">{{ prefix }}</span>
   {% endif %}
