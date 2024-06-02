@@ -11,7 +11,7 @@ id: node.student.field_are_you_physically_disable
 field_name: field_are_you_physically_disable
 entity_type: node
 bundle: student
-label: 'Are you physically Disabled ?'
+label: 'Physically Disabled ?'
 description: ''
 required: true
 translatable: false

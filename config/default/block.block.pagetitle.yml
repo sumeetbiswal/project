@@ -29,4 +29,4 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: "/tagging\r\n/organisation/config\r\n/organisation/config/*\r\n/company/view\r\n/employee/add\r\n/employee/add/*\r\n/workorder\r\n/workorder/*"
+    pages: "/tagging\r\n/organisation/config\r\n/organisation/config/*\r\n/company/view\r\n/employee/add\r\n/employee/add/*\r\n/workorder\r\n/workorder/*\r\n/node/add/student"
