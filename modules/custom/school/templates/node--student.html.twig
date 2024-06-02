@@ -1,0 +1,355 @@
+ <div class="row">
+	<div class="col-md-4 col-xs-12">
+		<div class="white-box">
+			<div class=""> <img width="100%" alt="user" src="{{ student_pic }}"></div>
+			<div class="user-btm-box">
+				<!-- .row -->
+				<div class="row text-center m-t-10">
+					<div class="col-md-6 b-r"><strong>Name</strong>
+						<p>{{ data.name }}</p>
+					</div>
+					<div class="col-md-6"><strong>Designation</strong>
+						<p>{{ data.designation }}<p>
+					</div>
+				</div>
+				<!-- /.row -->
+				<hr>
+				<!-- .row -->
+				<div class="row text-center m-t-10">
+					<div class="col-md-6 b-r"><strong>Email ID</strong>
+						<p>{{ data.email }}</p>
+					</div>
+					<div class="col-md-6"><strong>EMPID</strong>
+						<p>{{ data.empid }}</p>
+					</div>
+				</div>
+				<!-- /.row -->
+				<hr>
+				<!-- .row -->
+				<div class="row text-center m-t-10">
+					<div class="col-md-12"><strong>Address</strong>
+						<p> {{ data.res_address1 }}, {{ data.res_address2 }}, {{ data.res_city }},
+							<br/> {{ data.res_state }}, {{ data.res_country }}. {{ data.res_pincode }}</p>
+					</div>
+				</div>
+				<hr>
+				<!-- /.row -->
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 col-xs-12">
+				   <blockquote class="white-box box fix-width">
+                                         <h3 class="box-title">Personal Info <div class="pull-right">
+				<a href="#"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a>
+			</div> </h3>
+                                            <hr class="m-t-0 m-b-20">
+
+											<div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Father:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static">{{ data.fathername }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Mother:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.mothername }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Gender:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> Male </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Birth Date:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.dob }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Marital:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.marital }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Blood Group:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.bloodgroup }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Religion:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.religion }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+									</blockquote>
+	</div>
+     <div class="col-md-4 col-xs-12">
+			 <blockquote class="white-box box fix-width">
+	         <h3 class="box-title">Contact Info <div class="pull-right">
+				<a href="#"><i class="mdi mdi-pencil-circle" title="" style="font-size: x-large;"data-toggle="tooltip" data-original-title="Edit"></i></a>
+			</div> </h3>
+                                            <hr class="m-t-0 m-b-20">
+
+											<div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Mobile No:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static">{{ data.phoneno }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Alt. Tel No:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.altphone }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Emergency:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.emrgphone }} ({{ data.relationship }}) </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4"> Email ID:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.pers_email }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Permanent Address:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.perm_address1 }}, {{ data.perm_address2 }}, {{ data.perm_city }}, {{ data.perm_state }}, {{ data.perm_country }}, {{ data.perm_pincode }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+									</blockquote>
+
+
+	</div>
+
+	<div class="col-md-4 col-xs-12">
+			 <blockquote class="white-box box fix-width">
+	         <h3 class="box-title">Official Info <div class="pull-right">
+							</div> </h3>
+                                            <hr class="m-t-0 m-b-20">
+
+											<div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Branch:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static">{{ data.branch }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Department:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.department }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Employee Type:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.jobnature }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Job Type:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.jobtype }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Joined On:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.joining }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Shift:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {{ data.jobshift }} </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+									</blockquote>
+
+
+	</div>
+
+	<div class="col-md-4 col-xs-12">
+			 <blockquote class="white-box box fix-width">
+	         <h3 class="box-title">Academic Qualification <div class="pull-right">
+							</div> </h3>
+                                            <hr class="m-t-0 m-b-20">
+
+											<div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Matriculation:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static">{{ data.qual.matric }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">12th stand:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {% if data.qual.twelveth is not empty %}
+																									{{ data.qual.twelveth }}
+																								{% else %}
+																									Not Available
+																								{% endif %}
+															</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Graduation:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {% if  data.qual.graduation is not empty %}
+																									{{ data.qual.graduation }}
+																								{% else %}
+																									Not Available
+																								{% endif %}
+
+															</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+												<div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">Post Graduate:</label>
+                                                        <div class="col-md-8">
+                                                            <span class="form-control-static"> {% if  data.qual.postgraduation is not empty %}
+																									{{ data.qual.postgraduation }}
+																								{% else %}
+																									Not Available
+																								{% endif %}
+															</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+									</blockquote>
+
+
+	</div>
+	<div class="col-md-8 col-xs-12">
+			 <blockquote class="white-box box">
+	         <h3 class="box-title">Previous Experience <div class="pull-right">
+							</div> </h3>
+                                            <hr class="m-t-0 m-b-20">
+
+											<table class="tablesaw table-bordered table-hover table tablesaw-swipe" data-tablesaw-mode="swipe" id="table-300" style="">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" class="tablesaw-cell-persist">Organisation</th>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3">Designation</th>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="2">From</th>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">To</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+									{% if data.expr is not empty %}
+
+										{% for item in data.expr %}
+											<tr>
+												<td class="title tablesaw-cell-persist"><a href="javascript:void(0)">{{ item.organisation }}</a></td>
+												<td>{{ item.designation }}</td>
+												<td>{{ item.fromdate }}</td>
+												<td>{{ item.todate }}</td>
+											</tr>
+										{% endfor %}
+
+
+									{% endif %}
+                                </tbody>
+                            </table>
+
+									</blockquote>
+
+
+	</div>
+</div>

@@ -58,3 +58,17 @@ function school_preprocess_page(array &$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function school_preprocess_node(&$variables){
+  if ($variables['node']->getType() == 'student') {
+    if (empty($variables['node']->get('field_student_photo')->entity->uri->value)) {
+      $libobj = \Drupal::service('library.service');
+      $variables['student_pic'] = $libobj->getDefaultAvatar($variables['node']->get('field_gender')->value);
+    } else {
+      $variables['student_pic'] = \Drupal::service('file_url_generator')->generateAbsoluteString($variables['node']->get('field_student_photo')->entity->uri->value);
+    }
+  }
+}
