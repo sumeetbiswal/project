@@ -203,7 +203,7 @@ function singleportal_preprocess_menu__account(&$variables) {
   if ($user) {
     $username = User::load($user->id());
     $personal_details = $empobj->getPersonalDetailsById($username->id());
-
+    $gender = NULL;
     if (!empty($personal_details)) {
       $gender = $personal_details->gender;
       $firstname = $personal_details->firstname;
