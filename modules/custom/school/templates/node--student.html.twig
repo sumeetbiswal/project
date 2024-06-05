@@ -6,21 +6,21 @@
 				<!-- .row -->
 				<div class="row text-center m-t-10">
 					<div class="col-md-6 b-r"><strong>Name</strong>
-						<p>{{ data.name }}</p>
+						<p>{{ node.title.value }}</p>
 					</div>
-					<div class="col-md-6"><strong>Designation</strong>
-						<p>{{ data.designation }}<p>
+					<div class="col-md-6"><strong>Class</strong>
+						<p>{{ node.field_class.value }}<p>
 					</div>
 				</div>
 				<!-- /.row -->
 				<hr>
 				<!-- .row -->
 				<div class="row text-center m-t-10">
-					<div class="col-md-6 b-r"><strong>Email ID</strong>
-						<p>{{ data.email }}</p>
+					<div class="col-md-6 b-r"><strong>Roll No</strong>
+						<p>{{ node.field_roll_no.value }}</p>
 					</div>
-					<div class="col-md-6"><strong>EMPID</strong>
-						<p>{{ data.empid }}</p>
+					<div class="col-md-6"><strong>Date of Birth</strong>
+						<p>{{ node.field_date_of_birth.value }}</p>
 					</div>
 				</div>
 				<!-- /.row -->
@@ -28,8 +28,7 @@
 				<!-- .row -->
 				<div class="row text-center m-t-10">
 					<div class="col-md-12"><strong>Address</strong>
-						<p> {{ data.res_address1 }}, {{ data.res_address2 }}, {{ data.res_city }},
-							<br/> {{ data.res_state }}, {{ data.res_country }}. {{ data.res_pincode }}</p>
+            <p>{{ node.field_present_address.value }}</p>
 					</div>
 				</div>
 				<hr>
