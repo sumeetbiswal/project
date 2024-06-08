@@ -165,6 +165,7 @@ legend {
   line-height: inherit;
   color: #333;
   border: 0;
+  font-weight: bolder;
 }
 
 .alert-danger a {

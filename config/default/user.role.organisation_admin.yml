@@ -36,6 +36,4 @@ permissions:
   - 'organisation edit'
   - 'organisation export'
   - 'organisation view'
-  - 'revert student revisions'
   - 'student export'
-  - 'view student revisions'
