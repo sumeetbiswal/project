@@ -1,0 +1,23 @@
+uuid: d4c77e6f-6cf0-4c6a-bc5a-9fb4265d5cbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_no
+    - node.type.student
+id: node.student.field_contact_no
+field_name: field_contact_no
+entity_type: node
+bundle: student
+label: 'Contact No'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: 10
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -11,7 +11,7 @@ id: node.student.field_upload_parents_photo
 field_name: field_upload_parents_photo
 entity_type: node
 bundle: student
-label: 'Upload Parents photo'
+label: 'Parents photo'
 description: ''
 required: false
 translatable: false

@@ -30,7 +30,7 @@ function singleportal_preprocess_page(&$variables) {
   if (\Drupal::service('path.current')->getPath() == '/home') {
     $variables['#attached']['library'][] = 'singleportal/dashboard';
   }
-  // started code for reset password page 
+  // started code for reset password page
   if (\Drupal::service('path.current')->getPath() == '/user/password') {
     $variables['render_reset_password_form'] = FALSE;
     if (!\Drupal::currentUser()->id()) { // if userid empty then render reset password form
@@ -39,7 +39,7 @@ function singleportal_preprocess_page(&$variables) {
       $variables['render_reset_password_form'] = $render->renderPlain($form);
     }
   }
-  // ended code for reset password page 
+  // ended code for reset password page
   $variables['site_name'] = \Drupal::config('system.site')->get('name');
 
   $variables['site_logo'] = \Drupal::service('file_url_generator')->generateAbsoluteString("public://logo.png");

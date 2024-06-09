@@ -1,17 +1,16 @@
-uuid: 22a4e3dd-4858-4c87-b9ce-9915d7a984fd
+uuid: 6cebcf4c-b7c8-48f2-8077-7a02a4331397
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_identification_mark
-field_name: field_identification_mark
+id: node.field_contact_no
+field_name: field_contact_no
 entity_type: node
-type: string
+type: integer
 settings:
-  max_length: 500
-  case_sensitive: false
-  is_ascii: false
+  unsigned: false
+  size: normal
 module: core
 locked: false
 cardinality: 1

@@ -12,7 +12,7 @@
  * @ingroup themeable
  */
 #}
-{% if attributes.class == 'views-exposed-form' or 'node-form' in attributes.class %}
+{% if attributes.class == 'views-exposed-form' in attributes.class %}
 <form{{ attributes }}>
   {% if attributes.class == 'views-exposed-form' %}
   <div class="border-content">
@@ -24,6 +24,8 @@
 </form>
 
 {% else %}
-  <div class="panel {{ attributes.class }}"></div>
+  {% if attributes.class is empty %}
+    <div class="panel {{ attributes.class }}"></div>
+  {% endif %}
   <form{{ attributes }}>{{ children }}</form>
 {% endif %}

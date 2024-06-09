@@ -72,3 +72,10 @@ function school_preprocess_node(&$variables){
     }
   }
 }
+
+/**
+ * Implements hook_options_list_alter().
+ */
+function school_options_list_alter(array &$options, array $context) {
+  unset($options['_none']);
+}

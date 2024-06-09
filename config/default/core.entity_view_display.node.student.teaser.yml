@@ -5,10 +5,11 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.student.field_admission_no
-    - field.field.node.student.field_are_you_physically_disable
+    - field.field.node.student.field_alternative_contact
     - field.field.node.student.field_blood_group
     - field.field.node.student.field_caste
     - field.field.node.student.field_class
+    - field.field.node.student.field_contact_no
     - field.field.node.student.field_date_of_birth
     - field.field.node.student.field_email
     - field.field.node.student.field_father_s_name
@@ -16,12 +17,12 @@ dependencies:
     - field.field.node.student.field_gender
     - field.field.node.student.field_identification_mark
     - field.field.node.student.field_local_guardian
-    - field.field.node.student.field_mobile_number
     - field.field.node.student.field_mother_s_name
     - field.field.node.student.field_mother_s_occupation
     - field.field.node.student.field_mother_tongue
     - field.field.node.student.field_nationality
     - field.field.node.student.field_permanent_address
+    - field.field.node.student.field_physically_disabled
     - field.field.node.student.field_present_address
     - field.field.node.student.field_religion
     - field.field.node.student.field_roll_no
@@ -50,10 +51,11 @@ content:
     region: content
 hidden:
   field_admission_no: true
-  field_are_you_physically_disable: true
+  field_alternative_contact: true
   field_blood_group: true
   field_caste: true
   field_class: true
+  field_contact_no: true
   field_date_of_birth: true
   field_email: true
   field_father_s_name: true
@@ -61,12 +63,12 @@ hidden:
   field_gender: true
   field_identification_mark: true
   field_local_guardian: true
-  field_mobile_number: true
   field_mother_s_name: true
   field_mother_s_occupation: true
   field_mother_tongue: true
   field_nationality: true
   field_permanent_address: true
+  field_physically_disabled: true
   field_present_address: true
   field_religion: true
   field_roll_no: true

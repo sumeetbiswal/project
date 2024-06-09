@@ -4,10 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.student.field_admission_no
-    - field.field.node.student.field_are_you_physically_disable
+    - field.field.node.student.field_alternative_contact
     - field.field.node.student.field_blood_group
     - field.field.node.student.field_caste
     - field.field.node.student.field_class
+    - field.field.node.student.field_contact_no
     - field.field.node.student.field_date_of_birth
     - field.field.node.student.field_email
     - field.field.node.student.field_father_s_name
@@ -15,12 +16,12 @@ dependencies:
     - field.field.node.student.field_gender
     - field.field.node.student.field_identification_mark
     - field.field.node.student.field_local_guardian
-    - field.field.node.student.field_mobile_number
     - field.field.node.student.field_mother_s_name
     - field.field.node.student.field_mother_s_occupation
     - field.field.node.student.field_mother_tongue
     - field.field.node.student.field_nationality
     - field.field.node.student.field_permanent_address
+    - field.field.node.student.field_physically_disabled
     - field.field.node.student.field_present_address
     - field.field.node.student.field_religion
     - field.field.node.student.field_roll_no
@@ -53,12 +54,14 @@ content:
     third_party_settings: {  }
     weight: 110
     region: content
-  field_are_you_physically_disable:
-    type: list_default
-    label: hidden
-    settings: {  }
+  field_alternative_contact:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
     third_party_settings: {  }
-    weight: 112
+    weight: 131
     region: content
   field_blood_group:
     type: list_default
@@ -80,6 +83,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 105
+    region: content
+  field_contact_no:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 130
     region: content
   field_date_of_birth:
     type: datetime_default
@@ -120,11 +132,12 @@ content:
     weight: 107
     region: content
   field_identification_mark:
-    type: basic_string
-    label: hidden
-    settings: {  }
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    weight: 113
+    weight: 129
     region: content
   field_local_guardian:
     type: string
@@ -133,14 +146,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 122
-    region: content
-  field_mobile_number:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 127
     region: content
   field_mother_s_name:
     type: string
@@ -179,6 +184,16 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 125
+    region: content
+  field_physically_disabled:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 128
     region: content
   field_present_address:
     type: basic_string
