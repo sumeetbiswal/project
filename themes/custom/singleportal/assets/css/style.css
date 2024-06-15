@@ -1501,7 +1501,7 @@ table.dataTable thead .sorting:after {
 .white-box {
   background: #ffffff;
   padding: 25px;
-  margin-bottom: 30px;
+  margin-bottom: 8px;
   margin-top: 6px;
 }
 .white-box .box-title {

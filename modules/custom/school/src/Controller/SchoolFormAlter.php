@@ -22,10 +22,11 @@ class SchoolFormAlter {
      *    String representing the id of the form.
      */
     public function alterForm(array &$form, FormStateInterface $form_state, $form_id) {
-      // Hiding revision information for Teacher & Student node edit form.
+      // Hiding revision log information for Teacher & Student node edit form.
       $form_exception = [
         'node_teacher_form',
-        'node_student_form'
+        'node_student_form',
+        'node_student_edit_form'
       ];
 
       if (in_array($form_id, $form_exception)) {

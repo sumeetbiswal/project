@@ -10,6 +10,8 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Routing\RouteObjectInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ExtensionPathResolver;
 
 /**
  * {@inheritdoc}
@@ -59,6 +61,20 @@ class LibController extends ControllerBase {
   protected $entityTypeManager;
 
   /**
+   * The config factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
+   * The extension path resolver.
+   *
+   * @var \Drupal\Core\Extension\ExtensionPathResolver
+   */
+  protected $extensionPathResolver;
+
+  /**
    * Constructor of the LibController.
    *
    * @param \Drupal\Core\Database\Connection $connection
@@ -73,19 +89,27 @@ class LibController extends ControllerBase {
    *   The route match.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
+   * @param \Drupal\Core\Extension\ExtensionPathResolver $extension_path_resolver
+   *   The extension path resolver.
    */
   public function __construct(Connection $connection,
                               RequestStack $requestStack,
                               AccountInterface $currentUser,
                               RouteProviderInterface $provider,
                               RouteMatchInterface $route_match,
-                              EntityTypeManagerInterface $entity_type_manager) {
+                              EntityTypeManagerInterface $entity_type_manager,
+                              ConfigFactoryInterface $config_factory,
+                              ExtensionPathResolver $extension_path_resolver) {
     $this->connection = $connection;
     $this->requestStack = $requestStack;
     $this->currentUser = $currentUser;
     $this->routeProvider = $provider;
     $this->routeMatch = $route_match;
     $this->entityTypeManager = $entity_type_manager;
+    $this->configFactory = $config_factory;
+    $this->extensionPathResolver = $extension_path_resolver;
   }
 
   /**
@@ -343,6 +367,27 @@ class LibController extends ControllerBase {
     if ($route = $this->requestStack->getMainRequest()->attributes->get(RouteObjectInterface::ROUTE_OBJECT)) {
       $route->setDefault('_title', $newTitle);
     }
+  }
+
+  /**
+   * Helper function to get default Avatar pics.
+   *
+   *  @param string $gender
+   *   gender.
+   */
+  public function getDefaultAvatar($gender) {
+    global $base_url;
+    // Get the default theme name.
+    $default_theme_name = $this->configFactory->get('system.theme')->get('default');
+    // Get the path for the default theme.
+    $theme_path = $this->extensionPathResolver->getPath('theme', $default_theme_name);
+
+    $avatar = $base_url . '/' . $theme_path . '/assets/images/avatar/male.jpg';
+    if ($gender == 'F' || $gender == 'female') {
+      $avatar = $base_url . '/' . $theme_path . '/assets/images/avatar/female.jpg';
+    }
+
+    return $avatar;
   }
 
 }

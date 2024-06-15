@@ -209,12 +209,14 @@ function singleportal_preprocess_menu(&$variables) {
 function singleportal_preprocess_menu__account(&$variables) {
   $user = \Drupal::currentUser();
 
-  $libobj = \Drupal::service('employee.service');
+  $empobj = \Drupal::service('employee.service');
+  $libobj = \Drupal::service('library.service');
+
   $variables['#cache']['max-age'] = 0;
   if ($user) {
     $username = User::load($user->id());
-    $personal_details = $libobj->getPersonalDetailsById($username->id());
-
+    $personal_details = $empobj->getPersonalDetailsById($username->id());
+    $gender = NULL;
     if (!empty($personal_details)) {
       $gender = $personal_details->gender;
       $firstname = $personal_details->firstname;
@@ -229,20 +231,7 @@ function singleportal_preprocess_menu__account(&$variables) {
       $variables['propic'] = \Drupal::service('file_url_generator')->generateAbsoluteString($user_pic->user_picture->entity->getFileUri());
     }
     else {
-      global $base_url;
-      $default_theme_name = \Drupal::config('system.theme')->get('default');
-      $theme_path = \Drupal::service('extension.list.theme')->getPath($default_theme_name);
-
-      if (@$gender == NULL) {
-        $variables['propic'] = $base_url . '/' . $theme_path . '/assets/images/avatar/male.jpg';
-      }
-      elseif ($gender == 'F') {
-        $variables['propic'] = $base_url . '/' . $theme_path . '/assets/images/avatar/female.jpg';
-      }
-      else {
-        $variables['propic'] = $base_url . '/' . $theme_path . '/assets/images/avatar/male.jpg';
-      }
-
+        $variables['propic'] = $libobj->getDefaultAvatar($gender);
     }
   }
 
@@ -316,7 +305,7 @@ function singleportal_preprocess_form_element_label(&$variables) {
     $variables['attributes']['class'][] = 'control-label';
 
     // Form field label width is different with respect to pages.
-    if(isset($element['#form_id'])){
+    if(isset($element['#form_id'])) {
       switch ($element['#form_id']) {
 
         CASE 'views_exposed_form':

@@ -27,3 +27,48 @@ function school_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterfac
     ->alterForm($form, $form_state, $form_id);
 }
 
+/**
+ * Implements hook_theme().
+ */
+function school_theme($existing, $type, $theme, $path) {
+  return array(
+    'student_count_card' => array(
+      'variables' => array('student_count' => NULL,),
+    ),
+    'node__student' => array(
+      'base hook' => 'node',
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function school_preprocess_page(array &$variables) {
+  // Check the current route name or any other condition.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+  if ($route_name == 'entity.node.canonical' && \Drupal::routeMatch()->getParameter('node')->getType() == 'student') {
+    // Disable a specific block. Replace 'block_id' with your block's machine name.
+    $block_id = 'pagetitle';
+
+    // Check if the block exists in the render array and unset it.
+    if (isset($variables['page']['content'][$block_id])) {
+      unset($variables['page']['content'][$block_id]);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function school_preprocess_node(&$variables){
+  if ($variables['node']->getType() == 'student') {
+    if (empty($variables['node']->get('field_student_photo')->entity->uri->value)) {
+      $libobj = \Drupal::service('library.service');
+      $variables['student_pic'] = $libobj->getDefaultAvatar($variables['node']->get('field_gender')->value);
+    } else {
+      $variables['student_pic'] = \Drupal::service('file_url_generator')->generateAbsoluteString($variables['node']->get('field_student_photo')->entity->uri->value);
+    }
+  }
+}

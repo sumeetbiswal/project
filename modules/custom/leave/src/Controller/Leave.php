@@ -13,6 +13,7 @@ class Leave extends ControllerBase {
    * Helper function to get Leave list.
    */
   public function leavelist() {
+    return [];
 
   }
 
