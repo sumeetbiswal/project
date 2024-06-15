@@ -843,12 +843,12 @@ pre {
 }
 .footer {
   bottom: 0;
-  color: #58666e;
+  color: #f7f7f7cf !important;
   left: 0px;
   padding: 20px 30px;
   position: absolute;
   right: 0;
-  background: #ffffff;
+  background: #2f323e;
 }
 .bg-title {
   background: #ffffff;
@@ -6069,11 +6069,20 @@ ul.select-row-icon li a.selected i.whn-hov {
 .sidebar .sidebar-search {
   padding: 15px;
 }
-#side-menu li.active > a {
+#side-menu li.active > a {  
   background: rgba(0, 0, 0, 0);
 }
-#side-menu li a {
-  color: #97999f;
+.nav-second-level li a {
+  color: #585656  !important;
+  /* color: #97999f; */
+  width: 240px;
+  font-weight: 400;
+}
+#side-menu > li > a {
+  color: #f7f7f7cf !important;
+  font-weight: 400;
+  font-size: 1.6rem;
+  /* color: #97999f; */
   width: 240px;
 }
 #side-menu li a:focus {
@@ -6089,7 +6098,14 @@ ul.select-row-icon li a.selected i.whn-hov {
 }
 #side-menu > li > a:hover,
 #side-menu > li > a:focus {
-  background: rgba(0, 0, 0, 0.1);
+  /* background: rgba(0, 0, 0, 0.1); */
+  background: #5c5966;
+}
+#side-menu > li:hover {
+  background: #5c5966 !important;
+}
+#side-menu .nav-second-level > li:hover {
+  background: #e0dfe3 !important;
 }
 #side-menu > li > a.active {
   color: #2cabe3;
@@ -16735,6 +16751,7 @@ ul.pro-amenities li span i {
     float: left;
     vertical-align: top;
     position: relative;
+    width: 14.5%;
   }
   #side-menu > li > a {
     padding: 10px 18px;
