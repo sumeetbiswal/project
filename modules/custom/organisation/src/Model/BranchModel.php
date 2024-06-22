@@ -2,8 +2,8 @@
 
 namespace Drupal\organisation\Model;
 
-use Drupal\Core\Database\Connection;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Database\Connection;
 
 /**
  * Model file for the Branch.

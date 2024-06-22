@@ -2,11 +2,11 @@
 
 namespace Drupal\organisation\Form;
 
-use Drupal\organisation\Model\ConfigurationModel;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\organisation\Model\ConfigurationModel;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
