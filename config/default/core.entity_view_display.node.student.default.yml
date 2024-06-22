@@ -20,9 +20,7 @@ dependencies:
     - field.field.node.student.field_mother_s_occupation
     - field.field.node.student.field_mother_tongue
     - field.field.node.student.field_nationality
-    - field.field.node.student.field_permanent_address
     - field.field.node.student.field_physically_disabled
-    - field.field.node.student.field_present_address
     - field.field.node.student.field_religion
     - field.field.node.student.field_roll_no
     - field.field.node.student.field_section
@@ -178,13 +176,6 @@ content:
     third_party_settings: {  }
     weight: 123
     region: content
-  field_permanent_address:
-    type: basic_string
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 125
-    region: content
   field_physically_disabled:
     type: boolean
     label: above
@@ -194,13 +185,6 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     weight: 128
-    region: content
-  field_present_address:
-    type: basic_string
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 124
     region: content
   field_religion:
     type: string

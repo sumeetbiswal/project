@@ -20,9 +20,7 @@ dependencies:
     - field.field.node.student.field_mother_s_occupation
     - field.field.node.student.field_mother_tongue
     - field.field.node.student.field_nationality
-    - field.field.node.student.field_permanent_address
     - field.field.node.student.field_physically_disabled
-    - field.field.node.student.field_present_address
     - field.field.node.student.field_religion
     - field.field.node.student.field_roll_no
     - field.field.node.student.field_section
@@ -286,8 +284,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_permanent_address: true
-  field_present_address: true
   path: true
   promote: true
   status: true

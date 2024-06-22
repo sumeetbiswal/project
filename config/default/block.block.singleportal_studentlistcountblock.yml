@@ -8,8 +8,8 @@ dependencies:
     - singleportal
 id: singleportal_studentlistcountblock
 theme: singleportal
-region: dashleft
-weight: 0
+region: dashright
+weight: -7
 provider: null
 plugin: studentlist_count_block
 settings:
