@@ -1,0 +1,19 @@
+uuid: 94e4910c-2ac4-411e-a39b-743a5f40b2c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_perm_district
+    - node.type.student
+id: node.student.field_perm_district
+field_name: field_perm_district
+entity_type: node
+bundle: student
+label: District
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

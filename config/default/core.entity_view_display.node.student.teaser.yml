@@ -4,13 +4,19 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.student.field_address_line_1
+    - field.field.node.student.field_address_line_2
     - field.field.node.student.field_admission_no
     - field.field.node.student.field_alternative_contact
     - field.field.node.student.field_blood_group
     - field.field.node.student.field_caste
+    - field.field.node.student.field_city
+    - field.field.node.student.field_citydd
     - field.field.node.student.field_class
     - field.field.node.student.field_contact_no
+    - field.field.node.student.field_country
     - field.field.node.student.field_date_of_birth
+    - field.field.node.student.field_district
     - field.field.node.student.field_email
     - field.field.node.student.field_father_s_name
     - field.field.node.student.field_father_s_occupation
@@ -21,10 +27,18 @@ dependencies:
     - field.field.node.student.field_mother_s_occupation
     - field.field.node.student.field_mother_tongue
     - field.field.node.student.field_nationality
+    - field.field.node.student.field_perm_address_line_1
+    - field.field.node.student.field_perm_address_line_2
+    - field.field.node.student.field_perm_country
+    - field.field.node.student.field_perm_district
+    - field.field.node.student.field_perm_pincode
+    - field.field.node.student.field_perm_state
     - field.field.node.student.field_physically_disabled
+    - field.field.node.student.field_pincode
     - field.field.node.student.field_religion
     - field.field.node.student.field_roll_no
     - field.field.node.student.field_section
+    - field.field.node.student.field_state
     - field.field.node.student.field_student_photo
     - field.field.node.student.field_upload_parents_photo
     - node.type.student
@@ -48,13 +62,19 @@ content:
     weight: 100
     region: content
 hidden:
+  field_address_line_1: true
+  field_address_line_2: true
   field_admission_no: true
   field_alternative_contact: true
   field_blood_group: true
   field_caste: true
+  field_city: true
+  field_citydd: true
   field_class: true
   field_contact_no: true
+  field_country: true
   field_date_of_birth: true
+  field_district: true
   field_email: true
   field_father_s_name: true
   field_father_s_occupation: true
@@ -65,9 +85,17 @@ hidden:
   field_mother_s_occupation: true
   field_mother_tongue: true
   field_nationality: true
+  field_perm_address_line_1: true
+  field_perm_address_line_2: true
+  field_perm_country: true
+  field_perm_district: true
+  field_perm_pincode: true
+  field_perm_state: true
   field_physically_disabled: true
+  field_pincode: true
   field_religion: true
   field_roll_no: true
   field_section: true
+  field_state: true
   field_student_photo: true
   field_upload_parents_photo: true

@@ -1,0 +1,47 @@
+uuid: e56c691a-0d1c-4395-819e-80c9eb07acae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.country.field_phonecode
+    - field.field.taxonomy_term.country.field_sortname
+    - taxonomy.vocabulary.country
+  module:
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: taxonomy_term.country.default
+targetEntityType: taxonomy_term
+bundle: country
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_phonecode:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_sortname:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

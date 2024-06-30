@@ -1,0 +1,27 @@
+uuid: bd3fcb35-1a51-4039-a2a3-6ff13ec257ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_state
+    - node.type.student
+id: node.student.field_state
+field_name: field_state
+entity_type: node
+bundle: student
+label: State
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: dependent_fields_selection
+  handler_settings:
+    dependent_fields_view:
+      view_name: state
+      display_name: entity_reference_1
+      parent_field: field_country
+      reference_parent_by_uuid: false
+      arguments: {  }
+field_type: entity_reference

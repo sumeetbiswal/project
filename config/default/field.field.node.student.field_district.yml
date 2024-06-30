@@ -1,0 +1,19 @@
+uuid: ed71b4d5-61c9-47e8-b63f-6f7c82789ab1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_district
+    - node.type.student
+id: node.student.field_district
+field_name: field_district
+entity_type: node
+bundle: student
+label: District
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,20 @@
+uuid: 6cf1255f-afb5-4c26-84d6-a5a8b5476d84
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_phonecode
+field_name: field_phonecode
+entity_type: taxonomy_term
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

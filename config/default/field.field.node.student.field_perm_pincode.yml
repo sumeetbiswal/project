@@ -1,0 +1,19 @@
+uuid: f1f8d52c-eacf-4e0f-a102-eb4e3eeeec5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_perm_pincode
+    - node.type.student
+id: node.student.field_perm_pincode
+field_name: field_perm_pincode
+entity_type: node
+bundle: student
+label: Pincode
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
