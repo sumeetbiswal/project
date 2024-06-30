@@ -1,0 +1,112 @@
+<?php
+
+
+/**
+ * @file
+ * Library install file.
+ */
+
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Update City, State, Country taxonomy fields.
+ */
+/*
+function library_update_8001() {
+// update city state field
+
+
+  // connect to DB
+  $database = \Drupal::database();
+
+  // Start the process for Country
+  $query = $database->query("SELECT * FROM srch_countries");
+  $result = $query->fetchAll();
+
+  foreach ($result AS $item) {
+    //Enable only one country India.
+    // make rest of the country un published
+    if ($item->id != 101) {
+      continue;
+    }
+      $status = ($item->id == 101) ? TRUE : FALSE;
+
+    // create the taxonomy term under country Vocabulary
+    $term = Term::create(array(
+      'parent' => array(),
+      'name' => $item->name,
+      'field_sortname' => $item->sortname,
+      'field_phonecode' => $item->phonecode,
+      'vid' => 'country',
+      'status' => $status
+    ))->save();
+  }
+
+
+  // Start the process for state
+  $query = $database->query("SELECT * FROM srch_states");
+  $result = $query->fetchAll();
+
+  $states_list = [];
+  foreach ($result AS $item) {
+    //Enable only those states for country India
+    // make rest of the states become unpublished
+    if ($item->country_id  != 101) {
+      continue;
+    }
+    $status = ($item->country_id == 101) ? TRUE : FALSE;
+
+    // fetch the country id from custom mysql table
+    $query = $database->query('SELECT * FROM srch_countries WHERE id=' . $item->country_id);
+    $country_info = $query->fetch();
+
+    //fetch the term id for that country created
+    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $country_info->name, 'vid' => 'country']);
+    foreach ($terms as $term) {
+      $term_id = $term->id();
+    }
+
+    // create the taxonomy term under States Vocabulary
+    $term = Term::create(array(
+      'parent' => array(),
+      'name' => $item->name,
+      'field_country' => $term_id,
+      'vid' => 'state',
+      'status' => $status
+    ))->save();
+    $states_list[] = $item->id;
+  }
+
+
+  //process for cities
+  $query = $database->query("SELECT ct.id, ct.name, ct.state_id FROM srch_cities ct left join srch_states st on ct.state_id=st.id left join srch_countries cnt on st.country_id=cnt.id where cnt.id=101");
+  $result = $query->fetchAll();
+
+  foreach ($result AS $item) {
+    // If city name is blank skip the record to avoid run time error.
+    if ($item->name == '') {
+      continue;
+    }
+
+    // fetch the state id from custom mysql table.
+    $query = $database->query('SELECT * FROM srch_states WHERE id=' . $item->state_id);
+    $state_info = $query->fetch();
+
+    // fethc the term id for that states
+    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $state_info->name, 'vid' => 'state']);
+    foreach ($terms as $term) {
+      $term_id = $term->id();
+    }
+
+    // create the taxonomy term under City Vocabulary
+    $term = Term::create(array(
+      'parent' => array(),
+      'name' => $item->name,
+      'field_state' => $term_id,
+      'vid' => 'city',
+      //'status' => false
+    ))->save();
+  }
+
+}
+*/

@@ -11,7 +11,7 @@ dependencies:
 id: employeelistcountblock
 theme: singleportal
 region: dashleft
-weight: 0
+weight: -7
 provider: null
 plugin: employeelist_count_block
 settings:

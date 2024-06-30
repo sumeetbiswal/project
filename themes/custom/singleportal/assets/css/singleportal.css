@@ -179,3 +179,19 @@ legend {
 .alert-danger a:hover {
   text-decoration: underline;
 }
+/* For radios button */
+.form-type-radio {
+  display: inline-block;
+  width: 10%;
+}
+.js-form-type-checkbox {
+  display: inline-block;
+  width: 30%;
+}
+
+hr {
+  margin-top: 0px;
+}
+details {
+  clear: both;
+}

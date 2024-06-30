@@ -2,11 +2,11 @@
 
 namespace Drupal\organisation\Form;
 
-use Drupal\organisation\Model\DepartmentModel;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\CloseModalDialogCommand;
 use Drupal\Core\Ajax\AppendCommand;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\organisation\Model\DepartmentModel;
 
 /**
  * DepartmentModalForm created modal form for department.

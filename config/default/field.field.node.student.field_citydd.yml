@@ -1,0 +1,27 @@
+uuid: d4e7718f-0939-4edb-a40c-f3634194312a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_citydd
+    - node.type.student
+id: node.student.field_citydd
+field_name: field_citydd
+entity_type: node
+bundle: student
+label: City
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: dependent_fields_selection
+  handler_settings:
+    dependent_fields_view:
+      view_name: city
+      display_name: entity_reference_1
+      parent_field: field_perm_state
+      reference_parent_by_uuid: false
+      arguments: {  }
+field_type: entity_reference

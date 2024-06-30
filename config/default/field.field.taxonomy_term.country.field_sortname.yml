@@ -1,0 +1,19 @@
+uuid: d9e4ef0b-6638-4319-afa6-7f244ff7e502
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_sortname
+    - taxonomy.vocabulary.country
+id: taxonomy_term.country.field_sortname
+field_name: field_sortname
+entity_type: taxonomy_term
+bundle: country
+label: sortname
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

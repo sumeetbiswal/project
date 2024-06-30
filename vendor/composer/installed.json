@@ -3289,6 +3289,61 @@
             "install-path": "../drupal/core-vendor-hardening"
         },
         {
+            "name": "drupal/dependent_fields",
+            "version": "1.0.4",
+            "version_normalized": "1.0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/dependent_fields.git",
+                "reference": "1.0.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/dependent_fields-1.0.4.zip",
+                "reference": "1.0.4",
+                "shasum": "be1aebf88cfd9bc008bfecadd34d862eaa5019bb"
+            },
+            "require": {
+                "drupal/core": "^8.9 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.4",
+                    "datestamp": "1685955347",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "facine",
+                    "homepage": "https://www.drupal.org/user/1169056"
+                },
+                {
+                    "name": "pcambra",
+                    "homepage": "https://www.drupal.org/user/122101"
+                },
+                {
+                    "name": "smoothify",
+                    "homepage": "https://www.drupal.org/user/115335"
+                }
+            ],
+            "description": "Define and configure dependent fields.",
+            "homepage": "https://www.drupal.org/project/dependent_fields",
+            "support": {
+                "source": "https://git.drupalcode.org/project/dependent_fields"
+            },
+            "install-path": "../../modules/contrib/dependent_fields"
+        },
+        {
             "name": "drupal/devel",
             "version": "5.1.2",
             "version_normalized": "5.1.2.0",

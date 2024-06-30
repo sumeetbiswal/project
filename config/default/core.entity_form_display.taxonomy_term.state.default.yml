@@ -1,0 +1,44 @@
+uuid: 4205d0d3-dc63-43fe-9479-dff1c82249d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.state.field_country
+    - taxonomy.vocabulary.state
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: taxonomy_term.state.default
+targetEntityType: taxonomy_term
+bundle: state
+mode: default
+content:
+  field_country:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true
+  path: true

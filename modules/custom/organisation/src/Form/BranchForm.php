@@ -2,15 +2,15 @@
 
 namespace Drupal\organisation\Form;
 
-use Drupal\organisation\Model\BranchModel;
-use Drupal\organisation\Model\ConfigurationModel;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use Drupal\library\Controller\Encrypt;
 use Drupal\library\Lib\LibController;
+use Drupal\organisation\Model\BranchModel;
+use Drupal\organisation\Model\ConfigurationModel;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Messenger\MessengerInterface;
 
 /**
  * BranchForm creates the Form for Branch.
@@ -223,7 +223,7 @@ class BranchForm extends FormBase {
       '#type' => 'link',
       '#title' => $this->t('Cancel'),
       '#attributes' => ['class' => ['btn btn-default']],
-      '#prefix' => '', 
+      '#prefix' => '',
       '#suffix' => '</div></div>',
       '#url' => Url::fromRoute('view.branch.page'),
     ];

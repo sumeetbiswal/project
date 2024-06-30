@@ -1,0 +1,8 @@
+uuid: 80756d3e-581c-4aa2-9f80-0a25f6f0e4ae
+langcode: en
+status: true
+dependencies: {  }
+name: City
+vid: city
+description: 'This list City'
+weight: 0

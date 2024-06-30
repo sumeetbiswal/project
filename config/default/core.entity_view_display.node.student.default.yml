@@ -3,28 +3,41 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.student.field_address_line_1
+    - field.field.node.student.field_address_line_2
     - field.field.node.student.field_admission_no
-    - field.field.node.student.field_are_you_physically_disable
+    - field.field.node.student.field_alternative_contact
     - field.field.node.student.field_blood_group
     - field.field.node.student.field_caste
+    - field.field.node.student.field_city
+    - field.field.node.student.field_citydd
     - field.field.node.student.field_class
+    - field.field.node.student.field_contact_no
+    - field.field.node.student.field_country
     - field.field.node.student.field_date_of_birth
+    - field.field.node.student.field_district
     - field.field.node.student.field_email
     - field.field.node.student.field_father_s_name
     - field.field.node.student.field_father_s_occupation
     - field.field.node.student.field_gender
     - field.field.node.student.field_identification_mark
     - field.field.node.student.field_local_guardian
-    - field.field.node.student.field_mobile_number
     - field.field.node.student.field_mother_s_name
     - field.field.node.student.field_mother_s_occupation
     - field.field.node.student.field_mother_tongue
     - field.field.node.student.field_nationality
-    - field.field.node.student.field_permanent_address
-    - field.field.node.student.field_present_address
+    - field.field.node.student.field_perm_address_line_1
+    - field.field.node.student.field_perm_address_line_2
+    - field.field.node.student.field_perm_country
+    - field.field.node.student.field_perm_district
+    - field.field.node.student.field_perm_pincode
+    - field.field.node.student.field_perm_state
+    - field.field.node.student.field_physically_disabled
+    - field.field.node.student.field_pincode
     - field.field.node.student.field_religion
     - field.field.node.student.field_roll_no
     - field.field.node.student.field_section
+    - field.field.node.student.field_state
     - field.field.node.student.field_student_photo
     - field.field.node.student.field_upload_parents_photo
     - node.type.student
@@ -45,6 +58,22 @@ targetEntityType: node
 bundle: student
 mode: default
 content:
+  field_address_line_1:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 135
+    region: content
+  field_address_line_2:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 136
+    region: content
   field_admission_no:
     type: string
     label: hidden
@@ -53,12 +82,14 @@ content:
     third_party_settings: {  }
     weight: 110
     region: content
-  field_are_you_physically_disable:
-    type: list_default
-    label: hidden
-    settings: {  }
+  field_alternative_contact:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
     third_party_settings: {  }
-    weight: 112
+    weight: 131
     region: content
   field_blood_group:
     type: list_default
@@ -74,12 +105,45 @@ content:
     third_party_settings: {  }
     weight: 115
     region: content
+  field_city:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 133
+    region: content
+  field_citydd:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 145
+    region: content
   field_class:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 105
+    region: content
+  field_contact_no:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 130
+    region: content
+  field_country:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 134
     region: content
   field_date_of_birth:
     type: datetime_default
@@ -89,6 +153,14 @@ content:
       format_type: medium
     third_party_settings: {  }
     weight: 108
+    region: content
+  field_district:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 138
     region: content
   field_email:
     type: basic_string
@@ -120,11 +192,12 @@ content:
     weight: 107
     region: content
   field_identification_mark:
-    type: basic_string
-    label: hidden
-    settings: {  }
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    weight: 113
+    weight: 129
     region: content
   field_local_guardian:
     type: string
@@ -133,14 +206,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 122
-    region: content
-  field_mobile_number:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 127
     region: content
   field_mother_s_name:
     type: string
@@ -173,19 +238,71 @@ content:
     third_party_settings: {  }
     weight: 123
     region: content
-  field_permanent_address:
-    type: basic_string
-    label: hidden
-    settings: {  }
+  field_perm_address_line_1:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    weight: 125
+    weight: 139
     region: content
-  field_present_address:
-    type: basic_string
-    label: hidden
-    settings: {  }
+  field_perm_address_line_2:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    weight: 124
+    weight: 140
+    region: content
+  field_perm_country:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 142
+    region: content
+  field_perm_district:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 143
+    region: content
+  field_perm_pincode:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 144
+    region: content
+  field_perm_state:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 141
+    region: content
+  field_physically_disabled:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 128
+    region: content
+  field_pincode:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 137
     region: content
   field_religion:
     type: string
@@ -210,6 +327,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 106
+    region: content
+  field_state:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 132
     region: content
   field_student_photo:
     type: image

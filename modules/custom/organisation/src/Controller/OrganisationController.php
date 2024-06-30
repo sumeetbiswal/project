@@ -2,10 +2,10 @@
 
 namespace Drupal\organisation\Controller;
 
-use Drupal\organisation\Model\OrganisationModel;
+use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Theme\ThemeManagerInterface;
 use Drupal\library\Controller\Encrypt;
-use Drupal\Core\Controller\ControllerBase;
+use Drupal\organisation\Model\OrganisationModel;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

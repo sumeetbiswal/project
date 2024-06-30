@@ -1,0 +1,23 @@
+uuid: aafd713f-a378-4dc4-bf99-e10d75b81ece
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_physically_disabled
+    - node.type.student
+id: node.student.field_physically_disabled
+field_name: field_physically_disabled
+entity_type: node
+bundle: student
+label: 'Physically Disabled ?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

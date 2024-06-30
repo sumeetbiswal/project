@@ -1,4 +1,4 @@
-uuid: 1d9689eb-0aa3-4a91-ad16-762f0a569643
+uuid: 22a4e3dd-4858-4c87-b9ce-9915d7a984fd
 langcode: en
 status: true
 dependencies:
@@ -7,9 +7,11 @@ dependencies:
 id: node.field_identification_mark
 field_name: field_identification_mark
 entity_type: node
-type: string_long
+type: string
 settings:
+  max_length: 500
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

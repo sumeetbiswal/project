@@ -27,8 +27,9 @@
 #}
 
 
-<fieldset form="form1">
-  <legend>{{ legend.title }}:</legend>
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="edit-code" class="control-label col-md-3">{{ legend.title }}</label>
 
     {% if description_display == 'before' and description.content %}
       <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
@@ -48,4 +49,5 @@
     {% if description_display in ['after', 'invisible'] and description.content %}
       <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
     {% endif %}
-</fieldset>
+  </div>
+</div>

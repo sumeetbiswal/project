@@ -1,19 +1,19 @@
-uuid: 08e9e15b-ca84-4316-b477-ba896b8cd9bc
+uuid: 8e616807-3937-4c44-9385-8aaf43eb5e02
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_present_address
+    - field.storage.node.field_address_line_1
     - node.type.student
-id: node.student.field_present_address
-field_name: field_present_address
+id: node.student.field_address_line_1
+field_name: field_address_line_1
 entity_type: node
 bundle: student
-label: 'Present address'
+label: 'Address Line 1'
 description: ''
 required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: string_long
+field_type: string
