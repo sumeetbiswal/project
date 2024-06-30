@@ -11,7 +11,7 @@ use Drupal\taxonomy\Entity\Term;
 /**
  * Update City, State, Country taxonomy fields.
  */
-
+/*
 function library_update_8001() {
 // update city state field
 
@@ -109,4 +109,4 @@ function library_update_8001() {
   }
 
 }
-
+*/
