@@ -1,0 +1,18 @@
+uuid: 6df5d48d-7a13-4c38-8cff-173cd3bf5c62
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_physically_disabled
+field_name: field_physically_disabled
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,29 @@
+uuid: ae93c128-0b8c-472f-872f-bf0d55e5182b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_perm_country
+    - node.type.student
+    - taxonomy.vocabulary.country
+id: node.student.field_perm_country
+field_name: field_perm_country
+entity_type: node
+bundle: student
+label: Country
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      country: country
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

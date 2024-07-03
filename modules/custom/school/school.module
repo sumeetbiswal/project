@@ -72,3 +72,30 @@ function school_preprocess_node(&$variables){
     }
   }
 }
+
+/**
+ * Implements hook_options_list_alter().
+ */
+function school_options_list_alter(array &$options, array $context) {
+  unset($options['_none']);
+}
+
+
+/**
+ * Implements hook_field_create_definitions().
+ */
+function school_field_create_definitions_alter(array &$definitions) {
+  // Define your fields here by entity type.
+  $definitions['node'] = [
+    'demo_field' => [
+      'name'    => 'demo_field',
+      'label'   => 'This is my field',
+      'type'    => 'string',
+      'force'   => FALSE, // No update once field exists.
+      'bundles' => [
+        'student' => [],
+        'article' => [],
+      ],
+    ],
+  ];
+}

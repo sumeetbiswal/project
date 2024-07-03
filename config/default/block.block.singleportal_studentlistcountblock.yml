@@ -1,0 +1,20 @@
+uuid: 16324279-65f3-4810-b18c-391ace6ff32c
+langcode: en
+status: true
+dependencies:
+  module:
+    - school
+  theme:
+    - singleportal
+id: singleportal_studentlistcountblock
+theme: singleportal
+region: dashright
+weight: -7
+provider: null
+plugin: studentlist_count_block
+settings:
+  id: studentlist_count_block
+  label: 'Student List Count block'
+  label_display: '0'
+  provider: school
+visibility: {  }

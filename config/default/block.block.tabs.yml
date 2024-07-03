@@ -2,6 +2,8 @@ uuid: 8e42d253-4536-4656-bc13-279db67228a1
 langcode: en
 status: true
 dependencies:
+  module:
+    - system
   theme:
     - singleportal
 id: tabs
@@ -17,4 +19,8 @@ settings:
   provider: core
   primary: true
   secondary: true
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '/node/*/edit'

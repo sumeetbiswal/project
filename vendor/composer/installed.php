@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'dee8f0999da0b8e9f7c31ef68973580bfc79b60c',
+        'reference' => 'e325773a814fa82fdb9ab2cd554e95d247b3ed27',
         'name' => 'drupal/legacy-project',
         'dev' => true,
     ),
@@ -550,6 +550,15 @@
                 0 => '10.2.6',
             ),
         ),
+        'drupal/dependent_fields' => array(
+            'pretty_version' => '1.0.4',
+            'version' => '1.0.4.0',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../modules/contrib/dependent_fields',
+            'aliases' => array(),
+            'reference' => '1.0.4',
+            'dev_requirement' => false,
+        ),
         'drupal/devel' => array(
             'pretty_version' => '5.1.2',
             'version' => '5.1.2.0',
@@ -574,7 +583,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'dee8f0999da0b8e9f7c31ef68973580bfc79b60c',
+            'reference' => 'e325773a814fa82fdb9ab2cd554e95d247b3ed27',
             'dev_requirement' => false,
         ),
         'drupal/mediteran' => array(

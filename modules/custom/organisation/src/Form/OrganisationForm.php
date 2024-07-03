@@ -2,17 +2,17 @@
 
 namespace Drupal\organisation\Form;
 
-use Drupal\organisation\Model\OrganisationModel;
 use Drupal\Core\Cache\CacheBackendInterface;
-use Drupal\Core\Messenger\MessengerInterface;
-use Drupal\Core\Url;
-use Drupal\library\Controller\Encrypt;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Url;
 use Drupal\file\Entity\File;
+use Drupal\library\Controller\Encrypt;
 use Drupal\library\Lib\LibController;
+use Drupal\organisation\Model\OrganisationModel;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\File\FileSystemInterface;
 
 /**
  * OrganisationForm creates the Form for Organisation.
@@ -107,12 +107,11 @@ class OrganisationForm extends FormBase {
 
     $encrypt = new Encrypt();
     $mode = $this->library->getActionMode();
-    $title = 'Add Organisation Details';
+
     if ($mode == 'edit') {
       $pk = $this->library->getIdFromUrl();
       $pk = $encrypt->decode($pk);
       $data = $this->organisation->getOrganisationDetailsById($pk);
-      $title = 'Edit Organisation Details';
     }
     $form['#attributes']['class'] = 'form-horizontal';
     $form['#attributes']['autocomplete'] = 'off';

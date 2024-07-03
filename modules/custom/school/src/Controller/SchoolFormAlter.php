@@ -35,7 +35,7 @@ class SchoolFormAlter {
 
 
       // Alter the student form.
-      if ($form_id == 'node_student_form') {
+      if (in_array('node_student_form', $form_exception)) {
 
         // Adding library for master library validation
         $form['#attached']['library'][] = 'singleportal/master-validation';

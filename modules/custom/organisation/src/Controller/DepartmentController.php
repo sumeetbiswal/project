@@ -2,10 +2,10 @@
 
 namespace Drupal\organisation\Controller;
 
+use Drupal\Core\Controller\ControllerBase;
+use Drupal\library\Controller\Excel;
 use Drupal\library\Controller\ModalFormController;
 use Drupal\organisation\Model\DepartmentModel;
-use Drupal\library\Controller\Excel;
-use Drupal\Core\Controller\ControllerBase;
 
 /**
  * Controller for Department.

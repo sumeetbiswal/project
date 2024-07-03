@@ -1,0 +1,23 @@
+uuid: d1270df8-d53e-4820-b9a3-104b674deacb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_phonecode
+    - taxonomy.vocabulary.country
+id: taxonomy_term.country.field_phonecode
+field_name: field_phonecode
+entity_type: taxonomy_term
+bundle: country
+label: phonecode
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

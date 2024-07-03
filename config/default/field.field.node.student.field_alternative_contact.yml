@@ -1,0 +1,23 @@
+uuid: 9866cef9-bb78-4c78-86f1-1abf8990e249
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_alternative_contact
+    - node.type.student
+id: node.student.field_alternative_contact
+field_name: field_alternative_contact
+entity_type: node
+bundle: student
+label: 'Alternative Contact'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: 10
+  prefix: ''
+  suffix: ''
+field_type: integer
